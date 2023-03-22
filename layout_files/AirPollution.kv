@@ -1,0 +1,318 @@
+#:set air_Q_main 'If the AQI is higher than 200 and if I have to stay outdoors for more than 1 hour consecutively:'
+
+#:set air_Q0 'I expect to wear a pollution mask'
+#:set air_Q1 'I want to wear a pollution mask'
+#:set air_Q2 'I intend to wear a pollution mask'
+#:set air_Q3 'I choose to wear a pollution mask'
+#:set air_Q4 'I will wear a pollution mask'
+#:set air_Q5 'I would be better wearing a pollution mask'
+#:set air_Q6 'I prefer wearing a pollution mask'
+
+# ----
+<AirPollutionLandingPage>:
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: 'Air Pollution'
+            halign: 'left'
+            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+            elevation:8
+
+        MDLabel:
+            text:''
+            size_hint_y:0.3
+        MDLabel:
+            text: 'The Air Quality Index (AQI) is a measure of air pollution created by the United States Environmental Protection Agency. \n\nThe measure ranges from 0 to 500, with indices greater than 200 indicating risk to health.'
+            font_size:'14sp'
+            halign: 'left'
+            size_hint_x:0.8
+            pos_hint:{'center_x':0.5}
+
+        MDLabel:
+            # font_size:'2xw0sp'
+            text: 'Answer the following questions about pollution mask usage'
+            # text_color:DARK_BLUE
+            theme_text_color:"Hint"
+            halign: 'left'
+            size_hint_x:0.8
+            # size_hint_x:0.5
+            pos_hint:{'center_x':0.5}
+
+        MDRaisedButton:
+            text:"Begin"
+            font_style:'Button'
+            # size_hint_x:0.7
+            pos_hint:{'center_x':0.5}
+            on_release:
+
+                root.manager.current='AirPollutionPage'
+                root.manager.transition.direction="left"
+                root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y:0.3
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     <                       '
+                on_release:
+                    root.manager.current='LocationPage'
+                    root.manager.transition.direction="right"
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     >                       '
+                on_release:
+                    root.manager.current='AirPollutionPage'
+                    root.manager.transition.direction="left"
+                    root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
+
+
+<AirPollutionPage>:
+
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: 'Air Pollution'
+            halign: 'left'
+            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+            elevation:8
+
+        MDBoxLayout:
+            size_hint_y:0.7
+
+            MDTabs:
+                id: android_tabs
+                tab_pos:'left_top'
+                on_tab_switch: root.on_tab_switch(*args)
+
+                Tab:
+                    text:'1'
+                    MDBoxLayout:
+                        orientation:'vertical'
+
+                        MDLabel:
+                            text: air_Q0
+                            halign: 'center'
+                            size_hint_x:0.9
+
+                Tab:
+                    text:'2'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: air_Q1
+                            halign: 'center'
+                            size_hint_x:0.9
+                Tab:
+                    text:'3'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: air_Q2
+                            halign: 'center'
+                            size_hint_x:0.9
+                Tab:
+                    text:'4'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: air_Q3
+                            halign: 'center'
+                            size_hint_x:0.9
+                Tab:
+                    text:'5'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: air_Q4
+                            halign: 'center'
+                            size_hint_x:0.9
+                Tab:
+                    text:'6'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: air_Q5
+                            halign: 'center'
+                            size_hint_x:0.9
+                Tab:
+                    text:'7'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: air_Q6
+                            halign: 'center'
+                            size_hint_x:0.9
+
+        MDBoxLayout:
+            orientation:'vertical'
+            MDRectangleFlatIconButton:
+                # id:button7
+                icon:'numeric-7'
+                text:'Strongly agree'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                theme_text_color: "Custom"
+                color_icon_root_button: app.theme_cls.accent_color
+                pos_hint:{'center_x':0.5}
+
+                on_release:
+                    root.button_press(7)
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button6
+                icon:'numeric-6'
+                text:'Agree'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                # size_hint_y:0.8
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(6)
+                custom_color: 0, 1, 0, 1
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button5
+                icon:'numeric-5'
+                text:'Somewhat agree'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                # size_hint_y:0.8
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(5)
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button4
+                icon:'numeric-4'
+                text:'Neutral'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(4)
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button3
+                icon:'numeric-3'
+                text:'Somewhat disagree'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(3)
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button2
+                icon:'numeric-2'
+                text:'Disagree'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(2)
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button1
+                icon:'numeric-1'
+                text:'Strongly Disagree'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(1)
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y:0.3
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     <                       '
+                on_release:root.arrow_left()
+
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     >                       '
+                on_release:root.arrow_right()
+
+    FloatLayout:
+        orientation: 'vertical'
+        MDLabel:
+            pos:(50,950)
+            text: air_Q_main
+            # md_bg_color:0,0,1,0.05
+            size_hint_y:0.15
+            size_hint_x:0.9
+            text_color:1,1,1,1
+
+
+<AirPollutionScorePage>:
+    score_label:score_label
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+
+            title: 'Air Pollution'
+            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+            elevation:8
+
+        MDLabel:
+            text: 'Your score is:'
+            halign: 'center'
+
+        MDLabel:
+            id:score_label
+            text: ''
+            halign: 'center'
+
+        MDRaisedButton:
+            id:restart_button
+            text:'Try Again'
+            font_style:'Button'
+            size_hint_x:0.7
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            on_release:
+                root.reset_quiz()
+                # root.parent.ids.android_tabs.switch_tab['1']
+                # root.manager.current='AirPollutionPage'
+                # root.manager.transition.direction="right"
+
+        MDLabel:
+            size_hint_y:1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     <                       '
+                on_release:
+                    root.manager.current='AirPollutionPage'
+                    root.manager.transition.direction="right"
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     >                       '
+                on_release:
+                    root.manager.current='DietLandingPage'
+                    root.manager.transition.direction="left"

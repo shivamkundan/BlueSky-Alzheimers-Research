@@ -1,0 +1,235 @@
+#:set alcohol_Q1 'How often do you have a drink containing alcohol?'
+#:set alcohol_Q2 'How many drinks containing alcohol do you have on a typical day when you are drinking?'
+#:set alcohol_Q3 'How often do you have X (5 for men, 4 for women or men over age 65) or more drinks on one occasion?'
+
+#:set alcohol_landing_blurb    'Unhealthy consumption of alcohol may increase your risk for Alzheimer’s disease'
+#:set alcohol_landing_subtitle 'Answer the following questions about your alcohol usage'
+#:set alcohol_toolbar_title    'Alcohol Usage'
+
+<AlcoholLandingPage>:
+
+	BoxLayout:
+		orientation: 'vertical'
+
+		MDToolbar:
+			title: alcohol_toolbar_title
+			halign: 'left'
+			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+			elevation:8
+
+		MDLabel:
+			text:''
+			size_hint_y:0.3
+		MDLabel:
+			text: alcohol_landing_blurb
+			font_size:'14sp'
+			halign: 'left'
+			size_hint_x:0.8
+			pos_hint:{'center_x':0.5}
+
+		MDLabel:
+			# font_size:'2xw0sp'
+			text: alcohol_landing_subtitle
+			# text_color:DARK_BLUE
+			theme_text_color:"Hint"
+			halign: 'left'
+			size_hint_x:0.8
+			# size_hint_x:0.5
+			pos_hint:{'center_x':0.5}
+
+		MDRaisedButton:
+			text:"Begin"
+			font_style:'Button'
+			# size_hint_x:0.7
+			pos_hint:{'center_x':0.5}
+			on_release:
+
+				root.manager.current='AlcoholUsagePage'
+				root.manager.transition.direction="left"
+				# root.parent.ids['AlcoholUsagePage'].ids['android_tabs'].switch_tab('1')
+
+
+		BoxLayout:
+			orientation: 'horizontal'
+			size_hint_y:0.3
+			MDRaisedButton:
+				size_hint_x:1
+				text:'                     <                       '
+				on_release:
+					root.manager.current='LocationPage'
+					root.manager.transition.direction="right"
+			MDRaisedButton:
+				size_hint_x:1
+				text:'                     >                       '
+				on_release:
+					root.manager.current='AlcoholUsagePage'
+					root.manager.transition.direction="left"
+					root.parent.ids['AlcoholUsagePage'].ids['android_tabs'].switch_tab('1')
+
+
+<AlcoholUsagePage>:
+	BoxLayout:
+		orientation: 'vertical'
+		MDToolbar:
+			title: alcohol_toolbar_title
+			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
+			elevation:8
+		# MDLabel:
+		# 	text:''
+
+		MDBoxLayout:
+			size_hint_y:0.7
+
+			MDTabs:
+				id: android_tabs
+				tab_pos:'left_top'
+				on_tab_switch: root.on_tab_switch(*args)
+
+				Tab:
+					text:'1'
+					MDBoxLayout:
+						orientation:'vertical'
+
+						MDLabel:
+							text: alcohol_Q1
+							halign: 'center'
+							size_hint_x:0.9
+
+				Tab:
+					text:'2'
+					MDBoxLayout:
+						orientation:'vertical'
+						MDLabel:
+							text: alcohol_Q2
+							halign: 'center'
+							size_hint_x:0.9
+				Tab:
+					text:'3'
+					MDBoxLayout:
+						orientation:'vertical'
+						MDLabel:
+							text: alcohol_Q3
+							halign: 'center'
+							size_hint_x:0.9
+
+		MDBoxLayout:
+		    orientation:'vertical'
+		    MDRectangleFlatIconButton:
+		        # id:button7
+		        icon:'numeric-7'
+		        text:'Strongly agree'
+		        halign:'left'
+		        size_hint_x:0.8
+		        font_style:'Button'
+		        theme_text_color: "Custom"
+		        color_icon_root_button: app.theme_cls.accent_color
+		        pos_hint:{'center_x':0.5}
+
+		        on_release:
+		            root.button_press(7)
+		    MDLabel:
+		        text:''
+		        size_hint_y:0.05
+		    MDRectangleFlatIconButton:
+		        id:button6
+		        icon:'numeric-6'
+		        text:'Agree'
+		        halign:'left'
+		        size_hint_x:0.8
+		        font_style:'Button'
+		        # size_hint_y:0.8
+		        pos_hint:{'center_x':0.5}
+		        on_release: root.button_press(6)
+		        custom_color: 0, 1, 0, 1
+		    MDLabel:
+		        text:''
+		        size_hint_y:0.05
+		    MDRectangleFlatIconButton:
+		        id:button5
+		        icon:'numeric-5'
+		        text:'Somewhat agree'
+		        halign:'left'
+		        size_hint_x:0.8
+		        font_style:'Button'
+		        # size_hint_y:0.8
+		        pos_hint:{'center_x':0.5}
+		        on_release: root.button_press(5)
+		    MDLabel:
+		        text:''
+		        size_hint_y:0.05
+		    MDRectangleFlatIconButton:
+		        id:button4
+		        icon:'numeric-4'
+		        text:'Neutral'
+		        halign:'left'
+		        size_hint_x:0.8
+		        font_style:'Button'
+		        pos_hint:{'center_x':0.5}
+		        on_release: root.button_press(4)
+		    MDLabel:
+		        text:''
+		        size_hint_y:0.05
+		    MDRectangleFlatIconButton:
+		        id:button3
+		        icon:'numeric-3'
+		        text:'Somewhat disagree'
+		        halign:'left'
+		        size_hint_x:0.8
+		        font_style:'Button'
+		        pos_hint:{'center_x':0.5}
+		        on_release: root.button_press(3)
+		    MDLabel:
+		        text:''
+		        size_hint_y:0.05
+		    MDRectangleFlatIconButton:
+		        id:button2
+		        icon:'numeric-2'
+		        text:'Disagree'
+		        halign:'left'
+		        size_hint_x:0.8
+		        font_style:'Button'
+		        pos_hint:{'center_x':0.5}
+		        on_release: root.button_press(2)
+		    MDLabel:
+		        text:''
+		        size_hint_y:0.05
+		    MDRectangleFlatIconButton:
+		        id:button1
+		        icon:'numeric-1'
+		        text:'Strongly Disagree'
+		        halign:'left'
+		        size_hint_x:0.8
+		        font_style:'Button'
+		        pos_hint:{'center_x':0.5}
+		        on_release: root.button_press(1)
+
+		BoxLayout:
+			size_hint_y:0.2
+			orientation: 'horizontal'
+			MDRaisedButton:
+				size_hint_x:1
+				text:'                     <                       '
+				on_release:
+					root.manager.current='PhysicalActivityPage'
+					root.manager.transition.direction="right"
+			MDRaisedButton:
+				size_hint_x:1
+				text:'                     >                       '
+				on_release:
+					root.manager.current='DepressionPage'
+					root.manager.transition.direction="left"
+
+	FloatLayout:
+	    orientation: 'vertical'
+	    MDLabel:
+	        pos:(50,950)
+	        text: ''
+	        # md_bg_color:0,0,1,0.05
+	        size_hint_y:0.15
+	        size_hint_x:0.9
+	        text_color:1,1,1,1
+
+

@@ -1,0 +1,374 @@
+#:import utils kivy.utils
+#:import button kivy.uix.button
+#:import buttonmd kivymd.uix.button
+
+#:set font_black 'fonts/ScalaSansOT-Regular.otf'
+#:set font_cond_bold 'fonts/ScalaSansOT-CondBold.otf'
+#:set DARK_BLUE (73/255,81/255,119/255,1)
+
+#:set xx 737
+#:set yy 563
+
+#:include layout_files/templates.kv
+#:include layout_files/AirPollution.kv
+#:include layout_files/Alcohol.kv
+#:include layout_files/DietAndFood.kv
+#:include layout_files/Loading.kv
+#:include layout_files/Landing.kv
+#:include layout_files/SocioDemographics.kv
+#:include layout_files/PhysicalActivity.kv
+#:include layout_files/Login.kv
+#:include layout_files/Location.kv
+#:include layout_files/HyperTension.kv
+#:include layout_files/DepressionPage.kv
+#:include layout_files/TraumaticBrainInjury.kv
+
+WindowManager:
+	id: WindowManager
+	name: "WindowManager"
+	size: root.width, root.height
+
+
+	LandingPage:
+		name:'LandingPage'
+		id:LandingPage
+
+	LoadingPage:
+		name:'LoadingPage'
+		id:LoadingPage
+
+	AirPollutionLandingPage:
+		name:"AirPollutionLandingPage"
+
+	AboutPage:
+		name:'AboutPage'
+
+
+	AirPollutionPage:
+		name: "AirPollutionPage"
+		id: AirPollutionPage
+		size: root.width, root.height
+
+
+	LoginPage:
+		id:LoginPage
+		name:'LoginPage'
+
+	LocationPage:
+		name:'LocationPage'
+
+	RiskAssesmentPage:
+		name:'RiskAssesmentPage'
+		id:RiskAssesmentPage
+
+	AirPollutionScorePage:
+		name: "AirPollutionScorePage"
+		id: AirPollutionScorePage
+		size: root.width, root.height
+	SociodemographicPage:
+		name:'SociodemographicPage'
+		id:SociodemographicPage
+
+	# ------------------------------------- #
+
+	DietAndFoodPage:
+		id:DietAndFoodPage
+		name:'DietAndFoodPage'
+	DietLandingPage:
+		id:DietLandingPage
+		name:'DietLandingPage'
+	DietScorePage:
+		id:DietScorePage
+		name:'DietScorePage'
+
+	# ------------------------------------- #
+
+	PhysicalActivityPage:
+		id:PhysicalActivityPage
+		name:'PhysicalActivityPage'
+
+	# ------------------------------------- #
+
+	AlcoholLandingPage:
+		id:AlcoholLandingPage
+		name:'AlcoholLandingPage'
+
+	AlcoholUsagePage:
+		id:AlcoholUsagePage
+		name:'AlcoholUsagePage'
+
+
+	# ------------------------------------- #
+
+	DepressionPage:
+		id:DepressionPage
+		name:'DepressionPage'
+
+	# ------------------------------------- #
+
+	HyperTensionPage:
+		id:HyperTensionPage
+		name:'HyperTensionPage'
+
+	# ------------------------------------- #
+
+	TraumaticBrainInjuryPage:
+		id:TraumaticBrainInjuryPage
+		name:'TraumaticBrainInjuryPage'
+
+	# ------------------------------------- #
+
+	CognitiveDeclinePage:
+		id:CognitiveDeclinePage
+		name:'CognitiveDeclinePage'
+
+# =======================================
+
+<NavButtons>:
+	BoxLayout:
+		orientation: 'horizontal'
+		size_hint_y:0.3
+		MDFlatButton:
+			text:'                     <                       '
+			on_release:self.parent.parent.root.arrow_left()
+
+		Widget:
+			size_hint_x:0.1
+		MDFlatButton:
+			text:'                     >                       '
+			on_release:self.parent.parent.root.arrow_right()
+
+# =======================================
+<RiskAssesmentPage>:
+	BoxLayout:
+		orientation: 'vertical'
+
+		MDToolbar:
+			title: 'Risk Assesment'
+			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: print('help')]]
+			elevation:8
+
+		# Button:
+		#     text:''
+		#     size_hint_y:0.01
+		#     size_hint_x:0.1
+		#     pos_hint:{'center_x': 0.9, 'center_y': 0.5}
+		#     id:button
+		#     on_release: root.tap_target_start()
+
+		MDBoxLayout:
+			orientation:'horizontal'
+			md_bg_color:(90/255, 90/255, 90/255,0.25)
+			size_hint_y:.25
+
+			MDBoxLayout:
+				orientation:'horizontal'
+				MDBoxLayout:
+					orientation:'vertical'
+					MDLabel:
+						text: 'Your Score'
+						halign: 'center'
+						font_size:'10sp'
+					MDLabel:
+						text: ''
+						halign: 'center'
+				MDLabel:
+					id:score_label
+					text: '34'
+					halign: 'left'
+					font_size:'26sp'
+
+			MDFlatButton:
+				text: 'Learn more'
+				halign: 'center'
+				# size_hint:(1,1)
+				size_hint_y:1
+				# size_hint_x:1
+				# _no_ripple_effect: True
+
+			MDLabel:
+				text:''
+				size_hint_x:0.1
+
+		ScrollView:
+			scroll_type: ['bars','content']
+			# scroll_wheel_distance: 20
+			# bar_width: 8
+			bar_inactive_color: .55, .55, .55, 1
+			bar_color: .663, .663, .663, 1
+			MDList:
+				id:listt
+				TwoLineIconListItem:
+					text: 'Demographics'
+					id:demographics_label
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="SociodemographicPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'gender-male-female'
+
+
+				TwoLineIconListItem:
+					id:location_label
+					text: 'Location'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="LocationPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'map-marker-plus-outline'
+
+
+				TwoLineIconListItem:
+					id:air_pollution_label
+					text: 'Air Pollution'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					text_color: app.theme_cls.accent_color
+					theme_text_color: 'Primary'
+					on_release:
+						root.manager.current="AirPollutionLandingPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						id:air_pollution
+						icon:'air-filter'
+
+
+				TwoLineIconListItem:
+					id:diet_label
+					text: 'Diet & Food'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="DietLandingPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'food-apple-outline'
+					# IconRightWidget:
+					#     icon:'food-apple-outline'
+
+				TwoLineIconListItem:
+					id:physical_activity_label
+					text: 'Physical Activity'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="PhysicalActivityPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'arm-flex-outline'
+
+				TwoLineIconListItem:
+					text: 'Alcohol Usage'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="AlcoholLandingPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'glass-cocktail'
+
+				TwoLineIconListItem:
+					text: 'Depression'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="DepressionPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'head-alert-outline'
+
+
+				TwoLineIconListItem:
+					text: 'Hypertension'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="HyperTensionPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'calculator-variant-outline'
+
+
+
+				TwoLineIconListItem:
+					text: 'Traumatic Brain Injury'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="TraumaticBrainInjuryPage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'brain'
+
+				TwoLineIconListItem:
+					text: 'Cognitive Decline'
+					secondary_text: "0% Complete"
+					secondary_font_style:'Caption'
+					on_release:
+						root.manager.current="CognitiveDeclinePage"
+						root.manager.transition.direction="left"
+					IconLeftWidget:
+						icon:'chart-multiline'
+
+# =======================================
+# ----
+
+
+# ----
+
+
+<CognitiveDeclinePage>:
+	BoxLayout:
+		orientation: 'vertical'
+		MDToolbar:
+			title: 'Cognitive Decline'
+			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
+			elevation:8
+		MDLabel:
+			text:''
+
+		BoxLayout:
+			orientation: 'horizontal'
+			MDRaisedButton:
+				text:'                     <                       '
+				size_hint_x:1
+				on_release:
+					root.manager.current='TraumaticBrainInjuryPage'
+					root.manager.transition.direction="right"
+			MDRaisedButton:
+				text:'                     >                       '
+				size_hint_x:1
+				on_release:
+					root.manager.current='RiskAssesmentPage'
+					root.manager.transition.direction="right"
+
+# =======================================
+<AboutPage>:
+	id:AP
+	BoxLayout:
+		orientation: 'vertical'
+
+		MDToolbar:
+			title: 'About'
+			halign: 'left'
+			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+			elevation:8
+		Widget
+		# MDLabel:
+
+		#     id:logo
+		#     # md_bg_color: utils.get_color_from_hex('#455A64')
+		#     canvas:
+		#         Rectangle:
+		#             id:rect
+		#             source: 'pics/logo_minimal.png'
+		#             # pos: (20,self.pos[1]+20)
+		#             pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
+		#             # pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
+		#             size: (xx,yy)

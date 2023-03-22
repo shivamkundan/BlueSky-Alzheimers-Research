@@ -1,0 +1,50 @@
+<HypertensionPage>:
+    MDBoxLayout:
+
+        orientation:'vertical'
+        MDToolbar:
+            title: 'Hypertension'
+            # size_hint_y:0.1
+            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: app.callback_2()]]
+            elevation:8
+
+        MDLabel:
+            text:'Have you ever been told by a doctor or other health professional that you had hypertension, also called high blood pressure?'
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x:0.9
+            size_hint_y:0.6
+
+
+        MDBoxLayout:
+            orientation:'horizontal'
+
+            Widget:
+                size_hint_x:0.2
+            MDRaisedButton:
+                text:'Yes'
+                size_hint_x:1
+            Widget:
+                size_hint_x:0.1
+
+            MDRaisedButton:
+                text:'No'
+                size_hint_x:1
+            Widget:
+                size_hint_x:0.2
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            MDRaisedButton:
+                text:'                     <                       '
+                size_hint_x:1
+                on_release:
+                    root.manager.current='DepressionPage'
+                    root.manager.transition.direction="right"
+            MDRaisedButton:
+                text:'                     >                       '
+                size_hint_x:1
+                on_release:
+                    root.manager.current='TraumaticBrainInjuryPage'
+                    root.manager.transition.direction="left"

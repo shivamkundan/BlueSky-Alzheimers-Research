@@ -1,0 +1,148 @@
+
+
+<LandingPage>:
+    id:LandingPage
+    nav_drawer:nav_drawer
+    content_drawer:content_drawer
+    my_im:my_im
+
+    MDBoxLayout:
+        id:BL
+        my_im:my_im
+        orientation: 'vertical'
+
+        MDLabel:
+            size_hint_y:0.8
+
+        Image:
+            id:my_im
+            # on_motion: self.motion(self)
+            source: 'pics/logo_minimal.png'
+            # source: 'pics/logo_minimal_white.png'
+            opacity:0.85
+            # pos:(dp(0),0)
+            # center_x:200
+            # center_y:333
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            size:(618,440)
+
+        Widget:
+            size_hint_y:0.5
+
+
+        MDRaisedButton:
+            id:btn1
+            text:'Risk Assesment'
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x:0.7
+            font_style:'Button'
+            on_release:
+                root.manager.current="RiskAssesmentPage"
+                root.manager.transition.direction="left"
+        MDLabel:
+            id:space1
+            text: ''
+            halign: 'center'
+            size_hint_y:0.05
+        MDRaisedButton:
+            id:btn2
+            text:'Educational Resources'
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x:0.7
+            # font_size:'20sp'
+            # font_name: font_black
+            font_style:'Button'
+        MDLabel:
+            id:space2
+            text: ''
+            halign: 'center'
+            size_hint_y:0.05
+        MDRaisedButton:
+            id:btn3
+            text:'Cognitive Rehabilitation'
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x:0.7
+            # font_size:'20sp'
+            pos_hint:{'center_x':0.5}
+            # font_name: font_black
+            font_style:'Button'
+        MDLabel:
+            id:space3
+            text: ''
+            halign: 'center'
+            size_hint_y:0.05
+        MDRaisedButton:
+            id:btn4
+            text:'About'
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x:0.7
+            # font_size:'20sp'
+            pos_hint:{'center_x':0.5}
+            # font_name: font_black
+            font_style:'Button'
+            on_release:
+                root.manager.transition.direction="left"
+                root.manager.current="AboutPage"
+        MDLabel:
+            id:space4
+            text: ''
+            halign: 'center'
+            # size_hint_y:2.25
+
+        ScaleLabel:
+            id:l2
+            text: 'Human & Behavioral Sciences\nSouthern Illinois University, Carbondale'
+            halign: 'center'
+            # valign: 'bottom'
+            font_size: self.height * 0.18
+            padding: dp(0), dp(0)
+            spacing: dp(-10), dp(-10)
+            # font_size:'12sp'
+            size_hint_y: 0.5
+            font_name: '/Users/shivamkundan/Developer/HealthApp/scalasansot-cufonfonts/ScalaSansOT-Regular.otf'
+        # MDLabel:
+        #     size_hint_y:0.01
+        #     md_bg_color:1,0,0,0.5
+        #     text:''
+
+    MDNavigationLayout:
+        nav_drawer:nav_drawer
+        content_drawer:content_drawer
+        ScreenManager:
+
+
+            MDScreen:
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDToolbar:
+                        title: "Home"
+                        canvas:
+                            Rectangle:
+                                source: 'logo1.png'
+                                pos: (((self.parent.size[0])/2)-30,self.pos[1])
+                                size: (160, 160)
+                        font_style: "H6"
+                        elevation: 8
+                        left_action_items: [['menu', lambda x: app.nav_handler()]]
+                        right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+                        # left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+
+
+                    Widget
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            content_drawer:content_drawer
+            # size_hint_max_x: 0.1
+            # size_max_x: 20
+            size_hint_x:0.5
+            # on_leave:print(dir(self))
+
+            on_disabled:print('disable')
+
+            ContentNavigationDrawer:
+
+                id: content_drawer
