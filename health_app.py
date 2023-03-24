@@ -73,8 +73,6 @@ def chevron_left_global(curr,next_pg='RiskAssesmentPage'):
     curr.parent.current=next_pg
 
 def arrow_right_global(curr,next_pg):
-    print ('arrow_right_global')
-    # curr.done_dict[curr.tab_names[curr.curr_tab_num]]=True
     if curr.curr_tab_num==curr.num_tabs-1:
         curr.parent.transition.direction="left"
         curr.parent.current=next_pg
@@ -83,7 +81,6 @@ def arrow_right_global(curr,next_pg):
         curr.ids['android_tabs'].switch_tab(curr.tab_names[curr.curr_tab_num])
 
 def arrow_left_global(curr,next_pg):
-    print ('arrow_left_global')
     if curr.curr_tab_num==0:
         curr.parent.transition.direction="right"
         curr_sub_pg.parent.current=next_pg
@@ -174,9 +171,6 @@ class LoadingPage(MDScreen):
         # self.ids['prog'].start()
         for item in self.ids:
             print(item)
-
-
-
 
 class LandingPage(ThemableBehavior,MDScreen):
     def __init__(self,**kwargs):
@@ -294,9 +288,7 @@ class RiskAssesmentPage(MDScreen):
     def chevron_left(self):
         chevron_left_global(self,next_page='LandingPage')
 
-
-
-# ---
+# --------------------------------------------------------------------- #
 class SociodemographicPage(MDScreen):
     def __init__(self,**kwargs):
         super(SociodemographicPage,self).__init__(**kwargs)
@@ -506,39 +498,12 @@ class SociodemographicPage(MDScreen):
 
 # --------------------------------------------------------------------- #
 
-class AirPollutionScorePage(MDScreen):
+class AirPollutionLandingPage(MDScreen):
     def __init__(self,**kwargs):
-        super(AirPollutionScorePage,self).__init__(**kwargs)
-        self.score=420
-
-    def nav_handler(self):
-        self.ids['nav_drawer'].set_state("open")
-
-    def update_score(self,dt):
-        try:
-            self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total)
-        except:
-            pass
+        super(AirPollutionLandingPage,self).__init__(**kwargs)
 
     def chevron_left(self):
         chevron_left_global(self)
-
-
-    def reset_quiz(self):
-        print ('reset air pollution quiz')
-        self.parent.ids.AirPollutionPage.ids.android_tabs.switch_tab('1')
-        self.parent.current='AirPollutionPage'
-        self.parent.transition.direction="right"
-
-    def on_pre_enter(self):
-        self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-        self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-
-        Window.release_all_keyboards()
-        # time.sleep(1)
-        self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total)
-
-        Clock.schedule_once(self.update_score,0.2)
 
 class AirPollutionPage(MDScreen):
     def __init__(self,**kwargs):
@@ -617,12 +582,39 @@ class AirPollutionPage(MDScreen):
     def chevron_left(self):
         chevron_left_global(self)
 
-class AirPollutionLandingPage(MDScreen):
+class AirPollutionScorePage(MDScreen):
     def __init__(self,**kwargs):
-        super(AirPollutionLandingPage,self).__init__(**kwargs)
+        super(AirPollutionScorePage,self).__init__(**kwargs)
+        self.score=420
+
+    def nav_handler(self):
+        self.ids['nav_drawer'].set_state("open")
+
+    def update_score(self,dt):
+        try:
+            self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total)
+        except:
+            pass
 
     def chevron_left(self):
         chevron_left_global(self)
+
+
+    def reset_quiz(self):
+        print ('reset air pollution quiz')
+        self.parent.ids.AirPollutionPage.ids.android_tabs.switch_tab('1')
+        self.parent.current='AirPollutionPage'
+        self.parent.transition.direction="right"
+
+    def on_pre_enter(self):
+        self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
+        self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
+
+        Window.release_all_keyboards()
+        # time.sleep(1)
+        self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total)
+
+        Clock.schedule_once(self.update_score,0.2)
 
 # --------------------------------------------------------------------- #
 
@@ -813,10 +805,7 @@ class PhysicalActivityPage(MDScreen):
         chevron_left_global(self)
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-
         count_icon = instance_tab.text
-        # print it on shell/bash.
-        # print(f"Welcome to {count_icon}' tab'")
 
         self.curr_tab_num=int(instance_tab.text)-1
         self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
@@ -838,6 +827,12 @@ class PhysicalActivityPage(MDScreen):
         arrow_right_global(self,"AlcoholUsagePage")
 
 # --------------------------------------------------------------------- #
+
+class AlcoholLandingPage(MDScreen):
+    def __init__(self,**kwargs):
+        super(AlcoholLandingPage,self).__init__(**kwargs)
+    def chevron_left(self):
+        chevron_left_global(self)
 
 class AlcoholUsagePage(MDScreen):
     def __init__(self,**kwargs):
@@ -887,12 +882,6 @@ class AlcoholUsagePage(MDScreen):
 
         self.curr_tab_num=int(instance_tab.text)-1
         self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-
-class AlcoholLandingPage(MDScreen):
-    def __init__(self,**kwargs):
-        super(AlcoholLandingPage,self).__init__(**kwargs)
-    def chevron_left(self):
-        chevron_left_global(self)
 
 # --------------------------------------------------------------------- #
 
@@ -1039,9 +1028,9 @@ class SubPageTemplate(MDApp):
         self.parent.transition.direction="right"
         self.parent.current='RiskAssesmentPage'
 
-class DemoApp(MDApp):
+class BlueSkyApp(MDApp):
     def __init__(self,**kwargs):
-        super(DemoApp,self).__init__(**kwargs)
+        super(BlueSkyApp,self).__init__(**kwargs)
         self.curr_state='close'
 
     def sidebar(self,dt=None):
@@ -1299,4 +1288,4 @@ if __name__=='__main__':
     # Config.set('kivy', 'keyboard_mode', 'systemandmulti')
     # Config.set("kivy", "keyboard_layout", 'numeric.json')
 
-    DemoApp().run()
+    BlueSkyApp().run()
