@@ -66,6 +66,33 @@ KV_FILE='health_app.kv' # kivy design file
 resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
 Window.size = resolutions[2]
 
+
+# =========================== GLOBAL FNs =========================== #
+def chevron_left_global(curr,next_pg='RiskAssesmentPage'):
+    curr.parent.transition.direction="right"
+    curr.parent.current=next_pg
+
+def arrow_right_global(curr,next_pg):
+    print ('arrow_right_global')
+    # curr.done_dict[curr.tab_names[curr.curr_tab_num]]=True
+    if curr.curr_tab_num==curr.num_tabs-1:
+        curr.parent.transition.direction="left"
+        curr.parent.current=next_pg
+    else:
+        curr.curr_tab_num+=1
+        curr.ids['android_tabs'].switch_tab(curr.tab_names[curr.curr_tab_num])
+
+def arrow_left_global(curr,next_pg):
+    print ('arrow_left_global')
+    if curr.curr_tab_num==0:
+        curr.parent.transition.direction="right"
+        curr_sub_pg.parent.current=next_pg
+    else:
+        curr.curr_tab_num-=1
+        curr.ids['android_tabs'].switch_tab(curr.tab_names[curr.curr_tab_num])
+
+# ================================================================== #
+
 class tab_template(FloatLayout, MDTabsBase):
     def __init__(self,**kwargs):
         super(tab_template,self).__init__(**kwargs)
@@ -209,8 +236,7 @@ class LoginPage(MDScreen):
         self.dialog=False
 
     def chevron_left(self):
-        self.parent.transition.direction='right'
-        self.parent.current='LandingPage'
+        chevron_left_global(self,next_page='LandingPage')
 
     def show_alert_dialog(self,*args):
         print (args)
@@ -266,8 +292,7 @@ class RiskAssesmentPage(MDScreen):
            self.tap_target_view.stop()
 
     def chevron_left(self):
-        self.parent.transition.direction='right'
-        self.parent.current='LandingPage'
+        chevron_left_global(self,next_page='LandingPage')
 
 
 
@@ -375,12 +400,13 @@ class SociodemographicPage(MDScreen):
             print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')
 
     def arrow_left(self):
-        if self.curr_tab_num==0:
-            self.parent.transition.direction="right"
-            self.parent.current="RiskAssesmentPage"
-        else:
-            self.curr_tab_num-=1
-            self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        # if self.curr_tab_num==0:
+        #     self.parent.transition.direction="right"
+        #     self.parent.current="RiskAssesmentPage"
+        # else:
+        #     self.curr_tab_num-=1
+        #     self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        arrow_left_global(self,"RiskAssesmentPage")
 
     def arrow_right(self):
         self.done_dict[self.tab_names[self.curr_tab_num]]=True
@@ -393,8 +419,7 @@ class SociodemographicPage(MDScreen):
 
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current="RiskAssesmentPage"
+        chevron_left_global(self)
 
     def on_pre_enter(self):
         self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
@@ -479,10 +504,6 @@ class SociodemographicPage(MDScreen):
         else:
             self.ids['age_text_field'].text+=args[0].text
 
-
-
-
-
 # --------------------------------------------------------------------- #
 
 class AirPollutionScorePage(MDScreen):
@@ -500,8 +521,7 @@ class AirPollutionScorePage(MDScreen):
             pass
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 
     def reset_quiz(self):
@@ -565,23 +585,11 @@ class AirPollutionPage(MDScreen):
         self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
     def arrow_left(self):
-        # print (self.ids['android_tabs'].current_tab)
-        if self.curr_tab_num==0:
-            self.parent.transition.direction="right"
-            self.parent.current="AirPollutionLandingPage"
-        else:
-            self.curr_tab_num-=1
-            self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        arrow_left_global(self,"AirPollutionLandingPage")
 
     def arrow_right(self,increment=True):
-        # print (self.ids['android_tabs'].current_tab)
-        if self.curr_tab_num==self.num_tabs-1:
-            self.parent.transition.direction="left"
-            self.parent.current="AirPollutionScorePage"
-        else:
+        arrow_right_global(self,"AirPollutionScorePage")
 
-            self.curr_tab_num+=1
-            self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
     def on_pre_enter(self):
         self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
@@ -607,16 +615,14 @@ class AirPollutionPage(MDScreen):
         print ('air pct done: ',pct)
 
     def chevron_left(self):
-        self.parent.transition.direction = 'right'
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 class AirPollutionLandingPage(MDScreen):
     def __init__(self,**kwargs):
         super(AirPollutionLandingPage,self).__init__(**kwargs)
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 # --------------------------------------------------------------------- #
 
@@ -624,9 +630,9 @@ class LocationPage(MDScreen):
     def __init__(self,**kwargs):
         super(LocationPage,self).__init__(**kwargs)
         self.option_names_dict={'left_icon_urban':None,'left_icon_large_rural':None,'left_icon_small_rural':None,'left_icon_isolated':None}
+
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current="RiskAssesmentPage"
+        chevron_left_global(self)
 
     def next_question(self,*args):
         self.parent.ids['RiskAssesmentPage'].ids['location_label'].secondary_text='100% Complete'
@@ -669,9 +675,9 @@ class LocationPage(MDScreen):
 class DietLandingPage(MDScreen):
     def __init__(self,**kwargs):
         super(DietLandingPage,self).__init__(**kwargs)
+
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 class DietAndFoodPage(MDScreen):
     def __init__(self,**kwargs):
@@ -691,24 +697,13 @@ class DietAndFoodPage(MDScreen):
             self.done_dict[i]=0
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
     def arrow_left(self):
-        if self.curr_tab_num==0:
-            self.parent.transition.direction="right"
-            self.parent.current="DietLandingPage"
-        else:
-            self.curr_tab_num-=1
-            self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        arrow_left_global(self,"DietLandingPage")
 
     def arrow_right(self):
-        if self.curr_tab_num==self.num_tabs-1:
-            self.parent.transition.direction="left"
-            self.parent.current="DietScorePage"
-        else:
-            self.curr_tab_num+=1
-            self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        arrow_right_global(self,"DietScorePage")
 
     def button_press(self,button):
 
@@ -719,6 +714,7 @@ class DietAndFoodPage(MDScreen):
 
     def update_score(self,dt):
         pass
+
     def on_pre_leave(self):
         total=0
         for key,val in self.responses_dict.items():
@@ -738,7 +734,6 @@ class DietAndFoodPage(MDScreen):
         self.parent.ids['RiskAssesmentPage'].ids['diet_label'].secondary_text=pct_txt
 
         self.parent.demographics_score=total
-
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
         '''
@@ -770,8 +765,7 @@ class DietScorePage(MDScreen):
             pass
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 
     def reset_quiz(self):
@@ -804,8 +798,7 @@ class DietScorePage(MDScreen):
         Clock.schedule_once(self.update_score,0.2)
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 # --------------------------------------------------------------------- #
 
@@ -817,8 +810,7 @@ class PhysicalActivityPage(MDScreen):
         self.num_tabs=len(self.tab_names)
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
 
@@ -840,23 +832,10 @@ class PhysicalActivityPage(MDScreen):
 
 
     def arrow_left(self):
-        # print (self.ids['android_tabs'].current_tab)
-        if self.curr_tab_num==0:
-            self.parent.transition.direction="right"
-            self.parent.current="DietScorePage"
-        else:
-            self.curr_tab_num-=1
-            self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        arrow_left_global(self,"DietScorePage")
 
     def arrow_right(self,increment=True):
-        # print (self.ids['android_tabs'].current_tab)
-        if self.curr_tab_num==self.num_tabs-1:
-            self.parent.transition.direction="left"
-            self.parent.current="AlcoholUsagePage"
-        else:
-
-            self.curr_tab_num+=1
-            self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        arrow_right_global(self,"AlcoholUsagePage")
 
 # --------------------------------------------------------------------- #
 
@@ -877,25 +856,13 @@ class AlcoholUsagePage(MDScreen):
             self.done_dict[i]=0
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
     def arrow_left(self):
-        if self.curr_tab_num==0:
-            self.parent.transition.direction="right"
-            self.parent.current="AlcoholLandingPage"
-        else:
-            self.curr_tab_num-=1
-            self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        arrow_left_global(self,"AlcoholLandingPage")
 
     def arrow_right(self):
         pass
-        # if self.curr_tab_num==self.num_tabs-1:
-        #     self.parent.transition.direction="left"
-        #     self.parent.current="DietScorePage"
-        # else:
-        #     self.curr_tab_num+=1
-        #     self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
     def button_press(self,button):
 
@@ -925,8 +892,7 @@ class AlcoholLandingPage(MDScreen):
     def __init__(self,**kwargs):
         super(AlcoholLandingPage,self).__init__(**kwargs)
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 # --------------------------------------------------------------------- #
 
@@ -934,9 +900,45 @@ class DepressionPage(MDScreen):
     def __init__(self,**kwargs):
         super(DepressionPage,self).__init__(**kwargs)
 
+        self.total_score=0
+        self.tab_names=['1','2']
+        self.num_tabs=len(self.tab_names)
+        self.curr_tab_num=0
+
+        self.responses_dict={}
+        for i in range(self.num_tabs):
+            self.responses_dict[i]=0
+
+        self.done_dict={}
+        for i in range(self.num_tabs):
+            self.done_dict[i]=0
+
+
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
+
+    def arrow_left(self):
+        arrow_left_global(self,"AlcoholUsagePage")
+
+    def arrow_right(self):
+        arrow_right_global(self,"HyperTensionPage")
+
+    def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
+        '''
+        Called when switching tabs.
+
+        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
+        :param instance_tab: <__main__.Tab object>;
+        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
+        :param tab_text: text or name icon of tab;
+        '''
+        # get the tab icon.
+        count_icon = instance_tab.text
+        # print it on shell/bash.
+        # print(f"Welcome to {count_icon}' tab'")
+
+        self.curr_tab_num=int(instance_tab.text)-1
+        self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 # --------------------------------------------------------------------- #
 
@@ -945,8 +947,7 @@ class HyperTensionPage(MDScreen):
         super(HyperTensionPage,self).__init__(**kwargs)
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 # --------------------------------------------------------------------- #
 
@@ -955,8 +956,7 @@ class TraumaticBrainInjuryPage(MDScreen):
         super(TraumaticBrainInjuryPage,self).__init__(**kwargs)
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 # --------------------------------------------------------------------- #
 
@@ -965,8 +965,7 @@ class CognitiveDeclinePage(MDScreen):
         super(CognitiveDeclinePage,self).__init__(**kwargs)
 
     def chevron_left(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+        chevron_left_global(self)
 
 # --------------------------------------------------------------------- #
 

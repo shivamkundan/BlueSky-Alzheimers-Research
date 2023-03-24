@@ -1,3 +1,7 @@
+#:set depression_Q0 'Over the last 2 weeks, how often have you been bothered by the following problems:'
+#:set depression_Q1 'Little interest or pleasure in doing things'
+#:set depression_Q2 'Feeling down, depressed, or hopeless'
+
 <DepressionPage>:
     BoxLayout:
         orientation: 'vertical'
@@ -6,20 +10,55 @@
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
             right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
             elevation:8
-        MDLabel:
-            text:''
+
+        MDBoxLayout:
+            size_hint_y:0.7
+
+            MDTabs:
+                id: android_tabs
+                tab_pos:'left_top'
+                on_tab_switch: root.on_tab_switch(*args)
+
+                Tab:
+                    text:'1'
+                    MDBoxLayout:
+                        orientation:'vertical'
+
+                        MDLabel:
+                            text: depression_Q1
+                            halign: 'center'
+                            size_hint_x:0.9
+
+                Tab:
+                    text:'2'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: depression_Q2
+                            halign: 'center'
+                            size_hint_x:0.9
+
+        MDGridLayout:
+            cols:4
 
         BoxLayout:
             orientation: 'horizontal'
             MDRaisedButton:
                 text:'                     <                       '
                 size_hint_x:1
-                on_release:
-                    root.manager.current='AlcoholUsagePage'
-                    root.manager.transition.direction="right"
+                on_release:root.arrow_left()
             MDRaisedButton:
                 text:'                     >                       '
                 size_hint_x:1
-                on_release:
-                    root.manager.current='HyperTensionPage'
-                    root.manager.transition.direction="left"
+                on_release:root.arrow_right()
+
+    FloatLayout:
+        orientation: 'vertical'
+        MDLabel:
+            pos:(50,950)
+            text: depression_Q0
+            # md_bg_color:0,0,1,0.05
+            size_hint_y:0.15
+            size_hint_x:0.9
+            text_color:1,1,1,1
+
