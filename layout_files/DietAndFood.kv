@@ -250,7 +250,7 @@
             text: ''
             halign: 'center'
 
-        Button:
+        MDRaisedButton:
             id:restart_button
             text:'Try Again'
             font_style:'Button'
@@ -260,7 +260,7 @@
                 root.reset_quiz()
         Widget:
             size_hint_y:0.05
-        Button:
+        MDRaisedButton:
             id:next_section
             text:'Back'
             font_style:'Button'
@@ -271,7 +271,7 @@
                 root.manager.transition.direction="right"
         Widget:
             size_hint_y:0.05
-        Button:
+        MDRaisedButton:
             id:next_section
             text:'Next'
             font_style:'Button'
@@ -284,19 +284,6 @@
 
         MDLabel:
             size_hint_y:0.7
-
-        # BoxLayout:
-        #     orientation: 'horizontal'
-        #     MDFlatButton:
-        #         text:'                     <                       '
-        #         on_release:
-        #             root.manager.current='DietAndFoodPage'
-        #             root.manager.transition.direction="right"
-        #     MDFlatButton:
-        #         text:'                     >                       '
-        #         on_release:
-        #             root.manager.current='PhysicalActivityPage'
-        #             root.manager.transition.direction="left"
 
 
         BoxLayout:

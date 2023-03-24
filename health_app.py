@@ -272,7 +272,10 @@ class RiskAssesmentPage(MDScreen):
     #     )
 
     def update_score(self,dt):
-        self.ids['score_label'].text=str(self.parent.air_quality_score+self.parent.diet_score+self.parent.demographics_score+self.parent.location_score)
+        self.ids['score_label'].text=str(self.parent.air_quality_score+
+                                         self.parent.diet_score+
+                                         self.parent.demographics_score+
+                                         self.parent.location_score)
     def on_pre_enter(self):
         Clock.schedule_once(self.update_score,0.2)
 
@@ -738,8 +741,6 @@ class DietAndFoodPage(MDScreen):
         '''
         # get the tab icon.
         count_icon = instance_tab.text
-        # print it on shell/bash.
-        # print(f"Welcome to {count_icon}' tab'")
 
         self.curr_tab_num=int(instance_tab.text)-1
         self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
@@ -1284,8 +1285,6 @@ class MenuHeader(MDBoxLayout):
     '''An instance of the class that will be added to the menu header.'''
 
 if __name__=='__main__':
-
     # Config.set('kivy', 'keyboard_mode', 'systemandmulti')
     # Config.set("kivy", "keyboard_layout", 'numeric.json')
-
     BlueSkyApp().run()
