@@ -622,38 +622,32 @@ class AirPollutionPage(SubPageTemplate):
         self.done_dict[self.curr_tab_num+1]=True
         self.arrow_right()
 
-
 class AirPollutionScorePage(MDScreen):
     def __init__(self,**kwargs):
         super(AirPollutionScorePage,self).__init__(**kwargs)
-        self.score=420
-
-    def nav_handler(self):
-        self.ids['nav_drawer'].set_state("open")
+        self.score=0
 
     def update_score(self,dt):
         try:
-            self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total)
+            self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total_score)
         except:
             pass
 
     def chevron_left(self):
         chevron_left_global(self)
 
-
     def reset_quiz(self):
-        print ('reset air pollution quiz')
         self.parent.ids.AirPollutionPage.ids.android_tabs.switch_tab('1')
-        self.parent.current='AirPollutionPage'
+        self.parent.current='AirPollutionLandingPage'
         self.parent.transition.direction="right"
 
     def on_pre_enter(self):
-        release_keyboard_global(self)
-        # time.sleep(1)
         self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total_score)
-
+        release_keyboard_global(self)
         Clock.schedule_once(self.update_score,0.2)
 
+    def chevron_left(self):
+        chevron_left_global(self)
 # --------------------------------------------------------------------- #
 
 class LocationPage(MDScreen):
@@ -725,7 +719,7 @@ class DietAndFoodPage(SubPageTemplate):
 class DietScorePage(MDScreen):
     def __init__(self,**kwargs):
         super(DietScorePage,self).__init__(**kwargs)
-        self.score=420
+        self.score=0
 
     def update_score(self,dt):
         try:
@@ -909,11 +903,6 @@ class WindowManager(ScreenManager):
         self._keyboard.bind(on_key_up=self._on_keyboard_up)
 
         # self.current=self.ids.AirPollutionScorePage
-
-
-
-
-
 
 class BlueSkyApp(MDApp):
     def __init__(self,**kwargs):
