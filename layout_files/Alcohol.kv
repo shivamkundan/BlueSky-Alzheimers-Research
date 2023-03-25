@@ -115,96 +115,6 @@
 							halign: 'center'
 							size_hint_x:0.9
 
-		MDBoxLayout:
-		    orientation:'vertical'
-		    MDRectangleFlatIconButton:
-		        # id:button7
-		        icon:'numeric-7'
-		        text:'Strongly agree'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        theme_text_color: "Custom"
-		        color_icon_root_button: app.theme_cls.accent_color
-		        pos_hint:{'center_x':0.5}
-
-		        on_release:
-		            root.button_press(7)
-		    MDLabel:
-		        text:''
-		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
-		        id:button6
-		        icon:'numeric-6'
-		        text:'Agree'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        # size_hint_y:0.8
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(6)
-		        custom_color: 0, 1, 0, 1
-		    MDLabel:
-		        text:''
-		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
-		        id:button5
-		        icon:'numeric-5'
-		        text:'Somewhat agree'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        # size_hint_y:0.8
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(5)
-		    MDLabel:
-		        text:''
-		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
-		        id:button4
-		        icon:'numeric-4'
-		        text:'Neutral'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(4)
-		    MDLabel:
-		        text:''
-		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
-		        id:button3
-		        icon:'numeric-3'
-		        text:'Somewhat disagree'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(3)
-		    MDLabel:
-		        text:''
-		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
-		        id:button2
-		        icon:'numeric-2'
-		        text:'Disagree'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(2)
-		    MDLabel:
-		        text:''
-		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
-		        id:button1
-		        icon:'numeric-1'
-		        text:'Strongly Disagree'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(1)
 
 		BoxLayout:
 			size_hint_y:0.2
@@ -212,15 +122,11 @@
 			MDRaisedButton:
 				size_hint_x:1
 				text:'                     <                       '
-				on_release:
-					root.manager.current='PhysicalActivityPage'
-					root.manager.transition.direction="right"
+				on_release:root.arrow_left()
 			MDRaisedButton:
 				size_hint_x:1
 				text:'                     >                       '
-				on_release:
-					root.manager.current='DepressionPage'
-					root.manager.transition.direction="left"
+				on_release:root.arrow_right()
 
 	FloatLayout:
 	    orientation: 'vertical'

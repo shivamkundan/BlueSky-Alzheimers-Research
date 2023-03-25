@@ -3,7 +3,7 @@ import os
 # os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
 import kivy
-kivy.require("1.9.1")
+# kivy.require("1.9.1")
 
 from kivy.config import Config
 
@@ -83,11 +83,49 @@ def arrow_right_global(curr,next_pg):
 def arrow_left_global(curr,next_pg):
     if curr.curr_tab_num==0:
         curr.parent.transition.direction="right"
-        curr_sub_pg.parent.current=next_pg
+        curr.parent.current=next_pg
     else:
         curr.curr_tab_num-=1
         curr.ids['android_tabs'].switch_tab(curr.tab_names[curr.curr_tab_num])
 
+def on_tab_switch_global(curr, instance_tabs, instance_tab, instance_tab_label, tab_text):
+        '''
+        Called when switching tabs.
+
+        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
+        :param instance_tab: <__main__.Tab object>;
+        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
+        :param tab_text: text or name icon of tab;
+        '''
+        # get the tab icon.
+        # count_icon = instance_tab.text
+
+        curr.curr_tab_num=int(instance_tab.text)-1
+        curr.ids['android_tabs'].switch_tab(curr.tab_names[curr.curr_tab_num])
+
+def release_keyboard_global(curr):
+    curr._keyboard = Window.request_keyboard(curr.parent._keyboard_closed, curr)
+    curr._keyboard.bind(on_key_up=curr.parent._on_keyboard_up)
+    Window.release_all_keyboards()
+
+def button_press_global(curr,button):
+    print ('pressed: ',button.text)
+    curr.responses_dict[curr.curr_tab_num+1]=int(button.text)
+    curr.done_dict[curr.curr_tab_num+1]=True
+    curr.arrow_right()
+
+def init_subpage_global(curr):
+        curr.total_score=0
+        curr.num_tabs=len(curr.tab_names)
+        curr.curr_tab_num=0
+
+        curr.responses_dict={}
+        for i in range(curr.num_tabs):
+            curr.responses_dict[i]=0
+
+        curr.done_dict={}
+        for i in range(curr.num_tabs):
+            curr.done_dict[i]=0
 # ================================================================== #
 
 class tab_template(FloatLayout, MDTabsBase):
@@ -194,9 +232,10 @@ class LandingPage(ThemableBehavior,MDScreen):
         print(widget,args)
 
     def on_pre_enter(self):
-        self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-        self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-        Window.release_all_keyboards()
+        # self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
+        # self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
+        # Window.release_all_keyboards()
+        release_keyboard_global(self)
         Clock.schedule_once(self.themer,0.1)
 
 
@@ -289,7 +328,7 @@ class RiskAssesmentPage(MDScreen):
            self.tap_target_view.stop()
 
     def chevron_left(self):
-        chevron_left_global(self,next_page='LandingPage')
+        chevron_left_global(self,next_pg='LandingPage')
 
 # --------------------------------------------------------------------- #
 class SociodemographicPage(MDScreen):
@@ -547,10 +586,7 @@ class AirPollutionPage(MDScreen):
 
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-
-        count_icon = instance_tab.text
-        self.curr_tab_num=int(instance_tab.text)-1
-        self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
     def arrow_left(self):
         arrow_left_global(self,"AirPollutionLandingPage")
@@ -560,9 +596,7 @@ class AirPollutionPage(MDScreen):
 
 
     def on_pre_enter(self):
-        self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-        self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-        Window.release_all_keyboards()
+        release_keyboard_global(self)
 
     def on_pre_leave(self):
         total=0
@@ -678,37 +712,27 @@ class DietAndFoodPage(MDScreen):
     def __init__(self,**kwargs):
         super(DietAndFoodPage,self).__init__(**kwargs)
 
-        self.total_score=0
         self.tab_names=['1','2','3','4','5','6','7','8','9','10','11']
-        self.num_tabs=len(self.tab_names)
-        self.curr_tab_num=0
+        self.prev_section="DietLandingPage"
+        self.next_section="DietScorePage"
 
-        self.responses_dict={}
-        for i in range(self.num_tabs):
-            self.responses_dict[i]=0
+        self.init_subpage()
 
-        self.done_dict={}
-        for i in range(self.num_tabs):
-            self.done_dict[i]=0
+    def init_subpage(self):
+        init_subpage_global(self)
 
     def chevron_left(self):
         chevron_left_global(self)
 
     def arrow_left(self):
-        arrow_left_global(self,"DietLandingPage")
+        arrow_left_global(self,self.prev_section)
 
     def arrow_right(self):
-        arrow_right_global(self,"DietScorePage")
+        arrow_right_global(self,self.next_section)
 
     def button_press(self,button):
+        button_press_global(self,button)
 
-        print ('pressed: ',button.text)
-        self.responses_dict[self.curr_tab_num+1]=int(button.text)
-        self.done_dict[self.curr_tab_num+1]=True
-        self.arrow_right()
-
-    def update_score(self,dt):
-        pass
 
     def on_pre_leave(self):
         total=0
@@ -731,19 +755,8 @@ class DietAndFoodPage(MDScreen):
         self.parent.demographics_score=total
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-        '''
-        Called when switching tabs.
+        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
-        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
-        :param instance_tab: <__main__.Tab object>;
-        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
-        :param tab_text: text or name icon of tab;
-        '''
-        # get the tab icon.
-        count_icon = instance_tab.text
-
-        self.curr_tab_num=int(instance_tab.text)-1
-        self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 class DietScorePage(MDScreen):
     def __init__(self,**kwargs):
@@ -806,10 +819,7 @@ class PhysicalActivityPage(MDScreen):
         chevron_left_global(self)
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-        count_icon = instance_tab.text
-
-        self.curr_tab_num=int(instance_tab.text)-1
-        self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
     def on_numpad_press(self,*args):
         print(args)
@@ -838,51 +848,30 @@ class AlcoholLandingPage(MDScreen):
 class AlcoholUsagePage(MDScreen):
     def __init__(self,**kwargs):
         super(AlcoholUsagePage,self).__init__(**kwargs)
-        self.total_score=0
+
         self.tab_names=['1','2','3']
-        self.num_tabs=len(self.tab_names)
-        self.curr_tab_num=0
+        self.prev_section="AlcoholLandingPage"
+        self.next_section="DepressionPage"
 
-        self.responses_dict={}
-        for i in range(self.num_tabs):
-            self.responses_dict[i]=0
+        self.init_subpage()
 
-        self.done_dict={}
-        for i in range(self.num_tabs):
-            self.done_dict[i]=0
+    def init_subpage(self):
+        init_subpage_global(self)
 
     def chevron_left(self):
         chevron_left_global(self)
 
     def arrow_left(self):
-        arrow_left_global(self,"AlcoholLandingPage")
+        arrow_left_global(self,self.prev_section)
 
     def arrow_right(self):
-        pass
+        arrow_right_global(self,self.next_section)
 
     def button_press(self,button):
-
-        print ('pressed: ',button.text)
-        self.responses_dict[self.curr_tab_num+1]=int(button.text)
-        self.done_dict[self.curr_tab_num+1]=True
-        self.arrow_right()
+        button_press_global(self,button)
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-        '''
-        Called when switching tabs.
-
-        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
-        :param instance_tab: <__main__.Tab object>;
-        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
-        :param tab_text: text or name icon of tab;
-        '''
-        # get the tab icon.
-        count_icon = instance_tab.text
-        # print it on shell/bash.
-        # print(f"Welcome to {count_icon}' tab'")
-
-        self.curr_tab_num=int(instance_tab.text)-1
-        self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
 # --------------------------------------------------------------------- #
 
@@ -890,45 +879,27 @@ class DepressionPage(MDScreen):
     def __init__(self,**kwargs):
         super(DepressionPage,self).__init__(**kwargs)
 
-        self.total_score=0
         self.tab_names=['1','2']
-        self.num_tabs=len(self.tab_names)
-        self.curr_tab_num=0
+        self.prev_section="AlcoholUsagePage"
+        self.next_section="HyperTensionPage"
 
-        self.responses_dict={}
-        for i in range(self.num_tabs):
-            self.responses_dict[i]=0
+        self.init_subpage()
 
-        self.done_dict={}
-        for i in range(self.num_tabs):
-            self.done_dict[i]=0
-
+    def init_subpage(self):
+        init_subpage_global(self)
 
     def chevron_left(self):
         chevron_left_global(self)
 
     def arrow_left(self):
-        arrow_left_global(self,"AlcoholUsagePage")
+        arrow_left_global(self,self.prev_section)
 
     def arrow_right(self):
-        arrow_right_global(self,"HyperTensionPage")
+        arrow_right_global(self,self.next_section)
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-        '''
-        Called when switching tabs.
+        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
-        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
-        :param instance_tab: <__main__.Tab object>;
-        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
-        :param tab_text: text or name icon of tab;
-        '''
-        # get the tab icon.
-        count_icon = instance_tab.text
-        # print it on shell/bash.
-        # print(f"Welcome to {count_icon}' tab'")
-
-        self.curr_tab_num=int(instance_tab.text)-1
-        self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 # --------------------------------------------------------------------- #
 
