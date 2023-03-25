@@ -256,8 +256,7 @@
             font_style:'Button'
             size_hint_x:0.7
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:
-                root.reset_quiz()
+            on_release:root.reset_quiz()
         Widget:
             size_hint_y:0.05
         MDRaisedButton:
@@ -266,9 +265,7 @@
             font_style:'Button'
             size_hint_x:0.7
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:
-                root.manager.current='RiskAssesmentPage'
-                root.manager.transition.direction="right"
+            on_release:root.arrow_left()
         Widget:
             size_hint_y:0.05
         MDRaisedButton:
@@ -277,9 +274,7 @@
             font_style:'Button'
             size_hint_x:0.7
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:
-                root.manager.current='PhysicalActivityPage'
-                root.manager.transition.direction="left"
+            on_release:root.arrow_right()
 
 
         MDLabel:
@@ -291,12 +286,8 @@
             MDRaisedButton:
                 text:'                     <                       '
                 size_hint_x:1
-                on_release:
-                    root.manager.current='DietAndFoodPage'
-                    root.manager.transition.direction="right"
+                on_release:root.arrow_left()
             MDRaisedButton:
                 text:'                     >                       '
                 size_hint_x:1
-                on_release:
-                    root.manager.current='PhysicalActivityPage'
-                    root.manager.transition.direction="left"
+                on_release:root.arrow_right()

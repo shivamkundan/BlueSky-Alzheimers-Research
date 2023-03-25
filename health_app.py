@@ -241,8 +241,25 @@ class SubPageTemplate(MDScreen):
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
         on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
-# ----------------------------------------
+class ScorePageTemplate(MDScreen):
+    def __init__(self,**kwargs):
+        super(ScorePageTemplate,self).__init__(**kwargs)
+        self.prev_section=""
+        self.next_section=""
+        self.score=0
 
+    def chevron_left(self):
+        chevron_left_global(self)
+
+    def arrow_left(self):
+        self.parent.transition.direction="right"
+        self.parent.current=self.prev_section
+
+    def arrow_right(self):
+        self.parent.transition.direction="left"
+        self.parent.current=self.next_section
+
+# ----------------------------------------
 class LoadingPage(MDScreen):
     def __init__(self,**kwargs):
         super(LoadingPage,self).__init__(**kwargs)
@@ -596,60 +613,6 @@ class SociodemographicPage(MDScreen):
             self.ids['age_text_field'].text+=args[0].text
 
 # --------------------------------------------------------------------- #
-
-class AirPollutionLandingPage(LandingPageTemplate):
-    def __init__(self,**kwargs):
-        super(AirPollutionLandingPage,self).__init__(**kwargs)
-
-class AirPollutionPage(SubPageTemplate):
-    def __init__(self,**kwargs):
-        super(AirPollutionPage,self).__init__(**kwargs)
-
-        self.tab_names=['1','2','3','4','5','6','7']
-        self.prev_section="RiskAssesmentPage"
-        self.next_section="AirPollutionScorePage"
-
-        self.init_subpage()
-
-    def on_pre_leave(self):
-        total,pct_txt=update_score_global(self)
-        self.parent.air_quality_score=total
-        self.parent.ids['RiskAssesmentPage'].ids['air_pollution_label'].secondary_text=pct_txt
-
-    def button_press(self,num):
-        print ("num: ",num)
-        self.responses_dict[self.curr_tab_num+1]=int(num)
-        self.done_dict[self.curr_tab_num+1]=True
-        self.arrow_right()
-
-class AirPollutionScorePage(MDScreen):
-    def __init__(self,**kwargs):
-        super(AirPollutionScorePage,self).__init__(**kwargs)
-        self.score=0
-
-    def update_score(self,dt):
-        try:
-            self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total_score)
-        except:
-            pass
-
-    def chevron_left(self):
-        chevron_left_global(self)
-
-    def reset_quiz(self):
-        self.parent.ids.AirPollutionPage.ids.android_tabs.switch_tab('1')
-        self.parent.current='AirPollutionLandingPage'
-        self.parent.transition.direction="right"
-
-    def on_pre_enter(self):
-        self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total_score)
-        release_keyboard_global(self)
-        Clock.schedule_once(self.update_score,0.2)
-
-    def chevron_left(self):
-        chevron_left_global(self)
-# --------------------------------------------------------------------- #
-
 class LocationPage(MDScreen):
     def __init__(self,**kwargs):
         super(LocationPage,self).__init__(**kwargs)
@@ -696,6 +659,51 @@ class LocationPage(MDScreen):
 
 # --------------------------------------------------------------------- #
 
+class AirPollutionLandingPage(LandingPageTemplate):
+    def __init__(self,**kwargs):
+        super(AirPollutionLandingPage,self).__init__(**kwargs)
+
+class AirPollutionPage(SubPageTemplate):
+    def __init__(self,**kwargs):
+        super(AirPollutionPage,self).__init__(**kwargs)
+
+        self.tab_names=['1','2','3','4','5','6','7']
+        self.prev_section="RiskAssesmentPage"
+        self.next_section="AirPollutionScorePage"
+
+        self.init_subpage()
+
+    def on_pre_leave(self):
+        total,pct_txt=update_score_global(self)
+        self.parent.air_quality_score=total
+        self.parent.ids['RiskAssesmentPage'].ids['air_pollution_label'].secondary_text=pct_txt
+
+    def button_press(self,num):
+        print ("num: ",num)
+        self.responses_dict[self.curr_tab_num+1]=int(num)
+        self.done_dict[self.curr_tab_num+1]=True
+        self.arrow_right()
+
+class AirPollutionScorePage(ScorePageTemplate):
+    def __init__(self,**kwargs):
+        super(AirPollutionScorePage,self).__init__(**kwargs)
+        self.prev_section="AirPollutionPage"
+        self.next_section="DietLandingPage"
+
+    def update_score(self,dt):
+        try:
+            self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total_score)
+        except:
+            pass
+
+    def on_pre_enter(self):
+        self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total_score)
+        release_keyboard_global(self)
+        Clock.schedule_once(self.update_score,0.2)
+
+# --------------------------------------------------------------------- #
+
+
 class DietLandingPage(LandingPageTemplate):
     def __init__(self,**kwargs):
         super(DietLandingPage,self).__init__(**kwargs)
@@ -715,20 +723,17 @@ class DietAndFoodPage(SubPageTemplate):
         self.parent.diet_score=total
         self.parent.ids['RiskAssesmentPage'].ids['diet_label'].secondary_text=pct_txt
 
-
-class DietScorePage(MDScreen):
+class DietScorePage(ScorePageTemplate):
     def __init__(self,**kwargs):
         super(DietScorePage,self).__init__(**kwargs)
-        self.score=0
+        self.prev_section="DietAndFoodPage"
+        self.next_section="PhysicalActivityPage"
 
     def update_score(self,dt):
         try:
             self.ids['score_label'].text=str(self.parent.ids.DietAndFoodPage.total_score)
         except:
             pass
-
-    def chevron_left(self):
-        chevron_left_global(self)
 
     def reset_quiz(self):
         self.parent.ids.DietAndFoodPage.ids.android_tabs.switch_tab('1')
@@ -739,9 +744,6 @@ class DietScorePage(MDScreen):
         self.ids['score_label'].text=str(self.parent.ids.DietAndFoodPage.total_score)
         release_keyboard_global(self)
         Clock.schedule_once(self.update_score,0.2)
-
-    def chevron_left(self):
-        chevron_left_global(self)
 
 # --------------------------------------------------------------------- #
 

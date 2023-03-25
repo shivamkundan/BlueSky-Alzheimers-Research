@@ -293,11 +293,7 @@
             font_style:'Button'
             size_hint_x:0.7
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:
-                root.reset_quiz()
-                # root.parent.ids.android_tabs.switch_tab['1']
-                # root.manager.current='AirPollutionPage'
-                # root.manager.transition.direction="right"
+            on_release: root.reset_quiz()
 
         MDLabel:
             size_hint_y:1
@@ -307,12 +303,8 @@
             MDRaisedButton:
                 size_hint_x:1
                 text:'                     <                       '
-                on_release:
-                    root.manager.current='AirPollutionPage'
-                    root.manager.transition.direction="right"
+                on_release:root.arrow_left()
             MDRaisedButton:
                 size_hint_x:1
                 text:'                     >                       '
-                on_release:
-                    root.manager.current='DietLandingPage'
-                    root.manager.transition.direction="left"
+                on_release:root.arrow_right()
