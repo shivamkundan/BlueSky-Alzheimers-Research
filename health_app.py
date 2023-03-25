@@ -127,11 +127,6 @@ def init_subpage_global(curr):
         for i in range(curr.num_tabs):
             curr.done_dict[i]=0
 
-def on_pre_leave_global(curr,score,pct_label):
-    total,pct_txt=update_score_global(curr)
-    score=total
-    pct_label=pct_txt
-
 def update_score_global(curr):
     total=0
     for key,val in curr.responses_dict.items():
@@ -209,6 +204,43 @@ class DrawerList(ThemableBehavior, MDList):
                 item.text_color = self.theme_cls.text_color
                 break
         instance_item.text_color = self.theme_cls.primary_color
+
+# --------------------------------------------------------------------- #
+
+class LandingPageTemplate(MDScreen):
+    def __init__(self,**kwargs):
+        super(LandingPageTemplate,self).__init__(**kwargs)
+
+    def chevron_left(self):
+        chevron_left_global(self)
+
+class SubPageTemplate(MDScreen):
+    def __init__(self,**kwargs):
+        super(SubPageTemplate,self).__init__(**kwargs)
+
+        # dummy/placeholder variables
+        self.tab_names=['1']
+        self.prev_section=""
+        self.next_section=""
+
+    def init_subpage(self):
+        init_subpage_global(self)
+
+    def chevron_left(self):
+        chevron_left_global(self)
+
+    def arrow_left(self):
+        arrow_left_global(self,self.prev_section)
+
+    def arrow_right(self):
+        arrow_right_global(self,self.next_section)
+
+    def button_press(self,button):
+        button_press_global(self,button)
+
+    def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
+        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
+
 # ----------------------------------------
 
 class LoadingPage(MDScreen):
@@ -565,84 +597,31 @@ class SociodemographicPage(MDScreen):
 
 # --------------------------------------------------------------------- #
 
-class AirPollutionLandingPage(MDScreen):
+class AirPollutionLandingPage(LandingPageTemplate):
     def __init__(self,**kwargs):
         super(AirPollutionLandingPage,self).__init__(**kwargs)
 
-    def chevron_left(self):
-        chevron_left_global(self)
-
-class AirPollutionPage(MDScreen):
+class AirPollutionPage(SubPageTemplate):
     def __init__(self,**kwargs):
         super(AirPollutionPage,self).__init__(**kwargs)
-        self.total=0
-        self.curr_question_num=1
-        self.questions_list=[
-            "I expect to wear a pollution mask",
-            "I want to wear a pollution mask",
-            "I intend to wear a pollution mask",
-            "I choose to wear a pollution mask",
-            "I will wear a pollution mask",
-            "I would be better wearing a pollution mask",
-            "I prefer wearing a pollution mask",
-        ]
-
-        self.questions_dict={}
-        i=1
-        for curr_q in self.questions_list:
-            self.questions_dict[i]={'question':curr_q,'selected_val':0,'done':False}
-            i+=1
 
         self.tab_names=['1','2','3','4','5','6','7']
-        self.num_tabs=len(self.tab_names)
-        self.curr_tab_num=0
+        self.prev_section="RiskAssesmentPage"
+        self.next_section="AirPollutionScorePage"
 
-        self.air_pollution_pct=0
-
-        # print (self.questions_dict)
-
-    def button_press(self,num):
-
-        print ('pressed: ',num)
-        self.questions_dict[self.curr_tab_num+1]['selected_val']=num
-        self.questions_dict[self.curr_tab_num+1]['done']=True
-
-        self.arrow_right()
-
-
-    def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
-
-    def arrow_left(self):
-        arrow_left_global(self,"AirPollutionLandingPage")
-
-    def arrow_right(self,increment=True):
-        arrow_right_global(self,"AirPollutionScorePage")
-
-
-    def on_pre_enter(self):
-        release_keyboard_global(self)
+        self.init_subpage()
 
     def on_pre_leave(self):
-        total=0
-        num_done=0
-        for key,val in self.questions_dict.items():
-            total+=val['selected_val']
-            if val['done']:
-                num_done+=1
-
-
-        self.total=total
-        print ('score:',total)
-
+        total,pct_txt=update_score_global(self)
         self.parent.air_quality_score=total
+        self.parent.ids['RiskAssesmentPage'].ids['air_pollution_label'].secondary_text=pct_txt
 
-        pct=str(int(round(100*num_done/self.num_tabs,0)))+'% Complete'
-        self.parent.ids['RiskAssesmentPage'].ids['air_pollution_label'].secondary_text=pct
-        print ('air pct done: ',pct)
+    def button_press(self,num):
+        print ("num: ",num)
+        self.responses_dict[self.curr_tab_num+1]=int(num)
+        self.done_dict[self.curr_tab_num+1]=True
+        self.arrow_right()
 
-    def chevron_left(self):
-        chevron_left_global(self)
 
 class AirPollutionScorePage(MDScreen):
     def __init__(self,**kwargs):
@@ -671,7 +650,7 @@ class AirPollutionScorePage(MDScreen):
     def on_pre_enter(self):
         release_keyboard_global(self)
         # time.sleep(1)
-        self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total)
+        self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total_score)
 
         Clock.schedule_once(self.update_score,0.2)
 
@@ -723,14 +702,11 @@ class LocationPage(MDScreen):
 
 # --------------------------------------------------------------------- #
 
-class DietLandingPage(MDScreen):
+class DietLandingPage(LandingPageTemplate):
     def __init__(self,**kwargs):
         super(DietLandingPage,self).__init__(**kwargs)
 
-    def chevron_left(self):
-        chevron_left_global(self)
-
-class DietAndFoodPage(MDScreen):
+class DietAndFoodPage(SubPageTemplate):
     def __init__(self,**kwargs):
         super(DietAndFoodPage,self).__init__(**kwargs)
 
@@ -740,28 +716,11 @@ class DietAndFoodPage(MDScreen):
 
         self.init_subpage()
 
-    def init_subpage(self):
-        init_subpage_global(self)
-
-    def chevron_left(self):
-        chevron_left_global(self)
-
-    def arrow_left(self):
-        arrow_left_global(self,self.prev_section)
-
-    def arrow_right(self):
-        arrow_right_global(self,self.next_section)
-
-    def button_press(self,button):
-        button_press_global(self,button)
-
     def on_pre_leave(self):
         total,pct_txt=update_score_global(self)
         self.parent.diet_score=total
         self.parent.ids['RiskAssesmentPage'].ids['diet_label'].secondary_text=pct_txt
 
-    def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
 class DietScorePage(MDScreen):
     def __init__(self,**kwargs):
@@ -823,13 +782,11 @@ class PhysicalActivityPage(MDScreen):
 
 # --------------------------------------------------------------------- #
 
-class AlcoholLandingPage(MDScreen):
+class AlcoholLandingPage(LandingPageTemplate):
     def __init__(self,**kwargs):
         super(AlcoholLandingPage,self).__init__(**kwargs)
-    def chevron_left(self):
-        chevron_left_global(self)
 
-class AlcoholUsagePage(MDScreen):
+class AlcoholUsagePage(SubPageTemplate):
     def __init__(self,**kwargs):
         super(AlcoholUsagePage,self).__init__(**kwargs)
 
@@ -838,24 +795,6 @@ class AlcoholUsagePage(MDScreen):
         self.next_section="DepressionPage"
 
         self.init_subpage()
-
-    def init_subpage(self):
-        init_subpage_global(self)
-
-    def chevron_left(self):
-        chevron_left_global(self)
-
-    def arrow_left(self):
-        arrow_left_global(self,self.prev_section)
-
-    def arrow_right(self):
-        arrow_right_global(self,self.next_section)
-
-    def button_press(self,button):
-        button_press_global(self,button)
-
-    def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-        on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
 # --------------------------------------------------------------------- #
 
@@ -971,13 +910,10 @@ class WindowManager(ScreenManager):
 
         # self.current=self.ids.AirPollutionScorePage
 
-class SubPageTemplate(MDApp):
-    def __init__(self,**kwargs):
-        super(DietAndFoodPage,self).__init__(**kwargs)
 
-    def back_button(self):
-        self.parent.transition.direction="right"
-        self.parent.current='RiskAssesmentPage'
+
+
+
 
 class BlueSkyApp(MDApp):
     def __init__(self,**kwargs):
