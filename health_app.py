@@ -126,6 +126,31 @@ def init_subpage_global(curr):
         curr.done_dict={}
         for i in range(curr.num_tabs):
             curr.done_dict[i]=0
+
+def on_pre_leave_global(curr,score,pct_label):
+    total,pct_txt=update_score_global(curr)
+    score=total
+    pct_label=pct_txt
+
+def update_score_global(curr):
+    total=0
+    for key,val in curr.responses_dict.items():
+        total+=val
+    curr.total_score=total
+    print ('score:',total)
+
+
+    num_done=0
+    for k,v in curr.done_dict.items():
+        if v==True:
+            num_done+=1
+    print (num_done)
+    pct=int(round(100*(num_done/curr.num_tabs),0))
+    pct_txt=str(pct)+'% Complete'
+    print (pct_txt)
+    return total, pct_txt
+
+
 # ================================================================== #
 
 class tab_template(FloatLayout, MDTabsBase):
@@ -644,10 +669,7 @@ class AirPollutionScorePage(MDScreen):
         self.parent.transition.direction="right"
 
     def on_pre_enter(self):
-        self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-        self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-
-        Window.release_all_keyboards()
+        release_keyboard_global(self)
         # time.sleep(1)
         self.ids['score_label'].text=str(self.parent.ids.AirPollutionPage.total)
 
@@ -733,36 +755,18 @@ class DietAndFoodPage(MDScreen):
     def button_press(self,button):
         button_press_global(self,button)
 
-
     def on_pre_leave(self):
-        total=0
-        for key,val in self.responses_dict.items():
-            total+=val
-        self.total_score=total
-        print ('score:',total)
+        total,pct_txt=update_score_global(self)
         self.parent.diet_score=total
-
-        num_done=0
-        for k,v in self.done_dict.items():
-            if v==True:
-                num_done+=1
-        print (num_done)
-        pct=int(round(100*(num_done/self.num_tabs),0))
-        pct_txt=str(pct)+'% Complete'
-        print (pct_txt)
         self.parent.ids['RiskAssesmentPage'].ids['diet_label'].secondary_text=pct_txt
-
-        self.parent.demographics_score=total
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
         on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
-
 
 class DietScorePage(MDScreen):
     def __init__(self,**kwargs):
         super(DietScorePage,self).__init__(**kwargs)
         self.score=420
-
 
     def update_score(self,dt):
         try:
@@ -773,34 +777,14 @@ class DietScorePage(MDScreen):
     def chevron_left(self):
         chevron_left_global(self)
 
-
     def reset_quiz(self):
-        print (self.parent)
-
-        for item in self.parent.ids:
-            print (item)
-
         self.parent.ids.DietAndFoodPage.ids.android_tabs.switch_tab('1')
-        # self.parent.ids.AirPollutionPage.switch_tab('1')
         self.parent.current='DietLandingPage'
         self.parent.transition.direction="right"
 
-    # def on_touch_up(self, touch):
-    #     if self.ids['restart_button'].collide_point(*(touch).pos):
-    #         self.parent.transition.direction="right"
-    #         self.parent.current='AirPollutionLandingPage'
-
-        # if self.ids['yes'].collide_point(*(touch).pos):
-        #     self.ids['score_label'].text=str(self.parent.ids['AirPollutionPage'].total)
-
     def on_pre_enter(self):
-        self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-        self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-
-        Window.release_all_keyboards()
-        # time.sleep(1)
         self.ids['score_label'].text=str(self.parent.ids.DietAndFoodPage.total_score)
-
+        release_keyboard_global(self)
         Clock.schedule_once(self.update_score,0.2)
 
     def chevron_left(self):
@@ -950,11 +934,6 @@ class WindowManager(ScreenManager):
         self.demographics_score=0
         self._keyboard=None
         Window.bind(on_resize=self.on_window_resize)
-
-        for item in self.screens:
-            print (item)
-
-
 
         # Clock.schedule_once(self.init,.1)
         self.on_pre_enter()
