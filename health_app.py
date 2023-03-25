@@ -7,7 +7,6 @@ import kivy
 
 from kivy.config import Config
 
-
 from kivymd.app import MDApp
 from kivymd.uix.screen import Screen
 
@@ -66,8 +65,8 @@ KV_FILE='health_app.kv' # kivy design file
 resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
 Window.size = resolutions[2]
 
+# ============================ GLOBAL FNs ============================= #
 
-# =========================== GLOBAL FNs =========================== #
 def chevron_left_global(curr,next_pg='RiskAssesmentPage'):
     curr.parent.transition.direction="right"
     curr.parent.current=next_pg
@@ -145,8 +144,7 @@ def update_score_global(curr):
     print (pct_txt)
     return total, pct_txt
 
-
-# ================================================================== #
+# ===================================================================== #
 
 class tab_template(FloatLayout, MDTabsBase):
     def __init__(self,**kwargs):
@@ -163,13 +161,7 @@ class ItemConfirm(OneLineAvatarIconListItem):
             if check != instance_check:
                 check.active = False
 
-class my_widget(Widget):
-    pass
-
 class NavButtons(Widget):
-    pass
-
-class MyW(Widget):
     pass
 
 class ButtonSet(MDBoxLayout):
@@ -259,7 +251,8 @@ class ScorePageTemplate(MDScreen):
         self.parent.transition.direction="left"
         self.parent.current=self.next_section
 
-# ----------------------------------------
+# ===================================================================== #
+
 class LoadingPage(MDScreen):
     def __init__(self,**kwargs):
         super(LoadingPage,self).__init__(**kwargs)
@@ -363,6 +356,8 @@ class LoginPage(MDScreen):
     def close_dialog(self,*args):
         self.dialog.dismiss()
 
+# --------------------------------------------------------------------- #
+
 class RiskAssesmentPage(MDScreen):
     def __init__(self,**kwargs):
         super(RiskAssesmentPage,self).__init__(**kwargs)
@@ -405,6 +400,7 @@ class RiskAssesmentPage(MDScreen):
         chevron_left_global(self,next_pg='LandingPage')
 
 # --------------------------------------------------------------------- #
+
 class SociodemographicPage(MDScreen):
     def __init__(self,**kwargs):
         super(SociodemographicPage,self).__init__(**kwargs)
@@ -613,6 +609,7 @@ class SociodemographicPage(MDScreen):
             self.ids['age_text_field'].text+=args[0].text
 
 # --------------------------------------------------------------------- #
+
 class LocationPage(MDScreen):
     def __init__(self,**kwargs):
         super(LocationPage,self).__init__(**kwargs)
@@ -657,7 +654,7 @@ class LocationPage(MDScreen):
         except:
             pass
 
-# --------------------------------------------------------------------- #
+# ===================================================================== #
 
 class AirPollutionLandingPage(LandingPageTemplate):
     def __init__(self,**kwargs):
@@ -702,7 +699,6 @@ class AirPollutionScorePage(ScorePageTemplate):
         Clock.schedule_once(self.update_score,0.2)
 
 # --------------------------------------------------------------------- #
-
 
 class DietLandingPage(LandingPageTemplate):
     def __init__(self,**kwargs):
@@ -818,7 +814,6 @@ class DepressionPage(MDScreen):
 
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
         on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
-
 
 # --------------------------------------------------------------------- #
 
