@@ -172,13 +172,6 @@ class NavButtons(Widget):
 class ButtonSet(MDBoxLayout):
 	def __init__(self,**kwargs):
 		super(ButtonSet,self).__init__(**kwargs)
-	def button_press(self,num):
-		# self.parent.parent.questions_dict[self.parent.parent.curr_question_num]['selected_val']=num
-		print('q#: ',self.parent.parent.parent.curr_question_num)
-		# print ('pressed: ',num)
-		# self.parent.parent.next_question(1)
-		self.parent.parent.parent.arrow_right()
-		# self.parent.parent.parent.button_press(num)
 
 class ContentNavigationDrawer(MDBoxLayout):
 	pass
@@ -756,7 +749,7 @@ class PhysicalActivityPage(MDScreen):
 		arrow_left_global(self,"DietScorePage")
 
 	def arrow_right(self,increment=True):
-		arrow_right_global(self,"AlcoholUsagePage")
+		arrow_right_global(self,"AlcoholLandingPage")
 
 # --------------------------------------------------------------------- #
 
@@ -770,8 +763,21 @@ class AlcoholUsagePage(SubPageTemplate):
 		self.tab_names=['1','2','3']
 		self.page_name="AlcoholUsagePage"
 		self.prev_page="AlcoholLandingPage"
-		self.next_page="DepressionPage"
+		self.next_page="AlcoholScorePage"
 		self.init_subpage()
+
+	def button_press(self,num):
+		print ("num: ",num)
+		self.responses_dict[self.curr_tab_num+1]=int(num)
+		self.done_dict[self.curr_tab_num+1]=True
+		self.arrow_right()
+
+class AlcoholScorePage(ScorePageTemplate):
+	def __init__(self,**kwargs):
+		super(AlcoholScorePage,self).__init__(**kwargs)
+		self.landing_page="AlcoholLandingPage"
+		self.prev_page="AlcoholUsagePage"
+		self.next_page="DepressionPage"
 
 # --------------------------------------------------------------------- #
 
@@ -970,6 +976,11 @@ class BlueSkyApp(MDApp):
 	def AlcoholLandingPage(self,dt):
 		print ('switching to AlcoholLandingPage')
 		self.root.current="AlcoholLandingPage"
+		Clock.schedule_once(self.AlcoholScorePage,0.1)
+
+	def AlcoholScorePage(self,dt):
+		print ('switching to AlcoholScorePage')
+		self.root.current="AlcoholScorePage"
 		Clock.schedule_once(self.DepressionPage,0.1)
 
 	# --------------------------------------------------------------------- #

@@ -23,6 +23,7 @@
 #:set size_x_subtitle 733
 #:set size_y_subtitle 132
 
+
 <DietLandingPage>:
 
     BoxLayout:
@@ -227,6 +228,46 @@
             size_hint_x:0.9
             text_color:1,1,1,1
 
+
+<Template>:
+    MDLabel:
+        text: 'Your score is:'
+        halign: 'center'
+
+    MDLabel:
+        id:score_label
+        text: ''
+        halign: 'center'
+
+    MDRaisedButton:
+        id:restart_button
+        text:'Try Again'
+        font_style:'Button'
+        size_hint_x:0.7
+        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        on_release:root.reset_quiz()
+    Widget:
+        size_hint_y:0.05
+    MDRaisedButton:
+        id:next_section
+        text:'Back'
+        font_style:'Button'
+        size_hint_x:0.7
+        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        on_release:root.chevron_left()
+    Widget:
+        size_hint_y:0.05
+    MDRaisedButton:
+        id:next_section
+        text:'Next'
+        font_style:'Button'
+        size_hint_x:0.7
+        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        on_release:root.arrow_right()
+
+
+    MDLabel:
+        size_hint_y:0.7
 
 <DietScorePage>:
     score_label:score_label
