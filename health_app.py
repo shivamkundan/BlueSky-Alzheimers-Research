@@ -767,7 +767,6 @@ class PhysicalActivityPage(SubPageTemplate):
 		else:
 			tab.text+=args[0].text
 
-
 # --------------------------------------------------------------------- #
 
 class AlcoholLandingPage(LandingPageTemplate):
@@ -894,7 +893,6 @@ class TraumaticBrainInjuryScorePage(ScorePageTemplate):
 class CognitiveDeclineLandingPage(LandingPageTemplate):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclineLandingPage,self).__init__(**kwargs)
-
 
 class CognitiveDeclinePage(MDScreen):
 	def __init__(self,**kwargs):
