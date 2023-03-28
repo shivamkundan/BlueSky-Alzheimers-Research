@@ -879,9 +879,16 @@ class TraumaticBrainInjuryPage(SubPageTemplate):
 		self.tab_names=['1','2','3','4','5']
 		self.page_name='TraumaticBrainInjuryPage'
 		self.prev_page="TraumaticBrainInjuryLandingPage"
-		self.next_page="CognitiveDeclinePage"
+		self.next_page="TraumaticBrainInjuryScorePage"
 
 		self.init_subpage()
+
+class TraumaticBrainInjuryScorePage(ScorePageTemplate):
+	def __init__(self,**kwargs):
+		super(TraumaticBrainInjuryScorePage,self).__init__(**kwargs)
+		self.landing_page="TraumaticBrainInjuryLandingPage"
+		self.prev_page="TraumaticBrainInjuryPage"
+		self.next_page="CognitiveDeclinePage"
 
 # --------------------------------------------------------------------- #
 
@@ -1086,6 +1093,11 @@ class BlueSkyApp(MDApp):
 	def TraumaticBrainInjuryPage(self,dt):
 		print ('switching to TraumaticBrainInjuryPage')
 		self.root.current="TraumaticBrainInjuryPage"
+		Clock.schedule_once(self.TraumaticBrainInjuryScorePage,0.1)
+
+	def TraumaticBrainInjuryScorePage(self,dt):
+		print ('switching to TraumaticBrainInjuryScorePage')
+		self.root.current="TraumaticBrainInjuryScorePage"
 		Clock.schedule_once(self.CognitiveDeclinePage,0.1)
 
 	# --------------------------------------------------------------------- #
