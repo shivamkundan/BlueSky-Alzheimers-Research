@@ -22,6 +22,7 @@
 #:include layout_files/HyperTension.kv
 #:include layout_files/DepressionPage.kv
 #:include layout_files/TraumaticBrainInjury.kv
+#:include layout_files/CognitiveDecline.kv
 
 WindowManager:
 	id: WindowManager
@@ -140,6 +141,10 @@ WindowManager:
 		name:'TraumaticBrainInjuryScorePage'
 
 	# ------------------------------------- #
+	CognitiveDeclineLandingPage:
+		id:CognitiveDeclineLandingPage
+		name:'CognitiveDeclineLandingPage'
+
 	CognitiveDeclinePage:
 		id:CognitiveDeclinePage
 		name:'CognitiveDeclinePage'
@@ -324,7 +329,7 @@ WindowManager:
 					secondary_text: "0% Complete"
 					secondary_font_style:'Caption'
 					on_release:
-						root.manager.current="CognitiveDeclinePage"
+						root.manager.current="CognitiveDeclineLandingPage"
 						root.manager.transition.direction="left"
 					IconLeftWidget:
 						icon:'chart-multiline'
@@ -336,31 +341,7 @@ WindowManager:
 # ----
 
 
-<CognitiveDeclinePage>:
-	BoxLayout:
-		orientation: 'vertical'
-		MDToolbar:
-			title: 'Cognitive Decline'
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
-			elevation:8
-		MDLabel:
-			text:''
 
-		BoxLayout:
-			orientation: 'horizontal'
-			MDRaisedButton:
-				text:'                     <                       '
-				size_hint_x:1
-				on_release:
-					root.manager.current='TraumaticBrainInjuryPage'
-					root.manager.transition.direction="right"
-			MDRaisedButton:
-				text:'                     >                       '
-				size_hint_x:1
-				on_release:
-					root.manager.current='RiskAssesmentPage'
-					root.manager.transition.direction="right"
 
 # =======================================
 <AboutPage>:

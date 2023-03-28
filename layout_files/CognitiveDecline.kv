@@ -1,0 +1,92 @@
+#:set cognitive_landing_blurb    'Alzheimer’s disease is a progressive neurologic disease that results in the irreversible loss of neurons, particularly in the ... [memory and reasoning areas of the brain]. The clinical hallmarks are progressive impairment in memory, judgment, decision making, orientation to physical surroundings, and language.'
+#:set cognitive_landing_subtitle 'Answer the following questions about your cognitive abilities'
+#:set cognitive_toolbar_title    'Cognitive Decline'
+
+<CognitiveDeclineLandingPage>:
+
+	BoxLayout:
+		orientation: 'vertical'
+
+		MDToolbar:
+			title: cognitive_toolbar_title
+			halign: 'left'
+			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+			elevation:8
+
+		MDLabel:
+			text:''
+			size_hint_y:0.3
+		MDLabel:
+			text: cognitive_landing_blurb
+			font_size:'14sp'
+			halign: 'left'
+			size_hint_x:0.8
+			pos_hint:{'center_x':0.5}
+
+		MDLabel:
+			# font_size:'2xw0sp'
+			text: cognitive_landing_subtitle
+			# text_color:DARK_BLUE
+			theme_text_color:"Hint"
+			halign: 'left'
+			size_hint_x:0.8
+			# size_hint_x:0.5
+			pos_hint:{'center_x':0.5}
+
+		MDRaisedButton:
+			text:"Begin"
+			font_style:'Button'
+			# size_hint_x:0.7
+			pos_hint:{'center_x':0.5}
+			on_release:
+
+				root.manager.current='CognitiveDeclinePage'
+				root.manager.transition.direction="left"
+				# root.parent.ids['CognitiveDeclinePage'].ids['android_tabs'].switch_tab('1')
+
+
+		BoxLayout:
+			orientation: 'horizontal'
+			size_hint_y:0.3
+			MDRaisedButton:
+				size_hint_x:1
+				text:'                     <                       '
+				on_release:
+					root.manager.current='TraumaticBrainInjuryScorePage'
+					root.manager.transition.direction="right"
+			MDRaisedButton:
+				size_hint_x:1
+				text:'                     >                       '
+				on_release:
+					root.manager.current='CognitiveDeclinePage'
+					root.manager.transition.direction="left"
+					# root.parent.ids['CognitiveDeclinePage'].ids['android_tabs'].switch_tab('1')
+
+
+<CognitiveDeclinePage>:
+	BoxLayout:
+		orientation: 'vertical'
+		MDToolbar:
+			title: cognitive_toolbar_title
+			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
+			elevation:8
+		MDLabel:
+			text:''
+
+		BoxLayout:
+			orientation: 'horizontal'
+			MDRaisedButton:
+				text:'                     <                       '
+				size_hint_x:1
+				on_release:
+					root.manager.current='CognitiveDeclineLandingPage'
+					root.manager.transition.direction="right"
+			MDRaisedButton:
+				text:'                     >                       '
+				size_hint_x:1
+				on_release:
+					root.manager.current='RiskAssesmentPage'
+					root.manager.transition.direction="right"

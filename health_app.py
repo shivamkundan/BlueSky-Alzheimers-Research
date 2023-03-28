@@ -140,17 +140,17 @@ def update_score_global(curr):
 	for key,val in curr.responses_dict.items():
 		total+=val
 	curr.total_score=total
-	print ('score:',total)
-
 
 	num_done=0
 	for k,v in curr.done_dict.items():
 		if v==True:
 			num_done+=1
-	print (num_done)
+
 	pct=int(round(100*(num_done/curr.num_tabs),0))
 	pct_txt=str(pct)+'% Complete'
-	print (pct_txt)
+	# print ('score:',total)
+	# print (num_done)
+	# print (pct_txt)
 	return total, pct_txt
 
 def on_pre_leave_global(curr):
@@ -444,29 +444,29 @@ class SociodemographicPage(MDScreen):
 		# Clock.schedule_once(self.get_wids,0.1)
 
 	def get_wids(self,*args):
-		print (args)
-		print ('GET WIDS!!!!!!!!!!!!')
+		# print (args)
+		# print ('GET WIDS!!!!!!!!!!!!')
 		self.wids.append(args[0])
-		# print()
-		# # for item in args[0].ids['_left_container'].walk():
-		# for item in args[0].walk():
-		#     try:
-		#         if 'left_icon' in item.name:
-		#             print (item.name)
-		#             self.wids.append(item)
-		#     except :
-		#         pass
-		#     # print (type(item))
+		# # print()
+		# # # for item in args[0].ids['_left_container'].walk():
+		# # for item in args[0].walk():
+		# #     try:
+		# #         if 'left_icon' in item.name:
+		# #             print (item.name)
+		# #             self.wids.append(item)
+		# #     except :
+		# #         pass
+		# #     # print (type(item))
 
-			# print (item)
-		print ('----')
-			# try:
-			#     if ('left_icon' in item.name):
-			#         self.wids.append(item)
-			# except:
-			#     pass
+		# 	# print (item)
+		# print ('----')
+		# 	# try:
+		# 	#     if ('left_icon' in item.name):
+		# 	#         self.wids.append(item)
+		# 	# except:
+		# 	#     pass
 
-		print (self.wids)
+		# print (self.wids)
 
 	def toggle_military_2(self,*args):
 		# print(dir(args[0]))
@@ -568,10 +568,10 @@ class SociodemographicPage(MDScreen):
 			if v==True:
 				num_done+=1
 				total+=1
-		print (num_done)
+		# print (num_done)
 		pct=int(round(100*(num_done/self.num_tabs),0))
 		pct_txt=str(pct)+'% Complete'
-		print (pct)
+		# print (pct)
 		self.parent.ids['RiskAssesmentPage'].ids['SocioDemographicPage_label'].secondary_text=pct_txt
 		self.parent.demographics_score=total
 
@@ -888,9 +888,13 @@ class TraumaticBrainInjuryScorePage(ScorePageTemplate):
 		super(TraumaticBrainInjuryScorePage,self).__init__(**kwargs)
 		self.landing_page="TraumaticBrainInjuryLandingPage"
 		self.prev_page="TraumaticBrainInjuryPage"
-		self.next_page="CognitiveDeclinePage"
+		self.next_page="CognitiveDeclineLandingPage"
 
 # --------------------------------------------------------------------- #
+class CognitiveDeclineLandingPage(LandingPageTemplate):
+	def __init__(self,**kwargs):
+		super(CognitiveDeclineLandingPage,self).__init__(**kwargs)
+
 
 class CognitiveDeclinePage(MDScreen):
 	def __init__(self,**kwargs):
@@ -1030,18 +1034,18 @@ class BlueSkyApp(MDApp):
 	def PhysicalActivityPage(self,dt):
 		print ('switching to PhysicalActivityPage')
 		self.root.current="PhysicalActivityPage"
-		Clock.schedule_once(self.AlcoholUsagePage,0.1)
+		Clock.schedule_once(self.AlcoholLandingPage,0.1)
 
 	# --------------------------------------------------------------------- #
-
-	def AlcoholUsagePage(self,dt):
-		print ('switching to AlcoholUsagePage')
-		self.root.current="AlcoholUsagePage"
-		Clock.schedule_once(self.AlcoholLandingPage,0.1)
 
 	def AlcoholLandingPage(self,dt):
 		print ('switching to AlcoholLandingPage')
 		self.root.current="AlcoholLandingPage"
+		Clock.schedule_once(self.AlcoholUsagePage,0.1)
+
+	def AlcoholUsagePage(self,dt):
+		print ('switching to AlcoholUsagePage')
+		self.root.current="AlcoholUsagePage"
 		Clock.schedule_once(self.AlcoholScorePage,0.1)
 
 	def AlcoholScorePage(self,dt):
@@ -1098,10 +1102,15 @@ class BlueSkyApp(MDApp):
 	def TraumaticBrainInjuryScorePage(self,dt):
 		print ('switching to TraumaticBrainInjuryScorePage')
 		self.root.current="TraumaticBrainInjuryScorePage"
-		Clock.schedule_once(self.CognitiveDeclinePage,0.1)
+		Clock.schedule_once(self.CognitiveDeclineLandingPage,0.1)
 
 	# --------------------------------------------------------------------- #
 
+
+	def CognitiveDeclineLandingPage(self,dt):
+		print ('switching to CognitiveDeclineLandingPage')
+		self.root.current="CognitiveDeclineLandingPage"
+		Clock.schedule_once(self.CognitiveDeclinePage,0.1)
 
 	def CognitiveDeclinePage(self,dt):
 		print ('switching to CognitiveDeclinePage')
@@ -1131,15 +1140,15 @@ class BlueSkyApp(MDApp):
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
 
-		print (dir(self.theme_cls))
-		print (self.theme_cls.primary_hue)
-		print (self.theme_cls.primary_light_hue)
-		print (self.theme_cls.sync_theme_styles)
-		print (self.theme_cls.on_theme_style)
-		print (self.theme_cls.colors['Light']['AppBar'])
-		print (self.theme_cls.colors['Light']['StatusBar'])
-		print (self.theme_cls.colors['Dark']['AppBar'])
-		print (self.theme_cls.colors['Dark']['StatusBar'])
+		# print (dir(self.theme_cls))
+		# print (self.theme_cls.primary_hue)
+		# print (self.theme_cls.primary_light_hue)
+		# print (self.theme_cls.sync_theme_styles)
+		# print (self.theme_cls.on_theme_style)
+		# print (self.theme_cls.colors['Light']['AppBar'])
+		# print (self.theme_cls.colors['Light']['StatusBar'])
+		# print (self.theme_cls.colors['Dark']['AppBar'])
+		# print (self.theme_cls.colors['Dark']['StatusBar'])
 
 		# self.sidebar()
 		Clock.schedule_once(self.sidebar, 1)
