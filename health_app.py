@@ -738,8 +738,23 @@ class PhysicalActivityPage(SubPageTemplate):
 		print (args[0])
 		print (args[0].name)
 
-	# def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-	# 	on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
+	def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
+
+
+		if self.curr_tab_num==0:
+			txtbox=self.ids['mins_per_week1']
+		elif self.curr_tab_num==1:
+			txtbox=self.ids['mins_per_week2']
+
+		print (tab_text)
+		print (txtbox.text)
+
+		on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
+
+		# self.responses_dict[self.curr_tab_num+1]=tab.text
+		# self.done_dict[self.curr_tab_num+1]=True
+
+		# self.arrow_right()
 
 	def on_numpad_press(self,*args):
 
