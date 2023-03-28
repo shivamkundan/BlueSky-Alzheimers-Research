@@ -260,6 +260,11 @@ class ScorePageTemplate(MDScreen):
 		release_keyboard_global(self)
 		Clock.schedule_once(self.update_score,0.2)
 
+	def reset_quiz(self):
+		self.parent.ids[self.prev_page].ids.android_tabs.switch_tab('1')
+		self.parent.current=self.landing_page
+		self.parent.transition.direction="right"
+
 	def chevron_left(self):
 		chevron_left_global(self)
 
@@ -696,6 +701,7 @@ class AirPollutionPage(SubPageTemplate):
 class AirPollutionScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
 		super(AirPollutionScorePage,self).__init__(**kwargs)
+		self.landing_page="AirPollutionLandingPage"
 		self.prev_page="AirPollutionPage"
 		self.next_page="DietLandingPage"
 
@@ -717,14 +723,9 @@ class DietAndFoodPage(SubPageTemplate):
 class DietScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
 		super(DietScorePage,self).__init__(**kwargs)
+		self.landing_page="DietLandingPage"
 		self.prev_page="DietAndFoodPage"
 		self.next_page="PhysicalActivityPage"
-
-	def reset_quiz(self):
-		self.parent.ids.DietAndFoodPage.ids.android_tabs.switch_tab('1')
-		self.parent.current='DietLandingPage'
-		self.parent.transition.direction="right"
-
 
 # --------------------------------------------------------------------- #
 

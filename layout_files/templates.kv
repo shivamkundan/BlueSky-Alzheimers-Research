@@ -195,3 +195,17 @@
         PopMatrix
 
 # =======================================
+
+<NavButtons>:
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y:0.3
+        MDRaisedButton:
+            text:'                     <                       '
+            on_release:self.parent.parent.root.arrow_left()
+
+        Widget:
+            size_hint_x:0.1
+        MDRaisedButton:
+            text:'                     >                       '
+            on_release:self.parent.parent.root.arrow_right()

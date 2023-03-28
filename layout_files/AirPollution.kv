@@ -293,10 +293,28 @@
             font_style:'Button'
             size_hint_x:0.7
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release: root.reset_quiz()
+            on_release:root.reset_quiz()
+        Widget:
+            size_hint_y:0.05
+        MDRaisedButton:
+            id:next_section
+            text:'Back'
+            font_style:'Button'
+            size_hint_x:0.7
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            on_release:root.chevron_left()
+        Widget:
+            size_hint_y:0.05
+        MDRaisedButton:
+            id:next_section
+            text:'Next'
+            font_style:'Button'
+            size_hint_x:0.7
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            on_release:root.arrow_right()
 
         MDLabel:
-            size_hint_y:1
+            size_hint_y:0.7
 
         BoxLayout:
             orientation: 'horizontal'

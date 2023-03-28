@@ -203,7 +203,6 @@
             on_parent:
                 for i in range(0,8): txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.button_press))
 
-
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y:0.3
@@ -265,7 +264,7 @@
             font_style:'Button'
             size_hint_x:0.7
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.arrow_left()
+            on_release:root.chevron_left()
         Widget:
             size_hint_y:0.05
         MDRaisedButton:
