@@ -101,6 +101,10 @@ WindowManager:
 		name:'AlcoholScorePage'
 
 	# ------------------------------------- #
+	DepressionLandingPage:
+		id:DepressionLandingPage
+		name:'DepressionLandingPage'
+
 	DepressionPage:
 		id:DepressionPage
 		name:'DepressionPage'
@@ -152,7 +156,7 @@ WindowManager:
 				MDBoxLayout:
 					orientation:'vertical'
 					MDLabel:
-						text: 'Your Score'
+						text: 'Your Score\n(higher is better)'
 						halign: 'center'
 						font_size:'10sp'
 					MDLabel:
@@ -264,7 +268,7 @@ WindowManager:
 					secondary_text: "0% Complete"
 					secondary_font_style:'Caption'
 					on_release:
-						root.manager.current="DepressionPage"
+						root.manager.current="DepressionLandingPage"
 						root.manager.transition.direction="left"
 					IconLeftWidget:
 						icon:'head-alert-outline'

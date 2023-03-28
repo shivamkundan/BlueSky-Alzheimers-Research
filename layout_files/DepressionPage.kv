@@ -2,6 +2,67 @@
 #:set depression_Q1 'Little interest or pleasure in doing things'
 #:set depression_Q2 'Feeling down, depressed, or hopeless'
 
+<DepressionLandingPage>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: 'Depression'
+            halign: 'left'
+            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+            elevation:8
+
+        MDLabel:
+            text:''
+            size_hint_y:0.3
+        MDLabel:
+            text: 'The Air Quality Index (AQI) is a measure of air pollution created by the United States Environmental Protection Agency. \n\nThe measure ranges from 0 to 500, with indices greater than 200 indicating risk to health.'
+            font_size:'14sp'
+            halign: 'left'
+            size_hint_x:0.8
+            pos_hint:{'center_x':0.5}
+
+        MDLabel:
+            # font_size:'2xw0sp'
+            text: 'Answer the following questions about depression'
+            # text_color:DARK_BLUE
+            theme_text_color:"Hint"
+            halign: 'left'
+            size_hint_x:0.8
+            # size_hint_x:0.5
+            pos_hint:{'center_x':0.5}
+
+        MDRaisedButton:
+            text:"Begin"
+            font_style:'Button'
+            # size_hint_x:0.7
+            pos_hint:{'center_x':0.5}
+            on_release:
+
+                root.manager.current='DepressionPage'
+                root.manager.transition.direction="left"
+                root.parent.ids['DepressionPage'].ids['android_tabs'].switch_tab('1')
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y:0.3
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     <                       '
+                on_release:
+                    root.manager.current='AlcoholScorePage'
+                    root.manager.transition.direction="right"
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     >                       '
+                on_release:
+                    root.manager.current='DepressionPage'
+                    root.manager.transition.direction="left"
+                    root.parent.ids['DepressionPage'].ids['android_tabs'].switch_tab('1')
+
 <DepressionPage>:
     BoxLayout:
         orientation: 'vertical'
@@ -38,11 +99,71 @@
                             halign: 'center'
                             size_hint_x:0.9
 
-        MDGridLayout:
-            cols:4
+        # MDGridLayout:
+        #     cols:4
+        MDBoxLayout:
+            orientation:'vertical'
+            MDRectangleFlatIconButton:
+            # MDRectangleFlatButton:
+                # id:button7
+                icon:'numeric-3'
+                text:'Not at all'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                theme_text_color: "Custom"
+                color_icon_root_button: app.theme_cls.accent_color
+                pos_hint:{'center_x':0.5}
+
+                on_release:
+                    root.button_press(3)
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button6
+                icon:'numeric-2'
+                text:'Several days'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                # size_hint_y:0.8
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(2)
+                custom_color: 0, 1, 0, 1
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button5
+                icon:'numeric-1'
+                text:'more than half the days'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                # size_hint_y:0.8
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(1)
+            MDLabel:
+                text:''
+                size_hint_y:0.05
+            MDRectangleFlatIconButton:
+                id:button4
+                icon:'numeric-0'
+                text:'nearly everyday'
+                halign:'left'
+                size_hint_x:0.8
+                font_style:'Button'
+                pos_hint:{'center_x':0.5}
+                on_release: root.button_press(0)
+            MDLabel:
+                text:''
+                size_hint_y:0.15
+
 
         BoxLayout:
             orientation: 'horizontal'
+            size_hint_y:0.3
             MDRaisedButton:
                 text:'                     <                       '
                 size_hint_x:1
@@ -57,7 +178,7 @@
         MDLabel:
             pos:(50,950)
             text: depression_Q0
-            # md_bg_color:0,0,1,0.05
+            md_bg_color:0,0,1,0.05
             size_hint_y:0.15
             size_hint_x:0.9
             text_color:1,1,1,1

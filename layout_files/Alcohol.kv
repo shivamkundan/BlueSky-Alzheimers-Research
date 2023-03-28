@@ -58,7 +58,7 @@
 				size_hint_x:1
 				text:'                     <                       '
 				on_release:
-					root.manager.current='LocationPage'
+					root.manager.current='PhysicalActivityPage'
 					root.manager.transition.direction="right"
 			MDRaisedButton:
 				size_hint_x:1
@@ -117,9 +117,9 @@
 
 		MDBoxLayout:
 		    orientation:'vertical'
-		    MDRectangleFlatIconButton:
+		    MDRectangleFlatButton:
 		        # id:button7
-		        icon:'numeric-7'
+		        # icon:'numeric-7'
 		        text:'Never'
 		        halign:'left'
 		        size_hint_x:0.8
@@ -133,9 +133,9 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
+		    MDRectangleFlatButton:
 		        id:button6
-		        icon:'numeric-6'
+		        # icon:'numeric-6'
 		        text:'Less than monthly'
 		        halign:'left'
 		        size_hint_x:0.8
@@ -147,9 +147,9 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
+		    MDRectangleFlatButton:
 		        id:button5
-		        icon:'numeric-5'
+		        # icon:'numeric-5'
 		        text:'Monthly'
 		        halign:'left'
 		        size_hint_x:0.8
@@ -160,9 +160,9 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
+		    MDRectangleFlatButton:
 		        id:button4
-		        icon:'numeric-4'
+		        # icon:'numeric-4'
 		        text:'Weekly'
 		        halign:'left'
 		        size_hint_x:0.8
@@ -172,9 +172,9 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
+		    MDRectangleFlatButton:
 		        id:button3
-		        icon:'numeric-3'
+		        # icon:'numeric-3'
 		        text:'2 - 3 times a week'
 		        halign:'left'
 		        size_hint_x:0.8
@@ -184,9 +184,9 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
+		    MDRectangleFlatButton:
 		        id:button2
-		        icon:'numeric-2'
+		        # icon:'numeric-2'
 		        text:'4 - 6 times a week'
 		        halign:'left'
 		        size_hint_x:0.8
@@ -196,9 +196,9 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatIconButton:
+		    MDRectangleFlatButton:
 		        id:button1
-		        icon:'numeric-1'
+		        # icon:'numeric-1'
 		        text:'Daily'
 		        halign:'left'
 		        size_hint_x:0.8
@@ -237,7 +237,7 @@
         orientation: 'vertical'
         MDToolbar:
 
-            title: diet_toolbar_title
+            title: alcohol_toolbar_title
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
             right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
             # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]

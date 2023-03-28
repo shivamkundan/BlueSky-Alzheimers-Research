@@ -354,7 +354,7 @@ class LoginPage(MDScreen):
 		self.dialog=False
 
 	def chevron_left(self):
-		chevron_left_global(self,next_page='LandingPage')
+		chevron_left_global(self,next_pg='LandingPage')
 
 	def show_alert_dialog(self,*args):
 		print (args)
@@ -379,8 +379,8 @@ class LoginPage(MDScreen):
 class RiskAssesmentPage(MDScreen):
 	def __init__(self,**kwargs):
 		super(RiskAssesmentPage,self).__init__(**kwargs)
-		self.score=0
-		self.air_pollution_pct=0
+		# self.score=0
+		# self.air_pollution_pct=0
 		# Clock.schedule_once(self.init_tap_target, 1)
 
 	# def init_tap_target(self,*args):
@@ -681,7 +681,7 @@ class AirPollutionPage(SubPageTemplate):
 		super(AirPollutionPage,self).__init__(**kwargs)
 		self.tab_names=['1','2','3','4','5','6','7']
 		self.page_name='AirPollutionPage'
-		self.prev_page="RiskAssesmentPage"
+		self.prev_page="LocationPage"
 		self.next_page="AirPollutionScorePage"
 		self.init_subpage()
 
@@ -722,34 +722,38 @@ class DietScorePage(ScorePageTemplate):
 
 # --------------------------------------------------------------------- #
 
-class PhysicalActivityPage(MDScreen):
+class PhysicalActivityPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(PhysicalActivityPage,self).__init__(**kwargs)
-		self.curr_tab_num=0
+
 		self.tab_names=['1','2']
-		self.num_tabs=len(self.tab_names)
 
-	def chevron_left(self):
-		chevron_left_global(self)
+		self.page_name="PhysicalActivityPage"
+		self.prev_page="DietScorePage"
+		self.next_page="AlcoholLandingPage"
+		self.init_subpage()
 
-	def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-		on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
+
+	def validate_text(self,*args):
+		print (args[0])
+		print (args[0].name)
+
+	# def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
+	# 	on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
 	def on_numpad_press(self,*args):
-		print(args)
+
+		if self.curr_tab_num==0:
+			tab=self.ids['mins_per_week1']
+		elif self.curr_tab_num==1:
+			tab=self.ids['mins_per_week2']
 
 		if args[0].text=='del':
-			if len(self.ids['mins_per_week1'].text)>0:
-				self.ids['mins_per_week1'].text=self.ids['mins_per_week1'].text[0:len(self.ids['mins_per_week1'].text)-1]
+			if len(tab.text)>0:
+				tab.text=tab.text[0:len(tab.text)-1]
 		else:
-			self.ids['mins_per_week1'].text+=args[0].text
+			tab.text+=args[0].text
 
-
-	def arrow_left(self):
-		arrow_left_global(self,"DietScorePage")
-
-	def arrow_right(self,increment=True):
-		arrow_right_global(self,"AlcoholLandingPage")
 
 # --------------------------------------------------------------------- #
 
@@ -777,34 +781,31 @@ class AlcoholScorePage(ScorePageTemplate):
 		super(AlcoholScorePage,self).__init__(**kwargs)
 		self.landing_page="AlcoholLandingPage"
 		self.prev_page="AlcoholUsagePage"
-		self.next_page="DepressionPage"
+		self.next_page="DepressionLandingPage"
 
 # --------------------------------------------------------------------- #
 
-class DepressionPage(MDScreen):
+class DepressionLandingPage(LandingPageTemplate):
+	def __init__(self,**kwargs):
+		super(DepressionLandingPage,self).__init__(**kwargs)
+
+class DepressionPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(DepressionPage,self).__init__(**kwargs)
 
 		self.tab_names=['1','2']
-		self.prev_page="AlcoholUsagePage"
+		self.page_name='DepressionPage'
+		self.prev_page="DepressionLandingPage"
 		self.next_page="HyperTensionPage"
 
 		self.init_subpage()
 
-	def init_subpage(self):
-		init_subpage_global(self)
+	def button_press(self,num):
+		print ("num: ",num)
+		self.responses_dict[self.curr_tab_num+1]=int(num)
+		self.done_dict[self.curr_tab_num+1]=True
+		self.arrow_right()
 
-	def chevron_left(self):
-		chevron_left_global(self)
-
-	def arrow_left(self):
-		arrow_left_global(self,self.prev_page)
-
-	def arrow_right(self):
-		arrow_right_global(self,self.next_page)
-
-	def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-		on_tab_switch_global(self, instance_tabs, instance_tab, instance_tab_label, tab_text)
 
 # --------------------------------------------------------------------- #
 
@@ -981,9 +982,14 @@ class BlueSkyApp(MDApp):
 	def AlcoholScorePage(self,dt):
 		print ('switching to AlcoholScorePage')
 		self.root.current="AlcoholScorePage"
-		Clock.schedule_once(self.DepressionPage,0.1)
+		Clock.schedule_once(self.DepressionLandingPage,0.1)
 
 	# --------------------------------------------------------------------- #
+
+	def DepressionLandingPage(self,dt):
+		print ('switching to DepressionLandingPage')
+		self.root.current="DepressionLandingPage"
+		Clock.schedule_once(self.DepressionPage,0.1)
 
 	def DepressionPage(self,dt):
 		print ('switching to DepressionPage')
