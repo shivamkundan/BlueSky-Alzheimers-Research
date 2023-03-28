@@ -811,7 +811,7 @@ class DepressionPage(SubPageTemplate):
 		self.tab_names=['1','2']
 		self.page_name='DepressionPage'
 		self.prev_page="DepressionLandingPage"
-		self.next_page="HyperTensionPage"
+		self.next_page="DepressionScorePage"
 
 		self.init_subpage()
 
@@ -821,7 +821,12 @@ class DepressionPage(SubPageTemplate):
 		self.done_dict[self.curr_tab_num+1]=True
 		self.arrow_right()
 
-
+class DepressionScorePage(ScorePageTemplate):
+	def __init__(self,**kwargs):
+		super(DepressionScorePage,self).__init__(**kwargs)
+		self.landing_page="DepressionLandingPage"
+		self.prev_page="DepressionPage"
+		self.next_page="HyperTensionPage"
 # --------------------------------------------------------------------- #
 
 class HyperTensionPage(MDScreen):
@@ -1009,6 +1014,11 @@ class BlueSkyApp(MDApp):
 	def DepressionPage(self,dt):
 		print ('switching to DepressionPage')
 		self.root.current="DepressionPage"
+		Clock.schedule_once(self.DepressionScorePage,0.1)
+
+	def DepressionScorePage(self,dt):
+		print ('switching to DepressionScorePage')
+		self.root.current="DepressionScorePage"
 		Clock.schedule_once(self.HyperTensionPage,0.1)
 
 	# --------------------------------------------------------------------- #
