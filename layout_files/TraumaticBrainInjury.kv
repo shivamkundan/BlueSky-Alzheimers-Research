@@ -1,13 +1,136 @@
+#:set trauma_Q1 'Have you ever hit your head or been hit on the head? Think about all incidents that my have occurred at any age, even those that did not seem serious, including vehicle accidents, falls, assault, abuse, sports, etc. A traumatic brain injury can also occur from violent shaking of the head, such as being shaken as a baby or child.'
+#:set trauma_Q2 'Were you ever seen in the emergency room, hospital, or by a doctor because of an injury to your head?'
+#:set trauma_Q3 'Did you ever lose consciousness or experience a period of being dazed and confused because of an injury to your head? People with traumatic brain injury may not lose consciousness but experience an \'alteration of consciousness\', which may include feeling dazed, confused, or disoriented at the time of injury, or being unable to remember the events surrounding the injury.'
+#:set trauma_Q4 'Do you experience any of these problems in your daily life since you hit your head?'
+#:set trauma_Q5 'Any significant sicknesses? Traumatic brain injury implies a physical blow to the head, but acquired brain injury may also be caused by medical conditions, such as brain tumor, meningitis, West Nile virus, stroke, seizures, or instances of oxygen deprivation following a heart attack, carbon monoxide poisoning, near drowning, or near suffocation.'
+
+#:set trauma_toolbar_title 'Traumatic Brain Injury'
+#:set trauma_landing_blurb 'Research shows that even mild TBI can increase one’s risk for the onset of Alzheimer\'s.'
+#:set trauma_landing_subtitle 'Answer the following questions about traumatic brain injury'
+
+
+<TraumaticBrainInjuryLandingPage>:
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: trauma_toolbar_title
+            halign: 'left'
+            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+            elevation:8
+
+        MDLabel:
+            text:''
+            size_hint_y:0.3
+        MDLabel:
+            text: trauma_landing_blurb
+            font_size:'14sp'
+            halign: 'left'
+            size_hint_x:0.8
+            pos_hint:{'center_x':0.5}
+
+        MDLabel:
+            # font_size:'2xw0sp'
+            text: trauma_landing_subtitle
+            # text_color:DARK_BLUE
+            theme_text_color:"Hint"
+            halign: 'left'
+            size_hint_x:0.8
+            # size_hint_x:0.5
+            pos_hint:{'center_x':0.5}
+
+        MDRaisedButton:
+            text:"Begin"
+            font_style:'Button'
+            # size_hint_x:0.7
+            pos_hint:{'center_x':0.5}
+            on_release:
+
+                root.manager.current='DietScorePage'
+                root.manager.transition.direction="left"
+                # root.parent.ids['AlcoholUsagePage'].ids['android_tabs'].switch_tab('1')
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y:0.3
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     <                       '
+                on_release:
+                    root.manager.current='HyperTensionScorePage'
+                    root.manager.transition.direction="right"
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     >                       '
+                on_release:
+                    root.manager.current='TraumaticBrainInjuryPage'
+                    root.manager.transition.direction="left"
+                    root.parent.ids['TraumaticBrainInjuryPage'].ids['android_tabs'].switch_tab('1')
+
+
 <TraumaticBrainInjuryPage>:
     BoxLayout:
         orientation: 'vertical'
         MDToolbar:
-            title: 'Traumatic Brain Injury'
+            title: trauma_toolbar_title
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
             right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
             elevation:8
-        MDLabel:
-            text:''
+        MDBoxLayout:
+            size_hint_y:0.7
+
+            MDTabs:
+                id: android_tabs
+                tab_pos:'left_top'
+                on_tab_switch: root.on_tab_switch(*args)
+
+                Tab:
+                    text:'1'
+                    MDBoxLayout:
+                        orientation:'vertical'
+
+                        MDLabel:
+                            text: trauma_Q1
+                            halign: 'left'
+                            size_hint_x:1
+
+                Tab:
+                    text:'2'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: trauma_Q2
+                            halign: 'center'
+                            size_hint_x:0.9
+                Tab:
+                    text:'3'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: trauma_Q3
+                            halign: 'left'
+                            size_hint_x:1
+
+                Tab:
+                    text:'4'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: trauma_Q4
+                            halign: 'center'
+                            size_hint_x:0.9
+                Tab:
+                    text:'5'
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        MDLabel:
+                            text: trauma_Q5
+                            halign: 'left'
+                            size_hint_x:1
 
 
         BoxLayout:
@@ -15,12 +138,8 @@
             MDRaisedButton:
                 text:'                     <                       '
                 size_hint_x:1
-                on_release:
-                    root.manager.current='HyperTensionPage'
-                    root.manager.transition.direction="right"
+                on_release:root.arrow_left()
             MDRaisedButton:
                 text:'                     >                       '
                 size_hint_x:1
-                on_release:
-                    root.manager.current='CognitiveDeclinePage'
-                    root.manager.transition.direction="left"
+                on_release:root.arrow_right()

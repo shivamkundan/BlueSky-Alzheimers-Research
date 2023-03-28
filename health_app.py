@@ -865,16 +865,23 @@ class HyperTensionScorePage(ScorePageTemplate):
 		super(HyperTensionScorePage,self).__init__(**kwargs)
 		self.landing_page="HyperTensionLandingPage"
 		self.prev_page="HyperTensionPage"
-		self.next_page="TraumaticBrainInjuryPage"
+		self.next_page="TraumaticBrainInjuryLandingPage"
 
 # --------------------------------------------------------------------- #
 
-class TraumaticBrainInjuryPage(MDScreen):
+class TraumaticBrainInjuryLandingPage(LandingPageTemplate):
+	def __init__(self,**kwargs):
+		super(TraumaticBrainInjuryLandingPage,self).__init__(**kwargs)
+
+class TraumaticBrainInjuryPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(TraumaticBrainInjuryPage,self).__init__(**kwargs)
+		self.tab_names=['1','2','3','4','5']
+		self.page_name='TraumaticBrainInjuryPage'
+		self.prev_page="TraumaticBrainInjuryLandingPage"
+		self.next_page="CognitiveDeclinePage"
 
-	def chevron_left(self):
-		chevron_left_global(self)
+		self.init_subpage()
 
 # --------------------------------------------------------------------- #
 
@@ -1067,9 +1074,14 @@ class BlueSkyApp(MDApp):
 	def HyperTensionScorePage(self,dt):
 		print ('switching to HyperTensionScorePage')
 		self.root.current="HyperTensionScorePage"
-		Clock.schedule_once(self.TraumaticBrainInjuryPage,0.1)
+		Clock.schedule_once(self.TraumaticBrainInjuryLandingPage,0.1)
 
 	# --------------------------------------------------------------------- #
+
+	def TraumaticBrainInjuryLandingPage(self,dt):
+		print ('switching to TraumaticBrainInjuryLandingPage')
+		self.root.current="TraumaticBrainInjuryLandingPage"
+		Clock.schedule_once(self.TraumaticBrainInjuryPage,0.1)
 
 	def TraumaticBrainInjuryPage(self,dt):
 		print ('switching to TraumaticBrainInjuryPage')
