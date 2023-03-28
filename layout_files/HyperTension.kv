@@ -1,9 +1,72 @@
-<HypertensionPage>:
+#:set hypertension_toolbar_title 'Hypertension'
+
+<HyperTensionLandingPage>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: hypertension_toolbar_title
+            halign: 'left'
+            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+            elevation:8
+
+        MDLabel:
+            text:''
+            size_hint_y:0.3
+        MDLabel:
+            text: 'High blood pressure, especially in midlife, is associated with at least an 18% increase in the risk for Alzheimer\'s'
+            font_size:'14sp'
+            halign: 'left'
+            size_hint_x:0.8
+            pos_hint:{'center_x':0.5}
+
+        MDLabel:
+            # font_size:'2xw0sp'
+            text: 'Answer the following questions about hypertension'
+            # text_color:DARK_BLUE
+            theme_text_color:"Hint"
+            halign: 'left'
+            size_hint_x:0.8
+            # size_hint_x:0.5
+            pos_hint:{'center_x':0.5}
+
+        MDRaisedButton:
+            text:"Begin"
+            font_style:'Button'
+            # size_hint_x:0.7
+            pos_hint:{'center_x':0.5}
+            on_release:
+
+                root.manager.current='HyperTensionPage'
+                root.manager.transition.direction="left"
+                # root.parent.ids['HyperTensionPage'].ids['android_tabs'].switch_tab('1')
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y:0.3
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     <                       '
+                on_release:
+                    root.manager.current='DepressionScorePage'
+                    root.manager.transition.direction="right"
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     >                       '
+                on_release:
+                    root.manager.current='HyperTensionPage'
+                    root.manager.transition.direction="left"
+                    # root.parent.ids['HyperTensionPage'].ids['android_tabs'].switch_tab('1')
+
+<HyperTensionPage>:
     MDBoxLayout:
 
         orientation:'vertical'
         MDToolbar:
-            title: 'Hypertension'
+            title: hypertension_toolbar_title
             # size_hint_y:0.1
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
             right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: app.callback_2()]]
@@ -24,12 +87,14 @@
             MDRaisedButton:
                 text:'Yes'
                 size_hint_x:1
+                on_release: root.button_press(0)
             Widget:
                 size_hint_x:0.1
 
             MDRaisedButton:
                 text:'No'
                 size_hint_x:1
+                on_release: root.button_press(1)
             Widget:
                 size_hint_x:0.2
 
@@ -39,12 +104,72 @@
             MDRaisedButton:
                 text:'                     <                       '
                 size_hint_x:1
-                on_release:
-                    root.manager.current='DepressionScorePage'
-                    root.manager.transition.direction="right"
+                on_release:root.arrow_left()
             MDRaisedButton:
                 text:'                     >                       '
                 size_hint_x:1
-                on_release:
-                    root.manager.current='TraumaticBrainInjuryPage'
-                    root.manager.transition.direction="left"
+                on_release:root.arrow_right()
+
+
+<HyperTensionScorePage>:
+    score_label:score_label
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+
+            title: hypertension_toolbar_title
+            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+            elevation:8
+
+        MDLabel:
+            text: 'Your score is:'
+            halign: 'center'
+
+        MDLabel:
+            id:score_label
+            text: ''
+            halign: 'center'
+
+        MDRaisedButton:
+            id:restart_button
+            text:'Try Again'
+            font_style:'Button'
+            size_hint_x:0.7
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            on_release:root.reset_quiz()
+        Widget:
+            size_hint_y:0.05
+        MDRaisedButton:
+            id:next_section
+            text:'Back'
+            font_style:'Button'
+            size_hint_x:0.7
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            on_release:root.chevron_left()
+        Widget:
+            size_hint_y:0.05
+        MDRaisedButton:
+            id:next_section
+            text:'Next'
+            font_style:'Button'
+            size_hint_x:0.7
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            on_release:root.arrow_right()
+
+
+        MDLabel:
+            size_hint_y:0.7
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            MDRaisedButton:
+                text:'                     <                       '
+                size_hint_x:1
+                on_release:root.arrow_left()
+            MDRaisedButton:
+                text:'                     >                       '
+                size_hint_x:1
+                on_release:root.arrow_right()

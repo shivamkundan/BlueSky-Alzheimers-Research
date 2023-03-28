@@ -8,7 +8,7 @@
         orientation: 'vertical'
 
         MDToolbar:
-            title: 'Depression'
+            title: depression_toolbar_title
             halign: 'left'
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
             right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
@@ -19,7 +19,7 @@
             text:''
             size_hint_y:0.3
         MDLabel:
-            text: 'The Air Quality Index (AQI) is a measure of air pollution created by the United States Environmental Protection Agency. \n\nThe measure ranges from 0 to 500, with indices greater than 200 indicating risk to health.'
+            text: 'Depression, defined as having little interest in doing things and feeling down/hopeless more often than not in a 2-week period, is linked to increased risk of Alzheimer\'s disease.'
             font_size:'14sp'
             halign: 'left'
             size_hint_x:0.8
@@ -183,9 +183,6 @@
             size_hint_y:0.15
             size_hint_x:0.9
             text_color:1,1,1,1
-
-
-
 
 <DepressionScorePage>:
     score_label:score_label

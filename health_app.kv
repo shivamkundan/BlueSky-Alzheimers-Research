@@ -108,15 +108,23 @@ WindowManager:
 	DepressionPage:
 		id:DepressionPage
 		name:'DepressionPage'
-		
+
 	DepressionScorePage:
 		id:DepressionScorePage
 		name:'DepressionScorePage'
 
 	# ------------------------------------- #
+	HyperTensionLandingPage:
+		id:HyperTensionLandingPage
+		name:'HyperTensionLandingPage'
+
 	HyperTensionPage:
 		id:HyperTensionPage
 		name:'HyperTensionPage'
+		
+	HyperTensionScorePage:
+		id:HyperTensionScorePage
+		name:'HyperTensionScorePage'
 
 	# ------------------------------------- #
 	TraumaticBrainInjuryPage:
@@ -284,7 +292,7 @@ WindowManager:
 					secondary_text: "0% Complete"
 					secondary_font_style:'Caption'
 					on_release:
-						root.manager.current="HyperTensionPage"
+						root.manager.current="HyperTensionLandingPage"
 						root.manager.transition.direction="left"
 					IconLeftWidget:
 						icon:'calculator-variant-outline'

@@ -72,7 +72,11 @@ def chevron_left_global(curr,next_pg='RiskAssesmentPage'):
 	curr.parent.transition.direction="right"
 	curr.parent.current=next_pg
 
-def arrow_right_global(curr,next_pg):
+def arrow_right_simple_global(curr,next_pg):
+	curr.parent.transition.direction="left"
+	curr.parent.current=next_pg
+
+def arrow_right_tabbed_global(curr,next_pg):
 	if curr.curr_tab_num==curr.num_tabs-1:
 		curr.parent.transition.direction="left"
 		curr.parent.current=next_pg
@@ -80,7 +84,11 @@ def arrow_right_global(curr,next_pg):
 		curr.curr_tab_num+=1
 		curr.ids['android_tabs'].switch_tab(curr.tab_names[curr.curr_tab_num])
 
-def arrow_left_global(curr,next_pg):
+def arrow_left_simple_global(curr,next_pg):
+	curr.parent.transition.direction="right"
+	curr.parent.current=next_pg
+
+def arrow_left_tabbed_global(curr,next_pg):
 	if curr.curr_tab_num==0:
 		curr.parent.transition.direction="right"
 		curr.parent.current=next_pg
@@ -221,10 +229,10 @@ class SubPageTemplate(MDScreen):
 		chevron_left_global(self)
 
 	def arrow_left(self):
-		arrow_left_global(self,self.prev_page)
+		arrow_left_tabbed_global(self,self.prev_page)
 
 	def arrow_right(self):
-		arrow_right_global(self,self.next_page)
+		arrow_right_tabbed_global(self,self.next_page)
 
 	def button_press(self,button):
 		button_press_global(self,button)
@@ -254,20 +262,20 @@ class ScorePageTemplate(MDScreen):
 		Clock.schedule_once(self.update_score,0.2)
 
 	def reset_quiz(self):
-		self.parent.ids[self.prev_page].ids.android_tabs.switch_tab('1')
-		self.parent.current=self.landing_page
-		self.parent.transition.direction="right"
+		try:
+			self.parent.ids[self.prev_page].ids.android_tabs.switch_tab('1')
+		except:
+			pass
+		arrow_left_simple_global(self,self.landing_page)
 
 	def chevron_left(self):
 		chevron_left_global(self)
 
 	def arrow_left(self):
-		self.parent.transition.direction="right"
-		self.parent.current=self.prev_page
+		arrow_left_simple_global(self,self.prev_page)
 
 	def arrow_right(self):
-		self.parent.transition.direction="left"
-		self.parent.current=self.next_page
+		arrow_right_simple_global(self,self.next_page)
 
 # ===================================================================== #
 
@@ -548,12 +556,8 @@ class SociodemographicPage(MDScreen):
 		print (Window.softinput_mode)
 		# Window.release_all_keyboards()
 
-		self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0]
-			)
-
-
+		self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
 		Window.release_all_keyboards()
-
 		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 
@@ -600,21 +604,15 @@ class SociodemographicPage(MDScreen):
 			self.iter_list_names = iter(list(self.icons))
 			self.switch_tab_by_name()
 
-
-
 	def validate_text(self,*args):
 		print (args[0])
 		print (args[0].name)
-
-
 
 	def on_numpad_press(self,*args):
 		print(args)
 
 		if self.ids['age_text_field'].text=='< MM / DD / YYYY >':
 			self.ids['age_text_field'].text=''
-
-
 
 		if args[0].text=='del':
 			if len(self.ids['age_text_field'].text)>0:
@@ -826,15 +824,48 @@ class DepressionScorePage(ScorePageTemplate):
 		super(DepressionScorePage,self).__init__(**kwargs)
 		self.landing_page="DepressionLandingPage"
 		self.prev_page="DepressionPage"
-		self.next_page="HyperTensionPage"
+		self.next_page="HyperTensionLandingPage"
+
 # --------------------------------------------------------------------- #
+class HyperTensionLandingPage(LandingPageTemplate):
+	def __init__(self,**kwargs):
+		super(HyperTensionLandingPage,self).__init__(**kwargs)
 
 class HyperTensionPage(MDScreen):
 	def __init__(self,**kwargs):
 		super(HyperTensionPage,self).__init__(**kwargs)
+		self.page_name="HyperTensionPage"
+		self.prev_page="HyperTensionLandingPage"
+		self.next_page="HyperTensionScorePage"
+		self.total_score=0
+		self.pct_txt="0% Complete"
 
 	def chevron_left(self):
 		chevron_left_global(self)
+
+	def arrow_left(self):
+		arrow_left_simple_global(self,self.prev_page)
+
+	def arrow_right(self):
+		arrow_right_simple_global(self,self.next_page)
+
+	def button_press(self,num):
+		print ('pressed: ',num)
+		self.total_score=int(num)
+		self.pct_txt="100% Complete"
+		self.arrow_right()
+
+	def on_pre_leave(self):
+		# total,pct_txt=update_score_global(curr)
+		self.parent.score_vars_dict[self.page_name]=self.total_score
+		self.parent.ids['RiskAssesmentPage'].ids[self.name+"_label"].secondary_text=self.pct_txt
+
+class HyperTensionScorePage(ScorePageTemplate):
+	def __init__(self,**kwargs):
+		super(HyperTensionScorePage,self).__init__(**kwargs)
+		self.landing_page="HyperTensionLandingPage"
+		self.prev_page="HyperTensionPage"
+		self.next_page="TraumaticBrainInjuryPage"
 
 # --------------------------------------------------------------------- #
 
@@ -1019,13 +1050,23 @@ class BlueSkyApp(MDApp):
 	def DepressionScorePage(self,dt):
 		print ('switching to DepressionScorePage')
 		self.root.current="DepressionScorePage"
-		Clock.schedule_once(self.HyperTensionPage,0.1)
+		Clock.schedule_once(self.HyperTensionLandingPage,0.1)
 
 	# --------------------------------------------------------------------- #
+
+	def HyperTensionLandingPage(self,dt):
+		print ('switching to HyperTensionLandingPage')
+		self.root.current="HyperTensionLandingPage"
+		Clock.schedule_once(self.HyperTensionPage,0.1)
 
 	def HyperTensionPage(self,dt):
 		print ('switching to HyperTensionPage')
 		self.root.current="HyperTensionPage"
+		Clock.schedule_once(self.HyperTensionScorePage,0.1)
+
+	def HyperTensionScorePage(self,dt):
+		print ('switching to HyperTensionScorePage')
+		self.root.current="HyperTensionScorePage"
 		Clock.schedule_once(self.TraumaticBrainInjuryPage,0.1)
 
 	# --------------------------------------------------------------------- #
