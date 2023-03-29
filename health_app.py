@@ -720,6 +720,10 @@ class DietScorePage(ScorePageTemplate):
 
 # --------------------------------------------------------------------- #
 
+class PhysicalActivityLandingPage(LandingPageTemplate):
+	def __init__(self,**kwargs):
+		super(PhysicalActivityLandingPage,self).__init__(**kwargs)
+
 class PhysicalActivityPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(PhysicalActivityPage,self).__init__(**kwargs)
@@ -727,8 +731,8 @@ class PhysicalActivityPage(SubPageTemplate):
 		self.tab_names=['1','2']
 
 		self.page_name="PhysicalActivityPage"
-		self.prev_page="DietScorePage"
-		self.next_page="AlcoholLandingPage"
+		self.prev_page="PhysicalActivityLandingPage"
+		self.next_page="PhysicalActivityScorePage"
 		self.init_subpage()
 
 
@@ -766,6 +770,21 @@ class PhysicalActivityPage(SubPageTemplate):
 				tab.text=tab.text[0:len(tab.text)-1]
 		else:
 			tab.text+=args[0].text
+
+class PhysicalActivityScorePage(MDScreen):
+	def __init__(self,**kwargs):
+		super(PhysicalActivityScorePage,self).__init__(**kwargs)
+		self.prev_page="PhysicalActivityPage"
+		self.next_page="AlcoholLandingPage"
+
+	def chevron_left(self):
+		chevron_left_global(self)
+
+	def arrow_left(self):
+		arrow_left_simple_global(self,self.prev_page)
+
+	def arrow_right(self):
+		arrow_right_simple_global(self,self.next_page)
 
 # --------------------------------------------------------------------- #
 
@@ -1025,13 +1044,23 @@ class BlueSkyApp(MDApp):
 	def DietScorePage(self,dt):
 		print ('switching to DietScorePage')
 		self.root.current="DietScorePage"
-		Clock.schedule_once(self.PhysicalActivityPage,0.1)
+		Clock.schedule_once(self.PhysicalActivityLandingPage,0.1)
 
 	# --------------------------------------------------------------------- #
+
+	def PhysicalActivityLandingPage(self,dt):
+		print ('switching to PhysicalActivityLandingPage')
+		self.root.current="PhysicalActivityLandingPage"
+		Clock.schedule_once(self.PhysicalActivityPage,0.1)
 
 	def PhysicalActivityPage(self,dt):
 		print ('switching to PhysicalActivityPage')
 		self.root.current="PhysicalActivityPage"
+		Clock.schedule_once(self.PhysicalActivityScorePage,0.1)
+
+	def PhysicalActivityScorePage(self,dt):
+		print ('switching to PhysicalActivityScorePage')
+		self.root.current="PhysicalActivityScorePage"
 		Clock.schedule_once(self.AlcoholLandingPage,0.1)
 
 	# --------------------------------------------------------------------- #

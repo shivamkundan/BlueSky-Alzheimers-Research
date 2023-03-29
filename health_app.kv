@@ -76,17 +76,27 @@ WindowManager:
 	DietAndFoodPage:
 		id:DietAndFoodPage
 		name:'DietAndFoodPage'
+
 	DietLandingPage:
 		id:DietLandingPage
 		name:'DietLandingPage'
+
 	DietScorePage:
 		id:DietScorePage
 		name:'DietScorePage'
 
 	# ------------------------------------- #
+	PhysicalActivityLandingPage:
+		id:PhysicalActivityLandingPage
+		name:'PhysicalActivityLandingPage'
+
 	PhysicalActivityPage:
 		id:PhysicalActivityPage
 		name:'PhysicalActivityPage'
+
+	PhysicalActivityScorePage:
+		id:PhysicalActivityScorePage
+		name:'PhysicalActivityScorePage'
 
 	# ------------------------------------- #
 	AlcoholLandingPage:
@@ -271,7 +281,7 @@ WindowManager:
 					secondary_text: "0% Complete"
 					secondary_font_style:'Caption'
 					on_release:
-						root.manager.current="PhysicalActivityPage"
+						root.manager.current="PhysicalActivityLandingPage"
 						root.manager.transition.direction="left"
 					IconLeftWidget:
 						icon:'arm-flex-outline'
