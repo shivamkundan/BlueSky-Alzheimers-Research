@@ -534,7 +534,7 @@ class SociodemographicPage(MDScreen):
 		# else:
 		#     self.curr_tab_num-=1
 		#     self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-		arrow_left_global(self,"RiskAssesmentPage")
+		arrow_left_tabbed_global(self,"RiskAssesmentPage")
 
 	def arrow_right(self):
 		self.done_dict[self.tab_names[self.curr_tab_num]]=True
@@ -900,6 +900,26 @@ class TraumaticBrainInjuryPage(SubPageTemplate):
 		self.next_page="TraumaticBrainInjuryScorePage"
 
 		self.init_subpage()
+
+	# def chevron_left(self):
+	# 	chevron_left_global(self)
+
+	# def arrow_left(self):
+	# 	arrow_left_simple_global(self,self.prev_page)
+
+	# def arrow_right(self):
+	# 	arrow_right_simple_global(self,self.next_page)
+
+	def button_press(self,num):
+		print ("num: ",num)
+		self.responses_dict[self.curr_tab_num+1]=int(num)
+		self.done_dict[self.curr_tab_num+1]=True
+		self.arrow_right()
+
+	# def on_pre_leave(self):
+	# 	# total,pct_txt=update_score_global(curr)
+	# 	self.parent.score_vars_dict[self.page_name]=self.total_score
+	# 	self.parent.ids['RiskAssesmentPage'].ids[self.name+"_label"].secondary_text=self.pct_txt
 
 class TraumaticBrainInjuryScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):

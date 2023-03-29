@@ -131,9 +131,28 @@
                             halign: 'left'
                             size_hint_x:1
 
+        MDBoxLayout:
+            orientation:'horizontal'
+            size_hint_y:0.5
+            Widget:
+                size_hint_x:0.2
+            MDRaisedButton:
+                text:'Yes'
+                size_hint_x:1
+                on_release: root.button_press(0)
+            Widget:
+                size_hint_x:0.1
+
+            MDRaisedButton:
+                text:'No'
+                size_hint_x:1
+                on_release: root.button_press(1)
+            Widget:
+                size_hint_x:0.2
 
         BoxLayout:
             orientation: 'horizontal'
+            size_hint_y:0.3
             MDRaisedButton:
                 text:'                     <                       '
                 size_hint_x:1
