@@ -681,6 +681,7 @@ class PhysicalActivityPage(SubPageTemplate):
 		else:
 			tab.text+=args[0].text
 
+
 class PhysicalActivityScorePage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(PhysicalActivityScorePage,self).__init__(**kwargs)
@@ -829,6 +830,29 @@ class CognitiveDeclinePage(SubPageTemplate):
 		self.next_page="CognitiveDeclineScorePage"
 
 		self.total_score=0
+
+	def validate_text(self,*args):
+		print (args)
+		print (args[0])
+		print (args[0].name)
+		print (args[0].text)
+
+	def on_numpad_press(self,*args):
+		if args[0].text=='del':
+			if len(self.ids['year'].text)>0:
+				self.ids['year'].text=self.ids['year'].text[0:len(self.ids['year'].text)-1]
+		else:
+			self.ids['year'].text+=args[0].text
+
+	def arrow_right(self):
+		if self.curr_tab_num==self.num_tabs-1:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+		else:
+			self.curr_tab_num+=1
+			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+		# self.validate_text()
+		print (self.ids['year'].text)
 
 class CognitiveDeclineScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
@@ -1087,6 +1111,10 @@ class BlueSkyApp(MDApp):
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
 
+		Clock.max_iteration=50
+
+		print("Clock.max_iteration: ",Clock.max_iteration)
+
 		# print (dir(self.theme_cls))
 		# print (self.theme_cls.primary_hue)
 		# print (self.theme_cls.primary_light_hue)
@@ -1112,7 +1140,7 @@ class BlueSkyApp(MDApp):
 		#     items=menu_items,
 		#     width_mult=4,
 		# )
-		# Clock.max_iteration=100
+		# Clock.max_iteration=50
 		# print (Clock.max_iteration)
 
 		return self.WindowManager

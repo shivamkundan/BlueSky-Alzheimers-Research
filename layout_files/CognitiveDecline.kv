@@ -81,6 +81,36 @@
 
 				Tab:
 					text:'1'
+					MDBoxLayout:
+					    orientation:'vertical'
+					    MDLabel:
+					        text:'What year is this?'
+					        size_hint_x:0.9
+					        size_hint_y:1
+					        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					        halign:'left'
+
+					    MDTextField:
+					    	id:year
+					        name:'year'
+					        done:False
+					        size_hint_x:0.5
+					        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					        text:''
+					        halign:'left'
+					        multiline:False
+					        on_text_validate: root.validate_text(self)
+					    # MDLabel:
+					    #     text:''
+
+					    MDGridLayout:
+					        cols:3
+					        rows:4
+					        # adaptive_height: True
+					        # adaptive_width: True
+					        # adaptive_size: True
+					        on_parent:
+					            for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press))
 
 
 				Tab:
@@ -121,7 +151,7 @@
 				text:'                     >                       '
 				size_hint_x:1
 				on_release:root.arrow_right()
-				
+
 <CognitiveDeclineScorePage>:
     score_label:score_label
     BoxLayout:
