@@ -65,7 +65,6 @@ KV_FILE='health_app.kv' # kivy design file
 resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
 Window.size = resolutions[2]
 
-
 # ============================ GLOBAL FNs ============================= #
 
 def chevron_left_global(curr,next_pg='RiskAssesmentPage'):
@@ -733,7 +732,6 @@ class PhysicalActivityScorePage(SubPageBase):
 		self.prev_page="PhysicalActivityPage"
 		self.next_page="AlcoholLandingPage"
 
-
 # --------------------------------------------------------------------- #
 
 class AlcoholLandingPage(SubPageBase):
@@ -870,6 +868,13 @@ class CognitiveDeclinePage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclinePage,self).__init__(**kwargs)
 		self.prev_page="CognitiveDeclineLandingPage"
+		self.next_page="RiskAssesmentPage"
+
+class CognitiveDeclineScorePage(ScorePageTemplate):
+	def __init__(self,**kwargs):
+		super(TraumaticBrainInjuryScorePage,self).__init__(**kwargs)
+		self.landing_page="CognitiveDeclineLandingPage"
+		self.prev_page="CognitiveDeclinePage"
 		self.next_page="RiskAssesmentPage"
 
 # --------------------------------------------------------------------- #
@@ -1094,6 +1099,11 @@ class BlueSkyApp(MDApp):
 	def CognitiveDeclinePage(self,dt):
 		print ('switching to CognitiveDeclinePage')
 		self.root.current="CognitiveDeclinePage"
+		Clock.schedule_once(self.CognitiveDeclineScorePage,0.1)
+
+	def CognitiveDeclineScorePage(self,dt):
+		print ('switching to CognitiveDeclineScorePage')
+		self.root.current="CognitiveDeclineScorePage"
 		Clock.schedule_once(self.LandingPage,0.1)
 
 	# --------------------------------------------------------------------- #
