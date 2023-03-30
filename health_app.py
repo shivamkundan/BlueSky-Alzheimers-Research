@@ -870,9 +870,11 @@ class CognitiveDeclinePage(SubPageBase):
 		self.prev_page="CognitiveDeclineLandingPage"
 		self.next_page="RiskAssesmentPage"
 
+		self.total_score=0
+
 class CognitiveDeclineScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
-		super(TraumaticBrainInjuryScorePage,self).__init__(**kwargs)
+		super(CognitiveDeclineScorePage,self).__init__(**kwargs)
 		self.landing_page="CognitiveDeclineLandingPage"
 		self.prev_page="CognitiveDeclinePage"
 		self.next_page="RiskAssesmentPage"
