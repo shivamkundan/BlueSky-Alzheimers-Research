@@ -65,8 +65,6 @@
                         on_parent:
                             for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press,background_color= app.theme_cls.colors['Light']['StatusBar']))
 
-
-
             Tab:
                 text:'Sex'
                 MDBoxLayout:
@@ -97,7 +95,6 @@
                             size_hint_x:0.5
                         MDCheckbox:
                             group:'g1'
-
 
             Tab:
                 text:'Zip Code'
@@ -181,46 +178,6 @@
                                     name:'left_icon_no'
                                     icon:'checkbox-blank-circle-outline'
 
-                    # MDBoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'Yes, currently'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         on_active: root.on_checkbox_active(*args)
-                    #         group:'g2'
-                    #         # on_release:
-                    #         #     root.manager.current='LocationPage'
-                    #         #     root.manager.transition.direction="left"
-                    # MDBoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'Yes, formerly'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #         size_hint_y:1
-                    #     MDCheckbox:
-                    #         group:'g2'
-                    #         size_hint_y:1
-                    #         # on_release:
-                    #         #     root.manager.current='LocationPage'
-                    #         #     root.manager.transition.direction="left"
-                    # MDBoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'No'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         group:'g2'
-
             Tab:
                 text:'Military (2)'
                 MDBoxLayout:
@@ -231,7 +188,6 @@
                         size_hint_x:0.9
                         size_hint_y:0.1
                         pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-
 
                     ScrollView:
                         scroll_type: ['bars','content']
@@ -301,80 +257,6 @@
                                     on_parent:root.get_wids(self)
                                     name:'left_icon_N/A'
                                     icon:'checkbox-blank-circle-outline'
-
-
-
-                    # BoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'Air Force'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         group:'g2'
-                    # BoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'Army'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         group:'g2'
-                    # BoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'Marines'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         group:'g2'
-                    # BoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'Navy'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         group:'g2'
-                    # BoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'Coast Guard'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         group:'g2'
-                    # BoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'Space Force'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         group:'g2'
-                    # BoxLayout:
-                    #     orientation:'horizontal'
-                    #     MDLabel:
-                    #         size_hint_x:0.1
-                    #     MDLabel:
-                    #         text:'N/A'
-                    #         halign:'left'
-                    #         size_hint_x:0.5
-                    #     MDCheckbox:
-                    #         group:'g2'
-
 
         BoxLayout:
             orientation: 'horizontal'

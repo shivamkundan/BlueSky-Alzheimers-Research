@@ -48,28 +48,23 @@
 			# size_hint_x:0.7
 			pos_hint:{'center_x':0.5}
 			on_release:
-
-				root.manager.current='AirPollutionPage'
-				root.manager.transition.direction="left"
 				root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
+				root.arrow_right()
 
 
 		BoxLayout:
 			orientation: 'horizontal'
 			size_hint_y:0.3
 			MDRaisedButton:
-				size_hint_x:1
+				# size_hint_x:1
 				text:'                     <                       '
-				on_release:
-					root.manager.current='LocationPage'
-					root.manager.transition.direction="right"
+				on_release:root.arrow_left()
 			MDRaisedButton:
 				size_hint_x:1
 				text:'                     >                       '
 				on_release:
-					root.manager.current='AirPollutionPage'
-					root.manager.transition.direction="left"
 					root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
+					root.arrow_right()
 
 
 <AirPollutionPage>:

@@ -41,29 +41,22 @@
             # size_hint_x:0.7
             pos_hint:{'center_x':0.5}
             on_release:
-
-                root.manager.current='PhysicalActivityPage'
-                root.manager.transition.direction="left"
-                # root.parent.ids['AlcoholUsagePage'].ids['android_tabs'].switch_tab('1')
-
+                root.parent.ids['PhysicalActivityPage'].ids['android_tabs'].switch_tab('1')
+                root.arrow_right()
 
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y:0.3
             MDRaisedButton:
-                size_hint_x:1
+                # size_hint_x:1
                 text:'                     <                       '
-                on_release:
-                    root.manager.current='DietScorePage'
-                    root.manager.transition.direction="right"
+                on_release:root.arrow_left()
             MDRaisedButton:
                 size_hint_x:1
                 text:'                     >                       '
                 on_release:
-                    root.manager.current='PhysicalActivityPage'
-                    root.manager.transition.direction="left"
                     root.parent.ids['PhysicalActivityPage'].ids['android_tabs'].switch_tab('1')
-
+                    root.arrow_right()
 
 <PhysicalActivityPage>:
     BoxLayout:
@@ -84,25 +77,6 @@
                 tab_pos:'left_top'
                 on_tab_switch: root.on_tab_switch(*args)
 
-                # Tab:
-                #     text:'1'
-                #     MDBoxLayout:
-                #         orientation:'vertical'
-
-                #         MDLabel:
-                #             text: 'On a typical week, how much time do you spend in total on moderate and vigorous physical activities where your heartbeat increases and you breathe faster? \n(e.g., brisk walking, cycling as a means of transport or as exercise, heavy gardening, running or recreational sports) \nOnly include activities that lasted at least 10 minutes at a time. '
-                #             halign: 'left'
-                #             size_hint_x:0.9
-                #             pos_hint:{'center_x':0.5,'center_y':0.5}
-
-                #         MDGridLayout:
-                #             cols:3
-                #             rows:4
-                #             # adaptive_height: True
-                #             # adaptive_width: True
-                #             # adaptive_size: True
-                #             on_parent:
-                #                 for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press))
                 Tab:
                     # tab_width:5
                     text:'1'

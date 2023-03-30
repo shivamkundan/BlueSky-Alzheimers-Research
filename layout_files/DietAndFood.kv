@@ -70,19 +70,17 @@
 
         BoxLayout:
             orientation: 'horizontal'
+            size_hint_y:0.3
             MDRaisedButton:
-                size_hint_x:1
+                # size_hint_x:1
                 text:'                     <                       '
-                on_release:
-                    root.manager.current='AirPollutionScorePage'
-                    root.manager.transition.direction="right"
+                on_release:root.arrow_left()
             MDRaisedButton:
                 size_hint_x:1
                 text:'                     >                       '
                 on_release:
-                    root.manager.current='DietAndFoodPage'
-                    root.manager.transition.direction="left"
                     root.parent.ids['DietAndFoodPage'].ids['android_tabs'].switch_tab('1')
+                    root.arrow_right()
 
 
 <DietAndFoodPage>:

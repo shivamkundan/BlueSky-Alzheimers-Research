@@ -40,30 +40,21 @@
 			font_style:'Button'
 			# size_hint_x:0.7
 			pos_hint:{'center_x':0.5}
-			on_release:
-
-				root.manager.current='CognitiveDeclinePage'
-				root.manager.transition.direction="left"
-				# root.parent.ids['CognitiveDeclinePage'].ids['android_tabs'].switch_tab('1')
-
+			on_release: root.arrow_right()
 
 		BoxLayout:
-			orientation: 'horizontal'
-			size_hint_y:0.3
-			MDRaisedButton:
-				size_hint_x:1
-				text:'                     <                       '
-				on_release:
-					root.manager.current='TraumaticBrainInjuryScorePage'
-					root.manager.transition.direction="right"
-			MDRaisedButton:
-				size_hint_x:1
-				text:'                     >                       '
-				on_release:
-					root.manager.current='CognitiveDeclinePage'
-					root.manager.transition.direction="left"
-					# root.parent.ids['CognitiveDeclinePage'].ids['android_tabs'].switch_tab('1')
-
+            orientation: 'horizontal'
+            size_hint_y:0.3
+            MDRaisedButton:
+                # size_hint_x:1
+                text:'                     <                       '
+                on_release:root.arrow_left()
+            MDRaisedButton:
+                size_hint_x:1
+                text:'                     >                       '
+                on_release:
+                    # root.parent.ids['CognitiveDeclinePage'].ids['android_tabs'].switch_tab('1')
+                    root.arrow_right()
 
 <CognitiveDeclinePage>:
 	BoxLayout:

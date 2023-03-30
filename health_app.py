@@ -72,58 +72,10 @@ def chevron_left_global(curr,next_pg='RiskAssesmentPage'):
 	curr.parent.transition.direction="right"
 	curr.parent.current=next_pg
 
-def arrow_right_simple_global(curr,next_pg):
-	curr.parent.transition.direction="left"
-	curr.parent.current=next_pg
-
-def arrow_right_tabbed_global(curr,next_pg):
-	if curr.curr_tab_num==curr.num_tabs-1:
-		curr.parent.transition.direction="left"
-		curr.parent.current=next_pg
-	else:
-		curr.curr_tab_num+=1
-		curr.ids['android_tabs'].switch_tab(curr.tab_names[curr.curr_tab_num])
-
-def arrow_left_simple_global(curr,next_pg):
-	curr.parent.transition.direction="right"
-	curr.parent.current=next_pg
-
-def arrow_left_tabbed_global(curr,next_pg):
-	if curr.curr_tab_num==0:
-		curr.parent.transition.direction="right"
-		curr.parent.current=next_pg
-	else:
-		curr.curr_tab_num-=1
-		curr.ids['android_tabs'].switch_tab(curr.tab_names[curr.curr_tab_num])
-
 def release_keyboard_global(curr):
 	curr._keyboard = Window.request_keyboard(curr.parent._keyboard_closed, curr)
 	curr._keyboard.bind(on_key_up=curr.parent._on_keyboard_up)
 	Window.release_all_keyboards()
-
-def button_press_global(curr,button):
-	print ('pressed: ',button.text)
-	curr.responses_dict[curr.curr_tab_num+1]=int(button.text)
-	curr.done_dict[curr.curr_tab_num+1]=True
-	curr.arrow_right()
-
-def update_score_global(curr):
-	total=0
-	for key,val in curr.responses_dict.items():
-		total+=val
-	curr.total_score=total
-
-	num_done=0
-	for k,v in curr.done_dict.items():
-		if v==True:
-			num_done+=1
-
-	pct=int(round(100*(num_done/curr.num_tabs),0))
-	pct_txt=str(pct)+'% Complete'
-	# print ('score:',total)
-	# print (num_done)
-	# print (pct_txt)
-	return total, pct_txt
 
 # ===================================================================== #
 
@@ -173,13 +125,6 @@ class DrawerList(ThemableBehavior, MDList):
 
 # --------------------------------------------------------------------- #
 
-class LandingPageTemplate(MDScreen):
-	def __init__(self,**kwargs):
-		super(LandingPageTemplate,self).__init__(**kwargs)
-
-	def chevron_left(self):
-		chevron_left_global(self)
-
 class SubPageBase(MDScreen):
 	def __init__(self,**kwargs):
 		super(SubPageBase,self).__init__(**kwargs)
@@ -192,12 +137,10 @@ class SubPageBase(MDScreen):
 		self.parent.current=next_pg
 
 	def arrow_left(self):
-		print ("this is SubPageBase")
 		self.parent.transition.direction="right"
 		self.parent.current=self.prev_page
 
 	def arrow_right(self):
-		# arrow_right_tabbed_global(self,self.next_page)
 		self.parent.transition.direction="left"
 		self.parent.current=self.next_page
 
@@ -221,7 +164,10 @@ class SubPageTemplate(SubPageBase):
 			self.done_dict[i]=0
 
 	def button_press(self,button):
-		button_press_global(self,button)
+		print ('pressed: ',button.text)
+		self.responses_dict[self.curr_tab_num+1]=int(button.text)
+		self.done_dict[self.curr_tab_num+1]=True
+		self.arrow_right()
 
 	def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
 		# get the tab icon.
@@ -229,8 +175,23 @@ class SubPageTemplate(SubPageBase):
 		self.curr_tab_num=int(instance_tab.text)-1
 		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
+	def update_score(self):
+		total=0
+		for key,val in self.responses_dict.items():
+			total+=val
+		self.total_score=total
+
+		num_done=0
+		for k,v in self.done_dict.items():
+			if v==True:
+				num_done+=1
+
+		pct=int(round(100*(num_done/self.num_tabs),0))
+		pct_txt=str(pct)+'% Complete'
+		return total, pct_txt
+
 	def on_pre_leave(self):
-		total,pct_txt=update_score_global(self)
+		total,pct_txt=self.update_score()
 		self.parent.score_vars_dict[self.page_name]=total
 		self.parent.ids['RiskAssesmentPage'].ids[self.name+"_label"].secondary_text=pct_txt
 
@@ -243,7 +204,6 @@ class SubPageTemplate(SubPageBase):
 			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 	def arrow_left(self):
-		print ("this is SubPageTemplate")
 		if self.curr_tab_num==0:
 			self.parent.transition.direction="right"
 			self.parent.current=self.prev_page
@@ -274,7 +234,8 @@ class ScorePageTemplate(SubPageBase):
 			self.parent.ids[self.prev_page].ids.android_tabs.switch_tab('1')
 		except:
 			pass
-		arrow_left_simple_global(self,self.landing_page)
+		self.parent.transition.direction="right"
+		self.parent.current=self.landing_page
 
 # ===================================================================== #
 
@@ -527,13 +488,12 @@ class SociodemographicPage(MDScreen):
 			print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')
 
 	def arrow_left(self):
-		# if self.curr_tab_num==0:
-		#     self.parent.transition.direction="right"
-		#     self.parent.current="RiskAssesmentPage"
-		# else:
-		#     self.curr_tab_num-=1
-		#     self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-		arrow_left_tabbed_global(self,"RiskAssesmentPage")
+		if self.curr_tab_num==0:
+			self.parent.transition.direction="right"
+			self.parent.current="RiskAssesmentPage"
+		else:
+			self.curr_tab_num-=1
+			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 	def arrow_right(self):
 		self.done_dict[self.tab_names[self.curr_tab_num]]=True
@@ -669,9 +629,11 @@ class LocationPage(MDScreen):
 
 # ===================================================================== #
 
-class AirPollutionLandingPage(LandingPageTemplate):
+class AirPollutionLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(AirPollutionLandingPage,self).__init__(**kwargs)
+		self.prev_page="LocationPage"
+		self.next_page="AirPollutionPage"
 
 class AirPollutionPage(SubPageTemplate):
 	def __init__(self,**kwargs):
@@ -697,9 +659,11 @@ class AirPollutionScorePage(ScorePageTemplate):
 
 # --------------------------------------------------------------------- #
 
-class DietLandingPage(LandingPageTemplate):
+class DietLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(DietLandingPage,self).__init__(**kwargs)
+		self.prev_page="AirPollutionScorePage"
+		self.next_page="DietAndFoodPage"
 
 class DietAndFoodPage(SubPageTemplate):
 	def __init__(self,**kwargs):
@@ -719,9 +683,11 @@ class DietScorePage(ScorePageTemplate):
 
 # --------------------------------------------------------------------- #
 
-class PhysicalActivityLandingPage(LandingPageTemplate):
+class PhysicalActivityLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(PhysicalActivityLandingPage,self).__init__(**kwargs)
+		self.prev_page="DietScorePage"
+		self.next_page="PhysicalActivityPage"
 
 class PhysicalActivityPage(SubPageTemplate):
 	def __init__(self,**kwargs):
@@ -770,9 +736,11 @@ class PhysicalActivityScorePage(SubPageBase):
 
 # --------------------------------------------------------------------- #
 
-class AlcoholLandingPage(LandingPageTemplate):
+class AlcoholLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(AlcoholLandingPage,self).__init__(**kwargs)
+		self.prev_page="PhysicalActivityScorePage"
+		self.next_page="AlcoholUsagePage"
 
 class AlcoholUsagePage(SubPageTemplate):
 	def __init__(self,**kwargs):
@@ -798,9 +766,11 @@ class AlcoholScorePage(ScorePageTemplate):
 
 # --------------------------------------------------------------------- #
 
-class DepressionLandingPage(LandingPageTemplate):
+class DepressionLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(DepressionLandingPage,self).__init__(**kwargs)
+		self.prev_page="AlcoholScorePage"
+		self.next_page="DepressionPage"
 
 class DepressionPage(SubPageTemplate):
 	def __init__(self,**kwargs):
@@ -827,11 +797,13 @@ class DepressionScorePage(ScorePageTemplate):
 		self.next_page="HyperTensionLandingPage"
 
 # --------------------------------------------------------------------- #
-class HyperTensionLandingPage(LandingPageTemplate):
+class HyperTensionLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(HyperTensionLandingPage,self).__init__(**kwargs)
+		self.prev_page="DepressionScorePage"
+		self.next_page="HyperTensionPage"
 
-class HyperTensionPage(MDScreen):
+class HyperTensionPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(HyperTensionPage,self).__init__(**kwargs)
 		self.page_name="HyperTensionPage"
@@ -839,15 +811,6 @@ class HyperTensionPage(MDScreen):
 		self.next_page="HyperTensionScorePage"
 		self.total_score=0
 		self.pct_txt="0% Complete"
-
-	def chevron_left(self):
-		chevron_left_global(self)
-
-	def arrow_left(self):
-		arrow_left_simple_global(self,self.prev_page)
-
-	def arrow_right(self):
-		arrow_right_simple_global(self,self.next_page)
 
 	def button_press(self,num):
 		print ('pressed: ',num)
@@ -868,9 +831,11 @@ class HyperTensionScorePage(ScorePageTemplate):
 
 # --------------------------------------------------------------------- #
 
-class TraumaticBrainInjuryLandingPage(LandingPageTemplate):
+class TraumaticBrainInjuryLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(TraumaticBrainInjuryLandingPage,self).__init__(**kwargs)
+		self.prev_page="HyperTensionScorePage"
+		self.next_page="TraumaticBrainInjuryPage"
 
 class TraumaticBrainInjuryPage(SubPageTemplate):
 	def __init__(self,**kwargs):
@@ -895,16 +860,17 @@ class TraumaticBrainInjuryScorePage(ScorePageTemplate):
 		self.next_page="CognitiveDeclineLandingPage"
 
 # --------------------------------------------------------------------- #
-class CognitiveDeclineLandingPage(LandingPageTemplate):
+class CognitiveDeclineLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclineLandingPage,self).__init__(**kwargs)
+		self.prev_page="TraumaticBrainInjuryScorePage"
+		self.next_page="CognitiveDeclinePage"
 
-class CognitiveDeclinePage(MDScreen):
+class CognitiveDeclinePage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclinePage,self).__init__(**kwargs)
-
-	def chevron_left(self):
-		chevron_left_global(self)
+		self.prev_page="CognitiveDeclineLandingPage"
+		self.next_page="RiskAssesmentPage"
 
 # --------------------------------------------------------------------- #
 
