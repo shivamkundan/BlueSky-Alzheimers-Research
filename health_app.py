@@ -212,18 +212,12 @@ class LandingPageTemplate(MDScreen):
 	def chevron_left(self):
 		chevron_left_global(self)
 
-class SubPageTemplate(MDScreen):
+class SubPageBase(MDScreen):
 	def __init__(self,**kwargs):
-		super(SubPageTemplate,self).__init__(**kwargs)
-
-		# dummy/placeholder variables
-		self.tab_names=None
+		super(SubPageBase,self).__init__(**kwargs)
 		self.page_name=None
 		self.prev_page=None
 		self.next_page=None
-
-	def init_subpage(self):
-		init_subpage_global(self)
 
 	def chevron_left(self):
 		chevron_left_global(self)
@@ -233,6 +227,26 @@ class SubPageTemplate(MDScreen):
 
 	def arrow_right(self):
 		arrow_right_tabbed_global(self,self.next_page)
+
+class SubPageTemplate(SubPageBase):
+	def __init__(self,**kwargs):
+		super(SubPageTemplate,self).__init__(**kwargs)
+
+		# dummy/placeholder variables
+		self.tab_names=None
+		self.num_tabs=None
+		self.curr_tab_num=0
+
+		self.total_score=0
+		self.responses_dict={}
+		self.done_dict={}
+
+	def init_subpage(self):
+		self.num_tabs=len(self.tab_names)
+
+		for i in range(self.num_tabs):
+			self.responses_dict[i]=0
+			self.done_dict[i]=0
 
 	def button_press(self,button):
 		button_press_global(self,button)
