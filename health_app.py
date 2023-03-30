@@ -819,11 +819,14 @@ class CognitiveDeclineLandingPage(SubPageBase):
 		self.prev_page="TraumaticBrainInjuryScorePage"
 		self.next_page="CognitiveDeclinePage"
 
-class CognitiveDeclinePage(SubPageBase):
+class CognitiveDeclinePage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclinePage,self).__init__(**kwargs)
+		self.tab_names=['1','2','3']
+		self.num_tabs=len(self.tab_names)
+		self.page_name='CognitiveDeclinePage'
 		self.prev_page="CognitiveDeclineLandingPage"
-		self.next_page="RiskAssesmentPage"
+		self.next_page="CognitiveDeclineScorePage"
 
 		self.total_score=0
 
