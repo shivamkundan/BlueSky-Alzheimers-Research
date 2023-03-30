@@ -6,8 +6,8 @@
 #:set font_cond_bold 'fonts/ScalaSansOT-CondBold.otf'
 #:set DARK_BLUE (73/255,81/255,119/255,1)
 
-#:set xx 737
-#:set yy 563
+#:set xx 368
+#:set yy 286
 
 #:include layout_files/templates.kv
 #:include layout_files/AirPollution.kv
@@ -369,15 +369,15 @@ WindowManager:
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
 			elevation:8
 		Widget
-		# MDLabel:
+		MDLabel:
 
-		#     id:logo
-		#     # md_bg_color: utils.get_color_from_hex('#455A64')
-		#     canvas:
-		#         Rectangle:
-		#             id:rect
-		#             source: 'pics/logo_minimal.png'
-		#             # pos: (20,self.pos[1]+20)
-		#             pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
-		#             # pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
-		#             size: (xx,yy)
+		    id:logo
+		    # md_bg_color: utils.get_color_from_hex('#455A64')
+		    canvas:
+		        Rectangle:
+		            id:rect
+		            source: 'pics/logo_minimal.png'
+		            # pos: (20,self.pos[1]+20)
+		            pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
+		            # pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
+		            size: (xx,yy)
