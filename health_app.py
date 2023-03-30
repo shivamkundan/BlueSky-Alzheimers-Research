@@ -1094,8 +1094,7 @@ class BlueSkyApp(MDApp):
 		# print (self.theme_cls.colors['Dark']['AppBar'])
 		# print (self.theme_cls.colors['Dark']['StatusBar'])
 
-		# self.sidebar()
-		Clock.schedule_once(self.sidebar, 1)
+		Clock.schedule_once(self.sidebar, 1)  #otherwise widgets don't get added
 		# menu_items = [
 		#     {
 		#         "text": f"Item {i}",
@@ -1149,21 +1148,21 @@ class BlueSkyApp(MDApp):
 		curr_state=self.root.ids['LandingPage'].ids['nav_drawer'].state
 
 	def nav_closer(self,*args):
-		print ('nav_closer')
-		print(args)
-		print(args[0].icon)
-		print(args[0].text)
+		# print ('nav_closer')
+		# print(args)
+		# print(args[0].icon)
+		# print(args[0].text)
 
 		selected_button=args[0].text
 
-		print ('selected_button: ',selected_button)
+		# print ('selected_button: ',selected_button)
 
 		if selected_button=='About':
 			self.root.current='AboutPage'
 
 
 		elif selected_button=='Account':
-			print ('log')
+			# print ('log')
 			self.root.current='LoginPage'
 			self.root.transition.direction='left'
 
@@ -1173,17 +1172,17 @@ class BlueSkyApp(MDApp):
 		elif selected_button=='Exit':
 			exit()
 
-		# elif selected_button=='Developer':
-		#     MDApp.open_settings(self.App)
+		elif selected_button=='Developer':
+		    MDApp.open_settings(self)
 
 		elif selected_button=='Themes':
 			self.show_theme_picker()
 
 		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("close")
 		curr_state=self.root.ids['LandingPage'].ids['nav_drawer'].state
-		print(self.root.ids['LandingPage'].ids['nav_drawer'].status)
-		print('curr_state: ',curr_state)
-		print ()
+		# print(self.root.ids['LandingPage'].ids['nav_drawer'].status)
+		# print('curr_state: ',curr_state)
+		# print ()
 
 	# def unhide(self):
 	#     self.root.ids['DietAndFoodPage'].hide_widget(dohide=False)
