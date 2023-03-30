@@ -882,14 +882,12 @@ class CognitiveDeclineScorePage(ScorePageTemplate):
 # --------------------------------------------------------------------- #
 
 class AboutPage(MDScreen):
+	def __init__(self,**kwargs):
+		super(AboutPage,self).__init__(**kwargs)
 
 	def chevron_left(self):
 		self.parent.transition.direction = 'right'
 		self.parent.current='LandingPage'
-
-	def earth(self,instance, value):
-		print(instance, value)
-		# print (args)
 
 # ----------------------------------------
 class WindowManager(ScreenManager):
