@@ -303,183 +303,183 @@ class SociodemographicPage(MDScreen):
 
 		# Clock.schedule_once(self.get_wids,0.1)
 
-	def get_wids(self,*args):
-		# print (args)
-		# print ('GET WIDS!!!!!!!!!!!!')
-		self.wids.append(args[0])
-		# # print()
-		# # # for item in args[0].ids['_left_container'].walk():
-		# # for item in args[0].walk():
-		# #     try:
-		# #         if 'left_icon' in item.name:
-		# #             print (item.name)
-		# #             self.wids.append(item)
-		# #     except :
-		# #         pass
-		# #     # print (type(item))
+	# def get_wids(self,*args):
+	# 	# print (args)
+	# 	# print ('GET WIDS!!!!!!!!!!!!')
+	# 	self.wids.append(args[0])
+	# 	# # print()
+	# 	# # # for item in args[0].ids['_left_container'].walk():
+	# 	# # for item in args[0].walk():
+	# 	# #     try:
+	# 	# #         if 'left_icon' in item.name:
+	# 	# #             print (item.name)
+	# 	# #             self.wids.append(item)
+	# 	# #     except :
+	# 	# #         pass
+	# 	# #     # print (type(item))
 
-		# 	# print (item)
-		# print ('----')
-		# 	# try:
-		# 	#     if ('left_icon' in item.name):
-		# 	#         self.wids.append(item)
-		# 	# except:
-		# 	#     pass
+	# 	# 	# print (item)
+	# 	# print ('----')
+	# 	# 	# try:
+	# 	# 	#     if ('left_icon' in item.name):
+	# 	# 	#         self.wids.append(item)
+	# 	# 	# except:
+	# 	# 	#     pass
 
-		# print (self.wids)
+	# 	# print (self.wids)
 
-	def toggle_military_2(self,*args):
-		# print(dir(args[0]))
-		# print('children: ',(args[0].children))
-		# # for item in args[0].walk():
-		# #     print (item)
-		# # print ()
+	# def toggle_military_2(self,*args):
+	# 	# print(dir(args[0]))
+	# 	# print('children: ',(args[0].children))
+	# 	# # for item in args[0].walk():
+	# 	# #     print (item)
+	# 	# # print ()
 
-		# for item in self.wids:
-		#     print (item.name)
-		#     if args[0]!=item:
-		#         # try:
-		#         item.icon='checkbox-blank-circle-outline'
-		#         if item.icon=='circle-slice-8':
-		#             item.icon='checkbox-blank-circle-outline'
-		#         else:
-		#             item.icon='circle-slice-8'
-		#         # except:
-		#         #     pass
-		#     print ()
+	# 	# for item in self.wids:
+	# 	#     print (item.name)
+	# 	#     if args[0]!=item:
+	# 	#         # try:
+	# 	#         item.icon='checkbox-blank-circle-outline'
+	# 	#         if item.icon=='circle-slice-8':
+	# 	#             item.icon='checkbox-blank-circle-outline'
+	# 	#         else:
+	# 	#             item.icon='circle-slice-8'
+	# 	#         # except:
+	# 	#         #     pass
+	# 	#     print ()
 
-		# print (type(args[0].ids['_left_container'].walk))
-		curr_icon=None
+	# 	# print (type(args[0].ids['_left_container'].walk))
+	# 	curr_icon=None
 
-		for item in args[0].ids['_left_container'].walk():
-			try:
-				if ('left_icon' in item.name):
-					self.option_names_dict[item.name]=item
-					curr_icon=item.name
-					if item.icon=='circle-slice-8':
-						item.icon='checkbox-blank-circle-outline'
-					else:
-						item.icon='circle-slice-8'
+	# 	for item in args[0].ids['_left_container'].walk():
+	# 		try:
+	# 			if ('left_icon' in item.name):
+	# 				self.option_names_dict[item.name]=item
+	# 				curr_icon=item.name
+	# 				if item.icon=='circle-slice-8':
+	# 					item.icon='checkbox-blank-circle-outline'
+	# 				else:
+	# 					item.icon='circle-slice-8'
 
-						# print (item.name,dir(item))
+	# 					# print (item.name,dir(item))
 
-						# for thing in item.ids:
-						#     print (thing)
-						# print(item.text_color)
-						# print(item.theme_cls)
-						# print(item.theme_text_color)
-					break
-			except:
-				pass
-		# print ('selected: ',curr_icon)
-
-
-		for k,v in self.option_names_dict.items():
-			if k!=curr_icon:
-				try:
-					v.icon='checkbox-blank-circle-outline'
-				except:
-					pass
-
-	def on_checkbox_active(self, checkbox, value):
-		if value:
-			print('The checkbox', checkbox, 'is active', 'and', checkbox.state, 'state')
-		else:
-			print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')
-
-	def arrow_left(self):
-		if self.curr_tab_num==0:
-			self.parent.transition.direction="right"
-			self.parent.current="RiskAssesmentPage"
-		else:
-			self.curr_tab_num-=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-
-	def arrow_right(self):
-		self.done_dict[self.tab_names[self.curr_tab_num]]=True
-		if self.curr_tab_num==self.num_tabs-1:
-			self.parent.transition.direction="left"
-			self.parent.current="LocationPage"
-		else:
-			self.curr_tab_num+=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+	# 					# for thing in item.ids:
+	# 					#     print (thing)
+	# 					# print(item.text_color)
+	# 					# print(item.theme_cls)
+	# 					# print(item.theme_text_color)
+	# 				break
+	# 		except:
+	# 			pass
+	# 	# print ('selected: ',curr_icon)
 
 
-	def chevron_left(self):
-		chevron_left_global(self)
+	# 	for k,v in self.option_names_dict.items():
+	# 		if k!=curr_icon:
+	# 			try:
+	# 				v.icon='checkbox-blank-circle-outline'
+	# 			except:
+	# 				pass
 
-	def on_pre_enter(self):
-		self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-		self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-		Window.softinput_mode=''
-		print (Window.softinput_mode)
-		# Window.release_all_keyboards()
+	# def on_checkbox_active(self, checkbox, value):
+	# 	if value:
+	# 		print('The checkbox', checkbox, 'is active', 'and', checkbox.state, 'state')
+	# 	else:
+	# 		print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')
 
-		self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
-		Window.release_all_keyboards()
-		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+	# def arrow_left(self):
+	# 	if self.curr_tab_num==0:
+	# 		self.parent.transition.direction="right"
+	# 		self.parent.current="RiskAssesmentPage"
+	# 	else:
+	# 		self.curr_tab_num-=1
+	# 		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+
+	# def arrow_right(self):
+	# 	self.done_dict[self.tab_names[self.curr_tab_num]]=True
+	# 	if self.curr_tab_num==self.num_tabs-1:
+	# 		self.parent.transition.direction="left"
+	# 		self.parent.current="LocationPage"
+	# 	else:
+	# 		self.curr_tab_num+=1
+	# 		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 
-	def on_pre_leave(self):
-		num_done=0
-		total=0
-		for k,v in self.done_dict.items():
-			if v==True:
-				num_done+=1
-				total+=1
-		# print (num_done)
-		pct=int(round(100*(num_done/self.num_tabs),0))
-		pct_txt=str(pct)+'% Complete'
-		# print (pct)
-		self.parent.ids['RiskAssesmentPage'].ids['SocioDemographicPage_label'].secondary_text=pct_txt
-		self.parent.demographics_score=total
+	# def chevron_left(self):
+	# 	chevron_left_global(self)
 
-	def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-		count_icon = instance_tab.text
-		# print it on shell/bash.
-		# print(f"Welcome to {count_icon}' tab'")
+	# def on_pre_enter(self):
+	# 	self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
+	# 	self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
+	# 	Window.softinput_mode=''
+	# 	print (Window.softinput_mode)
+	# 	# Window.release_all_keyboards()
 
-		self.curr_tab_num=self.tab_num_dict[instance_tab.text]-1
-		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+	# 	self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
+	# 	Window.release_all_keyboards()
+	# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
-	def switch_tab_by_object(self):
-		try:
-			x = next(self.iter_list_objects)
-			print(f"Switch slide by object, next element to show: [{x}]")
-			self.root.ids.tabs.switch_tab(x)
-		except StopIteration:
-			# reset the iterator an begin again.
-			self.iter_list_objects = iter(list(self.root.ids.tabs.get_tab_list()))
-			self.switch_tab_by_object()
 
-	def switch_tab_by_name(self):
-		'''Switching the tab by name.'''
-		try:
-			x = next(self.iter_list_names)
-			print(f"Switch slide by name, next element to show: [{x}]")
-			self.root.ids.tabs.switch_tab(x)
-		except StopIteration:
-			# Reset the iterator an begin again.
-			self.iter_list_names = iter(list(self.icons))
-			self.switch_tab_by_name()
+	# def on_pre_leave(self):
+	# 	num_done=0
+	# 	total=0
+	# 	for k,v in self.done_dict.items():
+	# 		if v==True:
+	# 			num_done+=1
+	# 			total+=1
+	# 	# print (num_done)
+	# 	pct=int(round(100*(num_done/self.num_tabs),0))
+	# 	pct_txt=str(pct)+'% Complete'
+	# 	# print (pct)
+	# 	self.parent.ids['RiskAssesmentPage'].ids['SocioDemographicPage_label'].secondary_text=pct_txt
+	# 	self.parent.demographics_score=total
 
-	def validate_text(self,*args):
-		print (args[0])
-		print (args[0].name)
+	# def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
+	# 	count_icon = instance_tab.text
+	# 	# print it on shell/bash.
+	# 	# print(f"Welcome to {count_icon}' tab'")
 
-	def on_numpad_press(self,*args):
-		print(args)
+	# 	self.curr_tab_num=self.tab_num_dict[instance_tab.text]-1
+	# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
-		if self.ids['age_text_field'].text=='< MM / DD / YYYY >':
-			self.ids['age_text_field'].text=''
+	# def switch_tab_by_object(self):
+	# 	try:
+	# 		x = next(self.iter_list_objects)
+	# 		print(f"Switch slide by object, next element to show: [{x}]")
+	# 		self.root.ids.tabs.switch_tab(x)
+	# 	except StopIteration:
+	# 		# reset the iterator an begin again.
+	# 		self.iter_list_objects = iter(list(self.root.ids.tabs.get_tab_list()))
+	# 		self.switch_tab_by_object()
 
-		if args[0].text=='del':
-			if len(self.ids['age_text_field'].text)>0:
-				self.ids['age_text_field'].text=self.ids['age_text_field'].text[0:len(self.ids['age_text_field'].text)-1]
-				if len(self.ids['age_text_field'].text)==0:
-					self.ids['age_text_field'].text='< MM / DD / YYYY >'
-		else:
-			self.ids['age_text_field'].text+=args[0].text
+	# def switch_tab_by_name(self):
+	# 	'''Switching the tab by name.'''
+	# 	try:
+	# 		x = next(self.iter_list_names)
+	# 		print(f"Switch slide by name, next element to show: [{x}]")
+	# 		self.root.ids.tabs.switch_tab(x)
+	# 	except StopIteration:
+	# 		# Reset the iterator an begin again.
+	# 		self.iter_list_names = iter(list(self.icons))
+	# 		self.switch_tab_by_name()
+
+	# def validate_text(self,*args):
+	# 	print (args[0])
+	# 	print (args[0].name)
+
+	# def on_numpad_press(self,*args):
+	# 	print(args)
+
+	# 	if self.ids['age_text_field'].text=='< MM / DD / YYYY >':
+	# 		self.ids['age_text_field'].text=''
+
+	# 	if args[0].text=='del':
+	# 		if len(self.ids['age_text_field'].text)>0:
+	# 			self.ids['age_text_field'].text=self.ids['age_text_field'].text[0:len(self.ids['age_text_field'].text)-1]
+	# 			if len(self.ids['age_text_field'].text)==0:
+	# 				self.ids['age_text_field'].text='< MM / DD / YYYY >'
+	# 	else:
+	# 		self.ids['age_text_field'].text+=args[0].text
 
 # --------------------------------------------------------------------- #
 
@@ -1163,9 +1163,6 @@ class BlueSkyApp(MDApp):
 
 	# def unhide(self):
 	#     self.root.ids['DietAndFoodPage'].hide_widget(dohide=False)
-
-class MenuHeader(MDBoxLayout):
-	'''An instance of the class that will be added to the menu header.'''
 
 if __name__=='__main__':
 	# Config.set('kivy', 'keyboard_mode', 'systemandmulti')

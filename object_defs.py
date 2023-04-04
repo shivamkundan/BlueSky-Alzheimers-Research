@@ -45,3 +45,6 @@ class DrawerList(ThemableBehavior, MDList):
 				item.text_color = self.theme_cls.text_color
 				break
 		instance_item.text_color = self.theme_cls.primary_color
+
+class MenuHeader(MDBoxLayout):
+	'''An instance of the class that will be added to the menu header.'''
