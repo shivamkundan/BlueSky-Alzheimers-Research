@@ -72,9 +72,6 @@ class LandingPage(ThemableBehavior,MDScreen):
 		print(widget,args)
 
 	def on_pre_enter(self):
-		# self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-		# self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-		# Window.release_all_keyboards()
 		release_keyboard_global(self)
 		Clock.schedule_once(self.themer,0.1)
 

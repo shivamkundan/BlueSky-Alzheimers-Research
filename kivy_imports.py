@@ -1,16 +1,18 @@
 import kivy
 # kivy.require("1.9.1")
 
+# basics
 from kivy.config import Config
 from kivy.lang import Builder
 from kivy.core.window import Window
 
+# utlils
 from kivy.clock import Clock
-
 from kivy.uix.widget import Widget
 from kivy.uix.vkeyboard import VKeyboard
 from kivy.uix.screenmanager import ScreenManager
 
+# ui/ux
 from kivy.animation import Animation
 from kivy.uix.image import Image
 from kivy.uix.button import Button
@@ -22,6 +24,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivymd.app import MDApp
 from kivymd.toast import toast
 from kivymd.uix.screen import MDScreen
+
+# basic ui/ux
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
@@ -35,7 +39,7 @@ from kivymd.uix.button import MDTextButton, MDFlatButton, MDRectangleFlatButton,
 									MDRoundFlatIconButton,MDFillRoundFlatIconButton,MDFillRoundFlatButton,\
 									MDFloatingActionButton,MDFloatingActionButtonSpeedDial
 
-
+# advanced ui/ux
 from kivymd.uix.tab import MDTabsBase
 from kivymd.icon_definitions import md_icons
 from kivymd.theming import ThemableBehavior
