@@ -1,4 +1,4 @@
-from kivy_imports import *
+from kivy_imports import MDScreen
 from globals import release_keyboard_global
 
 class SubPageBase(MDScreen):
