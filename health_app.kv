@@ -359,20 +359,15 @@ WindowManager:
 
 # =======================================
 <AboutPage>:
-	id:AP
 	BoxLayout:
 		orientation: 'vertical'
-
 		MDToolbar:
 			title: 'About'
 			halign: 'left'
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
 			elevation:8
 		Widget
-		MDLabel:
-
-		    id:logo
-		    # md_bg_color: utils.get_color_from_hex('#455A64')
+		Label:
 		    canvas:
 		        Rectangle:
 		            id:rect

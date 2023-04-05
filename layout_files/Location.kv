@@ -1,5 +1,5 @@
 <LocationPage>:
-    MDBoxLayout:
+    BoxLayout:
 
         orientation:'vertical'
         MDToolbar:
@@ -17,7 +17,7 @@
 
         Widget:
             size_hint_y:0.2
-        MDBoxLayout:
+        BoxLayout:
             orientation:'horizontal'
             MDList:
                 id:listt
@@ -73,15 +73,17 @@
 
         BoxLayout:
             orientation: 'horizontal'
-            MDRaisedButton:
+            Button:
                 text:'                     <                       '
                 size_hint_x:1
+                size_hint_y:0.15
                 on_release:
                     root.manager.current='SociodemographicPage'
                     root.manager.transition.direction="right"
-            MDRaisedButton:
+            Button:
                 text:'                     >                       '
                 size_hint_x:1
+                size_hint_y:0.15
                 on_release:
                     root.manager.current='AirPollutionLandingPage'
                     root.manager.transition.direction="left"

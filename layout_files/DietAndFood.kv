@@ -57,7 +57,7 @@
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
 
-        MDRaisedButton:
+        Button:
             text:"Begin"
             font_style:'Button'
             # size_hint_x:0.7
@@ -71,11 +71,11 @@
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y:0.3
-            MDRaisedButton:
+            Button:
                 # size_hint_x:1
                 text:'                     <                       '
                 on_release:root.arrow_left()
-            MDRaisedButton:
+            Button:
                 size_hint_x:1
                 text:'                     >                       '
                 on_release:
@@ -205,11 +205,11 @@
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y:0.3
-            MDRaisedButton:
+            Button:
                 size_hint_x:1
                 text:'                     <                       '
                 on_release:root.arrow_left()
-            MDRaisedButton:
+            Button:
                 size_hint_x:1
                 text:'                     >                       '
                 on_release:root.arrow_right()
@@ -237,7 +237,7 @@
         text: ''
         halign: 'center'
 
-    MDRaisedButton:
+    Button:
         id:restart_button
         text:'Try Again'
         font_style:'Button'
@@ -246,7 +246,7 @@
         on_release:root.reset_quiz()
     Widget:
         size_hint_y:0.05
-    MDRaisedButton:
+    Button:
         id:next_section
         text:'Back'
         font_style:'Button'
@@ -255,7 +255,7 @@
         on_release:root.chevron_left()
     Widget:
         size_hint_y:0.05
-    MDRaisedButton:
+    Button:
         id:next_section
         text:'Next'
         font_style:'Button'
@@ -288,7 +288,7 @@
             text: ''
             halign: 'center'
 
-        MDRaisedButton:
+        Button:
             id:restart_button
             text:'Try Again'
             font_style:'Button'
@@ -297,7 +297,7 @@
             on_release:root.reset_quiz()
         Widget:
             size_hint_y:0.05
-        MDRaisedButton:
+        Button:
             id:next_section
             text:'Back'
             font_style:'Button'
@@ -306,7 +306,7 @@
             on_release:root.chevron_left()
         Widget:
             size_hint_y:0.05
-        MDRaisedButton:
+        Button:
             id:next_section
             text:'Next'
             font_style:'Button'
@@ -321,11 +321,11 @@
 
         BoxLayout:
             orientation: 'horizontal'
-            MDRaisedButton:
+            Button:
                 text:'                     <                       '
                 size_hint_x:1
                 on_release:root.arrow_left()
-            MDRaisedButton:
+            Button:
                 text:'                     >                       '
                 size_hint_x:1
                 on_release:root.arrow_right()

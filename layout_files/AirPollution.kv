@@ -22,8 +22,7 @@
 			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
 			elevation:8
 
-		MDLabel:
-			text:''
+		Widget
 			size_hint_y:0.3
 		MDLabel:
 			text: 'The Air Quality Index (AQI) is a measure of air pollution created by the United States Environmental Protection Agency. \n\nThe measure ranges from 0 to 500, with indices greater than 200 indicating risk to health.'
@@ -42,10 +41,10 @@
 			# size_hint_x:0.5
 			pos_hint:{'center_x':0.5}
 
-		MDRaisedButton:
+		Button:
 			text:"Begin"
 			font_style:'Button'
-			# size_hint_x:0.7
+			size_hint:0.7,0.25
 			pos_hint:{'center_x':0.5}
 			on_release:
 				root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
@@ -55,17 +54,16 @@
 		BoxLayout:
 			orientation: 'horizontal'
 			size_hint_y:0.3
-			MDRaisedButton:
-				# size_hint_x:1
+			Button:
+				size_hint_y:0.5
 				text:'                     <                       '
 				on_release:root.arrow_left()
-			MDRaisedButton:
-				size_hint_x:1
+			Button:
+				size_hint_y:0.5
 				text:'                     >                       '
 				on_release:
 					root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
 					root.arrow_right()
-
 
 <AirPollutionPage>:
 
@@ -79,7 +77,7 @@
 			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
 			elevation:8
 
-		MDBoxLayout:
+		BoxLayout:
 			size_hint_y:0.7
 
 			MDTabs:
@@ -89,7 +87,7 @@
 
 				Tab:
 					text:'1'
-					MDBoxLayout:
+					BoxLayout:
 						orientation:'vertical'
 
 						MDLabel:
@@ -99,7 +97,7 @@
 
 				Tab:
 					text:'2'
-					MDBoxLayout:
+					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
 							text: air_Q1
@@ -107,7 +105,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'3'
-					MDBoxLayout:
+					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
 							text: air_Q2
@@ -115,7 +113,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'4'
-					MDBoxLayout:
+					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
 							text: air_Q3
@@ -123,7 +121,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'5'
-					MDBoxLayout:
+					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
 							text: air_Q4
@@ -131,7 +129,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'6'
-					MDBoxLayout:
+					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
 							text: air_Q5
@@ -139,16 +137,16 @@
 							size_hint_x:0.9
 				Tab:
 					text:'7'
-					MDBoxLayout:
+					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
 							text: air_Q6
 							halign: 'center'
 							size_hint_x:0.9
 
-		MDBoxLayout:
+		BoxLayout:
 			orientation:'vertical'
-			MDRectangleFlatIconButton:
+			Button:
 				# id:button7
 				icon:'numeric-7'
 				text:'Strongly agree'
@@ -161,10 +159,9 @@
 
 				on_release:
 					root.button_press(7)
-			MDLabel:
-				text:''
+			Widget:
 				size_hint_y:0.05
-			MDRectangleFlatIconButton:
+			Button:
 				id:button6
 				icon:'numeric-6'
 				text:'Agree'
@@ -175,10 +172,9 @@
 				pos_hint:{'center_x':0.5}
 				on_release: root.button_press(6)
 				custom_color: 0, 1, 0, 1
-			MDLabel:
-				text:''
+			Widget:
 				size_hint_y:0.05
-			MDRectangleFlatIconButton:
+			Button:
 				id:button5
 				icon:'numeric-5'
 				text:'Somewhat agree'
@@ -188,10 +184,9 @@
 				# size_hint_y:0.8
 				pos_hint:{'center_x':0.5}
 				on_release: root.button_press(5)
-			MDLabel:
-				text:''
+			Widget:
 				size_hint_y:0.05
-			MDRectangleFlatIconButton:
+			Button:
 				id:button4
 				icon:'numeric-4'
 				text:'Neutral'
@@ -200,10 +195,9 @@
 				font_style:'Button'
 				pos_hint:{'center_x':0.5}
 				on_release: root.button_press(4)
-			MDLabel:
-				text:''
+			Widget:
 				size_hint_y:0.05
-			MDRectangleFlatIconButton:
+			Button:
 				id:button3
 				icon:'numeric-3'
 				text:'Somewhat disagree'
@@ -212,10 +206,9 @@
 				font_style:'Button'
 				pos_hint:{'center_x':0.5}
 				on_release: root.button_press(3)
-			MDLabel:
-				text:''
+			Widget:
 				size_hint_y:0.05
-			MDRectangleFlatIconButton:
+			Button:
 				id:button2
 				icon:'numeric-2'
 				text:'Disagree'
@@ -224,10 +217,9 @@
 				font_style:'Button'
 				pos_hint:{'center_x':0.5}
 				on_release: root.button_press(2)
-			MDLabel:
-				text:''
+			Widget:
 				size_hint_y:0.05
-			MDRectangleFlatIconButton:
+			Button:
 				id:button1
 				icon:'numeric-1'
 				text:'Strongly Disagree'
@@ -240,13 +232,13 @@
 		BoxLayout:
 			orientation: 'horizontal'
 			size_hint_y:0.3
-			MDRaisedButton:
-				size_hint_x:1
+			Button:
+				size_hint_y:0.5
 				text:'                     <                       '
 				on_release:root.arrow_left()
 
-			MDRaisedButton:
-				size_hint_x:1
+			Button:
+				size_hint_y:0.5
 				text:'                     >                       '
 				on_release:root.arrow_right()
 
@@ -259,7 +251,6 @@
 			size_hint_y:0.15
 			size_hint_x:0.9
 			text_color:1,1,1,1
-
 
 <AirPollutionScorePage>:
 	score_label:score_label
@@ -282,7 +273,7 @@
 			text: ''
 			halign: 'center'
 
-		MDRaisedButton:
+		Button:
 			id:restart_button
 			text:'Try Again'
 			font_style:'Button'
@@ -291,7 +282,7 @@
 			on_release:root.reset_quiz()
 		Widget:
 			size_hint_y:0.05
-		MDRaisedButton:
+		Button:
 			id:next_section
 			text:'Back'
 			font_style:'Button'
@@ -300,7 +291,7 @@
 			on_release:root.chevron_left()
 		Widget:
 			size_hint_y:0.05
-		MDRaisedButton:
+		Button:
 			id:next_section
 			text:'Next'
 			font_style:'Button'
@@ -308,16 +299,16 @@
 			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 			on_release:root.arrow_right()
 
-		MDLabel:
+		Widget:
 			size_hint_y:0.7
 
 		BoxLayout:
 			orientation: 'horizontal'
-			MDRaisedButton:
+			Button:
 				size_hint_x:1
 				text:'                     <                       '
 				on_release:root.arrow_left()
-			MDRaisedButton:
+			Button:
 				size_hint_x:1
 				text:'                     >                       '
 				on_release:root.arrow_right()

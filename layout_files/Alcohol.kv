@@ -39,7 +39,7 @@
 			# size_hint_x:0.5
 			pos_hint:{'center_x':0.5}
 
-		MDRaisedButton:
+		Button:
 			text:"Begin"
 			font_style:'Button'
 			# size_hint_x:0.7
@@ -52,11 +52,11 @@
 		BoxLayout:
 			orientation: 'horizontal'
 			size_hint_y:0.3
-			MDRaisedButton:
+			Button:
 				# size_hint_x:1
 				text:'                     <                       '
 				on_release:root.arrow_left()
-			MDRaisedButton:
+			Button:
 				size_hint_x:1
 				text:'                     >                       '
 				on_release:
@@ -111,7 +111,7 @@
 
 		MDBoxLayout:
 		    orientation:'vertical'
-		    MDRectangleFlatButton:
+		    Button:
 		        # id:button7
 		        # icon:'numeric-7'
 		        text:'Never'
@@ -127,7 +127,7 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatButton:
+		    Button:
 		        id:button6
 		        # icon:'numeric-6'
 		        text:'Less than monthly'
@@ -141,7 +141,7 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatButton:
+		    Button:
 		        id:button5
 		        # icon:'numeric-5'
 		        text:'Monthly'
@@ -154,7 +154,7 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatButton:
+		    Button:
 		        id:button4
 		        # icon:'numeric-4'
 		        text:'Weekly'
@@ -166,7 +166,7 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatButton:
+		    Button:
 		        id:button3
 		        # icon:'numeric-3'
 		        text:'2 - 3 times a week'
@@ -178,7 +178,7 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatButton:
+		    Button:
 		        id:button2
 		        # icon:'numeric-2'
 		        text:'4 - 6 times a week'
@@ -190,7 +190,7 @@
 		    MDLabel:
 		        text:''
 		        size_hint_y:0.05
-		    MDRectangleFlatButton:
+		    Button:
 		        id:button1
 		        # icon:'numeric-1'
 		        text:'Daily'
@@ -203,11 +203,11 @@
 		BoxLayout:
 			size_hint_y:0.2
 			orientation: 'horizontal'
-			MDRaisedButton:
+			Button:
 				size_hint_x:1
 				text:'                     <                       '
 				on_release:root.arrow_left()
-			MDRaisedButton:
+			Button:
 				size_hint_x:1
 				text:'                     >                       '
 				on_release:root.arrow_right()
@@ -243,7 +243,7 @@
             text: ''
             halign: 'center'
 
-        MDRaisedButton:
+        Button:
             id:restart_button
             text:'Try Again'
             font_style:'Button'
@@ -252,7 +252,7 @@
             on_release:root.reset_quiz()
         Widget:
             size_hint_y:0.05
-        MDRaisedButton:
+        Button:
             id:next_section
             text:'Back'
             font_style:'Button'
@@ -261,7 +261,7 @@
             on_release:root.chevron_left()
         Widget:
             size_hint_y:0.05
-        MDRaisedButton:
+        Button:
             id:next_section
             text:'Next'
             font_style:'Button'
@@ -276,11 +276,11 @@
 
         BoxLayout:
             orientation: 'horizontal'
-            MDRaisedButton:
+            Button:
                 text:'                     <                       '
                 size_hint_x:1
                 on_release:root.arrow_left()
-            MDRaisedButton:
+            Button:
                 text:'                     >                       '
                 size_hint_x:1
                 on_release:root.arrow_right()

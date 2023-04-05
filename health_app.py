@@ -303,183 +303,183 @@ class SociodemographicPage(MDScreen):
 
 		# Clock.schedule_once(self.get_wids,0.1)
 
-	# def get_wids(self,*args):
-	# 	# print (args)
-	# 	# print ('GET WIDS!!!!!!!!!!!!')
-	# 	self.wids.append(args[0])
-	# 	# # print()
-	# 	# # # for item in args[0].ids['_left_container'].walk():
-	# 	# # for item in args[0].walk():
-	# 	# #     try:
-	# 	# #         if 'left_icon' in item.name:
-	# 	# #             print (item.name)
-	# 	# #             self.wids.append(item)
-	# 	# #     except :
-	# 	# #         pass
-	# 	# #     # print (type(item))
+	def get_wids(self,*args):
+		# print (args)
+		# print ('GET WIDS!!!!!!!!!!!!')
+		self.wids.append(args[0])
+		# # print()
+		# # # for item in args[0].ids['_left_container'].walk():
+		# # for item in args[0].walk():
+		# #     try:
+		# #         if 'left_icon' in item.name:
+		# #             print (item.name)
+		# #             self.wids.append(item)
+		# #     except :
+		# #         pass
+		# #     # print (type(item))
 
-	# 	# 	# print (item)
-	# 	# print ('----')
-	# 	# 	# try:
-	# 	# 	#     if ('left_icon' in item.name):
-	# 	# 	#         self.wids.append(item)
-	# 	# 	# except:
-	# 	# 	#     pass
+		# 	# print (item)
+		# print ('----')
+		# 	# try:
+		# 	#     if ('left_icon' in item.name):
+		# 	#         self.wids.append(item)
+		# 	# except:
+		# 	#     pass
 
-	# 	# print (self.wids)
+		# print (self.wids)
 
-	# def toggle_military_2(self,*args):
-	# 	# print(dir(args[0]))
-	# 	# print('children: ',(args[0].children))
-	# 	# # for item in args[0].walk():
-	# 	# #     print (item)
-	# 	# # print ()
+	def toggle_military_2(self,*args):
+		# print(dir(args[0]))
+		# print('children: ',(args[0].children))
+		# # for item in args[0].walk():
+		# #     print (item)
+		# # print ()
 
-	# 	# for item in self.wids:
-	# 	#     print (item.name)
-	# 	#     if args[0]!=item:
-	# 	#         # try:
-	# 	#         item.icon='checkbox-blank-circle-outline'
-	# 	#         if item.icon=='circle-slice-8':
-	# 	#             item.icon='checkbox-blank-circle-outline'
-	# 	#         else:
-	# 	#             item.icon='circle-slice-8'
-	# 	#         # except:
-	# 	#         #     pass
-	# 	#     print ()
+		# for item in self.wids:
+		#     print (item.name)
+		#     if args[0]!=item:
+		#         # try:
+		#         item.icon='checkbox-blank-circle-outline'
+		#         if item.icon=='circle-slice-8':
+		#             item.icon='checkbox-blank-circle-outline'
+		#         else:
+		#             item.icon='circle-slice-8'
+		#         # except:
+		#         #     pass
+		#     print ()
 
-	# 	# print (type(args[0].ids['_left_container'].walk))
-	# 	curr_icon=None
+		# print (type(args[0].ids['_left_container'].walk))
+		curr_icon=None
 
-	# 	for item in args[0].ids['_left_container'].walk():
-	# 		try:
-	# 			if ('left_icon' in item.name):
-	# 				self.option_names_dict[item.name]=item
-	# 				curr_icon=item.name
-	# 				if item.icon=='circle-slice-8':
-	# 					item.icon='checkbox-blank-circle-outline'
-	# 				else:
-	# 					item.icon='circle-slice-8'
+		for item in args[0].ids['_left_container'].walk():
+			try:
+				if ('left_icon' in item.name):
+					self.option_names_dict[item.name]=item
+					curr_icon=item.name
+					if item.icon=='circle-slice-8':
+						item.icon='checkbox-blank-circle-outline'
+					else:
+						item.icon='circle-slice-8'
 
-	# 					# print (item.name,dir(item))
+						# print (item.name,dir(item))
 
-	# 					# for thing in item.ids:
-	# 					#     print (thing)
-	# 					# print(item.text_color)
-	# 					# print(item.theme_cls)
-	# 					# print(item.theme_text_color)
-	# 				break
-	# 		except:
-	# 			pass
-	# 	# print ('selected: ',curr_icon)
-
-
-	# 	for k,v in self.option_names_dict.items():
-	# 		if k!=curr_icon:
-	# 			try:
-	# 				v.icon='checkbox-blank-circle-outline'
-	# 			except:
-	# 				pass
-
-	# def on_checkbox_active(self, checkbox, value):
-	# 	if value:
-	# 		print('The checkbox', checkbox, 'is active', 'and', checkbox.state, 'state')
-	# 	else:
-	# 		print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')
-
-	# def arrow_left(self):
-	# 	if self.curr_tab_num==0:
-	# 		self.parent.transition.direction="right"
-	# 		self.parent.current="RiskAssesmentPage"
-	# 	else:
-	# 		self.curr_tab_num-=1
-	# 		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-
-	# def arrow_right(self):
-	# 	self.done_dict[self.tab_names[self.curr_tab_num]]=True
-	# 	if self.curr_tab_num==self.num_tabs-1:
-	# 		self.parent.transition.direction="left"
-	# 		self.parent.current="LocationPage"
-	# 	else:
-	# 		self.curr_tab_num+=1
-	# 		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+						# for thing in item.ids:
+						#     print (thing)
+						# print(item.text_color)
+						# print(item.theme_cls)
+						# print(item.theme_text_color)
+					break
+			except:
+				pass
+		# print ('selected: ',curr_icon)
 
 
-	# def chevron_left(self):
-	# 	chevron_left_global(self)
+		for k,v in self.option_names_dict.items():
+			if k!=curr_icon:
+				try:
+					v.icon='checkbox-blank-circle-outline'
+				except:
+					pass
 
-	# def on_pre_enter(self):
-	# 	self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-	# 	self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-	# 	Window.softinput_mode=''
-	# 	print (Window.softinput_mode)
-	# 	# Window.release_all_keyboards()
+	def on_checkbox_active(self, checkbox, value):
+		if value:
+			print('The checkbox', checkbox, 'is active', 'and', checkbox.state, 'state')
+		else:
+			print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')
 
-	# 	self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
-	# 	Window.release_all_keyboards()
-	# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+	def arrow_left(self):
+		if self.curr_tab_num==0:
+			self.parent.transition.direction="right"
+			self.parent.current="RiskAssesmentPage"
+		else:
+			self.curr_tab_num-=1
+			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+
+	def arrow_right(self):
+		self.done_dict[self.tab_names[self.curr_tab_num]]=True
+		if self.curr_tab_num==self.num_tabs-1:
+			self.parent.transition.direction="left"
+			self.parent.current="LocationPage"
+		else:
+			self.curr_tab_num+=1
+			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 
-	# def on_pre_leave(self):
-	# 	num_done=0
-	# 	total=0
-	# 	for k,v in self.done_dict.items():
-	# 		if v==True:
-	# 			num_done+=1
-	# 			total+=1
-	# 	# print (num_done)
-	# 	pct=int(round(100*(num_done/self.num_tabs),0))
-	# 	pct_txt=str(pct)+'% Complete'
-	# 	# print (pct)
-	# 	self.parent.ids['RiskAssesmentPage'].ids['SocioDemographicPage_label'].secondary_text=pct_txt
-	# 	self.parent.demographics_score=total
+	def chevron_left(self):
+		chevron_left_global(self)
 
-	# def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-	# 	count_icon = instance_tab.text
-	# 	# print it on shell/bash.
-	# 	# print(f"Welcome to {count_icon}' tab'")
+	def on_pre_enter(self):
+		self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
+		self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
+		Window.softinput_mode=''
+		print (Window.softinput_mode)
+		# Window.release_all_keyboards()
 
-	# 	self.curr_tab_num=self.tab_num_dict[instance_tab.text]-1
-	# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+		self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
+		Window.release_all_keyboards()
+		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
-	# def switch_tab_by_object(self):
-	# 	try:
-	# 		x = next(self.iter_list_objects)
-	# 		print(f"Switch slide by object, next element to show: [{x}]")
-	# 		self.root.ids.tabs.switch_tab(x)
-	# 	except StopIteration:
-	# 		# reset the iterator an begin again.
-	# 		self.iter_list_objects = iter(list(self.root.ids.tabs.get_tab_list()))
-	# 		self.switch_tab_by_object()
 
-	# def switch_tab_by_name(self):
-	# 	'''Switching the tab by name.'''
-	# 	try:
-	# 		x = next(self.iter_list_names)
-	# 		print(f"Switch slide by name, next element to show: [{x}]")
-	# 		self.root.ids.tabs.switch_tab(x)
-	# 	except StopIteration:
-	# 		# Reset the iterator an begin again.
-	# 		self.iter_list_names = iter(list(self.icons))
-	# 		self.switch_tab_by_name()
+	def on_pre_leave(self):
+		num_done=0
+		total=0
+		for k,v in self.done_dict.items():
+			if v==True:
+				num_done+=1
+				total+=1
+		# print (num_done)
+		pct=int(round(100*(num_done/self.num_tabs),0))
+		pct_txt=str(pct)+'% Complete'
+		# print (pct)
+		self.parent.ids['RiskAssesmentPage'].ids['SocioDemographicPage_label'].secondary_text=pct_txt
+		self.parent.demographics_score=total
 
-	# def validate_text(self,*args):
-	# 	print (args[0])
-	# 	print (args[0].name)
+	def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
+		count_icon = instance_tab.text
+		# print it on shell/bash.
+		# print(f"Welcome to {count_icon}' tab'")
 
-	# def on_numpad_press(self,*args):
-	# 	print(args)
+		self.curr_tab_num=self.tab_num_dict[instance_tab.text]-1
+		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
-	# 	if self.ids['age_text_field'].text=='< MM / DD / YYYY >':
-	# 		self.ids['age_text_field'].text=''
+	def switch_tab_by_object(self):
+		try:
+			x = next(self.iter_list_objects)
+			print(f"Switch slide by object, next element to show: [{x}]")
+			self.root.ids.tabs.switch_tab(x)
+		except StopIteration:
+			# reset the iterator an begin again.
+			self.iter_list_objects = iter(list(self.root.ids.tabs.get_tab_list()))
+			self.switch_tab_by_object()
 
-	# 	if args[0].text=='del':
-	# 		if len(self.ids['age_text_field'].text)>0:
-	# 			self.ids['age_text_field'].text=self.ids['age_text_field'].text[0:len(self.ids['age_text_field'].text)-1]
-	# 			if len(self.ids['age_text_field'].text)==0:
-	# 				self.ids['age_text_field'].text='< MM / DD / YYYY >'
-	# 	else:
-	# 		self.ids['age_text_field'].text+=args[0].text
+	def switch_tab_by_name(self):
+		'''Switching the tab by name.'''
+		try:
+			x = next(self.iter_list_names)
+			print(f"Switch slide by name, next element to show: [{x}]")
+			self.root.ids.tabs.switch_tab(x)
+		except StopIteration:
+			# Reset the iterator an begin again.
+			self.iter_list_names = iter(list(self.icons))
+			self.switch_tab_by_name()
+
+	def validate_text(self,*args):
+		print (args[0])
+		print (args[0].name)
+
+	def on_numpad_press(self,*args):
+		print(args)
+
+		if self.ids['age_text_field'].text=='< MM / DD / YYYY >':
+			self.ids['age_text_field'].text=''
+
+		if args[0].text=='del':
+			if len(self.ids['age_text_field'].text)>0:
+				self.ids['age_text_field'].text=self.ids['age_text_field'].text[0:len(self.ids['age_text_field'].text)-1]
+				if len(self.ids['age_text_field'].text)==0:
+					self.ids['age_text_field'].text='< MM / DD / YYYY >'
+		else:
+			self.ids['age_text_field'].text+=args[0].text
 
 # --------------------------------------------------------------------- #
 
@@ -886,161 +886,6 @@ class BlueSkyApp(MDApp):
 			self.root.ids['LandingPage'].ids['content_drawer'].ids['md_list'].add_widget(
 				ItemDrawer(icon=icon_name, text=icons_item[icon_name]))
 
-		Clock.schedule_once(self.SocioDemographicPage,0.1)
-
-	def SocioDemographicPage(self,dt):
-		print ('switching to SocioDemographicPage')
-		self.root.current="SociodemographicPage"
-		Clock.schedule_once(self.LocationPage,0.1)
-
-	def LocationPage(self,dt):
-		print ('switching to LocationPage')
-		self.root.current="LocationPage"
-		Clock.schedule_once(self.AirPollutionLandingPage,0.1)
-
-	# --------------------------- Air Pollution --------------------------- #
-	def AirPollutionLandingPage(self,dt):
-		print ('switching to AirPollutionLandingPage')
-		self.root.current='AirPollutionLandingPage'
-		Clock.schedule_once(self.AirPollutionPage,0.1)
-
-	def AirPollutionPage(self,dt):
-		print ('switching to AirPollutionPage')
-		self.root.current='AirPollutionPage'
-		Clock.schedule_once(self.AirPollutionScorePage,0.1)
-
-	def AirPollutionScorePage(self,dt):
-		print ('switching to AirPollutionScorePage')
-		self.root.current='AirPollutionScorePage'
-		Clock.schedule_once(self.DietLandingPage,0.1)
-
-	# --------------------------------------------------------------------- #
-
-	def DietLandingPage(self,dt):
-		print ('switching to DietLandingPage')
-		self.root.current="DietLandingPage"
-		Clock.schedule_once(self.DietAndFoodPage,0.1)
-
-	def DietAndFoodPage(self,dt):
-		print ('switching to DietAndFoodPage')
-		self.root.current="DietAndFoodPage"
-		Clock.schedule_once(self.DietScorePage,0.1)
-
-	def DietScorePage(self,dt):
-		print ('switching to DietScorePage')
-		self.root.current="DietScorePage"
-		Clock.schedule_once(self.PhysicalActivityLandingPage,0.1)
-
-	# --------------------------------------------------------------------- #
-
-	def PhysicalActivityLandingPage(self,dt):
-		print ('switching to PhysicalActivityLandingPage')
-		self.root.current="PhysicalActivityLandingPage"
-		Clock.schedule_once(self.PhysicalActivityPage,0.1)
-
-	def PhysicalActivityPage(self,dt):
-		print ('switching to PhysicalActivityPage')
-		self.root.current="PhysicalActivityPage"
-		Clock.schedule_once(self.PhysicalActivityScorePage,0.1)
-
-	def PhysicalActivityScorePage(self,dt):
-		print ('switching to PhysicalActivityScorePage')
-		self.root.current="PhysicalActivityScorePage"
-		Clock.schedule_once(self.AlcoholLandingPage,0.1)
-
-	# --------------------------------------------------------------------- #
-
-	def AlcoholLandingPage(self,dt):
-		print ('switching to AlcoholLandingPage')
-		self.root.current="AlcoholLandingPage"
-		Clock.schedule_once(self.AlcoholUsagePage,0.1)
-
-	def AlcoholUsagePage(self,dt):
-		print ('switching to AlcoholUsagePage')
-		self.root.current="AlcoholUsagePage"
-		Clock.schedule_once(self.AlcoholScorePage,0.1)
-
-	def AlcoholScorePage(self,dt):
-		print ('switching to AlcoholScorePage')
-		self.root.current="AlcoholScorePage"
-		Clock.schedule_once(self.DepressionLandingPage,0.1)
-
-	# --------------------------------------------------------------------- #
-
-	def DepressionLandingPage(self,dt):
-		print ('switching to DepressionLandingPage')
-		self.root.current="DepressionLandingPage"
-		Clock.schedule_once(self.DepressionPage,0.1)
-
-	def DepressionPage(self,dt):
-		print ('switching to DepressionPage')
-		self.root.current="DepressionPage"
-		Clock.schedule_once(self.DepressionScorePage,0.1)
-
-	def DepressionScorePage(self,dt):
-		print ('switching to DepressionScorePage')
-		self.root.current="DepressionScorePage"
-		Clock.schedule_once(self.HyperTensionLandingPage,0.1)
-
-	# --------------------------------------------------------------------- #
-
-	def HyperTensionLandingPage(self,dt):
-		print ('switching to HyperTensionLandingPage')
-		self.root.current="HyperTensionLandingPage"
-		Clock.schedule_once(self.HyperTensionPage,0.1)
-
-	def HyperTensionPage(self,dt):
-		print ('switching to HyperTensionPage')
-		self.root.current="HyperTensionPage"
-		Clock.schedule_once(self.HyperTensionScorePage,0.1)
-
-	def HyperTensionScorePage(self,dt):
-		print ('switching to HyperTensionScorePage')
-		self.root.current="HyperTensionScorePage"
-		Clock.schedule_once(self.TraumaticBrainInjuryLandingPage,0.1)
-
-	# --------------------------------------------------------------------- #
-
-	def TraumaticBrainInjuryLandingPage(self,dt):
-		print ('switching to TraumaticBrainInjuryLandingPage')
-		self.root.current="TraumaticBrainInjuryLandingPage"
-		Clock.schedule_once(self.TraumaticBrainInjuryPage,0.1)
-
-	def TraumaticBrainInjuryPage(self,dt):
-		print ('switching to TraumaticBrainInjuryPage')
-		self.root.current="TraumaticBrainInjuryPage"
-		Clock.schedule_once(self.TraumaticBrainInjuryScorePage,0.1)
-
-	def TraumaticBrainInjuryScorePage(self,dt):
-		print ('switching to TraumaticBrainInjuryScorePage')
-		self.root.current="TraumaticBrainInjuryScorePage"
-		Clock.schedule_once(self.CognitiveDeclineLandingPage,0.1)
-
-	# --------------------------------------------------------------------- #
-
-
-	def CognitiveDeclineLandingPage(self,dt):
-		print ('switching to CognitiveDeclineLandingPage')
-		self.root.current="CognitiveDeclineLandingPage"
-		Clock.schedule_once(self.CognitiveDeclinePage,0.1)
-
-	def CognitiveDeclinePage(self,dt):
-		print ('switching to CognitiveDeclinePage')
-		self.root.current="CognitiveDeclinePage"
-		Clock.schedule_once(self.CognitiveDeclineScorePage,0.1)
-
-	def CognitiveDeclineScorePage(self,dt):
-		print ('switching to CognitiveDeclineScorePage')
-		self.root.current="CognitiveDeclineScorePage"
-		Clock.schedule_once(self.LandingPage,0.1)
-
-	# --------------------------------------------------------------------- #
-
-
-	def LandingPage(self,dt):
-		print ('switching to LandingPage')
-		self.root.current="LandingPage"
-
 	# --------------------------------------------------------------------- #
 
 	def build(self):
@@ -1057,9 +902,6 @@ class BlueSkyApp(MDApp):
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
 
-		Clock.max_iteration=50
-
-		print("Clock.max_iteration: ",Clock.max_iteration)
 
 		# print (dir(self.theme_cls))
 		# print (self.theme_cls.primary_hue)
@@ -1072,22 +914,7 @@ class BlueSkyApp(MDApp):
 		# print (self.theme_cls.colors['Dark']['StatusBar'])
 
 		Clock.schedule_once(self.sidebar, 1)  #otherwise widgets don't get added
-		# menu_items = [
-		#     {
-		#         "text": f"Item {i}",
-		#         "viewclass": "OneLineListItem",
-		#         "height": 56,
-		#         "on_release": lambda x=f"Item {i}": self.menu_callback(x),
-		#     } for i in range(5)
-		# ]
-		# self.menu = MDDropdownMenu(
-		#     header_cls=MenuHeader(),
-		#     caller=self.WindowManager.ids.button,
-		#     items=menu_items,
-		#     width_mult=4,
-		# )
-		# Clock.max_iteration=50
-		# print (Clock.max_iteration)
+
 
 		return self.WindowManager
 
