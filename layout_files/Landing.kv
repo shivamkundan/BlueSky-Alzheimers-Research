@@ -1,12 +1,12 @@
 #:set BTN_WIDTH 0.7
 #:set BTN_HEIGHT 0.5
+#:set IMG_SOURCE 'pics/logo_minimal.png'
+#:set IMG_SIZE (618,440)
 
 <LandingPage>:
     id:LandingPage
 
-
     BoxLayout:
-        id:BL
         my_im:my_im
         orientation: 'vertical'
 
@@ -15,16 +15,14 @@
 
         Image:
             id:my_im
-            source: 'pics/logo_minimal.png'
+            source: IMG_SOURCE
             opacity:0.85
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size:(618,440)
-
+            size: IMG_SIZE
         Widget:
             size_hint_y:0.5
 
         Button:
-            id:btn1
             text:'Risk Assesment'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
@@ -36,36 +34,25 @@
             size_hint_y:0.05
 
         Button:
-            id:btn2
             text:'Educational Resources'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-            # font_size:'20sp'
-            # font_name: font_black
             font_style:'Button'
         Widget:
             size_hint_y:0.05
 
         Button:
-            id:btn3
             text:'Cognitive Rehabilitation'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-            # font_size:'20sp'
-            pos_hint:{'center_x':0.5}
-            # font_name: font_black
             font_style:'Button'
         Widget:
             size_hint_y:0.05
 
         Button:
-            id:btn4
             text:'About'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-            # font_size:'20sp'
-            pos_hint:{'center_x':0.5}
-            # font_name: font_black
             font_style:'Button'
             on_release:
                 root.manager.transition.direction="left"
@@ -73,29 +60,20 @@
         Widget
 
         ScaleLabel:
-            id:l2
             text: 'Human & Behavioral Sciences\nSouthern Illinois University, Carbondale'
             halign: 'center'
-            # valign: 'bottom'
             font_size: self.height * 0.18
             padding: dp(0), dp(0)
             spacing: dp(-10), dp(-10)
-            # font_size:'12sp'
             size_hint_y: 0.5
             font_name: '/Users/shivamkundan/Developer/HealthApp/scalasansot-cufonfonts/ScalaSansOT-Regular.otf'
-        # Label:
-        #     size_hint_y:0.01
-        #     md_bg_color:1,0,0,0.5
-        #     text:''
 
     MDNavigationLayout:
         nav_drawer:nav_drawer
         content_drawer:content_drawer
         ScreenManager:
 
-
             MDScreen:
-
                 MDBoxLayout:
                     orientation: 'vertical'
 
@@ -119,13 +97,7 @@
         MDNavigationDrawer:
             id: nav_drawer
             content_drawer:content_drawer
-            # size_hint_max_x: 0.1
-            # size_max_x: 20
             size_hint_x:0.5
-            # on_leave:print(dir(self))
-
             on_disabled:print('disable')
-
             ContentNavigationDrawer:
-
                 id: content_drawer

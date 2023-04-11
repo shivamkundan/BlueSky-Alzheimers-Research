@@ -58,15 +58,15 @@ class LandingPage(ThemableBehavior,MDScreen):
 		self.parent.transition.direction="right"
 		self.parent.current='RiskAssesmentPage'
 
-	def animate_logo(self,*args):
-		print(args)
-		print (dir(self.ids['my_im']))
-		anim=Animation(size=(100,100),opacity=0.5,duration=2,pos_hint={'center_x': 0.5, 'center_y': 0.5})
-		# anim=Animation(anchor_x='top',anchor_y='center')
-		anim.start(self.ids['my_im'])
+	# def animate_logo(self,*args):
+	# 	print(args)
+	# 	print (dir(self.ids['my_im']))
+	# 	anim=Animation(size=(100,100),opacity=0.5,duration=2,pos_hint={'center_x': 0.5, 'center_y': 0.5})
+	# 	# anim=Animation(anchor_x='top',anchor_y='center')
+	# 	anim.start(self.ids['my_im'])
 
-		anim.bind(on_complete=self.unhide)
-		# self.unhide()
+	# 	anim.bind(on_complete=self.unhide)
+	# 	# self.unhide()
 
 	def motion(self,wid,*args):
 		print(widget,args)
@@ -78,14 +78,6 @@ class LandingPage(ThemableBehavior,MDScreen):
 
 	def themer(self,*args):
 		self.ids['my_im'].reload()
-
-	def unhide(self,*args):
-		print (args)
-		# self.ids['logo'].canvas.opacity=1
-		self.hide_widget(dohide=False)
-		print (Window.size)
-
-
 
 	def hide_widget(self,wid=None, dohide=True):
 		# print (self.get_widgets())
