@@ -43,7 +43,6 @@ class LoadingPage(MDScreen):
 		# self.parent.transition=FadeTransition()
 		self.parent.current='LandingPage'
 
-
 	def on_enter(self):
 		Clock.schedule_once(self.transitioner,5)
 		# self.ids['prog'].start()
@@ -57,16 +56,6 @@ class LandingPage(ThemableBehavior,MDScreen):
 	def chevron_left(self,*args):
 		self.parent.transition.direction="right"
 		self.parent.current='RiskAssesmentPage'
-
-	# def animate_logo(self,*args):
-	# 	print(args)
-	# 	print (dir(self.ids['my_im']))
-	# 	anim=Animation(size=(100,100),opacity=0.5,duration=2,pos_hint={'center_x': 0.5, 'center_y': 0.5})
-	# 	# anim=Animation(anchor_x='top',anchor_y='center')
-	# 	anim.start(self.ids['my_im'])
-
-	# 	anim.bind(on_complete=self.unhide)
-	# 	# self.unhide()
 
 	def motion(self,wid,*args):
 		print(widget,args)
@@ -111,10 +100,6 @@ class LoginPage(MDScreen):
 			)
 		self.dialog.open()
 
-
-
-
-
 	def close_dialog(self,*args):
 		self.dialog.dismiss()
 
@@ -128,18 +113,18 @@ class RiskAssesmentPage(MDScreen):
 		# Clock.schedule_once(self.init_tap_target, 1)
 
 	# def init_tap_target(self,*args):
-	#     self.tap_target_view = MDTapTargetView(
-	#         widget=self.ids.button,
-	#         title_text="This is an add button",
-	#         description_text="This is a description of the button",
-	#         widget_position="right_top",
-	#         cancelable=True,
-	#         # outer_circle_color=(1,0,0),
-	#         target_radius=50,
-	#         outer_radius=300,
-	#         outer_circle_alpha=1.0,
-	#         # target_circle_color=(0, 1, 0),
-	#     )
+	# 	self.tap_target_view = MDTapTargetView(
+	# 		widget=self.ids.button,
+	# 		title_text="This is an add button",
+	# 		description_text="This is a description of the button",
+	# 		widget_position="right_top",
+	# 		cancelable=True,
+	# 		# outer_circle_color=(1,0,0),
+	# 		target_radius=50,
+	# 		outer_radius=300,
+	# 		outer_circle_alpha=1.0,
+	# 		# target_circle_color=(0, 1, 0),
+	# 	)
 
 	def update_score(self,dt):
 		temp=0
@@ -847,7 +832,7 @@ class BlueSkyApp(MDApp):
 			exit()
 
 		elif selected_button=='Developer':
-		    MDApp.open_settings(self)
+			MDApp.open_settings(self)
 
 		elif selected_button=='Themes':
 			self.show_theme_picker()
