@@ -13,7 +13,6 @@ from datetime import datetime
 import time
 import webbrowser
 
-
 KV_FILE='health_app.kv' # kivy design file
 
 # MAX_SIZE = (1280, 800)
