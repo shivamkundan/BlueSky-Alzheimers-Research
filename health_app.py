@@ -831,16 +831,10 @@ class BlueSkyApp(MDApp):
 		theme_dialog.open()
 
 	def nav_handler(self):
-		print ('nav_handler')
 		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("open")
 		curr_state=self.root.ids['LandingPage'].ids['nav_drawer'].state
 
 	def nav_closer(self,*args):
-		# print ('nav_closer')
-		# print(args)
-		# print(args[0].icon)
-		# print(args[0].text)
-
 		selected_button=args[0].text
 
 		# print ('selected_button: ',selected_button)
@@ -878,4 +872,8 @@ class BlueSkyApp(MDApp):
 if __name__=='__main__':
 	# Config.set('kivy', 'keyboard_mode', 'systemandmulti')
 	# Config.set("kivy", "keyboard_layout", 'numeric.json')
-	BlueSkyApp().run()
+	try:
+		BlueSkyApp().run()
+	except KeyboardInterrupt:
+		print ("KeyboardInterrupt\n exiting")
+		exit()

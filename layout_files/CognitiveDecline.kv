@@ -57,7 +57,6 @@
                 size_hint_x:1
                 text:'                     >                       '
                 on_release:
-                    # root.parent.ids['CognitiveDeclinePage'].ids['android_tabs'].switch_tab('1')
                     root.arrow_right()
 
 <CognitiveDeclinePage>:
@@ -68,11 +67,9 @@
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
 			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
 			elevation:8
-		# MDLabel:
-		# 	text:''
 
 		MDBoxLayout:
-			size_hint_y:0.7
+			size_hint_y:1
 
 			MDTabs:
 				id: android_tabs
@@ -137,11 +134,11 @@
 							halign: 'center'
 							size_hint_x:0.9
 
-
-
+		Widget
+			size_hint_y:0.5
 
 		BoxLayout:
-			size_hint_y:0.3
+			size_hint_y:0.1
 			orientation: 'horizontal'
 			Button:
 				text:'                     <                       '
@@ -199,9 +196,6 @@
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.arrow_right()
 
-
-        MDLabel:
-            size_hint_y:0.7
 
 
         BoxLayout:

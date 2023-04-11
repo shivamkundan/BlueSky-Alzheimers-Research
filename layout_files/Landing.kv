@@ -1,4 +1,5 @@
-
+#:set BTN_WIDTH 0.7
+#:set BTN_HEIGHT 0.5
 
 <LandingPage>:
     id:LandingPage
@@ -26,7 +27,7 @@
             id:btn1
             text:'Risk Assesment'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint:0.7,None  #separate size hints results in clock iteration error
+            size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
             font_style:'Button'
             on_release:
                 root.manager.current="RiskAssesmentPage"
@@ -38,7 +39,7 @@
             id:btn2
             text:'Educational Resources'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint:0.7,None  #separate size hints results in clock iteration error
+            size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
             # font_size:'20sp'
             # font_name: font_black
             font_style:'Button'
@@ -49,7 +50,7 @@
             id:btn3
             text:'Cognitive Rehabilitation'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint:0.7,None  #separate size hints results in clock iteration error
+            size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
             # font_size:'20sp'
             pos_hint:{'center_x':0.5}
             # font_name: font_black
@@ -61,7 +62,7 @@
             id:btn4
             text:'About'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint:0.7,None  #separate size hints results in clock iteration error
+            size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
             # font_size:'20sp'
             pos_hint:{'center_x':0.5}
             # font_name: font_black
