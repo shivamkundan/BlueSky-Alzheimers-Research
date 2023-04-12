@@ -2,3 +2,5 @@ out.txt
 zip_codes/
 __*
 .DS_Store
+.buildozer*
+bin/*

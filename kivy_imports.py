@@ -1,5 +1,5 @@
 import kivy
-# kivy.require("1.9.1")
+kivy.require("1.9.1")
 
 # basics
 from kivy.config import Config

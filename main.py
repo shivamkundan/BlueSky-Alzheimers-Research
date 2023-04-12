@@ -11,7 +11,7 @@ from page_templates import *
 
 from datetime import datetime
 import time
-import webbrowser
+# import webbrowser
 
 KV_FILE='health_app.kv' # kivy design file
 
@@ -794,17 +794,18 @@ class BlueSkyApp(MDApp):
 			self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal.png'
 
 	def show_theme_picker(self):
-		theme_dialog = MDThemePicker(on_dismiss=self.themer)
-		for item in theme_dialog.ids:
-			print (item)
+		pass
+		# theme_dialog = MDThemePicker(on_dismiss=self.themer)
+		# for item in theme_dialog.ids:
+		# 	print (item)
 
-		for item in theme_dialog.ids['theme_tab'].walk():
-			print (item)
-		print ('---')
-		for item in theme_dialog.ids['primary_box'].walk():
-			print (item.ids)
+		# for item in theme_dialog.ids['theme_tab'].walk():
+		# 	print (item)
+		# print ('---')
+		# for item in theme_dialog.ids['primary_box'].walk():
+		# 	print (item.ids)
 
-		theme_dialog.open()
+		# theme_dialog.open()
 
 	def nav_handler(self):
 		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("open")
