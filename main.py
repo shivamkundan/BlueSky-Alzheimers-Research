@@ -731,8 +731,6 @@ class BlueSkyApp(MDApp):
 		super(BlueSkyApp,self).__init__(**kwargs)
 		self.curr_state='close'
 
-		print (list(md_icons.keys()))
-
 	def sidebar(self,dt=None):
 		# self.root.current='LoadingPage'
 		icons_item = {
