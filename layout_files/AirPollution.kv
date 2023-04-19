@@ -14,7 +14,7 @@
 	BoxLayout:
 		orientation: 'vertical'
 
-		MDToolbar:
+		MDTopAppBar:
 			title: 'Air Pollution'
 			halign: 'left'
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
@@ -69,7 +69,7 @@
 
 	BoxLayout:
 		orientation: 'vertical'
-		MDToolbar:
+		MDTopAppBar:
 			title: 'Air Pollution'
 			halign: 'left'
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
@@ -87,6 +87,7 @@
 
 				Tab:
 					text:'1'
+					icon:'blank'
 					BoxLayout:
 						orientation:'vertical'
 
@@ -97,6 +98,7 @@
 
 				Tab:
 					text:'2'
+					icon:'blank'
 					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
@@ -105,6 +107,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'3'
+					icon:'blank'
 					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
@@ -113,6 +116,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'4'
+					icon:'blank'
 					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
@@ -121,6 +125,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'5'
+					icon:'blank'
 					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
@@ -129,6 +134,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'6'
+					icon:'blank'
 					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
@@ -137,6 +143,7 @@
 							size_hint_x:0.9
 				Tab:
 					text:'7'
+					icon:'blank'
 					BoxLayout:
 						orientation:'vertical'
 						MDLabel:
@@ -256,7 +263,7 @@
 	score_label:score_label
 	BoxLayout:
 		orientation: 'vertical'
-		MDToolbar:
+		MDTopAppBar:
 
 			title: 'Air Pollution'
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]

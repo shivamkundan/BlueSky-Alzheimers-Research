@@ -11,7 +11,7 @@
 	BoxLayout:
 		orientation: 'vertical'
 
-		MDToolbar:
+		MDTopAppBar:
 			title: cognitive_toolbar_title
 			halign: 'left'
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
@@ -62,7 +62,7 @@
 <CognitiveDeclinePage>:
 	BoxLayout:
 		orientation: 'vertical'
-		MDToolbar:
+		MDTopAppBar:
 			title: cognitive_toolbar_title
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
 			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
@@ -77,6 +77,7 @@
 				on_tab_switch: root.on_tab_switch(*args)
 
 				Tab:
+					icon:'blank'
 					text:'1'
 					MDBoxLayout:
 					    orientation:'vertical'
@@ -111,6 +112,7 @@
 
 
 				Tab:
+					icon:'blank'
 					text:'2'
 					MDBoxLayout:
 					    orientation: 'vertical'
@@ -126,6 +128,7 @@
 							source: penny_image
 							pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 				Tab:
+					icon:'blank'
 					text:'3'
 					MDBoxLayout:
 						orientation:'vertical'
@@ -153,7 +156,7 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
-        MDToolbar:
+        MDTopAppBar:
 
             title: cognitive_toolbar_title
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]

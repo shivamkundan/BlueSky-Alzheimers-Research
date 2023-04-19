@@ -5,7 +5,7 @@
     BoxLayout:
         orientation: 'vertical'
 
-        MDToolbar:
+        MDTopAppBar:
             title: 'Demographics'
             halign: 'left'
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
@@ -21,6 +21,7 @@
             width:10
 
             Tab:
+                icon:'blank'
                 # tab_width:5
                 text:'Age'
                 MDBoxLayout:
@@ -66,6 +67,7 @@
                             for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press,background_color= app.theme_cls.colors['Light']['StatusBar']))
 
             Tab:
+                icon:'blank'
                 text:'Sex'
                 MDBoxLayout:
                     orientation:'vertical'
@@ -97,6 +99,7 @@
                             group:'g1'
 
             Tab:
+                icon:'blank'
                 text:'Zip Code'
                 MDBoxLayout:
                     orientation:'vertical'
@@ -134,6 +137,7 @@
                         icon_right:'info'
 
             Tab:
+                icon:'blank'
                 text:'Military (1)'
                 MDBoxLayout:
                     orientation:'vertical'
@@ -179,6 +183,7 @@
                                     icon:'checkbox-blank-circle-outline'
 
             Tab:
+                icon:'blank'
                 text:'Military (2)'
                 MDBoxLayout:
                     orientation:'vertical'

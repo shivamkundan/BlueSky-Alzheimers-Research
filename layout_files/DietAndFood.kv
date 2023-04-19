@@ -29,7 +29,7 @@
     BoxLayout:
         orientation: 'vertical'
 
-        MDToolbar:
+        MDTopAppBar:
             title: diet_toolbar_title
             halign: 'left'
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
@@ -87,7 +87,7 @@
 
     BoxLayout:
         orientation: 'vertical'
-        MDToolbar:
+        MDTopAppBar:
             title: diet_toolbar_title
             halign: 'left'
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
@@ -104,6 +104,7 @@
                 on_tab_switch: root.on_tab_switch(*args)
 
                 Tab:
+                    icon:'blank'
                     text:'1'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -114,6 +115,7 @@
                             size_hint_x:0.9
 
                 Tab:
+                    icon:'blank'
                     text:'2'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -122,6 +124,7 @@
                             halign: 'center'
                             size_hint_x:0.9
                 Tab:
+                    icon:'blank'
                     text:'3'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -130,6 +133,7 @@
                             halign: 'center'
                             size_hint_x:0.9
                 Tab:
+                    icon:'blank'
                     text:'4'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -138,6 +142,7 @@
                             halign: 'center'
                             size_hint_x:0.9
                 Tab:
+                    icon:'blank'
                     text:'5'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -146,6 +151,7 @@
                             halign: 'center'
                             size_hint_x:0.9
                 Tab:
+                    icon:'blank'
                     text:'6'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -154,6 +160,7 @@
                             halign: 'center'
                             size_hint_x:0.9
                 Tab:
+                    icon:'blank'
                     text:'7'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -163,6 +170,7 @@
                             size_hint_x:0.9
 
                 Tab:
+                    icon:'blank'
                     text:'8'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -171,6 +179,7 @@
                             halign: 'center'
                             size_hint_x:0.9
                 Tab:
+                    icon:'blank'
                     text:'9'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -179,6 +188,7 @@
                             halign: 'center'
                             size_hint_x:0.9
                 Tab:
+                    icon:'blank'
                     text:'10'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -187,6 +197,7 @@
                             halign: 'center'
                             size_hint_x:0.9
                 Tab:
+                    icon:'blank'
                     text:'11'
                     MDBoxLayout:
                         orientation:'vertical'
@@ -271,7 +282,7 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
-        MDToolbar:
+        MDTopAppBar:
 
             title: diet_toolbar_title
             left_action_items: [["chevron-left", lambda x: root.chevron_left()]]

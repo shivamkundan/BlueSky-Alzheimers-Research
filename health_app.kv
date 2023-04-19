@@ -171,7 +171,7 @@ WindowManager:
 	BoxLayout:
 		orientation: 'vertical'
 
-		MDToolbar:
+		MDTopAppBar:
 			title: 'Risk Assesment'
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
 			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: print('help')]]
@@ -361,7 +361,7 @@ WindowManager:
 <AboutPage>:
 	BoxLayout:
 		orientation: 'vertical'
-		MDToolbar:
+		MDTopAppBar:
 			title: 'About'
 			halign: 'left'
 			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]

@@ -1,5 +1,6 @@
 import kivy
 kivy.require("1.9.1")
+# kivy.require("2.2.0")
 
 # basics
 from kivy.config import Config
@@ -30,7 +31,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.uix.behaviors.toggle_behavior import MDToggleButton
-from kivymd.uix.picker import MDTimePicker,MDDatePicker,MDThemePicker
+# from kivymd.uix.picker import MDTimePicker,MDDatePicker#,MDThemePicker
 from kivymd.uix.list import OneLineListItem, MDList, TwoLineListItem, ThreeLineListItem,OneLineAvatarIconListItem
 from kivymd.uix.list import OneLineIconListItem, IconLeftWidget, IconRightWidget, ImageLeftWidget, ImageRightWidget
 from kivymd.uix.label import MDLabel

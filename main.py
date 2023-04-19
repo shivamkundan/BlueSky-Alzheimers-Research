@@ -23,6 +23,8 @@ KV_FILE='health_app.kv' # kivy design file
 resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
 Window.size = resolutions[2]
 
+from kivymd.icon_definitions import md_icons
+
 # ===================================================================== #
 
 class LoadingPage(MDScreen):
@@ -728,6 +730,8 @@ class BlueSkyApp(MDApp):
 	def __init__(self,**kwargs):
 		super(BlueSkyApp,self).__init__(**kwargs)
 		self.curr_state='close'
+
+		print (list(md_icons.keys()))
 
 	def sidebar(self,dt=None):
 		# self.root.current='LoadingPage'
