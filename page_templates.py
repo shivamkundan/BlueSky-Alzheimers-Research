@@ -1,4 +1,4 @@
-from kivy_imports import Screen, Clock
+from kivy_imports import Screen#, Clock
 from globals import release_keyboard_global
 
 class SubPageBase(Screen):
@@ -103,7 +103,7 @@ class ScorePageTemplate(SubPageBase):
 	def on_pre_enter(self):
 		self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
 		release_keyboard_global(self)
-		Clock.schedule_once(self.update_score,0.2)
+		# Clock.schedule_once(self.update_score,0.2)
 
 	def reset_quiz(self):
 		# try:

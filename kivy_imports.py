@@ -1,6 +1,6 @@
 import kivy
-kivy.require("1.9.1")
-# kivy.require("2.2.0")
+# kivy.require("1.9.1")
+kivy.require("2.0.0")
 
 
 # basics
@@ -10,7 +10,7 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 
 # utlils
-from kivy.clock import Clock
+# from kivy.clock import Clock
 from kivy.uix.widget import Widget
 from kivy.uix.vkeyboard import VKeyboard
 from kivy.uix.screenmanager import ScreenManager, Screen

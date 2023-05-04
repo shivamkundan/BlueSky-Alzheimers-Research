@@ -29,13 +29,16 @@ WindowManager:
 	size: root.width, root.height
 
 	# ------------------------------------- #
-	LoadingPage:
-		name:'LoadingPage'
-		id:LoadingPage
 
 	LandingPage:
 		name:'LandingPage'
 		id:LandingPage
+
+	# LoadingPage:
+	# 	name:'LoadingPage'
+	# 	id:LoadingPage
+
+	
 
 	LoginPage:
 		id:LoginPage
@@ -171,16 +174,8 @@ WindowManager:
 		orientation: 'vertical'
 
 		ActionBar:
-			# title: 'Risk Assesment'
-			# left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			# right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: print('help')]]
-			# elevation:8
-
 			pos_hint: {'top':1}
-
 			ActionView:
-				# use_separator: True
-
 				ActionPrevious:
 					title: 'Risk Assesment'
 					# with_previous: False
@@ -392,12 +387,6 @@ WindowManager:
 <AboutPage>:
 	BoxLayout:
 		orientation: 'vertical'
-		# MDTopAppBar:
-		# 	title: 'About'
-		# 	halign: 'left'
-		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-		# 	elevation:8
-
 		ActionBar:
 		    ActionView:
 		        ActionPrevious:

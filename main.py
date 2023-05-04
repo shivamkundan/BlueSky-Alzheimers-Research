@@ -46,8 +46,9 @@ class LoadingPage(Screen):
 		self.parent.current='LandingPage'
 
 	def on_enter(self):
-		Clock.schedule_once(self.transitioner,LOADING_PAGE_PAUSE_SECONDS)
+		# Clock.schedule_once(self.transitioner,LOADING_PAGE_PAUSE_SECONDS)
 		# self.ids['prog'].start()
+		# self.parent.current='LandingPage'
 		for item in self.ids:
 			print(item)
 
@@ -64,7 +65,7 @@ class LandingPage(Screen):
 
 	def on_pre_enter(self):
 		release_keyboard_global(self)
-		Clock.schedule_once(self.themer,0.1)
+		# Clock.schedule_once(self.themer,0.1)
 
 
 	def themer(self,*args):
@@ -136,7 +137,8 @@ class RiskAssesmentPage(Screen):
 		self.ids['score_label'].text=str(temp)
 
 	def on_pre_enter(self):
-		Clock.schedule_once(self.update_score,0.2)
+		# Clock.schedule_once(self.update_score,0.2)
+		pass
 
 	def tap_target_start(self):
 		if self.tap_target_view.state == "close":
@@ -757,28 +759,12 @@ class BlueSkyApp(App):
 		# self.theme_cls.primary_palette = "BlueGray"
 		# self.theme_cls.primary_hue = "700"
 
-		self.icon = 'logo5.png'
-		# # self.theme_cls.accent_palette = "Orange"
-		# # self.theme_cls.theme_style = "Dark"
-
-		# self.theme_cls.accent_palette = "Amber"
-		# self.theme_cls.theme_style = "Light"
+		# self.icon = 'logo5.png'
 
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
 
-
-		# print (dir(self.theme_cls))
-		# print (self.theme_cls.primary_hue)
-		# print (self.theme_cls.primary_light_hue)
-		# print (self.theme_cls.sync_theme_styles)
-		# print (self.theme_cls.on_theme_style)
-		# print (self.theme_cls.colors['Light']['AppBar'])
-		# print (self.theme_cls.colors['Light']['StatusBar'])
-		# print (self.theme_cls.colors['Dark']['AppBar'])
-		# print (self.theme_cls.colors['Dark']['StatusBar'])
-
-		Clock.schedule_once(self.sidebar, 1)  #otherwise widgets don't get added
+		# Clock.schedule_once(self.sidebar, 1)  #otherwise widgets don't get added
 
 
 		return self.WindowManager
@@ -789,28 +775,15 @@ class BlueSkyApp(App):
 	def callback_2(self):
 		print ('hello')
 
-	def themer(self,*args):
-		print ('themer')
+	# def themer(self,*args):
+	# 	print ('themer')
 
-		if self.theme_cls.theme_style=='Dark':
-			self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal_white.png'
+	# 	if self.theme_cls.theme_style=='Dark':
+	# 		self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal_white.png'
 
-		elif self.theme_cls.theme_style=='Light':
-			self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal.png'
+	# 	elif self.theme_cls.theme_style=='Light':
+	# 		self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal.png'
 
-	def show_theme_picker(self):
-		pass
-		# theme_dialog = MDThemePicker(on_dismiss=self.themer)
-		# for item in theme_dialog.ids:
-		# 	print (item)
-
-		# for item in theme_dialog.ids['theme_tab'].walk():
-		# 	print (item)
-		# print ('---')
-		# for item in theme_dialog.ids['primary_box'].walk():
-		# 	print (item.ids)
-
-		# theme_dialog.open()
 
 	def nav_handler(self):
 		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("open")
