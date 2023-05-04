@@ -11,7 +11,7 @@
 
 # <LoadingPage>:
 
-    # MDBoxLayout:
+    # BoxLayout:
     #     orientation: 'vertical'
     #     MDTopAppBar:
     #         title: ''
@@ -24,10 +24,10 @@
 
 
 
-    # MDBoxLayout:
+    # BoxLayout:
     #     id:box_layout
 
-    #     MDLabel:
+    #     Label:
     #         md_bg_color:utils.get_color_from_hex('#455A64')
 
     #         Button:
@@ -61,7 +61,7 @@
 
 <LoadingPage>:
     # root.manager.transition:FadeTransition()
-    MDBoxLayout:
+    BoxLayout:
         md_bg_color: utils.get_color_from_hex('#455A64')
         orientation:'vertical'
         id:box_layout
@@ -74,7 +74,7 @@
         #     value: 50
         #     md_bg_color:0,0,0,0
 
-        MDLabel:
+        Label:
             id:logo
             md_bg_color: utils.get_color_from_hex('#455A64')
             canvas:
@@ -87,7 +87,7 @@
                     size: (size_x,size_y)
 
 
-        MDLabel:
+        Label:
             id:logo
             md_bg_color: utils.get_color_from_hex('#455A64')
             canvas:

@@ -1,7 +1,7 @@
-from kivy_imports import MDScreen, Clock
+from kivy_imports import Screen, Clock
 from globals import release_keyboard_global
 
-class SubPageBase(MDScreen):
+class SubPageBase(Screen):
 	def __init__(self,**kwargs):
 		super(SubPageBase,self).__init__(**kwargs)
 		self.page_name=None
@@ -49,7 +49,7 @@ class SubPageTemplate(SubPageBase):
 		# get the tab icon.
 		# count_icon = instance_tab.text
 		self.curr_tab_num=int(instance_tab.text)-1
-		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+		# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 	def update_score(self):
 		total=0
@@ -77,7 +77,7 @@ class SubPageTemplate(SubPageBase):
 			self.parent.current=self.next_page
 		else:
 			self.curr_tab_num+=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 	def arrow_left(self):
 		if self.curr_tab_num==0:
@@ -85,7 +85,7 @@ class SubPageTemplate(SubPageBase):
 			self.parent.current=self.prev_page
 		else:
 			self.curr_tab_num-=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 class ScorePageTemplate(SubPageBase):
 	def __init__(self,**kwargs):
@@ -106,9 +106,9 @@ class ScorePageTemplate(SubPageBase):
 		Clock.schedule_once(self.update_score,0.2)
 
 	def reset_quiz(self):
-		try:
-			self.parent.ids[self.prev_page].ids.android_tabs.switch_tab('1')
-		except:
-			pass
+		# try:
+		# 	self.parent.ids[self.prev_page].ids.android_tabs.switch_tab('1')
+		# except:
+		# 	pass
 		self.parent.transition.direction="right"
 		self.parent.current=self.landing_page

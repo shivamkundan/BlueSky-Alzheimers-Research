@@ -1,7 +1,7 @@
 
 # <ButtonSet>:
 
-#     MDBoxLayout:
+#     BoxLayout:
 #         orientation:'vertical'
 #         Button:
 #             # id:button7
@@ -17,7 +17,7 @@
 #             # size_hint_y:0.8
 #             pos_hint:{'center_x':0.5}
 #             on_release: root.button_press(7)
-#         MDLabel:
+#         Label:
 #             text:''
 #             size_hint_y:0.05
 #         Button:
@@ -31,7 +31,7 @@
 #             pos_hint:{'center_x':0.5}
 #             on_release: root.button_press(6)
 #             custom_color: 0, 1, 0, 1
-#         MDLabel:
+#         Label:
 #             text:''
 #             size_hint_y:0.05
 #         Button:
@@ -44,7 +44,7 @@
 #             # size_hint_y:0.8
 #             pos_hint:{'center_x':0.5}
 #             on_release: root.button_press(5)
-#         MDLabel:
+#         Label:
 #             text:''
 #             size_hint_y:0.05
 #         Button:
@@ -56,7 +56,7 @@
 #             font_style:'Button'
 #             pos_hint:{'center_x':0.5}
 #             on_release: root.button_press(4)
-#         MDLabel:
+#         Label:
 #             text:''
 #             size_hint_y:0.05
 #         Button:
@@ -68,7 +68,7 @@
 #             font_style:'Button'
 #             pos_hint:{'center_x':0.5}
 #             on_release: root.button_press(3)
-#         MDLabel:
+#         Label:
 #             text:''
 #             size_hint_y:0.05
 #         Button:
@@ -80,7 +80,7 @@
 #             font_style:'Button'
 #             pos_hint:{'center_x':0.5}
 #             on_release: root.button_press(2)
-#         MDLabel:
+#         Label:
 #             text:''
 #             size_hint_y:0.05
 #         Button:
@@ -94,33 +94,34 @@
 #             on_release: root.button_press(1)
 
 # =======================================
-<ItemDrawer>:
-    # Menu item in the DrawerList list.
-    theme_text_color: "Custom"
-    on_release:
-        self.parent.set_color_item(self)
-        self.parent.parent.parent.parent.set_state('close')
-        app.nav_closer(*args)
+# <ItemDrawer>:
+#     # Menu item in the DrawerList list.
+#     theme_text_color: "Custom"
+#     on_release:
+#         self.parent.set_color_item(self)
+#         self.parent.parent.parent.parent.set_state('close')
+#         app.nav_closer(*args)
 
-        # self.parent.parent.parent.parent.parent.hide_widget(dohide=False)
+#         # self.parent.parent.parent.parent.parent.hide_widget(dohide=False)
 
-    IconLeftWidget:
-        id: icon
-        icon: root.icon
-        theme_text_color: "Custom"
-        text_color: root.text_color
+#     IconLeftWidget:
+#         id: icon
+#         icon: root.icon
+#         theme_text_color: "Custom"
+#         text_color: root.text_color
 
 <ContentNavigationDrawer>:
     orientation: "vertical"
     padding: "8dp"
     spacing: "8dp"
-    md_list:md_list
+    # md_list:md_list
     AnchorLayout:
         anchor_x: "left"
         size_hint_y: None
         height: avatar.height
 
-        MDIconButton:
+        # MDIconButton:
+        Button:
             id: avatar
             # size_hint: None, None
             size: "56dp", "56dp"
@@ -129,26 +130,26 @@
             on_release: app.nav_closer(*args)
 
 
-    MDLabel:
+    Label:
         text: "Blue Sky"
         font_style: "H5"
         adaptive_height: True
 
-    MDLabel:
+    Label:
         text: "Alzheimer's Disease\nPrevention Program"
         font_style: "Caption"
         adaptive_height: True
 
     ScrollView:
-        md_list:md_list
-        DrawerList:
-            id: md_list
+        # md_list:md_list
+        # DrawerList:
+        #     id: md_list
 
 <Tab>:
 
-    MDLabel:
+    Label:
         id: label
-        MDLabel:
+        Label:
             # text: ""
             font_style:'Subtitle2'
             theme_text_color:"Hint"
@@ -157,7 +158,7 @@
             size_hint_x:0.9
 
 # =======================================
-<ScaleLabel@MDLabel>:
+<ScaleLabel@Label>:
     _scale: 1. if self.texture_size[0] < self.width else float(self.width) / self.texture_size[0]
     # _scale: 1. if self.texture_size[0] < self.width else float(self.width) / self.texture_size[0]
     canvas.before:

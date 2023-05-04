@@ -24,14 +24,14 @@
 
 		Widget
 			size_hint_y:0.3
-		MDLabel:
+		Label:
 			text: 'The Air Quality Index (AQI) is a measure of air pollution created by the United States Environmental Protection Agency. \n\nThe measure ranges from 0 to 500, with indices greater than 200 indicating risk to health.'
 			font_size:'14sp'
 			halign: 'left'
 			size_hint_x:0.8
 			pos_hint:{'center_x':0.5}
 
-		MDLabel:
+		Label:
 			# font_size:'2xw0sp'
 			text: 'Answer the following questions about pollution mask usage'
 			# text_color:DARK_BLUE
@@ -47,7 +47,7 @@
 			size_hint:0.7,0.25
 			pos_hint:{'center_x':0.5}
 			on_release:
-				root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
+				# root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
 				root.arrow_right()
 
 
@@ -62,7 +62,7 @@
 				size_hint_y:0.5
 				text:'                     >                       '
 				on_release:
-					root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
+					# root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
 					root.arrow_right()
 
 <AirPollutionPage>:
@@ -77,79 +77,79 @@
 			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
 			elevation:8
 
-		BoxLayout:
-			size_hint_y:0.7
+		# BoxLayout:
+		# 	size_hint_y:0.7
 
-			MDTabs:
-				id: android_tabs
-				tab_pos:'left_top'
-				on_tab_switch: root.on_tab_switch(*args)
+			# MDTabs:
+			# 	id: android_tabs
+			# 	tab_pos:'left_top'
+			# 	on_tab_switch: root.on_tab_switch(*args)
 
-				Tab:
-					text:'1'
-					icon:'blank'
-					BoxLayout:
-						orientation:'vertical'
+			# 	Tab:
+			# 		text:'1'
+			# 		icon:'blank'
+			# 		BoxLayout:
+			# 			orientation:'vertical'
 
-						MDLabel:
-							text: air_Q0
-							halign: 'center'
-							size_hint_x:0.9
+			# 			Label:
+			# 				text: air_Q0
+			# 				halign: 'center'
+			# 				size_hint_x:0.9
 
-				Tab:
-					text:'2'
-					icon:'blank'
-					BoxLayout:
-						orientation:'vertical'
-						MDLabel:
-							text: air_Q1
-							halign: 'center'
-							size_hint_x:0.9
-				Tab:
-					text:'3'
-					icon:'blank'
-					BoxLayout:
-						orientation:'vertical'
-						MDLabel:
-							text: air_Q2
-							halign: 'center'
-							size_hint_x:0.9
-				Tab:
-					text:'4'
-					icon:'blank'
-					BoxLayout:
-						orientation:'vertical'
-						MDLabel:
-							text: air_Q3
-							halign: 'center'
-							size_hint_x:0.9
-				Tab:
-					text:'5'
-					icon:'blank'
-					BoxLayout:
-						orientation:'vertical'
-						MDLabel:
-							text: air_Q4
-							halign: 'center'
-							size_hint_x:0.9
-				Tab:
-					text:'6'
-					icon:'blank'
-					BoxLayout:
-						orientation:'vertical'
-						MDLabel:
-							text: air_Q5
-							halign: 'center'
-							size_hint_x:0.9
-				Tab:
-					text:'7'
-					icon:'blank'
-					BoxLayout:
-						orientation:'vertical'
-						MDLabel:
-							text: air_Q6
-							halign: 'center'
-							size_hint_x:0.9
+			# 	Tab:
+			# 		text:'2'
+			# 		icon:'blank'
+			# 		BoxLayout:
+			# 			orientation:'vertical'
+			# 			Label:
+			# 				text: air_Q1
+			# 				halign: 'center'
+			# 				size_hint_x:0.9
+			# 	Tab:
+			# 		text:'3'
+			# 		icon:'blank'
+			# 		BoxLayout:
+			# 			orientation:'vertical'
+			# 			Label:
+			# 				text: air_Q2
+			# 				halign: 'center'
+			# 				size_hint_x:0.9
+			# 	Tab:
+			# 		text:'4'
+			# 		icon:'blank'
+			# 		BoxLayout:
+			# 			orientation:'vertical'
+			# 			Label:
+			# 				text: air_Q3
+			# 				halign: 'center'
+			# 				size_hint_x:0.9
+			# 	Tab:
+			# 		text:'5'
+			# 		icon:'blank'
+			# 		BoxLayout:
+			# 			orientation:'vertical'
+			# 			Label:
+			# 				text: air_Q4
+			# 				halign: 'center'
+			# 				size_hint_x:0.9
+			# 	Tab:
+			# 		text:'6'
+			# 		icon:'blank'
+			# 		BoxLayout:
+			# 			orientation:'vertical'
+			# 			Label:
+			# 				text: air_Q5
+			# 				halign: 'center'
+			# 				size_hint_x:0.9
+			# 	Tab:
+			# 		text:'7'
+			# 		icon:'blank'
+			# 		BoxLayout:
+			# 			orientation:'vertical'
+			# 			Label:
+			# 				text: air_Q6
+			# 				halign: 'center'
+			# 				size_hint_x:0.9
 
 		BoxLayout:
 			orientation:'vertical'
@@ -251,7 +251,7 @@
 
 	FloatLayout:
 		orientation: 'vertical'
-		MDLabel:
+		Label:
 			pos:(50,950)
 			text: air_Q_main
 			# md_bg_color:0,0,1,0.05
@@ -271,11 +271,11 @@
 			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
 			elevation:8
 
-		MDLabel:
+		Label:
 			text: 'Your score is:'
 			halign: 'center'
 
-		MDLabel:
+		Label:
 			id:score_label
 			text: ''
 			halign: 'center'

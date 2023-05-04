@@ -12,17 +12,17 @@
             # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
             elevation:8
 
-        MDLabel:
+        Label:
             text:''
             size_hint_y:0.3
-        MDLabel:
+        Label:
             text: 'High blood pressure, especially in midlife, is associated with at least an 18% increase in the risk for Alzheimer\'s'
             font_size:'14sp'
             halign: 'left'
             size_hint_x:0.8
             pos_hint:{'center_x':0.5}
 
-        MDLabel:
+        Label:
             # font_size:'2xw0sp'
             text: 'Answer the following questions about hypertension'
             # text_color:DARK_BLUE
@@ -53,7 +53,7 @@
                 on_release: root.arrow_right()
 
 <HyperTensionPage>:
-    MDBoxLayout:
+    BoxLayout:
 
         orientation:'vertical'
         MDTopAppBar:
@@ -63,14 +63,14 @@
             right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: app.callback_2()]]
             elevation:8
 
-        MDLabel:
+        Label:
             text:'Have you ever been told by a doctor or other health professional that you had hypertension, also called high blood pressure?'
             pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             size_hint_x:0.9
             size_hint_y:0.6
 
 
-        MDBoxLayout:
+        BoxLayout:
             orientation:'horizontal'
 
             Widget:
@@ -114,11 +114,11 @@
             # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
             elevation:8
 
-        MDLabel:
+        Label:
             text: 'Your score is:'
             halign: 'center'
 
-        MDLabel:
+        Label:
             id:score_label
             text: ''
             halign: 'center'
@@ -150,7 +150,7 @@
             on_release:root.arrow_right()
 
 
-        MDLabel:
+        Label:
             size_hint_y:0.7
 
 

@@ -23,10 +23,10 @@ KV_FILE='health_app.kv' # kivy design file
 resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
 Window.size = resolutions[2]
 
-from kivymd.icon_definitions import md_icons
+# from kivymd.icon_definitions import md_icons
 
 # ===================================================================== #
-class LoadingPage(MDScreen):
+class LoadingPage(Screen):
 	def __init__(self,**kwargs):
 		super(LoadingPage,self).__init__(**kwargs)
 
@@ -49,7 +49,7 @@ class LoadingPage(MDScreen):
 		for item in self.ids:
 			print(item)
 
-class LandingPage(ThemableBehavior,MDScreen):
+class LandingPage(Screen):
 	def __init__(self,**kwargs):
 		super(LandingPage,self).__init__(**kwargs)
 
@@ -81,7 +81,7 @@ class LandingPage(ThemableBehavior,MDScreen):
 				wid.saved_attrs = wid.height, wid.size_hint_y, wid.opacity, wid.disabled
 				wid.height, wid.size_hint_y, wid.opacity, wid.disabled = 0, None, 0, True
 
-class LoginPage(MDScreen):
+class LoginPage(Screen):
 	def __init__(self,**kwargs):
 		super(LoginPage,self).__init__(**kwargs)
 		self.dialog=False
@@ -91,21 +91,22 @@ class LoginPage(MDScreen):
 
 	def show_alert_dialog(self,*args):
 		print (args)
-		if not self.dialog:
-			self.dialog = MDDialog(
-				text="This feature has not been implemented yet",
-				buttons=[MDFlatButton(text="close",on_release=self.close_dialog),
-					# MDFlatButton(text="DISCARD",),
-					],
-			)
-		self.dialog.open()
+		print ("show_alert_dialog")
+		# if not self.dialog:
+		# 	self.dialog = MDDialog(
+		# 		text="This feature has not been implemented yet",
+		# 		buttons=[Button(text="close",on_release=self.close_dialog),
+		# 			# MDFlatButton(text="DISCARD",),
+		# 			],
+		# 	)
+		# self.dialog.open()
 
 	def close_dialog(self,*args):
 		self.dialog.dismiss()
 
 # --------------------------------------------------------------------- #
 
-class RiskAssesmentPage(MDScreen):
+class RiskAssesmentPage(Screen):
 	def __init__(self,**kwargs):
 		super(RiskAssesmentPage,self).__init__(**kwargs)
 		# self.score=0
@@ -146,7 +147,7 @@ class RiskAssesmentPage(MDScreen):
 
 # --------------------------------------------------------------------- #
 
-class SociodemographicPage(MDScreen):
+class SociodemographicPage(Screen):
 	def __init__(self,**kwargs):
 		super(SociodemographicPage,self).__init__(**kwargs)
 		self.tab_names=['Age','Sex','Zip Code','Military (1)','Military (2)']
@@ -254,7 +255,7 @@ class SociodemographicPage(MDScreen):
 			self.parent.current="RiskAssesmentPage"
 		else:
 			self.curr_tab_num-=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 	def arrow_right(self):
 		self.done_dict[self.tab_names[self.curr_tab_num]]=True
@@ -263,7 +264,7 @@ class SociodemographicPage(MDScreen):
 			self.parent.current="LocationPage"
 		else:
 			self.curr_tab_num+=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 
 	def chevron_left(self):
@@ -276,9 +277,9 @@ class SociodemographicPage(MDScreen):
 		print (Window.softinput_mode)
 		# Window.release_all_keyboards()
 
-		self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
+		# self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
 		Window.release_all_keyboards()
-		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+		# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 
 	def on_pre_leave(self):
@@ -344,7 +345,7 @@ class SociodemographicPage(MDScreen):
 
 # --------------------------------------------------------------------- #
 
-class LocationPage(MDScreen):
+class LocationPage(Screen):
 	def __init__(self,**kwargs):
 		super(LocationPage,self).__init__(**kwargs)
 		self.option_names_dict={'left_icon_urban':None,'left_icon_large_rural':None,'left_icon_small_rural':None,'left_icon_isolated':None}
@@ -652,14 +653,15 @@ class CognitiveDeclinePage(SubPageTemplate):
 			self.ids['year'].text+=args[0].text
 
 	def arrow_right(self):
-		if self.curr_tab_num==self.num_tabs-1:
-			self.parent.transition.direction="left"
-			self.parent.current=self.next_page
-		else:
-			self.curr_tab_num+=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+		print ("arrow_right")
+		# if self.curr_tab_num==self.num_tabs-1:
+		# 	self.parent.transition.direction="left"
+		# 	self.parent.current=self.next_page
+		# else:
+		# 	self.curr_tab_num+=1
+		# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 		# self.validate_text()
-		print (self.ids['year'].text)
+		# print (self.ids['year'].text)
 
 class CognitiveDeclineScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
@@ -670,7 +672,7 @@ class CognitiveDeclineScorePage(ScorePageTemplate):
 
 # --------------------------------------------------------------------- #
 
-class AboutPage(MDScreen):
+class AboutPage(Screen):
 	def __init__(self,**kwargs):
 		super(AboutPage,self).__init__(**kwargs)
 
@@ -743,22 +745,22 @@ class BlueSkyApp(MDApp):
 			"information-variant": "About",
 		}
 
-		for icon_name in icons_item.keys():
-			self.root.ids['LandingPage'].ids['content_drawer'].ids['md_list'].add_widget(
-				ItemDrawer(icon=icon_name, text=icons_item[icon_name]))
+		# for icon_name in icons_item.keys():
+		# 	self.root.ids['LandingPage'].ids['content_drawer'].ids['md_list'].add_widget(
+		# 		ItemDrawer(icon=icon_name, text=icons_item[icon_name]))
 
 	# --------------------------------------------------------------------- #
 
 	def build(self):
-		self.theme_cls.primary_palette = "BlueGray"
-		self.theme_cls.primary_hue = "700"
+		# self.theme_cls.primary_palette = "BlueGray"
+		# self.theme_cls.primary_hue = "700"
 
 		self.icon = 'logo5.png'
-		# self.theme_cls.accent_palette = "Orange"
-		# self.theme_cls.theme_style = "Dark"
+		# # self.theme_cls.accent_palette = "Orange"
+		# # self.theme_cls.theme_style = "Dark"
 
-		self.theme_cls.accent_palette = "Amber"
-		self.theme_cls.theme_style = "Light"
+		# self.theme_cls.accent_palette = "Amber"
+		# self.theme_cls.theme_style = "Light"
 
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'

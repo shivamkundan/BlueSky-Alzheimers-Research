@@ -2,7 +2,9 @@ import kivy
 kivy.require("1.9.1")
 # kivy.require("2.2.0")
 
+
 # basics
+# from kivy.app import App
 from kivy.config import Config
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -11,7 +13,7 @@ from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.uix.widget import Widget
 from kivy.uix.vkeyboard import VKeyboard
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 # ui/ux
 from kivy.animation import Animation
@@ -21,28 +23,15 @@ from kivy.uix.scrollview import ScrollView
 from kivy.properties import StringProperty, ListProperty
 from kivy.uix.floatlayout import FloatLayout
 
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+
+
 # =========================== KIVYMD ================================== #
 from kivymd.app import MDApp
-from kivymd.toast import toast
-from kivymd.uix.screen import MDScreen
 
-# basic ui/ux
-from kivymd.uix.menu import MDDropdownMenu
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.selectioncontrol import MDCheckbox
-from kivymd.uix.behaviors.toggle_behavior import MDToggleButton
-# from kivymd.uix.picker import MDTimePicker,MDDatePicker#,MDThemePicker
-from kivymd.uix.list import OneLineListItem, MDList, TwoLineListItem, ThreeLineListItem,OneLineAvatarIconListItem
-from kivymd.uix.list import OneLineIconListItem, IconLeftWidget, IconRightWidget, ImageLeftWidget, ImageRightWidget
-from kivymd.uix.label import MDLabel
-from kivymd.uix.button import MDTextButton, MDFlatButton, MDRectangleFlatButton, \
-									MDRectangleFlatIconButton, MDIconButton, MDRaisedButton,\
-									MDRoundFlatIconButton,MDFillRoundFlatIconButton,MDFillRoundFlatButton,\
-									MDFloatingActionButton,MDFloatingActionButtonSpeedDial
+# from kivymd.toast import toast
+# from kivymd.uix.screen import MDScreen
 
-# advanced ui/ux
-from kivymd.uix.tab import MDTabsBase
-from kivymd.icon_definitions import md_icons
-from kivymd.theming import ThemableBehavior
-# from kivymd.uix.taptargetview import MDTapTargetView
-from kivymd.uix.dialog import MDDialog
+from kivymd.uix.list import MDList
+from kivymd.uix.list import OneLineIconListItem

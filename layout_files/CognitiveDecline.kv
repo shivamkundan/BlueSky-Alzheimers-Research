@@ -19,17 +19,17 @@
 			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
 			elevation:8
 
-		MDLabel:
+		Label:
 			text:''
 			size_hint_y:0.3
-		MDLabel:
+		Label:
 			text: cognitive_landing_blurb
 			font_size:'14sp'
 			halign: 'left'
 			size_hint_x:0.8
 			pos_hint:{'center_x':0.5}
 
-		MDLabel:
+		Label:
 			# font_size:'2xw0sp'
 			text: cognitive_landing_subtitle
 			# text_color:DARK_BLUE
@@ -68,74 +68,74 @@
 			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
 			elevation:8
 
-		MDBoxLayout:
-			size_hint_y:1
+		# BoxLayout:
+		# 	size_hint_y:1
 
-			MDTabs:
-				id: android_tabs
-				tab_pos:'left_top'
-				on_tab_switch: root.on_tab_switch(*args)
+			# MDTabs:
+			# 	id: android_tabs
+			# 	tab_pos:'left_top'
+			# 	on_tab_switch: root.on_tab_switch(*args)
 
-				Tab:
-					icon:'blank'
-					text:'1'
-					MDBoxLayout:
-					    orientation:'vertical'
-					    MDLabel:
-					        text:'What year is this?'
-					        size_hint_x:0.9
-					        size_hint_y:1
-					        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					        halign:'left'
+			# 	Tab:
+			# 		icon:'blank'
+			# 		text:'1'
+			# 		BoxLayout:
+			# 		    orientation:'vertical'
+			# 		    Label:
+			# 		        text:'What year is this?'
+			# 		        size_hint_x:0.9
+			# 		        size_hint_y:1
+			# 		        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			# 		        halign:'left'
 
-					    MDTextField:
-					    	id:year
-					        name:'year'
-					        done:False
-					        size_hint_x:0.5
-					        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					        text:''
-					        halign:'left'
-					        multiline:False
-					        on_text_validate: root.validate_text(self)
-					    # MDLabel:
-					    #     text:''
+			# 		    MDTextField:
+			# 		    	id:year
+			# 		        name:'year'
+			# 		        done:False
+			# 		        size_hint_x:0.5
+			# 		        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			# 		        text:''
+			# 		        halign:'left'
+			# 		        multiline:False
+			# 		        on_text_validate: root.validate_text(self)
+			# 		    # Label:
+			# 		    #     text:''
 
-					    MDGridLayout:
-					        cols:3
-					        rows:4
-					        # adaptive_height: True
-					        # adaptive_width: True
-					        # adaptive_size: True
-					        on_parent:
-					            for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press))
+			# 		    MDGridLayout:
+			# 		        cols:3
+			# 		        rows:4
+			# 		        # adaptive_height: True
+			# 		        # adaptive_width: True
+			# 		        # adaptive_size: True
+			# 		        on_parent:
+			# 		            for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press))
 
 
-				Tab:
-					icon:'blank'
-					text:'2'
-					MDBoxLayout:
-					    orientation: 'vertical'
-					    md_bg_color:0,0,1,0.05
+			# 	Tab:
+			# 		icon:'blank'
+			# 		text:'2'
+			# 		BoxLayout:
+			# 		    orientation: 'vertical'
+			# 		    md_bg_color:0,0,1,0.05
 
-						Image:
-							source: apple_image
-							pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-						Image:
-							source: table_image
-							pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-						Image:
-							source: penny_image
-							pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-				Tab:
-					icon:'blank'
-					text:'3'
-					MDBoxLayout:
-						orientation:'vertical'
-						MDLabel:
-							text: "What were the three objects I asked you to remember?"
-							halign: 'center'
-							size_hint_x:0.9
+			# 			Image:
+			# 				source: apple_image
+			# 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			# 			Image:
+			# 				source: table_image
+			# 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			# 			Image:
+			# 				source: penny_image
+			# 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			# 	Tab:
+			# 		icon:'blank'
+			# 		text:'3'
+			# 		BoxLayout:
+			# 			orientation:'vertical'
+			# 			Label:
+			# 				text: "What were the three objects I asked you to remember?"
+			# 				halign: 'center'
+			# 				size_hint_x:0.9
 
 		Widget
 			size_hint_y:0.5
@@ -164,11 +164,11 @@
             # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
             elevation:8
 
-        MDLabel:
+        Label:
             text: 'Your score is:'
             halign: 'center'
 
-        MDLabel:
+        Label:
             id:score_label
             text: ''
             halign: 'center'

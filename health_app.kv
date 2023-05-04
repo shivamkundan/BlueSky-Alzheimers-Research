@@ -185,29 +185,29 @@ WindowManager:
 		#     id:button
 		#     on_release: root.tap_target_start()
 
-		MDBoxLayout:
+		BoxLayout:
 			orientation:'horizontal'
 			md_bg_color:(90/255, 90/255, 90/255,0.25)
 			size_hint_y:.25
 
-			MDBoxLayout:
+			BoxLayout:
 				orientation:'horizontal'
-				MDBoxLayout:
+				BoxLayout:
 					orientation:'vertical'
-					MDLabel:
+					Label:
 						text: 'Your Score\n(higher is better)'
 						halign: 'center'
 						font_size:'10sp'
-					MDLabel:
+					Label:
 						text: ''
 						halign: 'center'
-				MDLabel:
+				Label:
 					id:score_label
 					text: '34'
 					halign: 'left'
 					font_size:'26sp'
 
-			MDFlatButton:
+			Button:
 				text: '    Reset    '
 				halign: 'center'
 				# size_hint:(1,1)
@@ -215,7 +215,7 @@ WindowManager:
 				# size_hint_x:1
 				# _no_ripple_effect: True
 
-			MDLabel:
+			Label:
 				text:''
 				size_hint_x:0.1
 
@@ -235,8 +235,8 @@ WindowManager:
 					on_release:
 						root.manager.current="SociodemographicPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'gender-male-female'
+					# IconLeftWidget:
+					# 	icon:'gender-male-female'
 
 
 				TwoLineIconListItem:
@@ -247,8 +247,8 @@ WindowManager:
 					on_release:
 						root.manager.current="LocationPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'map-marker-plus-outline'
+					# IconLeftWidget:
+					# 	icon:'map-marker-plus-outline'
 
 
 				TwoLineIconListItem:
@@ -261,9 +261,9 @@ WindowManager:
 					on_release:
 						root.manager.current="AirPollutionLandingPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						id:air_pollution
-						icon:'air-filter'
+					# IconLeftWidget:
+					# 	id:air_pollution
+					# 	icon:'air-filter'
 
 
 				TwoLineIconListItem:
@@ -274,10 +274,8 @@ WindowManager:
 					on_release:
 						root.manager.current="DietLandingPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'food-apple-outline'
-					# IconRightWidget:
-					#     icon:'food-apple-outline'
+					# IconLeftWidget:
+					# 	icon:'food-apple-outline'
 
 				TwoLineIconListItem:
 					id:PhysicalActivityPage_label
@@ -287,8 +285,8 @@ WindowManager:
 					on_release:
 						root.manager.current="PhysicalActivityLandingPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'arm-flex-outline'
+					# IconLeftWidget:
+					# 	icon:'arm-flex-outline'
 
 				TwoLineIconListItem:
 					id:AlcoholUsagePage_label
@@ -298,8 +296,8 @@ WindowManager:
 					on_release:
 						root.manager.current="AlcoholLandingPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'glass-cocktail'
+					# IconLeftWidget:
+					# 	icon:'glass-cocktail'
 
 				TwoLineIconListItem:
 					id:DepressionPage_label
@@ -309,8 +307,8 @@ WindowManager:
 					on_release:
 						root.manager.current="DepressionLandingPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'head-alert-outline'
+					# IconLeftWidget:
+					# 	icon:'head-alert-outline'
 
 
 				TwoLineIconListItem:
@@ -321,8 +319,8 @@ WindowManager:
 					on_release:
 						root.manager.current="HyperTensionLandingPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'calculator-variant-outline'
+					# IconLeftWidget:
+					# 	icon:'calculator-variant-outline'
 
 
 
@@ -334,8 +332,8 @@ WindowManager:
 					on_release:
 						root.manager.current="TraumaticBrainInjuryLandingPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'brain'
+					# IconLeftWidget:
+					# 	icon:'brain'
 
 				TwoLineIconListItem:
 					id:CognitiveDeclinePage_label
@@ -345,8 +343,8 @@ WindowManager:
 					on_release:
 						root.manager.current="CognitiveDeclineLandingPage"
 						root.manager.transition.direction="left"
-					IconLeftWidget:
-						icon:'chart-multiline'
+					# IconLeftWidget:
+					# 	icon:'chart-multiline'
 
 # =======================================
 # ----
