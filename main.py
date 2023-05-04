@@ -20,8 +20,8 @@ KV_FILE='health_app.kv' # kivy design file
 # Config.set('graphics', 'height', MAX_SIZE[1])
 
 # These resolutions are in software pixels
-resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
-Window.size = resolutions[2]
+# resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
+# Window.size = resolutions[2]
 
 LOADING_PAGE_PAUSE_SECONDS=1
 

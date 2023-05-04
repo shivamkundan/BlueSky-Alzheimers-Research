@@ -26,13 +26,3 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
-
-
-# =========================== KIVYMD ================================== #
-# from kivymd.app import MDApp
-
-# from kivymd.toast import toast
-# from kivymd.uix.screen import MDScreen
-
-# from kivymd.uix.list import MDList
-# from kivymd.uix.list import OneLineIconListItem

@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = BlueSky v16
+title = BlueSky v20
 
 # (str) Package name
-package.name = blueskyv16
+package.name = blueskyv20
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.test
@@ -36,8 +36,9 @@ version = 0.1
 # version.filename = %(source.dir)s/main.py
 
 # (list) Application requirements
-# comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.0.0,https://github.com/kivymd/KivyMd/archive/master.zip,pygments,sdl2_ttf==2.0.15,pillow,docutils,plyer,os,datetime,time
+# comma separated e.g. requirements = sqlite3,kivy,kivy==2.1.0
+requirements = python3,kivy,sdl2_ttf==2.0.15,pillow,docutils,plyer
+# kivy==2.0.0,sdl2_ttf==2.0.15,pillow,docutils,plyer,datetime,time
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
