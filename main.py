@@ -55,6 +55,7 @@ class LoadingPage(Screen):
 class LandingPage(Screen):
 	def __init__(self,**kwargs):
 		super(LandingPage,self).__init__(**kwargs)
+		self.prev_page="LandingPage"
 
 	def chevron_left(self,*args):
 		self.parent.transition.direction="right"
@@ -88,6 +89,7 @@ class LoginPage(Screen):
 	def __init__(self,**kwargs):
 		super(LoginPage,self).__init__(**kwargs)
 		self.dialog=False
+		self.prev_page="LandingPage"
 
 	def chevron_left(self):
 		chevron_left_global(self,next_pg='LandingPage')
@@ -112,6 +114,7 @@ class LoginPage(Screen):
 class RiskAssesmentPage(Screen):
 	def __init__(self,**kwargs):
 		super(RiskAssesmentPage,self).__init__(**kwargs)
+		self.prev_page="LandingPage"
 		# self.score=0
 		# self.air_pollution_pct=0
 		# Clock.schedule_once(self.init_tap_target, 1)
@@ -158,6 +161,7 @@ class SociodemographicPage(Screen):
 		self.tab_num_dict={'Age':1,'Sex':2,'Zip Code':3,'Military (1)':4,'Military (2)':5}
 		self.num_tabs=len(self.tab_names)
 		self.curr_tab_num=0
+		self.prev_page="LandingPage"
 
 		self.done_dict={}
 		for item in self.tab_names:
@@ -353,6 +357,7 @@ class LocationPage(Screen):
 	def __init__(self,**kwargs):
 		super(LocationPage,self).__init__(**kwargs)
 		self.option_names_dict={'left_icon_urban':None,'left_icon_large_rural':None,'left_icon_small_rural':None,'left_icon_isolated':None}
+		self.prev_page="LandingPage"
 
 	def chevron_left(self):
 		chevron_left_global(self)
@@ -679,6 +684,7 @@ class CognitiveDeclineScorePage(ScorePageTemplate):
 class AboutPage(Screen):
 	def __init__(self,**kwargs):
 		super(AboutPage,self).__init__(**kwargs)
+		self.prev_page="LandingPage"
 
 	def chevron_left(self):
 		self.parent.transition.direction = 'right'
@@ -701,7 +707,21 @@ class WindowManager(ScreenManager):
 
 		self._keyboard=None
 		Window.bind(on_resize=self.on_window_resize)
+		Window.bind(on_keyboard=self.Android_back_click)
 		self.on_pre_enter()
+
+	def Android_back_click(self,window,key,*largs):
+		if key == 27:
+			self.transition.direction = 'right'
+
+			if (self.current in ["RiskAssesmentPage","LoginPage","AboutPage"]):
+				self.current="LandingPage"
+			elif (self.current=="LandingPage"):
+				exit()
+			else:
+				# self.current=self.get_screen(self.current).prev_page
+				self.current="RiskAssesmentPage"
+			return True
 
 	def on_window_resize(self, window, width, height):
 		print (width,height)
@@ -756,16 +776,9 @@ class BlueSkyApp(App):
 	# --------------------------------------------------------------------- #
 
 	def build(self):
-		# self.theme_cls.primary_palette = "BlueGray"
-		# self.theme_cls.primary_hue = "700"
-
-		# self.icon = 'logo5.png'
 
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
-
-		# Clock.schedule_once(self.sidebar, 1)  #otherwise widgets don't get added
-
 
 		return self.WindowManager
 
