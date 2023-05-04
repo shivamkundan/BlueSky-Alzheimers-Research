@@ -6,73 +6,12 @@
 #:set size_y_subtitle 132
 
 
-
-
-
-# <LoadingPage>:
-
-    # BoxLayout:
-    #     orientation: 'vertical'
-    #     MDTopAppBar:
-    #         title: ''
-    #         halign: 'left'
-    #         # left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-    #         # right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-    #         # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-    #         elevation:8
-    #     # Widget
-
-
-
-    # BoxLayout:
-    #     id:box_layout
-
-    #     Label:
-    #         md_bg_color:utils.get_color_from_hex('#455A64')
-
-    #         Button:
-    #             id:my_butt
-    #             size_hint_x:1
-    #             size_hint_y:1
-    #             background_color:1,0,0,0.05
-    #             on_release:root.animate_logo(self.ids['my_im'])
-    #             Image:
-    #                 id:my_im
-    #                 source: 'pics/logo_simple2.png'
-    #                 pos:(root.size[0]//2-size_x//2,root.size[1]//2)
-    #                 size: (size_x,size_y)
-    #             # # size: (100,100)
-    #             # # size_hint_x:0.5
-    #             # # size_hint_y:0.5
-    #             # size: (size_x,size_y)
-    #             # # pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2)
-    #             # id:logo
-    #             # on_release:root.animate_logo(self)
-    #             # # md_bg_color: utils.get_color_from_hex('#455A64')
-    #             # canvas:
-    #             #     # size: (size_x,size_y)
-    #             #     Rectangle:
-    #             #         id:rect
-    #             #         source: 'pics/logo_simple2.png'
-    #             #         pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2)
-
-
-
-
 <LoadingPage>:
     # root.manager.transition:FadeTransition()
     BoxLayout:
         md_bg_color: utils.get_color_from_hex('#455A64')
         orientation:'vertical'
         id:box_layout
-        # MDProgressBar:
-        #     id:prog
-        #     center_x:0.5
-        #     size_hint_x:0.5
-        #     size_hint_y:2
-        #     pos_hint_y:0.5
-        #     value: 50
-        #     md_bg_color:0,0,0,0
 
         Label:
             id:logo
@@ -81,9 +20,7 @@
                 Rectangle:
                     id:rect
                     source: 'pics/logo_simple2.png'
-                    # pos: (20,self.pos[1]+20)
                     pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2)
-                    # pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
                     size: (size_x,size_y)
 
 
@@ -96,9 +33,3 @@
                     source: 'pics/logo_subtitle.png'
                     pos:(self.parent.size[0]//2-size_x_subtitle//2,self.parent.size[1]//6)
                     size:(size_x_subtitle,size_y_subtitle)
-
-
-        # Button:
-        #     text:'press'
-        #     on_release:
-        #         app.root.transition=FadeTransition()

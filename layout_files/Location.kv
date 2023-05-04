@@ -28,51 +28,30 @@
 					orientation: 'vertical'
 					Button:
 						text:'Urban'
-						# font_style:'H6'
-						secondary_text:'≥50,000 residents'
-						secondary_font_style:'Caption'
-						halign:'left'
+						background_normal: ''
+					    background_color: 1, .3, .4, .85
 						on_release: root.toggle(self)
-
-						# IconLeftWidget:
-						#     name:'left_icon_urban'
-						#     icon:'checkbox-blank-circle-outline'
 
 					Button:
-						text:'Large Rural'
-						# font_style:'H6'
-						secondary_text:'10,000 – 49,999 residents'
+						text:'Large Rural\n10,000 – 49,999 residents'
+						secondary_text:''
 						secondary_font_style:'Caption'
 						halign:'left'
 						on_release: root.toggle(self)
 
-						# IconLeftWidget:
-						#     name:'left_icon_large_rural'
-						#     id:'left_icon_large_rural'
-
-							# icon:'checkbox-blank-circle-outline'
 					Button:
 						text:'Small Rural'
-						# font_style:'H6'
 						secondary_text:'2,500 – 9,999 residents'
 						secondary_font_style:'Caption'
 						halign:'left'
 						on_release: root.toggle(self)
 
-						# IconLeftWidget:
-						#     name:'left_icon_small_rural'
-						#     icon:'checkbox-blank-circle-outline'
 					Button:
 						text:'Isolated'
-						# font_style:'H6'
 						secondary_text:'<2,500 residents'
 						secondary_font_style:'Caption'
 						halign:'left'
 						on_release: root.toggle(self)
-
-						# IconLeftWidget:
-						#     name:'left_icon_isolated'
-						#     icon:'checkbox-blank-circle-outline'
 
 
 		BoxLayout:
@@ -80,14 +59,14 @@
 			Button:
 				text:'                     <                       '
 				size_hint_x:1
-				size_hint_y:0.15
+				size_hint_y:0.3
 				on_release:
 					root.manager.current='SociodemographicPage'
 					root.manager.transition.direction="right"
 			Button:
 				text:'                     >                       '
 				size_hint_x:1
-				size_hint_y:0.15
+				size_hint_y:0.3
 				on_release:
 					root.manager.current='AirPollutionLandingPage'
 					root.manager.transition.direction="left"
