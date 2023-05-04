@@ -2,102 +2,132 @@
 #:set BTN_HEIGHT 0.5
 #:set IMG_SOURCE 'pics/logo_minimal.png'
 #:set IMG_SIZE (618,440)
+<HiddenIcon_ActionPrevious@ActionPrevious>:
+    title: ''   # app.title if app.title is not None else 'Action Previous'
+    with_previous: False
+    app_icon: ''
+    app_icon_width: 0
+    app_icon_height: 0
+    size_hint_x: None
+    width: len(self.title) * 10
+
 
 <LandingPage>:
-    id:LandingPage
+	id:LandingPage
 
-    BoxLayout:
-        my_im:my_im
-        orientation: 'vertical'
+	BoxLayout:
+		my_im:my_im
+		orientation: 'vertical'
 
-        Widget:
-            size_hint_y:0.8
+		ActionBar:
+			ActionView:
+				HiddenIcon_ActionPrevious:
 
-        Image:
-            id:my_im
-            source: IMG_SOURCE
-            opacity:0.85
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size: IMG_SIZE
-        Widget:
-            size_hint_y:0.5
+				# ActionGroup:
+		        #     id: App_ActionGroup
+		        #     mode: 'spinner'
+		        #     text: 'Jump to Screen'
+				# use_separator: True
 
-        Button:
-            text:'Risk Assesment'
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-            font_style:'Button'
-            on_release:
-                root.manager.current="RiskAssesmentPage"
-                root.manager.transition.direction="left"
-        Widget:
-            size_hint_y:0.05
+				# ActionPrevious:
+				# 	title: ''
+					# with_previous: False
+				# 	# on_release: root.chevron_left()
+				# ActionOverflow:
+					ActionButton:
+						text: 'Btn0'
+						# icon: 'reset.png'
+				# 	ActionButton:
+				# 		text: 'Btn1'
 
-        Button:
-            text:'Educational Resources'
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-            font_style:'Button'
-        Widget:
-            size_hint_y:0.05
+		Widget:
+			size_hint_y:0.8
 
-        Button:
-            text:'Cognitive Rehabilitation'
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-            font_style:'Button'
-        Widget:
-            size_hint_y:0.05
+		Image:
+			id:my_im
+			source: IMG_SOURCE
+			opacity:0.85
+			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			size: IMG_SIZE
+		Widget:
+			size_hint_y:0.5
 
-        Button:
-            text:'About'
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-            font_style:'Button'
-            on_release:
-                root.manager.transition.direction="left"
-                root.manager.current="AboutPage"
-        Widget
+		Button:
+			text:'Risk Assesment'
+			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
+			font_style:'Button'
+			on_release:
+				root.manager.current="RiskAssesmentPage"
+				root.manager.transition.direction="left"
+		Widget:
+			size_hint_y:0.05
 
-        ScaleLabel:
-            text: 'Human & Behavioral Sciences\nSouthern Illinois University, Carbondale'
-            halign: 'center'
-            font_size: self.height * 0.18
-            padding: dp(0), dp(0)
-            spacing: dp(-10), dp(-10)
-            size_hint_y: 0.5
-            # font_name: '/Users/shivamkundan/Developer/HealthApp/scalasansot-cufonfonts/ScalaSansOT-Regular.otf'
+		Button:
+			text:'Educational Resources'
+			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
+			font_style:'Button'
+		Widget:
+			size_hint_y:0.05
 
-    # MDNavigationLayout:
-    #     nav_drawer:nav_drawer
-    #     content_drawer:content_drawer
-    #     ScreenManager:
+		Button:
+			text:'Cognitive Rehabilitation'
+			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
+			font_style:'Button'
+		Widget:
+			size_hint_y:0.05
 
-    #         Screen:
-    #             BoxLayout:
-    #                 orientation: 'vertical'
+		Button:
+			text:'About'
+			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
+			font_style:'Button'
+			on_release:
+				root.manager.transition.direction="left"
+				root.manager.current="AboutPage"
+		Widget
 
-    #                 MDTopAppBar:
-    #                     title: "Home"
-    #                     canvas:
-    #                         Rectangle:
-    #                             source: 'logo1.png'
-    #                             pos: (((self.parent.size[0])/2)-30,self.pos[1])
-    #                             size: (160, 160)
-    #                     font_style: "H6"
-    #                     elevation: 8
-    #                     left_action_items: [['menu', lambda x: app.nav_handler()]]
-    #                     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-    #                     # left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+		ScaleLabel:
+			text: 'Human & Behavioral Sciences\nSouthern Illinois University, Carbondale'
+			halign: 'center'
+			font_size: self.height * 0.18
+			padding: dp(0), dp(0)
+			spacing: dp(-10), dp(-10)
+			size_hint_y: 0.5
+			# font_name: '/Users/shivamkundan/Developer/HealthApp/scalasansot-cufonfonts/ScalaSansOT-Regular.otf'
+
+	# MDNavigationLayout:
+	#     nav_drawer:nav_drawer
+	#     content_drawer:content_drawer
+	#     ScreenManager:
+
+	#         Screen:
+	#             BoxLayout:
+	#                 orientation: 'vertical'
+
+	#                 MDTopAppBar:
+	#                     title: "Home"
+	#                     canvas:
+	#                         Rectangle:
+	#                             source: 'logo1.png'
+	#                             pos: (((self.parent.size[0])/2)-30,self.pos[1])
+	#                             size: (160, 160)
+	#                     font_style: "H6"
+	#                     elevation: 8
+	#                     left_action_items: [['menu', lambda x: app.nav_handler()]]
+	#                     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+	#                     # left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
 
 
-    #                 Widget
+	#                 Widget
 
 
-        # MDNavigationDrawer:
-        #     id: nav_drawer
-        #     content_drawer:content_drawer
-        #     size_hint_x:0.5
-        #     on_disabled:print('disable')
-        #     ContentNavigationDrawer:
-        #         id: content_drawer
+		# MDNavigationDrawer:
+		#     id: nav_drawer
+		#     content_drawer:content_drawer
+		#     size_hint_x:0.5
+		#     on_disabled:print('disable')
+		#     ContentNavigationDrawer:
+		#         id: content_drawer

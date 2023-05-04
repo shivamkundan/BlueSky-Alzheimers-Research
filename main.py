@@ -729,7 +729,7 @@ class WindowManager(ScreenManager):
 		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
 		self._keyboard.bind(on_key_up=self._on_keyboard_up)
 
-class BlueSkyApp(MDApp):
+class BlueSkyApp(App):
 	def __init__(self,**kwargs):
 		super(BlueSkyApp,self).__init__(**kwargs)
 		self.curr_state='close'

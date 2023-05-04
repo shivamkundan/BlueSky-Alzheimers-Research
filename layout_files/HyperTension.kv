@@ -4,13 +4,18 @@
     BoxLayout:
         orientation: 'vertical'
 
-        MDTopAppBar:
-            title: hypertension_toolbar_title
-            halign: 'left'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+        # MDTopAppBar:
+        #     title: hypertension_toolbar_title
+        #     halign: 'left'
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+        #     elevation:8
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: hypertension_toolbar_title
+                    on_release: root.chevron_left()
 
         Label:
             text:''
@@ -56,12 +61,17 @@
     BoxLayout:
 
         orientation:'vertical'
-        MDTopAppBar:
-            title: hypertension_toolbar_title
-            # size_hint_y:0.1
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: app.callback_2()]]
-            elevation:8
+        # MDTopAppBar:
+        #     title: hypertension_toolbar_title
+        #     # size_hint_y:0.1
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: app.callback_2()]]
+        #     elevation:8
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: hypertension_toolbar_title
+                    on_release: root.chevron_left()
 
         Label:
             text:'Have you ever been told by a doctor or other health professional that you had hypertension, also called high blood pressure?'
@@ -106,13 +116,19 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
+        # MDTopAppBar:
 
-            title: hypertension_toolbar_title
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+        #     title: hypertension_toolbar_title
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+        #     elevation:8
+
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: hypertension_toolbar_title
+                    on_release: root.chevron_left()
 
         Label:
             text: 'Your score is:'

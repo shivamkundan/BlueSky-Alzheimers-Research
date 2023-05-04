@@ -178,19 +178,19 @@ WindowManager:
 
 			pos_hint: {'top':1}
 
-	        ActionView:
-	            # use_separator: True
+			ActionView:
+				# use_separator: True
 
-	            ActionPrevious:
-	                title: 'Risk Assesment'
-	                # with_previous: False
-	                on_release: root.chevron_left()
-	            ActionOverflow:
-		            ActionButton:
-		                text: 'Btn0'
-		                icon: 'floppy'
-		            ActionButton:
-		                text: 'Btn1'
+				ActionPrevious:
+					title: 'Risk Assesment'
+					# with_previous: False
+					on_release: root.chevron_left()
+				ActionOverflow:
+					ActionButton:
+						text: 'Btn0'
+						icon: 'floppy'
+					ActionButton:
+						text: 'Btn1'
 
 		# Button:
 		#     text:''
@@ -202,8 +202,8 @@ WindowManager:
 
 		BoxLayout:
 			orientation:'horizontal'
-			md_bg_color:(90/255, 90/255, 90/255,0.25)
-			size_hint_y:.25
+			# md_bg_color:(90/255, 90/255, 90/255,0.25)
+			size_hint_y:.15
 
 			BoxLayout:
 				orientation:'horizontal'
@@ -213,6 +213,14 @@ WindowManager:
 						text: 'Your Score\n(higher is better)'
 						halign: 'center'
 						font_size:'10sp'
+						color: 0,0,0,1 # <-----------
+						# canvas.before:
+						# 	Color:
+						# 		rgba: 0, 0, 0, 1
+						# 	Rectangle:
+						# 		pos: self.pos
+						# 		size: self.size
+
 					Label:
 						text: ''
 						halign: 'center'
@@ -222,32 +230,39 @@ WindowManager:
 					halign: 'left'
 					font_size:'26sp'
 
-			Button:
-				text: '    Reset    '
-				halign: 'center'
-				# size_hint:(1,1)
-				size_hint_y:0.5
-				# size_hint_x:1
-				# _no_ripple_effect: True
+				Button:
+					text: '    Reset    '
+					halign: 'center'
+					# size_hint:(1,1)
+					size_hint_y:0.5
+					size_hint_x:1
+					# _no_ripple_effect: True
 
-			Label:
-				text:''
-				size_hint_x:0.1
+		Label:
+			text:''
+			size_hint_y:0.1
 
 		ScrollView:
 			scroll_type: ['bars','content']
 			# scroll_wheel_distance: 20
-			# bar_width: 8
+			bar_width: 20
+			do_scroll_x: False
+			do_scroll_y: True
 			bar_inactive_color: .55, .55, .55, 1
 			bar_color: .663, .663, .663, 1
 
 			BoxLayout:
 				orientation:'vertical'
+				height:2000
+				size_hint_y:None
+				# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+				pos_hint_x:0.5
+				size_hint_x:0.95
 				# id:listt
 				Button:
 					id:SocioDemographicPage_label
 					text: 'Demographics'
-					size_hint_y:1
+
 					# secondary_text: "0% Complete"
 					# secondary_font_style:'Caption'
 					on_release:
@@ -274,7 +289,7 @@ WindowManager:
 					text: 'Air Pollution'
 					secondary_text: "0% Complete"
 					secondary_font_style:'Caption'
-					text_color: app.theme_cls.accent_color
+					# text_color: app.theme_cls.accent_color
 					theme_text_color: 'Primary'
 					on_release:
 						root.manager.current="AirPollutionLandingPage"
@@ -377,18 +392,24 @@ WindowManager:
 <AboutPage>:
 	BoxLayout:
 		orientation: 'vertical'
-		MDTopAppBar:
-			title: 'About'
-			halign: 'left'
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			elevation:8
+		# MDTopAppBar:
+		# 	title: 'About'
+		# 	halign: 'left'
+		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+		# 	elevation:8
+
+		ActionBar:
+		    ActionView:
+		        ActionPrevious:
+		            title: 'About'
+		            on_release: root.chevron_left()
 		Widget
 		Label:
-		    canvas:
-		        Rectangle:
-		            id:rect
-		            source: 'pics/logo_minimal.png'
-		            # pos: (20,self.pos[1]+20)
-		            pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
-		            # pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
-		            size: (xx,yy)
+			canvas:
+				Rectangle:
+					id:rect
+					source: 'pics/logo_minimal.png'
+					# pos: (20,self.pos[1]+20)
+					pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
+					# pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
+					size: (xx,yy)

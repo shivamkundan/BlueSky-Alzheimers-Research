@@ -5,12 +5,17 @@
     BoxLayout:
         orientation: 'vertical'
 
-        MDTopAppBar:
-            title: 'Demographics'
-            halign: 'left'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            elevation:8
+        # MDTopAppBar:
+        #     title: 'Demographics'
+        #     halign: 'left'
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+        #     elevation:8
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: 'Demographics'
+                    on_release: root.chevron_left()
 
         # # MDTabs:
         #     id: android_tabs

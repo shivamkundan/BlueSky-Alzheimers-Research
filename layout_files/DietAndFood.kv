@@ -29,13 +29,19 @@
     BoxLayout:
         orientation: 'vertical'
 
-        MDTopAppBar:
-            title: diet_toolbar_title
-            halign: 'left'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+        # MDTopAppBar:
+        #     title: diet_toolbar_title
+        #     halign: 'left'
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+        #     elevation:8
+
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: diet_toolbar_title
+                    on_release: root.chevron_left()
 
         Widget:
             size_hint_y:0.3
@@ -87,13 +93,19 @@
 
     BoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
-            title: diet_toolbar_title
-            halign: 'left'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+        # MDTopAppBar:
+        #     title: diet_toolbar_title
+        #     halign: 'left'
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+        #     elevation:8
+
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: diet_toolbar_title
+                    on_release: root.chevron_left()
 
         # BoxLayout:
         #     size_hint_y:0.7
@@ -206,7 +218,7 @@
             #                 halign: 'center'
             #                 size_hint_x:0.9
 
-        MDGridLayout:
+        GridLayout:
             cols:3
             # rows:4
 
@@ -282,13 +294,19 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
+        # MDTopAppBar:
 
-            title: diet_toolbar_title
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+        #     title: diet_toolbar_title
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+        #     elevation:8
+
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: diet_toolbar_title
+                    on_release: root.chevron_left()
 
         Label:
             text: 'Your score is:'

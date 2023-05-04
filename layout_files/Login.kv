@@ -1,11 +1,17 @@
 <LoginPage>:
     BoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
-            title: 'Account'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
-            elevation:8
+        # MDTopAppBar:
+        #     title: 'Account'
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
+        #     elevation:8
+
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: 'Account'
+                    on_release: root.chevron_left()
 
         Widget:
             size_hint_y:0.2
@@ -15,18 +21,18 @@
             size_hint_y:0.15
             Widget:
                 size_hint_x:0.5
-            MDTextField:
-                id:username
-                pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                text:''
-                halign:'left'
-                hint_text: "Enter username"
-                helper_text_mode: "on_focus"
-                helper_text: "or click on forgot credentials"
-                color_mode: 'primary'
-                multiline:False
-            Widget:
-                size_hint_x:0.5
+            # MDTextField:
+            #     id:username
+            #     pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            #     text:''
+            #     halign:'left'
+            #     hint_text: "Enter username"
+            #     helper_text_mode: "on_focus"
+            #     helper_text: "or click on forgot credentials"
+            #     color_mode: 'primary'
+            #     multiline:False
+            # Widget:
+            #     size_hint_x:0.5
 
         Widget:
             size_hint_y:0.1
@@ -36,20 +42,20 @@
             size_hint_y:0.15
             Widget:
                 size_hint_x:0.5
-            MDTextField:
-                id:username
-                pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                text:''
-                halign:'left'
-                hint_text: "Enter password"
-                helper_text_mode: "on_focus"
-                helper_text: "or click on forgot credentials"
-                color_mode: 'primary'
-                password: True
-                multiline:False
-                on_text_validate: root.show_alert_dialog(self)
-            Widget:
-                size_hint_x:0.5
+            # MDTextField:
+            #     id:username
+            #     pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            #     text:''
+            #     halign:'left'
+            #     hint_text: "Enter password"
+            #     helper_text_mode: "on_focus"
+            #     helper_text: "or click on forgot credentials"
+            #     color_mode: 'primary'
+            #     password: True
+            #     multiline:False
+            #     on_text_validate: root.show_alert_dialog(self)
+            # Widget:
+            #     size_hint_x:0.5
 
 
         Widget:

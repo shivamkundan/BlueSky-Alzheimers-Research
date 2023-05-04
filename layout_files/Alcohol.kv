@@ -11,13 +11,19 @@
 	BoxLayout:
 		orientation: 'vertical'
 
-		MDTopAppBar:
-			title: alcohol_toolbar_title
-			halign: 'left'
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-			elevation:8
+		# MDTopAppBar:
+		# 	title: alcohol_toolbar_title
+		# 	halign: 'left'
+		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+		# 	right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+		# 	# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+		# 	elevation:8
+
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: alcohol_toolbar_title
+					on_release: root.chevron_left()
 
 		Label:
 			text:''
@@ -66,11 +72,17 @@
 <AlcoholUsagePage>:
 	BoxLayout:
 		orientation: 'vertical'
-		MDTopAppBar:
-			title: alcohol_toolbar_title
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
-			elevation:8
+		# MDTopAppBar:
+		# 	title: alcohol_toolbar_title
+		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+		# 	right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
+		# 	elevation:8
+
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: alcohol_toolbar_title
+					on_release: root.chevron_left()
 		# Label:
 		# 	text:''
 
@@ -122,7 +134,6 @@
 		        size_hint_x:0.8
 		        font_style:'Button'
 		        theme_text_color: "Custom"
-		        color_icon_root_button: app.theme_cls.accent_color
 		        pos_hint:{'center_x':0.5}
 
 		        on_release:
@@ -229,13 +240,18 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
+        # MDTopAppBar:
 
-            title: alcohol_toolbar_title
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+        #     title: alcohol_toolbar_title
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+        #     elevation:8
+        ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: alcohol_toolbar_title
+					on_release: root.chevron_left()
 
         Label:
             text: 'Your score is:'

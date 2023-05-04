@@ -14,13 +14,19 @@
 	BoxLayout:
 		orientation: 'vertical'
 
-		MDTopAppBar:
-			title: 'Air Pollution'
-			halign: 'left'
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-			elevation:8
+		# MDTopAppBar:
+		# 	title: 'Air Pollution'
+		# 	halign: 'left'
+		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+		# 	right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+		# 	# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+		# 	elevation:8
+
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: 'Air Pollution'
+					on_release: root.chevron_left()
 
 		Widget
 			size_hint_y:0.3
@@ -69,13 +75,19 @@
 
 	BoxLayout:
 		orientation: 'vertical'
-		MDTopAppBar:
-			title: 'Air Pollution'
-			halign: 'left'
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-			elevation:8
+		# MDTopAppBar:
+		# 	title: 'Air Pollution'
+		# 	halign: 'left'
+		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+		# 	right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+		# 	# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+		# 	elevation:8
+
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: 'Air Pollution'
+					on_release: root.chevron_left()
 
 		# BoxLayout:
 		# 	size_hint_y:0.7
@@ -161,7 +173,7 @@
 				size_hint_x:0.8
 				font_style:'Button'
 				theme_text_color: "Custom"
-				color_icon_root_button: app.theme_cls.accent_color
+				# color_icon_root_button: app.theme_cls.accent_color
 				pos_hint:{'center_x':0.5}
 
 				on_release:
@@ -263,13 +275,18 @@
 	score_label:score_label
 	BoxLayout:
 		orientation: 'vertical'
-		MDTopAppBar:
+		# MDTopAppBar:
 
-			title: 'Air Pollution'
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-			elevation:8
+		# 	title: 'Air Pollution'
+		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+		# 	right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+		# 	# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+		# 	elevation:8
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: 'Air Pollution'
+					on_release: root.chevron_left()
 
 		Label:
 			text: 'Your score is:'

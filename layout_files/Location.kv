@@ -1,92 +1,93 @@
 <LocationPage>:
-    BoxLayout:
+	BoxLayout:
 
-        orientation:'vertical'
-        MDTopAppBar:
-            title: 'Location'
-            # size_hint_y:0.1
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: app.callback_2()]]
-            elevation:8
+		orientation:'vertical'
 
-        Label:
-            text:'Please select the category that you think best describes the community where you live:'
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            size_hint_x:0.9
-            size_hint_y:0.6
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: 'Location'
+					# with_previous: False
+					on_release: root.chevron_left()
 
-        Widget:
-            size_hint_y:0.2
-        BoxLayout:
-            orientation:'horizontal'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            ScrollView:
-                # id:listt
-                BoxLayout:
-                    orientation: 'vertical'
-                    Button:
-                        text:'Urban'
-                        # font_style:'H6'
-                        secondary_text:'≥50,000 residents'
-                        secondary_font_style:'Caption'
-                        halign:'left'
-                        on_release: root.toggle(self)
+		Label:
+			text:'Please select the category that you think best describes the community where you live:'
+			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			size_hint_x:0.9
+			size_hint_y:0.6
 
-                        # IconLeftWidget:
-                        #     name:'left_icon_urban'
-                        #     icon:'checkbox-blank-circle-outline'
+		Widget:
+			size_hint_y:0.2
+		BoxLayout:
+			orientation:'horizontal'
+			size_hint_x:0.7
+			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			ScrollView:
+				# id:listt
+				BoxLayout:
+					orientation: 'vertical'
+					Button:
+						text:'Urban'
+						# font_style:'H6'
+						secondary_text:'≥50,000 residents'
+						secondary_font_style:'Caption'
+						halign:'left'
+						on_release: root.toggle(self)
 
-                    Button:
-                        text:'Large Rural'
-                        # font_style:'H6'
-                        secondary_text:'10,000 – 49,999 residents'
-                        secondary_font_style:'Caption'
-                        halign:'left'
-                        on_release: root.toggle(self)
+						# IconLeftWidget:
+						#     name:'left_icon_urban'
+						#     icon:'checkbox-blank-circle-outline'
 
-                        # IconLeftWidget:
-                        #     name:'left_icon_large_rural'
-                        #     id:'left_icon_large_rural'
+					Button:
+						text:'Large Rural'
+						# font_style:'H6'
+						secondary_text:'10,000 – 49,999 residents'
+						secondary_font_style:'Caption'
+						halign:'left'
+						on_release: root.toggle(self)
 
-                            # icon:'checkbox-blank-circle-outline'
-                    Button:
-                        text:'Small Rural'
-                        # font_style:'H6'
-                        secondary_text:'2,500 – 9,999 residents'
-                        secondary_font_style:'Caption'
-                        halign:'left'
-                        on_release: root.toggle(self)
+						# IconLeftWidget:
+						#     name:'left_icon_large_rural'
+						#     id:'left_icon_large_rural'
 
-                        # IconLeftWidget:
-                        #     name:'left_icon_small_rural'
-                        #     icon:'checkbox-blank-circle-outline'
-                    Button:
-                        text:'Isolated'
-                        # font_style:'H6'
-                        secondary_text:'<2,500 residents'
-                        secondary_font_style:'Caption'
-                        halign:'left'
-                        on_release: root.toggle(self)
+							# icon:'checkbox-blank-circle-outline'
+					Button:
+						text:'Small Rural'
+						# font_style:'H6'
+						secondary_text:'2,500 – 9,999 residents'
+						secondary_font_style:'Caption'
+						halign:'left'
+						on_release: root.toggle(self)
 
-                        # IconLeftWidget:
-                        #     name:'left_icon_isolated'
-                        #     icon:'checkbox-blank-circle-outline'
+						# IconLeftWidget:
+						#     name:'left_icon_small_rural'
+						#     icon:'checkbox-blank-circle-outline'
+					Button:
+						text:'Isolated'
+						# font_style:'H6'
+						secondary_text:'<2,500 residents'
+						secondary_font_style:'Caption'
+						halign:'left'
+						on_release: root.toggle(self)
+
+						# IconLeftWidget:
+						#     name:'left_icon_isolated'
+						#     icon:'checkbox-blank-circle-outline'
 
 
-        BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                text:'                     <                       '
-                size_hint_x:1
-                size_hint_y:0.15
-                on_release:
-                    root.manager.current='SociodemographicPage'
-                    root.manager.transition.direction="right"
-            Button:
-                text:'                     >                       '
-                size_hint_x:1
-                size_hint_y:0.15
-                on_release:
-                    root.manager.current='AirPollutionLandingPage'
-                    root.manager.transition.direction="left"
+		BoxLayout:
+			orientation: 'horizontal'
+			Button:
+				text:'                     <                       '
+				size_hint_x:1
+				size_hint_y:0.15
+				on_release:
+					root.manager.current='SociodemographicPage'
+					root.manager.transition.direction="right"
+			Button:
+				text:'                     >                       '
+				size_hint_x:1
+				size_hint_y:0.15
+				on_release:
+					root.manager.current='AirPollutionLandingPage'
+					root.manager.transition.direction="left"

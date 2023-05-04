@@ -11,13 +11,18 @@
 	BoxLayout:
 		orientation: 'vertical'
 
-		MDTopAppBar:
-			title: cognitive_toolbar_title
-			halign: 'left'
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-			# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-			elevation:8
+		# MDTopAppBar:
+		# 	title: cognitive_toolbar_title
+		# 	halign: 'left'
+		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+		# 	right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+		# 	# right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+		# 	elevation:8
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: cognitive_toolbar_title
+					on_release: root.chevron_left()
 
 		Label:
 			text:''
@@ -62,11 +67,17 @@
 <CognitiveDeclinePage>:
 	BoxLayout:
 		orientation: 'vertical'
-		MDTopAppBar:
-			title: cognitive_toolbar_title
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
-			elevation:8
+		# MDTopAppBar:
+		# 	title: cognitive_toolbar_title
+		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+		# 	right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
+		# 	elevation:8
+
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: cognitive_toolbar_title
+					on_release: root.chevron_left()
 
 		# BoxLayout:
 		# 	size_hint_y:1
@@ -156,13 +167,18 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
+        # MDTopAppBar:
 
-            title: cognitive_toolbar_title
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+        #     title: cognitive_toolbar_title
+        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
+        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
+        #     elevation:8
+        ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: cognitive_toolbar_title
+					on_release: root.chevron_left()
 
         Label:
             text: 'Your score is:'
