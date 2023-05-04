@@ -7,6 +7,10 @@
 
 #:set xx 368
 #:set yy 286
+#:set SEC_TEXT " [0% Complete]"
+
+#:set BG_COLOR 1, 1, 1, 1
+#:set TXT_COLOR 0, 0, 0, 1
 
 #:include layout_files/templates.kv
 #:include layout_files/AirPollution.kv
@@ -38,7 +42,7 @@ WindowManager:
 	# 	name:'LoadingPage'
 	# 	id:LoadingPage
 
-	
+
 
 	LoginPage:
 		id:LoginPage
@@ -166,12 +170,16 @@ WindowManager:
 		name:'CognitiveDeclineScorePage'
 
 # =======================================
-
-
-# =======================================
 <RiskAssesmentPage>:
 	BoxLayout:
 		orientation: 'vertical'
+
+		# canvas.before:
+		# 	Color:
+		# 		rgba: BG_COLOR
+		# 	Rectangle:
+		# 		size: self.size
+		# 		pos: self.pos
 
 		ActionBar:
 			pos_hint: {'top':1}
@@ -208,7 +216,8 @@ WindowManager:
 						text: 'Your Score\n(higher is better)'
 						halign: 'center'
 						font_size:'10sp'
-						color: 0,0,0,1 # <-----------
+						color: TXT_COLOR
+						# color: 0,0,0,1 # <-----------
 						# canvas.before:
 						# 	Color:
 						# 		rgba: 0, 0, 0, 1
@@ -220,6 +229,7 @@ WindowManager:
 						text: ''
 						halign: 'center'
 				Label:
+					color: TXT_COLOR
 					id:score_label
 					text: '34'
 					halign: 'left'
@@ -248,28 +258,52 @@ WindowManager:
 
 			BoxLayout:
 				orientation:'vertical'
-				height:2000
+				height:1500
 				size_hint_y:None
-				# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-				pos_hint_x:0.5
-				size_hint_x:0.95
+				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+				# pos_hint_x:0.5
+				# size_hint_x:0.98
 				# id:listt
+
+				# BoxLayout
+				# 	orientation:'vertical'
 				Button:
 					id:SocioDemographicPage_label
-					text: 'Demographics'
-
+					text: 'Demographics' + SEC_TEXT
+					size_hint_x:1
+					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					# background_normal:''
+					# background_color: 1, 1, 1, 0.3
 					# secondary_text: "0% Complete"
 					# secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="SociodemographicPage"
 						root.manager.transition.direction="left"
-					# IconLeftWidget:
-					# 	icon:'gender-male-female'
+				# 	# IconLeftWidget:
+				# 	# 	icon:'gender-male-female'
+				# Label:
+				# 	size_hint_y:0.4
+				# 	text:"0% Complete"
+				# 	pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+				# 	font_size: '12sp'
+				# 	canvas.before:
+				#         Color:
+				#         	rgba: 1, 1, 1, 0.3
+				#         Rectangle:
+				#             size: self.size
+				#             pos: self.pos
+				# Widget:
+				# 	size_hint_y:0.1
+
+
 
 
 				Button:
 					id:LocationPage_label
-					text: 'Location'
+					text: 'Location' + SEC_TEXT
+					size_hint_x:1
+					halign:'left'
+					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_text: "0% Complete"
 					secondary_font_style:'Caption'
 					on_release:
@@ -281,7 +315,10 @@ WindowManager:
 
 				Button:
 					id:AirPollutionPage_label
-					text: 'Air Pollution'
+					text: 'Air Pollution' + SEC_TEXT
+					size_hint_x:1
+					halign:'left'
+					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_text: "0% Complete"
 					secondary_font_style:'Caption'
 					# text_color: app.theme_cls.accent_color
@@ -296,8 +333,10 @@ WindowManager:
 
 				Button:
 					id:DietAndFoodPage_label
-					text: 'Diet & Food'
+					text: 'Diet & Food' + SEC_TEXT
 					secondary_text: "0% Complete"
+					size_hint_x:1
+					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="DietLandingPage"
@@ -307,8 +346,10 @@ WindowManager:
 
 				Button:
 					id:PhysicalActivityPage_label
-					text: 'Physical Activity'
+					text: 'Physical Activity' + SEC_TEXT
 					secondary_text: "0% Complete"
+					size_hint_x:1
+					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="PhysicalActivityLandingPage"
@@ -318,8 +359,10 @@ WindowManager:
 
 				Button:
 					id:AlcoholUsagePage_label
-					text: 'Alcohol Usage'
+					text: 'Alcohol Usage' + SEC_TEXT
 					secondary_text: "0% Complete"
+					size_hint_x:1
+					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="AlcoholLandingPage"
@@ -328,9 +371,11 @@ WindowManager:
 					# 	icon:'glass-cocktail'
 
 				Button:
-					id:DepressionPage_label
+					id:DepressionPage_label + SEC_TEXT
 					text: 'Depression'
 					secondary_text: "0% Complete"
+					size_hint_x:1
+					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="DepressionLandingPage"
@@ -340,9 +385,11 @@ WindowManager:
 
 
 				Button:
-					id:HyperTensionPage_label
+					id:HyperTensionPage_label + SEC_TEXT
 					text: 'Hypertension'
 					secondary_text: "0% Complete"
+					size_hint_x:1
+					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="HyperTensionLandingPage"
@@ -353,9 +400,11 @@ WindowManager:
 
 
 				Button:
-					id:TraumaticBrainInjuryPage_label
+					id:TraumaticBrainInjuryPage_label + SEC_TEXT
 					text: 'Traumatic Brain Injury'
 					secondary_text: "0% Complete"
+					size_hint_x:1
+					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="TraumaticBrainInjuryLandingPage"
@@ -364,9 +413,11 @@ WindowManager:
 					# 	icon:'brain'
 
 				Button:
-					id:CognitiveDeclinePage_label
+					id:CognitiveDeclinePage_label + SEC_TEXT
 					text: 'Cognitive Decline'
 					secondary_text: "0% Complete"
+					size_hint_x:1
+					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="CognitiveDeclineLandingPage"
@@ -388,10 +439,10 @@ WindowManager:
 	BoxLayout:
 		orientation: 'vertical'
 		ActionBar:
-		    ActionView:
-		        ActionPrevious:
-		            title: 'About'
-		            on_release: root.chevron_left()
+			ActionView:
+				ActionPrevious:
+					title: 'About'
+					on_release: root.chevron_left()
 		Widget
 		Label:
 			canvas:
@@ -402,3 +453,4 @@ WindowManager:
 					pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
 					# pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
 					size: (xx,yy)
+

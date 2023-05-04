@@ -2,6 +2,12 @@
 	BoxLayout:
 
 		orientation:'vertical'
+		canvas.before:
+			Color:
+				rgba: BG_COLOR
+			Rectangle:
+				size: self.size
+				pos: self.pos
 
 		ActionBar:
 			ActionView:
@@ -13,6 +19,7 @@
 		Label:
 			text:'Please select the category that you think best describes the community where you live:'
 			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			color: TXT_COLOR
 			size_hint_x:0.9
 			size_hint_y:0.6
 
@@ -52,6 +59,9 @@
 						secondary_font_style:'Caption'
 						halign:'left'
 						on_release: root.toggle(self)
+
+					Switch:
+
 
 
 		BoxLayout:

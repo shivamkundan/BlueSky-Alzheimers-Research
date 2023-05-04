@@ -28,6 +28,12 @@
 
     BoxLayout:
         orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: BG_COLOR
+            Rectangle:
+                size: self.size
+                pos: self.pos
 
         # MDTopAppBar:
         #     title: diet_toolbar_title
@@ -47,7 +53,7 @@
             size_hint_y:0.3
         Label:
             text: diet_landing_blurb
-
+            color: TXT_COLOR
             font_size:'14sp'
             halign: 'left'
             size_hint_x:0.8
@@ -57,6 +63,7 @@
             # font_size:'2xw0sp'
             text: diet_landing_subtitle
             # text_color:DARK_BLUE
+            color: TXT_COLOR
             theme_text_color:"Hint"
             halign: 'left'
             size_hint_x:0.8
@@ -93,6 +100,12 @@
 
     BoxLayout:
         orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: BG_COLOR
+            Rectangle:
+                size: self.size
+                pos: self.pos
         # MDTopAppBar:
         #     title: diet_toolbar_title
         #     halign: 'left'
@@ -244,6 +257,7 @@
         Label:
             pos:(50,950)
             text: diet_Q0
+            color: TXT_COLOR
             # md_bg_color:0,0,1,0.05
             size_hint_y:0.15
             size_hint_x:0.9
@@ -294,6 +308,12 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: BG_COLOR
+            Rectangle:
+                size: self.size
+                pos: self.pos
         # MDTopAppBar:
 
         #     title: diet_toolbar_title
@@ -310,10 +330,12 @@
 
         Label:
             text: 'Your score is:'
+            color: TXT_COLOR
             halign: 'center'
 
         Label:
             id:score_label
+            color: TXT_COLOR
             text: ''
             halign: 'center'
 

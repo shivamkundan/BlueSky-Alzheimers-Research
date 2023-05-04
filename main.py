@@ -37,6 +37,7 @@ class LoadingPage(Screen):
 
 		# for item in widget.ids:
 		#     print (item)
+		print("size: ",(self.ids['my_im'].size[0]//2,self.ids['my_im'].size[1]//2))
 		anim=Animation(size=(self.ids['my_im'].size[0]//2,self.ids['my_im'].size[1]//2))
 		# anim=Animation(anchor_x='top',anchor_y='center')
 		anim.start(self.ids['my_im'])
@@ -45,12 +46,12 @@ class LoadingPage(Screen):
 		# self.parent.transition=FadeTransition()
 		self.parent.current='LandingPage'
 
-	def on_enter(self):
-		# Clock.schedule_once(self.transitioner,LOADING_PAGE_PAUSE_SECONDS)
-		# self.ids['prog'].start()
-		# self.parent.current='LandingPage'
-		for item in self.ids:
-			print(item)
+	# def on_enter(self):
+	# 	# Clock.schedule_once(self.transitioner,LOADING_PAGE_PAUSE_SECONDS)
+	# 	# self.ids['prog'].start()
+	# 	# self.parent.current='LandingPage'
+	# 	for item in self.ids:
+	# 		print(item)
 
 class LandingPage(Screen):
 	def __init__(self,**kwargs):
@@ -708,7 +709,7 @@ class WindowManager(ScreenManager):
 		self._keyboard=None
 		Window.bind(on_resize=self.on_window_resize)
 		Window.bind(on_keyboard=self.Android_back_click)
-		self.on_pre_enter()
+		# self.on_pre_enter()
 
 	def Android_back_click(self,window,key,*largs):
 		if key == 27:
@@ -747,14 +748,16 @@ class WindowManager(ScreenManager):
 			self.current='LoadingPage'
 
 
-	def on_pre_enter(self):
-		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
-		self._keyboard.bind(on_key_up=self._on_keyboard_up)
+	# def on_pre_enter(self):
+	# 	self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+	# 	self._keyboard.bind(on_key_up=self._on_keyboard_up)
 
 class BlueSkyApp(App):
 	def __init__(self,**kwargs):
 		super(BlueSkyApp,self).__init__(**kwargs)
 		self.curr_state='close'
+		self.BG_COLOR=(1,1,1,1)
+		Window.clearcolor=self.BG_COLOR
 
 	def sidebar(self,dt=None):
 		# self.root.current='LoadingPage'

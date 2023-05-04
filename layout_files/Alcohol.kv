@@ -10,6 +10,12 @@
 
 	BoxLayout:
 		orientation: 'vertical'
+		canvas.before:
+			Color:
+				rgba: BG_COLOR
+			Rectangle:
+				size: self.size
+				pos: self.pos
 
 		# MDTopAppBar:
 		# 	title: alcohol_toolbar_title
@@ -30,6 +36,7 @@
 			size_hint_y:0.3
 		Label:
 			text: alcohol_landing_blurb
+			color: TXT_COLOR
 			font_size:'14sp'
 			halign: 'left'
 			size_hint_x:0.8
@@ -38,6 +45,7 @@
 		Label:
 			# font_size:'2xw0sp'
 			text: alcohol_landing_subtitle
+			color: TXT_COLOR
 			# text_color:DARK_BLUE
 			theme_text_color:"Hint"
 			halign: 'left'
@@ -72,6 +80,12 @@
 <AlcoholUsagePage>:
 	BoxLayout:
 		orientation: 'vertical'
+		canvas.before:
+			Color:
+				rgba: BG_COLOR
+			Rectangle:
+				size: self.size
+				pos: self.pos
 		# MDTopAppBar:
 		# 	title: alcohol_toolbar_title
 		# 	left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
@@ -240,6 +254,12 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
+        canvas.before:
+			Color:
+				rgba: BG_COLOR
+			Rectangle:
+				size: self.size
+				pos: self.pos
         # MDTopAppBar:
 
         #     title: alcohol_toolbar_title
@@ -255,10 +275,12 @@
 
         Label:
             text: 'Your score is:'
+            color: TXT_COLOR
             halign: 'center'
 
         Label:
             id:score_label
+            color: TXT_COLOR
             text: ''
             halign: 'center'
 

@@ -19,6 +19,13 @@
 		my_im:my_im
 		orientation: 'vertical'
 
+		# canvas.before:
+        #     Color:
+        #     	rgba: BG_COLOR
+        #     Rectangle:
+        #         size: self.size
+        #         pos: self.pos
+
 		ActionBar:
 			ActionView:
 				HiddenIcon_ActionPrevious:
@@ -92,42 +99,8 @@
 		ScaleLabel:
 			text: 'Human & Behavioral Sciences\nSouthern Illinois University, Carbondale'
 			halign: 'center'
-			font_size: self.height * 0.18
+			font_size: self.height * 0.2
 			padding: dp(0), dp(0)
 			spacing: dp(-10), dp(-10)
 			size_hint_y: 0.5
 			# font_name: '/Users/shivamkundan/Developer/HealthApp/scalasansot-cufonfonts/ScalaSansOT-Regular.otf'
-
-	# MDNavigationLayout:
-	#     nav_drawer:nav_drawer
-	#     content_drawer:content_drawer
-	#     ScreenManager:
-
-	#         Screen:
-	#             BoxLayout:
-	#                 orientation: 'vertical'
-
-	#                 MDTopAppBar:
-	#                     title: "Home"
-	#                     canvas:
-	#                         Rectangle:
-	#                             source: 'logo1.png'
-	#                             pos: (((self.parent.size[0])/2)-30,self.pos[1])
-	#                             size: (160, 160)
-	#                     font_style: "H6"
-	#                     elevation: 8
-	#                     left_action_items: [['menu', lambda x: app.nav_handler()]]
-	#                     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-	#                     # left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
-
-
-	#                 Widget
-
-
-		# MDNavigationDrawer:
-		#     id: nav_drawer
-		#     content_drawer:content_drawer
-		#     size_hint_x:0.5
-		#     on_disabled:print('disable')
-		#     ContentNavigationDrawer:
-		#         id: content_drawer
