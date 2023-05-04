@@ -26,7 +26,6 @@ Window.size = resolutions[2]
 from kivymd.icon_definitions import md_icons
 
 # ===================================================================== #
-
 class LoadingPage(MDScreen):
 	def __init__(self,**kwargs):
 		super(LoadingPage,self).__init__(**kwargs)
