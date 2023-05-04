@@ -16,9 +16,9 @@ class ContentNavigationDrawer(BoxLayout):
 # 	'''Class implementing content for a tab.'''
 # 	text=StringProperty()
 
-class ItemDrawer(OneLineIconListItem):
-	icon = StringProperty()
-	text_color = ListProperty((0, 0, 0, 1))
+# class ItemDrawer(OneLineIconListItem):
+# 	icon = StringProperty()
+# 	text_color = ListProperty((0, 0, 0, 1))
 
 # class DrawerList(ThemableBehavior, MDList):
 # 	def set_color_item(self, instance_item):

@@ -19,56 +19,59 @@
             size_hint_y:0.2
         BoxLayout:
             orientation:'horizontal'
-            MDList:
-                id:listt
+            size_hint_x:0.7
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            ScrollView:
+                # id:listt
+                BoxLayout:
+                    orientation: 'vertical'
+                    Button:
+                        text:'Urban'
+                        # font_style:'H6'
+                        secondary_text:'≥50,000 residents'
+                        secondary_font_style:'Caption'
+                        halign:'left'
+                        on_release: root.toggle(self)
 
-                TwoLineIconListItem:
-                    text:'Urban'
-                    # font_style:'H6'
-                    secondary_text:'≥50,000 residents'
-                    secondary_font_style:'Caption'
-                    halign:'left'
-                    on_release: root.toggle(self)
+                        # IconLeftWidget:
+                        #     name:'left_icon_urban'
+                        #     icon:'checkbox-blank-circle-outline'
 
-                    IconLeftWidget:
-                        name:'left_icon_urban'
-                        icon:'checkbox-blank-circle-outline'
+                    Button:
+                        text:'Large Rural'
+                        # font_style:'H6'
+                        secondary_text:'10,000 – 49,999 residents'
+                        secondary_font_style:'Caption'
+                        halign:'left'
+                        on_release: root.toggle(self)
 
-                TwoLineIconListItem:
-                    text:'Large Rural'
-                    # font_style:'H6'
-                    secondary_text:'10,000 – 49,999 residents'
-                    secondary_font_style:'Caption'
-                    halign:'left'
-                    on_release: root.toggle(self)
+                        # IconLeftWidget:
+                        #     name:'left_icon_large_rural'
+                        #     id:'left_icon_large_rural'
 
-                    IconLeftWidget:
-                        name:'left_icon_large_rural'
-                        id:'left_icon_large_rural'
+                            # icon:'checkbox-blank-circle-outline'
+                    Button:
+                        text:'Small Rural'
+                        # font_style:'H6'
+                        secondary_text:'2,500 – 9,999 residents'
+                        secondary_font_style:'Caption'
+                        halign:'left'
+                        on_release: root.toggle(self)
 
-                        icon:'checkbox-blank-circle-outline'
-                TwoLineIconListItem:
-                    text:'Small Rural'
-                    # font_style:'H6'
-                    secondary_text:'2,500 – 9,999 residents'
-                    secondary_font_style:'Caption'
-                    halign:'left'
-                    on_release: root.toggle(self)
+                        # IconLeftWidget:
+                        #     name:'left_icon_small_rural'
+                        #     icon:'checkbox-blank-circle-outline'
+                    Button:
+                        text:'Isolated'
+                        # font_style:'H6'
+                        secondary_text:'<2,500 residents'
+                        secondary_font_style:'Caption'
+                        halign:'left'
+                        on_release: root.toggle(self)
 
-                    IconLeftWidget:
-                        name:'left_icon_small_rural'
-                        icon:'checkbox-blank-circle-outline'
-                TwoLineIconListItem:
-                    text:'Isolated'
-                    # font_style:'H6'
-                    secondary_text:'<2,500 residents'
-                    secondary_font_style:'Caption'
-                    halign:'left'
-                    on_release: root.toggle(self)
-
-                    IconLeftWidget:
-                        name:'left_icon_isolated'
-                        icon:'checkbox-blank-circle-outline'
+                        # IconLeftWidget:
+                        #     name:'left_icon_isolated'
+                        #     icon:'checkbox-blank-circle-outline'
 
 
         BoxLayout:

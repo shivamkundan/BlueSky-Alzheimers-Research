@@ -1,6 +1,5 @@
 #:import utils kivy.utils
 #:import button kivy.uix.button
-#:import buttonmd kivymd.uix.button
 
 #:set font_black 'fonts/ScalaSansOT-Regular.otf'
 #:set font_cond_bold 'fonts/ScalaSansOT-CondBold.otf'
@@ -171,11 +170,27 @@ WindowManager:
 	BoxLayout:
 		orientation: 'vertical'
 
-		MDTopAppBar:
-			title: 'Risk Assesment'
-			left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-			right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: print('help')]]
-			elevation:8
+		ActionBar:
+			# title: 'Risk Assesment'
+			# left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
+			# right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: print('help')]]
+			# elevation:8
+
+			pos_hint: {'top':1}
+
+	        ActionView:
+	            # use_separator: True
+
+	            ActionPrevious:
+	                title: 'Risk Assesment'
+	                # with_previous: False
+	                on_release: root.chevron_left()
+	            ActionOverflow:
+		            ActionButton:
+		                text: 'Btn0'
+		                icon: 'floppy'
+		            ActionButton:
+		                text: 'Btn1'
 
 		# Button:
 		#     text:''
@@ -211,7 +226,7 @@ WindowManager:
 				text: '    Reset    '
 				halign: 'center'
 				# size_hint:(1,1)
-				size_hint_y:1
+				size_hint_y:0.5
 				# size_hint_x:1
 				# _no_ripple_effect: True
 
@@ -225,13 +240,16 @@ WindowManager:
 			# bar_width: 8
 			bar_inactive_color: .55, .55, .55, 1
 			bar_color: .663, .663, .663, 1
-			MDList:
-				id:listt
-				TwoLineIconListItem:
+
+			BoxLayout:
+				orientation:'vertical'
+				# id:listt
+				Button:
 					id:SocioDemographicPage_label
 					text: 'Demographics'
-					secondary_text: "0% Complete"
-					secondary_font_style:'Caption'
+					size_hint_y:1
+					# secondary_text: "0% Complete"
+					# secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="SociodemographicPage"
 						root.manager.transition.direction="left"
@@ -239,7 +257,7 @@ WindowManager:
 					# 	icon:'gender-male-female'
 
 
-				TwoLineIconListItem:
+				Button:
 					id:LocationPage_label
 					text: 'Location'
 					secondary_text: "0% Complete"
@@ -251,7 +269,7 @@ WindowManager:
 					# 	icon:'map-marker-plus-outline'
 
 
-				TwoLineIconListItem:
+				Button:
 					id:AirPollutionPage_label
 					text: 'Air Pollution'
 					secondary_text: "0% Complete"
@@ -266,7 +284,7 @@ WindowManager:
 					# 	icon:'air-filter'
 
 
-				TwoLineIconListItem:
+				Button:
 					id:DietAndFoodPage_label
 					text: 'Diet & Food'
 					secondary_text: "0% Complete"
@@ -277,7 +295,7 @@ WindowManager:
 					# IconLeftWidget:
 					# 	icon:'food-apple-outline'
 
-				TwoLineIconListItem:
+				Button:
 					id:PhysicalActivityPage_label
 					text: 'Physical Activity'
 					secondary_text: "0% Complete"
@@ -288,7 +306,7 @@ WindowManager:
 					# IconLeftWidget:
 					# 	icon:'arm-flex-outline'
 
-				TwoLineIconListItem:
+				Button:
 					id:AlcoholUsagePage_label
 					text: 'Alcohol Usage'
 					secondary_text: "0% Complete"
@@ -299,7 +317,7 @@ WindowManager:
 					# IconLeftWidget:
 					# 	icon:'glass-cocktail'
 
-				TwoLineIconListItem:
+				Button:
 					id:DepressionPage_label
 					text: 'Depression'
 					secondary_text: "0% Complete"
@@ -311,7 +329,7 @@ WindowManager:
 					# 	icon:'head-alert-outline'
 
 
-				TwoLineIconListItem:
+				Button:
 					id:HyperTensionPage_label
 					text: 'Hypertension'
 					secondary_text: "0% Complete"
@@ -324,7 +342,7 @@ WindowManager:
 
 
 
-				TwoLineIconListItem:
+				Button:
 					id:TraumaticBrainInjuryPage_label
 					text: 'Traumatic Brain Injury'
 					secondary_text: "0% Complete"
@@ -335,7 +353,7 @@ WindowManager:
 					# IconLeftWidget:
 					# 	icon:'brain'
 
-				TwoLineIconListItem:
+				Button:
 					id:CognitiveDeclinePage_label
 					text: 'Cognitive Decline'
 					secondary_text: "0% Complete"

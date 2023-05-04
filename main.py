@@ -23,6 +23,8 @@ KV_FILE='health_app.kv' # kivy design file
 resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
 Window.size = resolutions[2]
 
+LOADING_PAGE_PAUSE_SECONDS=1
+
 # from kivymd.icon_definitions import md_icons
 
 # ===================================================================== #
@@ -44,7 +46,7 @@ class LoadingPage(Screen):
 		self.parent.current='LandingPage'
 
 	def on_enter(self):
-		Clock.schedule_once(self.transitioner,5)
+		Clock.schedule_once(self.transitioner,LOADING_PAGE_PAUSE_SECONDS)
 		# self.ids['prog'].start()
 		for item in self.ids:
 			print(item)
@@ -361,33 +363,33 @@ class LocationPage(Screen):
 
 	def toggle(self,*args):
 
+		print ("toggle function")
+		# # print (type(args[0].ids['_left_container'].walk))
+		# curr_icon=None
 
-		# print (type(args[0].ids['_left_container'].walk))
-		curr_icon=None
+		# for item in args[0].ids['_left_container'].walk():
+		# 	try:
+		# 		# print(item.name)
+		# 		if ('left_icon' in item.name):
+		# 			# print (dir(item))
+		# 			self.option_names_dict[item.name]=item
+		# 			curr_icon=item.name
+		# 			if item.icon=='circle-slice-8':
+		# 				item.icon='checkbox-blank-circle-outline'
+		# 			else:
+		# 				item.icon='circle-slice-8'
+		# 			break
+		# 	except:
+		# 		pass
+		# print ('selected: ',curr_icon)
 
-		for item in args[0].ids['_left_container'].walk():
-			try:
-				# print(item.name)
-				if ('left_icon' in item.name):
-					# print (dir(item))
-					self.option_names_dict[item.name]=item
-					curr_icon=item.name
-					if item.icon=='circle-slice-8':
-						item.icon='checkbox-blank-circle-outline'
-					else:
-						item.icon='circle-slice-8'
-					break
-			except:
-				pass
-		print ('selected: ',curr_icon)
-
-		try:
-			for k,v in self.option_names_dict.items():
-				# print (k,v)
-				if k!=curr_icon:
-					v.icon='checkbox-blank-circle-outline'
-		except:
-			pass
+		# try:
+		# 	for k,v in self.option_names_dict.items():
+		# 		# print (k,v)
+		# 		if k!=curr_icon:
+		# 			v.icon='checkbox-blank-circle-outline'
+		# except:
+		# 	pass
 
 # ===================================================================== #
 
@@ -834,11 +836,11 @@ class BlueSkyApp(MDApp):
 		elif selected_button=='Exit':
 			exit()
 
-		elif selected_button=='Developer':
-			MDApp.open_settings(self)
+		# elif selected_button=='Developer':
+		# 	MDApp.open_settings(self)
 
-		elif selected_button=='Themes':
-			self.show_theme_picker()
+		# elif selected_button=='Themes':
+		# 	self.show_theme_picker()
 
 		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("close")
 		curr_state=self.root.ids['LandingPage'].ids['nav_drawer'].state
