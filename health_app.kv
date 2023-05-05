@@ -14,6 +14,8 @@
 
 #:set BTN_COLOR 69/255, 90/255, 100/255, 0.9
 
+#:set FILLER "                                                             "
+
 #:include layout_files/templates.kv
 #:include layout_files/AirPollution.kv
 #:include layout_files/Alcohol.kv
@@ -68,6 +70,7 @@ WindowManager:
 
 	# ------------------------------------- #
 	AirPollutionLandingPage:
+		id:AirPollutionLandingPage
 		name:"AirPollutionLandingPage"
 
 	AirPollutionPage:
@@ -440,6 +443,41 @@ WindowManager:
 	font_style:'Button'
 	background_color: BTN_COLOR
 
+<AirP_ActionBar>:
+	ActionView:
+		HiddenIcon_ActionPrevious:
+		# # ActionPrevious:
+		ActionButton:
+			icon:"pics/left.png"
+			on_release: root.chevron_left(root.parent.parent)
+		ActionButton:
+			text:"Air Pollution"
+		ActionButton:
+			important: True
+			text:FILLER
+		ActionButton:
+			important: True
+			# text:"btn0"
+			icon:'pics/sun.png'
+			on_release: app.toggle_theme()
+
+# =======================================
+
+# <NavButtons>:
+# 	orientation: 'horizontal'
+# 	size_hint_y:0.3
+# 	Button:
+# 		background_color: BTN_COLOR
+# 		size_hint_y:0.5
+# 		text:'                     <                       '
+# 		on_release:root.arrow_left()
+# 	Button:
+# 		background_color: BTN_COLOR
+# 		size_hint_y:0.5
+# 		text:'                     >                       '
+# 		on_release:
+# 			# root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
+# 			root.arrow_right()
 
 # =======================================
 <AboutPage>:

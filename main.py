@@ -740,9 +740,7 @@ class WindowManager(ScreenManager):
 			'TraumaticBrainInjuryPage':0,
 			'CognitiveDeclinePage':0
 		}
-
 		self._keyboard=None
-		# Window.bind(on_resize=self.on_window_resize)
 		Window.bind(on_keyboard=self._on_keyboard_up)
 		# self.on_pre_enter()
 
@@ -758,16 +756,16 @@ class WindowManager(ScreenManager):
 			exit()
 		if keycode == KEY_H:
 			self.current='LandingPage'
+
+		# Same as android 'back' key
 		if keycode == KEY_ESC:
 			self.transition.direction = 'right'
-
 			if (self.current in ["RiskAssesmentPage","LoginPage","AboutPage"]):
 				self.current="LandingPage"
 			elif (self.current=="LandingPage"):
 				exit()
 			else:
-				# self.current=self.get_screen(self.current).prev_page
-				self.current="RiskAssesmentPage"
+				self.current="RiskAssesmentPage" # all other pages return to risk assesment
 
 	def on_pre_enter(self):
 		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
@@ -779,13 +777,11 @@ class BlueSkyApp(App):
 		self.curr_state='close'
 
 		self.BG_COLOR="BLACK"
-
 		Window.clearcolor=(0,0,0,1)
 
 	# --------------------------------------------------------------------- #
 
 	def build(self):
-
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
 		return self.WindowManager
@@ -793,15 +789,34 @@ class BlueSkyApp(App):
 
 	def toggle_theme(self):
 
+		WHITE=(1,1,1,1)
+		BLACK=(0,0,0,1)
+		# bg color and logo path
 		if (self.BG_COLOR=="BLACK"):
 			self.BG_COLOR="WHITE"
-			Window.clearcolor=(1,1,1,1)
+			Window.clearcolor=WHITE
 			App.get_running_app().root.ids["LandingPage"].ids["my_im"].source='pics/logo_minimal.png'
+			App.get_running_app().root.ids["LandingPage"].ids["landing_page_bottom_label"].color=BLACK
+
+			App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label1"].color=BLACK
+			App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label2"].color=BLACK
+
+			App.get_running_app().root.ids["AirPollutionPage"].ids["label1"].color=BLACK
+			App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color=BLACK
 
 		else:
 			self.BG_COLOR="BLACK"
-			Window.clearcolor=(0,0,0,1)
+			Window.clearcolor=BLACK
 			App.get_running_app().root.ids["LandingPage"].ids["my_im"].source='pics/logo_minimal_white.png'
+			App.get_running_app().root.ids["LandingPage"].ids["landing_page_bottom_label"].color=WHITE
+
+			App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label1"].color=WHITE
+			App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label2"].color=WHITE
+
+			App.get_running_app().root.ids["AirPollutionPage"].ids["label1"].color=WHITE
+			App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color=WHITE
+
+		# reload image
 		App.get_running_app().root.ids["LandingPage"].ids["my_im"].reload()
 
 

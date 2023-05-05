@@ -3,6 +3,7 @@
 # #:set IMG_SOURCE 'pics/logo_minimal.png'
 #:set IMG_SOURCE 'pics/logo_minimal_white.png'
 #:set IMG_SIZE (618,440)
+
 <HiddenIcon_ActionPrevious@ActionPrevious>:
     title: ''   # app.title if app.title is not None else 'Action Previous'
     with_previous: False
@@ -32,7 +33,7 @@
 					text:"Home"
 				ActionButton:
 					important: True
-					text:"                                                             "
+					text:FILLER
 				ActionButton:
 					important: True
 					# text:"btn0"
@@ -77,6 +78,7 @@
 		Widget
 
 		ScaleLabel:
+			id:landing_page_bottom_label
 			text: 'Human & Behavioral Sciences\nSouthern Illinois University, Carbondale'
 			halign: 'center'
 			font_size: self.height * 0.2

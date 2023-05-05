@@ -103,10 +103,10 @@ class ScorePageTemplate(SubPageBase):
 		except:
 			pass
 
-	def on_pre_enter(self):
-		# self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
-		release_keyboard_global(self)
-		# Clock.schedule_once(self.update_score,0.2)
+	# def on_pre_enter(self):
+	# 	# self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
+	# 	release_keyboard_global(self)
+	# 	# Clock.schedule_once(self.update_score,0.2)
 
 	def on_enter(self):
 		self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
