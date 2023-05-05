@@ -189,38 +189,6 @@ WindowManager:
 				ActionButton:
 					text:"Risk Assesment"
 
-
-		# ActionBar:
-		# 	ActionView:
-		# 		ActionPrevious:
-		# 			title: 'Risk Assesment'
-		# 			# with_previous: True
-		# 			icon:"pics/left.png"
-		# 			on_release: root.chevron_left()
-					# ActionButton:
-					# 	# text:"btn0"
-					# 	icon:"pics/left.png"
-					# 	on_release: root.chevron_left()
-			# ActionView:
-			# 	ActionPrevious:
-			# 		title: 'Risk Assesment'
-			# 		# with_previous: False
-			# 		on_release: root.chevron_left()
-			# 	ActionOverflow:
-			# 		ActionButton:
-			# 			text: 'Btn0'
-			# 			# icon: 'floppy'
-			# 		ActionButton:
-			# 			text: 'Btn1'
-
-		# Button:
-		#     text:''
-		#     size_hint_y:0.01
-		#     size_hint_x:0.1
-		#     pos_hint:{'center_x': 0.9, 'center_y': 0.5}
-		#     id:button
-		#     on_release: root.tap_target_start()
-
 		BoxLayout:
 			orientation:'horizontal'
 			# md_bg_color:(90/255, 90/255, 90/255,0.25)
@@ -235,13 +203,6 @@ WindowManager:
 						halign: 'center'
 						font_size:'10sp'
 						color: TXT_COLOR
-						# color: 0,0,0,1 # <-----------
-						# canvas.before:
-						# 	Color:
-						# 		rgba: 0, 0, 0, 1
-						# 	Rectangle:
-						# 		pos: self.pos
-						# 		size: self.size
 
 					Label:
 						text: ''
@@ -280,55 +241,21 @@ WindowManager:
 				size_hint_y:None
 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 				pos_hint_x:0.5
-				# size_hint_x:0.9
-				# id:listt
 
-				# BoxLayout
-				# 	orientation:'vertical'
 				MyButton2:
 					id:SocioDemographicPage_label
 					text: 'Demographics' + SEC_TEXT
-					# size_hint_x:0.8
-					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					# # background_normal:''
-					# # background_color: 1, 1, 1, 0.3
-					# # secondary_text: "0% Complete"
-					# # secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="SociodemographicPage"
 						root.manager.transition.direction="left"
-				# 	# IconLeftWidget:
-				# 	# 	icon:'gender-male-female'
-				# Label:
-				# 	size_hint_y:0.4
-				# 	text:"0% Complete"
-				# 	pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-				# 	font_size: '12sp'
-				# 	canvas.before:
-				#         Color:
-				#         	rgba: 1, 1, 1, 0.3
-				#         Rectangle:
-				#             size: self.size
-				#             pos: self.pos
-				# Widget:
-				# 	size_hint_y:0.1
-
-
 
 
 				MyButton2:
 					id:LocationPage_label
 					text: 'Location' + SEC_TEXT
-					# size_hint_x:1
-					# halign:'left'
-					# # pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					# secondary_text: "0% Complete"
-					# secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="LocationPage"
 						root.manager.transition.direction="left"
-					# IconLeftWidget:
-					# 	icon:'map-marker-plus-outline'
 
 
 				MyButton2:
@@ -367,12 +294,8 @@ WindowManager:
 					# 	icon:'glass-cocktail'
 
 				MyButton2:
-					id:DepressionPage_label + SEC_TEXT
-					text: 'Depression'
-					# secondary_text: "0% Complete"
-					# size_hint_x:1
-					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					# secondary_font_style:'Caption'
+					id:DepressionPage_label
+					text: 'Depression' + SEC_TEXT
 					on_release:
 						root.manager.current="DepressionLandingPage"
 						root.manager.transition.direction="left"
@@ -381,12 +304,8 @@ WindowManager:
 
 
 				MyButton2:
-					id:HyperTensionPage_label + SEC_TEXT
-					text: 'Hypertension'
-					# secondary_text: "0% Complete"
-					# size_hint_x:1
-					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					# secondary_font_style:'Caption'
+					id:HyperTensionPage_label
+					text: 'Hypertension' + SEC_TEXT
 					on_release:
 						root.manager.current="HyperTensionLandingPage"
 						root.manager.transition.direction="left"
@@ -396,12 +315,8 @@ WindowManager:
 
 
 				MyButton2:
-					id:TraumaticBrainInjuryPage_label + SEC_TEXT
-					text: 'Traumatic Brain Injury'
-					# secondary_text: "0% Complete"
-					# size_hint_x:1
-					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					# secondary_font_style:'Caption'
+					id:TraumaticBrainInjuryPage_label
+					text: 'Traumatic Brain Injury' + SEC_TEXT
 					on_release:
 						root.manager.current="TraumaticBrainInjuryLandingPage"
 						root.manager.transition.direction="left"
@@ -409,12 +324,8 @@ WindowManager:
 					# 	icon:'brain'
 
 				MyButton2:
-					id:CognitiveDeclinePage_label + SEC_TEXT
-					text: 'Cognitive Decline'
-					# secondary_text: "0% Complete"
-					# size_hint_x:1
-					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					# secondary_font_style:'Caption'
+					id:CognitiveDeclinePage_label
+					text: 'Cognitive Decline' + SEC_TEXT
 					on_release:
 						root.manager.current="CognitiveDeclineLandingPage"
 						root.manager.transition.direction="left"
@@ -444,6 +355,7 @@ WindowManager:
 	background_color: BTN_COLOR
 
 <AirP_ActionBar>:
+	pos_hint: {'top':1}
 	ActionView:
 		HiddenIcon_ActionPrevious:
 		# # ActionPrevious:
@@ -461,23 +373,6 @@ WindowManager:
 			icon:'pics/sun.png'
 			on_release: app.toggle_theme()
 
-# =======================================
-
-# <NavButtons>:
-# 	orientation: 'horizontal'
-# 	size_hint_y:0.3
-# 	Button:
-# 		background_color: BTN_COLOR
-# 		size_hint_y:0.5
-# 		text:'                     <                       '
-# 		on_release:root.arrow_left()
-# 	Button:
-# 		background_color: BTN_COLOR
-# 		size_hint_y:0.5
-# 		text:'                     >                       '
-# 		on_release:
-# 			# root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
-# 			root.arrow_right()
 
 # =======================================
 <AboutPage>:
