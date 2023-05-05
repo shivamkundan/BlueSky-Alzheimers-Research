@@ -9,8 +9,10 @@
 #:set yy 286
 #:set SEC_TEXT " [0% Complete]"
 
-#:set BG_COLOR 1, 1, 1, 1
-#:set TXT_COLOR 0, 0, 0, 1
+#:set BG_COLOR 0, 0, 0, 1
+#:set TXT_COLOR 1, 1, 1, 1
+
+#:set BTN_COLOR 69/255, 90/255, 100/255, 0.9
 
 #:include layout_files/templates.kv
 #:include layout_files/AirPollution.kv
@@ -174,26 +176,39 @@ WindowManager:
 	BoxLayout:
 		orientation: 'vertical'
 
-		# canvas.before:
-		# 	Color:
-		# 		rgba: BG_COLOR
-		# 	Rectangle:
-		# 		size: self.size
-		# 		pos: self.pos
-
 		ActionBar:
-			pos_hint: {'top':1}
 			ActionView:
-				ActionPrevious:
-					title: 'Risk Assesment'
-					# with_previous: False
+				HiddenIcon_ActionPrevious:
+				# ActionPrevious:
+				ActionButton:
+					icon:"pics/left.png"
 					on_release: root.chevron_left()
-				ActionOverflow:
-					ActionButton:
-						text: 'Btn0'
-						# icon: 'floppy'
-					ActionButton:
-						text: 'Btn1'
+				ActionButton:
+					text:"Risk Assesment"
+
+
+		# ActionBar:
+		# 	ActionView:
+		# 		ActionPrevious:
+		# 			title: 'Risk Assesment'
+		# 			# with_previous: True
+		# 			icon:"pics/left.png"
+		# 			on_release: root.chevron_left()
+					# ActionButton:
+					# 	# text:"btn0"
+					# 	icon:"pics/left.png"
+					# 	on_release: root.chevron_left()
+			# ActionView:
+			# 	ActionPrevious:
+			# 		title: 'Risk Assesment'
+			# 		# with_previous: False
+			# 		on_release: root.chevron_left()
+			# 	ActionOverflow:
+			# 		ActionButton:
+			# 			text: 'Btn0'
+			# 			# icon: 'floppy'
+			# 		ActionButton:
+			# 			text: 'Btn1'
 
 		# Button:
 		#     text:''
@@ -432,6 +447,12 @@ WindowManager:
 # ----
 
 
+<MyButton>:
+	text:""
+	pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+	size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
+	font_style:'Button'
+	background_color: BTN_COLOR
 
 
 # =======================================

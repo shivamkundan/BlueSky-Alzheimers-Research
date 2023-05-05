@@ -1,6 +1,7 @@
 #:set BTN_WIDTH 0.7
 #:set BTN_HEIGHT 0.5
-#:set IMG_SOURCE 'pics/logo_minimal.png'
+# #:set IMG_SOURCE 'pics/logo_minimal.png'
+#:set IMG_SOURCE 'pics/logo_minimal_white.png'
 #:set IMG_SIZE (618,440)
 <HiddenIcon_ActionPrevious@ActionPrevious>:
     title: ''   # app.title if app.title is not None else 'Action Previous'
@@ -19,33 +20,24 @@
 		my_im:my_im
 		orientation: 'vertical'
 
-		# canvas.before:
-        #     Color:
-        #     	rgba: BG_COLOR
-        #     Rectangle:
-        #         size: self.size
-        #         pos: self.pos
-
 		ActionBar:
+			# use_separator:True
+			# separator_width:100
 			ActionView:
 				HiddenIcon_ActionPrevious:
-
-				# ActionGroup:
-		        #     id: App_ActionGroup
-		        #     mode: 'spinner'
-		        #     text: 'Jump to Screen'
-				# use_separator: True
-
-				# ActionPrevious:
-				# 	title: ''
-					# with_previous: False
-				# 	# on_release: root.chevron_left()
-				# ActionOverflow:
-					# ActionButton:
-					# 	text: 'Btn0'
-						# icon: 'reset.png'
-				# 	ActionButton:
-				# 		text: 'Btn1'
+				# # ActionPrevious:
+				# ActionButton:
+				# 	icon:"pics/left.png"
+				ActionButton:
+					text:"Home"
+				ActionButton:
+					important: True
+					text:"                                                             "
+				ActionButton:
+					important: True
+					# text:"btn0"
+					icon:'pics/sun.png'
+					on_release: app.toggle_theme()
 
 		Widget:
 			size_hint_y:0.8
@@ -59,38 +51,26 @@
 		Widget:
 			size_hint_y:0.5
 
-		Button:
+		MyButton:
 			text:'Risk Assesment'
-			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-			font_style:'Button'
 			on_release:
 				root.manager.current="RiskAssesmentPage"
 				root.manager.transition.direction="left"
 		Widget:
 			size_hint_y:0.05
 
-		Button:
+		MyButton:
 			text:'Educational Resources'
-			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-			font_style:'Button'
 		Widget:
 			size_hint_y:0.05
 
-		Button:
-			text:'Cognitive Rehabilitation'
-			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-			font_style:'Button'
+		MyButton:
+			text: "Cognitive Rehabilitation"
 		Widget:
 			size_hint_y:0.05
 
-		Button:
+		MyButton:
 			text:'About'
-			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-			font_style:'Button'
 			on_release:
 				root.manager.transition.direction="left"
 				root.manager.current="AboutPage"
@@ -103,4 +83,5 @@
 			padding: dp(0), dp(0)
 			spacing: dp(-10), dp(-10)
 			size_hint_y: 0.5
+			color: TXT_COLOR
 			# font_name: '/Users/shivamkundan/Developer/HealthApp/scalasansot-cufonfonts/ScalaSansOT-Regular.otf'

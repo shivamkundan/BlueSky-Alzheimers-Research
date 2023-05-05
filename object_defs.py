@@ -5,6 +5,9 @@ from kivy_imports import *
 class NavButtons(Widget):
 	pass
 
+class MyButton(Button):
+	pass
+
 class ButtonSet(BoxLayout):
 	def __init__(self,**kwargs):
 		super(ButtonSet,self).__init__(**kwargs)

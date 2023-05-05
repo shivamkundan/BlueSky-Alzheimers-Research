@@ -20,10 +20,12 @@ KV_FILE='health_app.kv' # kivy design file
 # Config.set('graphics', 'height', MAX_SIZE[1])
 
 # # These resolutions are in software pixels
-resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
-Window.size = resolutions[2]
+# resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
+# Window.size = resolutions[2]
 
 LOADING_PAGE_PAUSE_SECONDS=1
+BLACK=(0,0,0,1)
+WHITE=(0,0,0,1)
 
 # from kivymd.icon_definitions import md_icons
 
@@ -841,8 +843,10 @@ class BlueSkyApp(App):
 	def __init__(self,**kwargs):
 		super(BlueSkyApp,self).__init__(**kwargs)
 		self.curr_state='close'
-		self.BG_COLOR=(1,1,1,1)
-		Window.clearcolor=self.BG_COLOR
+
+		self.BG_COLOR="BLACK"
+
+		Window.clearcolor=BLACK
 
 	def sidebar(self,dt=None):
 		# self.root.current='LoadingPage'
@@ -873,8 +877,18 @@ class BlueSkyApp(App):
 	def menu_callback(self, text_item):
 		print(text_item)
 
-	def callback_2(self):
+	def toggle_theme(self):
 		print ('hello')
+		print (self.BG_COLOR)
+
+		if (self.BG_COLOR=="BLACK"):
+			self.BG_COLOR="WHITE"
+			Window.clearcolor=(1,1,1,1)
+		else:
+			self.BG_COLOR="BLACK"
+			Window.clearcolor=(0,0,0,1)
+
+		# Window.clearcolor=self.BG_COLOR
 
 	# def themer(self,*args):
 	# 	print ('themer')

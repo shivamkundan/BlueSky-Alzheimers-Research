@@ -45,7 +45,7 @@ requirements = python3,kivy,sdl2_ttf==2.0.15,pillow,docutils,plyer
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/pics/presplash_logo.png
+presplash.filename = %(source.dir)s/pics/presplash_logo_white.png
 
 # (str) Icon of the application
 icon.filename = %(source.dir)s/pics/icon_brain_blue.png
@@ -83,7 +83,8 @@ fullscreen = 0
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
 # android.presplash_color = #FFFFFF
-android.presplash_color = #EEEEEE
+# android.presplash_color = #000000
+android.presplash_color = #455A64
 
 # (string) Presplash animation using Lottie format.
 # see https://lottiefiles.com/ for examples and https://airbnb.design/lottie/
@@ -309,8 +310,8 @@ android.allow_backup = True
 # (bool) Skip byte compile for .py files
 # android.no-byte-compile-python = False
 
-# (str) The format used to package the app for release mode (aab or apk or aar).
-android.release_artifact = aab
+# # (str) The format used to package the app for release mode (aab or apk or aar).
+# android.release_artifact = aab
 
 # (str) The format used to package the app for debug mode (apk or aar).
 # android.debug_artifact = apk
