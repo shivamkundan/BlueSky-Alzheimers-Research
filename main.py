@@ -384,13 +384,13 @@ class AirPollutionPage(SubPageTemplate):
 		self.num_questions=7 # hard-coded for speedy initialization
 
 		self.questions_dict={
-			0: {'q':'[1/7]\nI expect to wear a pollution mask',			'response':0,'completed':False},
-			1: {'q':'[2/7]\nI want to wear a pollution mask',			'response':0,'completed':False},
-			2: {'q':'[3/7]\nI intend to wear a pollution mask',			'response':0,'completed':False},
-			3: {'q':'[4/7]\nI choose to wear a pollution mask',			'response':0,'completed':False},
-			4: {'q':'[5/7]\nI will wear a pollution mask',				'response':0,'completed':False},
-			5: {'q':'[6/7]\nI would be better wearing a pollution mask','response':0,'completed':False},
-			6: {'q':'[7/7]\nI prefer wearing a pollution mask',			'response':0,'completed':False},
+			0: {'q':'I expect to wear a pollution mask\n[1/7]',			'response':0,'completed':False},
+			1: {'q':'I want to wear a pollution mask\n[2/7]',			'response':0,'completed':False},
+			2: {'q':'I intend to wear a pollution mask\n[3/7]',			'response':0,'completed':False},
+			3: {'q':'I choose to wear a pollution mask\n[4/7]',			'response':0,'completed':False},
+			4: {'q':'I will wear a pollution mask\n[5/7]',				'response':0,'completed':False},
+			5: {'q':'I would be better wearing a pollution mask\n[6/7]','response':0,'completed':False},
+			6: {'q':'I prefer wearing a pollution mask\n[7/7]',			'response':0,'completed':False},
 		}
 
 		self.curr_question_num=0

@@ -68,19 +68,19 @@
 		AirP_ActionBar:
 
 		BoxLayout:
-			size_hint_y:1
+			size_hint_y:0.6
 			orientation:'vertical'
 			pos_hint:{'center_x':0.5}
 
 			Label:
 				size_hint_x:0.8
-				# # size_hint_y:0.6
-				# canvas.before:
-				#     Color:
-				#         rgba: 1, .3, .4, .85
-				#     Rectangle:
-				#         size: self.size
-				#         pos: self.pos
+				# size_hint_y:0.6
+				canvas.before:
+				    Color:
+				        rgba: 1, .3, .4, .85
+				    Rectangle:
+				        size: self.size
+				        pos: self.pos
 				id:label1
 				text_size: root.width*self.size_hint_x, None
 			    size: self.texture_size
@@ -92,15 +92,22 @@
 			# BoxLayout:
 			Label:
 				size_hint_x:0.8
-				size_hint_y:0.6
+				# size_hint_y:0.6
 				id:air_pollution_q_label
 				# name:"air_pollution_q_label"
+				canvas.before:
+				    Color:
+				        rgba: 0, .4, .3, .85
+				    Rectangle:
+				        size: self.size
+				        pos: self.pos
 				text_size: root.width*self.size_hint_x, None
 				color: TXT_COLOR
 			    size: self.texture_size
 				text: air_Q0
 				halign:'center'
-				pos_hint:{'center_x':0.5}
+				pos_hint:{'center_x':0.5,'center_y':0.3}
+				# pos_hint:{}
 
 		BoxLayout:
 			orientation:'vertical'
