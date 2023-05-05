@@ -742,12 +742,23 @@ class WindowManager(ScreenManager):
 		}
 
 		self._keyboard=None
-		Window.bind(on_resize=self.on_window_resize)
-		Window.bind(on_keyboard=self.Android_back_click)
+		# Window.bind(on_resize=self.on_window_resize)
+		Window.bind(on_keyboard=self._on_keyboard_up)
 		# self.on_pre_enter()
 
-	def Android_back_click(self,window,key,*largs):
-		if key == 27:
+	def _keyboard_closed(self):
+		if self._keyboard!=None:
+			self._keyboard.unbind(on_key_up=self._on_keyboard_up)
+		self._keyboard = None
+
+	def _on_keyboard_up(self, keyboard, keycode,*largs):#, text, modifiers):
+		if keycode=='close':
+			Window.release_all_keyboards()
+		if keycode == KEY_Q:
+			exit()
+		if keycode == KEY_H:
+			self.current='LandingPage'
+		if keycode == KEY_ESC:
 			self.transition.direction = 'right'
 
 			if (self.current in ["RiskAssesmentPage","LoginPage","AboutPage"]):
@@ -757,32 +768,10 @@ class WindowManager(ScreenManager):
 			else:
 				# self.current=self.get_screen(self.current).prev_page
 				self.current="RiskAssesmentPage"
-			return True
 
-	def on_window_resize(self, window, width, height):
-		print (width,height)
-
-	def _keyboard_closed(self):
-		if self._keyboard!=None:
-			self._keyboard.unbind(on_key_up=self._on_keyboard_up)
-		self._keyboard = None
-
-	def _on_keyboard_up(self, keyboard, keycode):#, text, modifiers):
-		print(keyboard,keycode)
-		if keycode[1]=='close':
-			Window.release_all_keyboards()
-		if keycode[1] == 'q':
-			exit()
-		if keycode[1] == 'h':
-			self.current='LandingPage'
-
-		if keycode[1] == 'l':
-			self.current='LoadingPage'
-
-
-	# def on_pre_enter(self):
-	# 	self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
-	# 	self._keyboard.bind(on_key_up=self._on_keyboard_up)
+	def on_pre_enter(self):
+		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+		self._keyboard.bind(on_key_up=self._on_keyboard_up)
 
 class BlueSkyApp(App):
 	def __init__(self,**kwargs):

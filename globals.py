@@ -1,5 +1,11 @@
 from kivy_imports import *
 
+KEY_ESC=27
+
+KEY_Q=113
+
+KEY_H=108
+
 # ============================ GLOBAL FNs ============================= #
 def chevron_left_global(curr,next_pg='RiskAssesmentPage'):
 	curr.parent.transition.direction="right"
