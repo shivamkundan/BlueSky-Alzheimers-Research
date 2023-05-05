@@ -24,10 +24,6 @@ KV_FILE='health_app.kv' # kivy design file
 # Window.size = resolutions[2]
 
 LOADING_PAGE_PAUSE_SECONDS=1
-BLACK=(0,0,0,1)
-WHITE=(0,0,0,1)
-
-# from kivymd.icon_definitions import md_icons
 
 # ===================================================================== #
 class LoadingPage(Screen):
@@ -60,22 +56,9 @@ class LandingPage(Screen):
 		super(LandingPage,self).__init__(**kwargs)
 		self.prev_page="LandingPage"
 
-	def chevron_left(self,*args):
-		self.parent.transition.direction="right"
-		self.parent.current='RiskAssesmentPage'
-
-	def hide_widget(self,wid=None, dohide=True):
-		# print (self.get_widgets())
-		for item in ['nav_drawer','l2','btn1','btn2','btn3','btn4']:
-		# for item in ['BL']:
-			wid=self.ids[item]
-			if hasattr(wid, 'saved_attrs'):
-				if not dohide:
-					wid.height, wid.size_hint_y, wid.opacity, wid.disabled = wid.saved_attrs
-					del wid.saved_attrs
-			elif dohide:
-				wid.saved_attrs = wid.height, wid.size_hint_y, wid.opacity, wid.disabled
-				wid.height, wid.size_hint_y, wid.opacity, wid.disabled = 0, None, 0, True
+	# def chevron_left(self,*args):
+	# 	self.parent.transition.direction="right"
+	# 	self.parent.current='RiskAssesmentPage'
 
 class LoginPage(Screen):
 	def __init__(self,**kwargs):
@@ -107,47 +90,23 @@ class RiskAssesmentPage(Screen):
 	def __init__(self,**kwargs):
 		super(RiskAssesmentPage,self).__init__(**kwargs)
 		self.prev_page="LandingPage"
-		# self.score=0
-		# self.air_pollution_pct=0
-		# Clock.schedule_once(self.init_tap_target, 1)
 
-	# def init_tap_target(self,*args):
-	# 	self.tap_target_view = MDTapTargetView(
-	# 		widget=self.ids.button,
-	# 		title_text="This is an add button",
-	# 		description_text="This is a description of the button",
-	# 		widget_position="right_top",
-	# 		cancelable=True,
-	# 		# outer_circle_color=(1,0,0),
-	# 		target_radius=50,
-	# 		outer_radius=300,
-	# 		outer_circle_alpha=1.0,
-	# 		# target_circle_color=(0, 1, 0),
-	# 	)
+	def update_score(self):
+		pgs=["AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
+			"AlcoholUsagePage"]
+		titles=["Air Pollution","Diet & Food","Physical Activity","Alcohol Usage"]
 
-	def update_score(self,dt):
-		temp=0
-		for page,score in self.parent.score_vars_dict.items():
-			temp+=score
-		self.ids['score_label'].text=str(temp)
-
-	def on_pre_enter(self):
-		# Clock.schedule_once(self.update_score,0.2)
-		pass
+		for p,t in zip(pgs,titles):
+			self.ids[p+"_label"].text=f"{t} [{self.parent.ids[p].pct}% complete]"
 
 	def on_enter(self):
 		temp=0
 		for page,score in self.parent.score_vars_dict.items():
 			temp+=score
 		self.ids['score_label'].text=str(temp)
+		self.update_score()
 
-		pgs=["AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
-			"AlcoholUsagePage"]
 
-		titles=["Air Pollution","Diet & Food","Physical Activity","Alcohol Usage"]
-
-		for p,t in zip(pgs,titles):
-			self.ids[p+"_label"].text=f"{t} [{self.parent.ids[p].pct}% complete]"
 
 	def tap_target_start(self):
 		if self.tap_target_view.state == "close":
@@ -832,7 +791,7 @@ class BlueSkyApp(App):
 
 		self.BG_COLOR="BLACK"
 
-		Window.clearcolor=BLACK
+		Window.clearcolor=(0,0,0,1)
 
 	# --------------------------------------------------------------------- #
 

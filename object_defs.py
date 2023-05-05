@@ -8,6 +8,9 @@ class NavButtons(Widget):
 class MyButton(Button):
 	pass
 
+class MyButton2(Button):
+	pass
+
 class ButtonSet(BoxLayout):
 	def __init__(self,**kwargs):
 		super(ButtonSet,self).__init__(**kwargs)

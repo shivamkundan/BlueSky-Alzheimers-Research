@@ -276,21 +276,21 @@ WindowManager:
 				height:1500
 				size_hint_y:None
 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-				# pos_hint_x:0.5
-				# size_hint_x:0.98
+				pos_hint_x:0.5
+				# size_hint_x:0.9
 				# id:listt
 
 				# BoxLayout
 				# 	orientation:'vertical'
-				Button:
+				MyButton2:
 					id:SocioDemographicPage_label
 					text: 'Demographics' + SEC_TEXT
-					size_hint_x:1
-					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					# background_normal:''
-					# background_color: 1, 1, 1, 0.3
-					# secondary_text: "0% Complete"
-					# secondary_font_style:'Caption'
+					# size_hint_x:0.8
+					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					# # background_normal:''
+					# # background_color: 1, 1, 1, 0.3
+					# # secondary_text: "0% Complete"
+					# # secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="SociodemographicPage"
 						root.manager.transition.direction="left"
@@ -313,14 +313,14 @@ WindowManager:
 
 
 
-				Button:
+				MyButton2:
 					id:LocationPage_label
 					text: 'Location' + SEC_TEXT
-					size_hint_x:1
-					halign:'left'
-					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_text: "0% Complete"
-					secondary_font_style:'Caption'
+					# size_hint_x:1
+					# halign:'left'
+					# # pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					# secondary_text: "0% Complete"
+					# secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="LocationPage"
 						root.manager.transition.direction="left"
@@ -328,70 +328,48 @@ WindowManager:
 					# 	icon:'map-marker-plus-outline'
 
 
-				Button:
+				MyButton2:
 					id:AirPollutionPage_label
 					text: 'Air Pollution' + SEC_TEXT
-					size_hint_x:1
-					halign:'left'
-					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_text: "0% Complete"
-					secondary_font_style:'Caption'
-					# text_color: app.theme_cls.accent_color
-					theme_text_color: 'Primary'
 					on_release:
 						root.manager.current="AirPollutionLandingPage"
 						root.manager.transition.direction="left"
-					# IconLeftWidget:
-					# 	id:air_pollution
-					# 	icon:'air-filter'
 
 
-				Button:
+
+				MyButton2:
 					id:DietAndFoodPage_label
 					text: 'Diet & Food' + SEC_TEXT
-					secondary_text: "0% Complete"
-					size_hint_x:1
-					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="DietLandingPage"
 						root.manager.transition.direction="left"
-					# IconLeftWidget:
-					# 	icon:'food-apple-outline'
 
-				Button:
+
+				MyButton2:
 					id:PhysicalActivityPage_label
 					text: 'Physical Activity' + SEC_TEXT
-					secondary_text: "0% Complete"
-					size_hint_x:1
-					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="PhysicalActivityLandingPage"
 						root.manager.transition.direction="left"
 					# IconLeftWidget:
 					# 	icon:'arm-flex-outline'
 
-				Button:
+				MyButton2:
 					id:AlcoholUsagePage_label
 					text: 'Alcohol Usage' + SEC_TEXT
-					secondary_text: "0% Complete"
-					size_hint_x:1
-					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="AlcoholLandingPage"
 						root.manager.transition.direction="left"
 					# IconLeftWidget:
 					# 	icon:'glass-cocktail'
 
-				Button:
+				MyButton2:
 					id:DepressionPage_label + SEC_TEXT
 					text: 'Depression'
-					secondary_text: "0% Complete"
-					size_hint_x:1
-					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_font_style:'Caption'
+					# secondary_text: "0% Complete"
+					# size_hint_x:1
+					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					# secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="DepressionLandingPage"
 						root.manager.transition.direction="left"
@@ -399,13 +377,13 @@ WindowManager:
 					# 	icon:'head-alert-outline'
 
 
-				Button:
+				MyButton2:
 					id:HyperTensionPage_label + SEC_TEXT
 					text: 'Hypertension'
-					secondary_text: "0% Complete"
-					size_hint_x:1
-					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_font_style:'Caption'
+					# secondary_text: "0% Complete"
+					# size_hint_x:1
+					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					# secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="HyperTensionLandingPage"
 						root.manager.transition.direction="left"
@@ -414,26 +392,26 @@ WindowManager:
 
 
 
-				Button:
+				MyButton2:
 					id:TraumaticBrainInjuryPage_label + SEC_TEXT
 					text: 'Traumatic Brain Injury'
-					secondary_text: "0% Complete"
-					size_hint_x:1
-					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_font_style:'Caption'
+					# secondary_text: "0% Complete"
+					# size_hint_x:1
+					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					# secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="TraumaticBrainInjuryLandingPage"
 						root.manager.transition.direction="left"
 					# IconLeftWidget:
 					# 	icon:'brain'
 
-				Button:
+				MyButton2:
 					id:CognitiveDeclinePage_label + SEC_TEXT
 					text: 'Cognitive Decline'
-					secondary_text: "0% Complete"
-					size_hint_x:1
-					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-					secondary_font_style:'Caption'
+					# secondary_text: "0% Complete"
+					# size_hint_x:1
+					# pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+					# secondary_font_style:'Caption'
 					on_release:
 						root.manager.current="CognitiveDeclineLandingPage"
 						root.manager.transition.direction="left"
@@ -451,6 +429,14 @@ WindowManager:
 	text:""
 	pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 	size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
+	font_style:'Button'
+	background_color: BTN_COLOR
+
+<MyButton2>:
+	text:""
+	pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+	size_hint_x:0.8
+	# size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
 	font_style:'Button'
 	background_color: BTN_COLOR
 
