@@ -38,6 +38,8 @@ class SubPageTemplate(SubPageBase):
 		for i in range(self.num_tabs):
 			self.responses_dict[i]=0
 			self.done_dict[i]=0
+		self.pct=-1
+
 
 	def button_press(self,button):
 		print ('pressed: ',button.text)
@@ -52,18 +54,19 @@ class SubPageTemplate(SubPageBase):
 		# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 	def update_score(self):
-		total=0
-		for key,val in self.responses_dict.items():
-			total+=val
-		self.total_score=total
+		# total=0
+		# for key,val in self.responses_dict.items():
+		# 	total+=val
+		# self.total_score=total
 
-		num_done=0
-		for k,v in self.done_dict.items():
-			if v==True:
-				num_done+=1
+		total=-1
+		# num_done=0
+		# for k,v in self.done_dict.items():
+		# 	if v==True:
+		# 		num_done+=1
 
-		pct=int(round(100*(num_done/self.num_tabs),0))
-		pct_txt=str(pct)+'% Complete'
+		# pct=int(round(100*(num_done/self.num_tabs),0))
+		pct_txt=str(-1)+'% Complete'
 		return total, pct_txt
 
 	def on_pre_leave(self):
@@ -101,14 +104,18 @@ class ScorePageTemplate(SubPageBase):
 			pass
 
 	def on_pre_enter(self):
-		self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
+		# self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
 		release_keyboard_global(self)
 		# Clock.schedule_once(self.update_score,0.2)
+
+	def on_enter(self):
+		self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
 
 	def reset_quiz(self):
 		# try:
 		# 	self.parent.ids[self.prev_page].ids.android_tabs.switch_tab('1')
 		# except:
 		# 	pass
+		self.parent.ids[self.prev_page].reset()
 		self.parent.transition.direction="right"
 		self.parent.current=self.landing_page

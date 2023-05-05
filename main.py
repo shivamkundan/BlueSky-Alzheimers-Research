@@ -19,9 +19,9 @@ KV_FILE='health_app.kv' # kivy design file
 # Config.set('graphics', 'width', MAX_SIZE[0])
 # Config.set('graphics', 'height', MAX_SIZE[1])
 
-# These resolutions are in software pixels
-# resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
-# Window.size = resolutions[2]
+# # These resolutions are in software pixels
+resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
+Window.size = resolutions[2]
 
 LOADING_PAGE_PAUSE_SECONDS=1
 
@@ -143,6 +143,20 @@ class RiskAssesmentPage(Screen):
 	def on_pre_enter(self):
 		# Clock.schedule_once(self.update_score,0.2)
 		pass
+
+	def on_enter(self):
+		temp=0
+		for page,score in self.parent.score_vars_dict.items():
+			temp+=score
+		self.ids['score_label'].text=str(temp)
+
+		pgs=["AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
+			"AlcoholUsagePage"]
+
+		titles=["Air Pollution","Diet & Food","Physical Activity","Alcohol Usage"]
+
+		for p,t in zip(pgs,titles):
+			self.ids[p+"_label"].text=f"{t} [{self.parent.ids[p].pct}% complete]"
 
 	def tap_target_start(self):
 		if self.tap_target_view.state == "close":
@@ -410,17 +424,88 @@ class AirPollutionLandingPage(SubPageBase):
 class AirPollutionPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(AirPollutionPage,self).__init__(**kwargs)
-		self.tab_names=['1','2','3','4','5','6','7']
+		# self.tab_names=['1','2','3','4','5','6','7']
 		self.page_name='AirPollutionPage'
 		self.prev_page="AirPollutionLandingPage"
 		self.next_page="AirPollutionScorePage"
-		self.init_subpage()
+		self.total_score=0
+		self.pct=0
+
+		self.num_questions=7 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':'[1/7]\nI expect to wear a pollution mask',			'response':0,'completed':False},
+			1: {'q':'[2/7]\nI want to wear a pollution mask',			'response':0,'completed':False},
+			2: {'q':'[3/7]\nI intend to wear a pollution mask',			'response':0,'completed':False},
+			3: {'q':'[4/7]\nI choose to wear a pollution mask',			'response':0,'completed':False},
+			4: {'q':'[5/7]\nI will wear a pollution mask',				'response':0,'completed':False},
+			5: {'q':'[6/7]\nI would be better wearing a pollution mask','response':0,'completed':False},
+			6: {'q':'[7/7]\nI prefer wearing a pollution mask',			'response':0,'completed':False},
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+		# self.init_subpage()
+
+	def reset(self):
+		for i in range (self.num_questions):
+			self.questions_dict[i]['completed']=False
+			self.questions_dict[i]['response']=0
+		self.curr_question_num=0
 
 	def button_press(self,num):
 		print ("num: ",num)
-		self.responses_dict[self.curr_tab_num+1]=int(num)
-		self.done_dict[self.curr_tab_num+1]=True
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['air_pollution_q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def arrow_left(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num>0:
+			self.curr_question_num-=1
+			self.ids['air_pollution_q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="right"
+			self.parent.current=self.prev_page
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		self.ids['air_pollution_q_label'].text=self.questions_dict[self.curr_question_num]['q']
+
+	def update_score(self):
+		total=0
+		num_done=0
+		for i in range (self.num_questions):
+			if self.questions_dict[i]['completed']:
+				total+=self.questions_dict[i]['response']
+				num_done+=1
+
+		pct=int(round(100*(num_done/self.num_questions),0))
+		self.pct=pct
+		pct_txt=str(pct)+'% Complete'
+		# self.parent.ids[self.next_page].score=total
+		# self.parent.ids[self.next_page].score=total
+		print (f"fself.parent.ids[self.next_page].score: {self.parent.ids[self.next_page].score}")
+		return total, pct_txt
+
+	def on_pre_leave(self):
+		self.total_score,pct_txt=self.update_score()
+		print (f"total: {self.total_score}")
+		print (pct_txt)
+		self.parent.score_vars_dict[self.page_name]=self.total_score
+		# self.parent.ids['RiskAssesmentPage'].ids[self.name+"_label"].secondary_text=pct_txt
+
 
 class AirPollutionScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
