@@ -64,17 +64,6 @@ class LandingPage(Screen):
 		self.parent.transition.direction="right"
 		self.parent.current='RiskAssesmentPage'
 
-	def motion(self,wid,*args):
-		print(widget,args)
-
-	def on_pre_enter(self):
-		release_keyboard_global(self)
-		# Clock.schedule_once(self.themer,0.1)
-
-
-	def themer(self,*args):
-		self.ids['my_im'].reload()
-
 	def hide_widget(self,wid=None, dohide=True):
 		# print (self.get_widgets())
 		for item in ['nav_drawer','l2','btn1','btn2','btn3','btn4']:
@@ -814,9 +803,6 @@ class WindowManager(ScreenManager):
 	def on_window_resize(self, window, width, height):
 		print (width,height)
 
-	def toggle_theme(self):
-		self.parent.theme_cls='Dark'
-
 	def _keyboard_closed(self):
 		if self._keyboard!=None:
 			self._keyboard.unbind(on_key_up=self._on_keyboard_up)
@@ -848,96 +834,28 @@ class BlueSkyApp(App):
 
 		Window.clearcolor=BLACK
 
-	def sidebar(self,dt=None):
-		# self.root.current='LoadingPage'
-		icons_item = {
-			"home-outline": "Home",
-			"account-outline": "Account",
-			"brush": "Themes",
-			"cogs": "Settings",
-			"wrench-outline": "Developer",
-			"upload": "Share",
-			"exit-run": "Exit",
-			"information-variant": "About",
-		}
-
-		# for icon_name in icons_item.keys():
-		# 	self.root.ids['LandingPage'].ids['content_drawer'].ids['md_list'].add_widget(
-		# 		ItemDrawer(icon=icon_name, text=icons_item[icon_name]))
-
 	# --------------------------------------------------------------------- #
 
 	def build(self):
 
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
-
 		return self.WindowManager
 
-	def menu_callback(self, text_item):
-		print(text_item)
 
 	def toggle_theme(self):
-		print ('hello')
-		print (self.BG_COLOR)
 
 		if (self.BG_COLOR=="BLACK"):
 			self.BG_COLOR="WHITE"
 			Window.clearcolor=(1,1,1,1)
+			App.get_running_app().root.ids["LandingPage"].ids["my_im"].source='pics/logo_minimal.png'
+
 		else:
 			self.BG_COLOR="BLACK"
 			Window.clearcolor=(0,0,0,1)
+			App.get_running_app().root.ids["LandingPage"].ids["my_im"].source='pics/logo_minimal_white.png'
+		App.get_running_app().root.ids["LandingPage"].ids["my_im"].reload()
 
-		# Window.clearcolor=self.BG_COLOR
-
-	# def themer(self,*args):
-	# 	print ('themer')
-
-	# 	if self.theme_cls.theme_style=='Dark':
-	# 		self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal_white.png'
-
-	# 	elif self.theme_cls.theme_style=='Light':
-	# 		self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal.png'
-
-
-	def nav_handler(self):
-		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("open")
-		curr_state=self.root.ids['LandingPage'].ids['nav_drawer'].state
-
-	def nav_closer(self,*args):
-		selected_button=args[0].text
-
-		# print ('selected_button: ',selected_button)
-
-		if selected_button=='About':
-			self.root.current='AboutPage'
-
-
-		elif selected_button=='Account':
-			# print ('log')
-			self.root.current='LoginPage'
-			self.root.transition.direction='left'
-
-		elif selected_button=='Home':
-			self.root.current='LandingPage'
-
-		elif selected_button=='Exit':
-			exit()
-
-		# elif selected_button=='Developer':
-		# 	MDApp.open_settings(self)
-
-		# elif selected_button=='Themes':
-		# 	self.show_theme_picker()
-
-		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("close")
-		curr_state=self.root.ids['LandingPage'].ids['nav_drawer'].state
-		# print(self.root.ids['LandingPage'].ids['nav_drawer'].status)
-		# print('curr_state: ',curr_state)
-		# print ()
-
-	# def unhide(self):
-	#     self.root.ids['DietAndFoodPage'].hide_widget(dohide=False)
 
 if __name__=='__main__':
 	# Config.set('kivy', 'keyboard_mode', 'systemandmulti')
