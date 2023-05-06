@@ -19,7 +19,6 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.animation import Animation
 from kivy.uix.image import Image
 from kivy.uix.button import Button
-from kivy.uix.scrollview import ScrollView
 from kivy.properties import StringProperty, ListProperty
 from kivy.uix.floatlayout import FloatLayout
 

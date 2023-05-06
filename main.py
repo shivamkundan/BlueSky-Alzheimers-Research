@@ -97,7 +97,7 @@ class RiskAssesmentPage(Screen):
 		titles=["Air Pollution","Diet & Food","Physical Activity","Alcohol Usage"]
 
 		for p,t in zip(pgs,titles):
-			self.ids[p+"_label"].text=f"{t} [{self.parent.ids[p].pct}% complete]"
+			self.ids[p+"_label"].text=f"{t}\n[size=10sp][color=#fcba03][{self.parent.ids[p].pct}% complete][/color][/size]"
 
 	def on_enter(self):
 		temp=0
@@ -725,7 +725,7 @@ class AboutPage(Screen):
 
 	def chevron_left(self):
 		self.parent.transition.direction = 'right'
-		self.parent.current='LandingPage'
+		self.parent.current=self.prev_page
 
 # ----------------------------------------
 class WindowManager(ScreenManager):
