@@ -1,10 +1,12 @@
+#:set L_toolbar_title "Location"
+
 <LocationPage>:
 	BoxLayout:
 
 		orientation:'vertical'
 
 		MyActionBar:
-			title:"Location"
+			title:L_toolbar_title
 
 		Label:
 			text:'Please select the category that you think best describes the community where you live:'
@@ -24,33 +26,90 @@
 				BoxLayout:
 					orientation: 'vertical'
 					MyButton2:
-						text:'Urban'
-						background_normal: ''
-					    background_color: 1, .3, .4, .85
+						id:B1
+						name:"B1"
+						selected:True
+						text:"Urban[size=10sp][color=#fcba03]\n>49,999 residents[/color][/size]"
+						# background_normal: ''
+					    # background_color: if (selected==True): 1,1,0,1 else: BTN_COLOR
+
 						on_release: root.toggle(self)
 
 					MyButton2:
-						text:'Large Rural\n10,000 – 49,999 residents'
-						secondary_text:''
-						secondary_font_style:'Caption'
-						halign:'left'
+						id:B2
+						name:"B2"
+						selected:False
+						text:'Large Rural\n[size=10sp][color=#fcba03]10,000 – 49,999 residents[/color][/size]'
+						# secondary_text:''
+						# secondary_font_style:'Caption'
+						# halign:'cent'
+						# markup:True
 						on_release: root.toggle(self)
 
 					MyButton2:
-						text:'Small Rural'
-						secondary_text:'2,500 – 9,999 residents'
-						secondary_font_style:'Caption'
-						halign:'left'
+						id:B3
+						name:"B3"
+						selected:False
+						text:"Small Rural\n[size=10sp][color=#fcba03]2,500 – 9,999 residents[/color][/size]"
+						# secondary_text:'2,500 – 9,999 residents'
+						# secondary_font_style:'Caption'
+						# halign:'left'
 						on_release: root.toggle(self)
 
 					MyButton2:
-						text:'Isolated'
-						secondary_text:'<2,500 residents'
-						secondary_font_style:'Caption'
-						halign:'left'
+						id:B4
+						name:"B4"
+						selected:False
+						text:"Isolated\n[size=10sp][color=#fcba03]<2,500 residents[/color][/size]"
+						# secondary_text:'<2,500 residents'
+						# secondary_font_style:'Caption'
+						# halign:'left'
 						on_release: root.toggle(self)
 
 					Switch:
 
 
 		NavButtons
+
+
+# ----
+<LocationScorePage>:
+	score_label:score_label
+	BoxLayout:
+		orientation: 'vertical'
+
+		MyActionBar:
+			title:L_toolbar_title
+
+		BoxLayout:
+			orientation:'vertical'
+			Label:
+				text: 'Your score is:'
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'16sp'
+
+			Label:
+				id:score_label
+				text: ''
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'34sp'
+
+			MyButton2:
+				text:'Try Again'
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Learn More'
+				on_release:root.chevron_left()
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Next'
+				on_release:root.arrow_right()
+
+			Widget:
+				size_hint_y:0.2
+
+		NavButtons:

@@ -5,12 +5,8 @@
 #:set font_cond_bold 'fonts/ScalaSansOT-CondBold.otf'
 #:set DARK_BLUE (73/255,81/255,119/255,1)
 
-#:set xx 368
-#:set yy 286
-#:set SEC_TEXT " [0% Complete]"
-
-#:set BG_COLOR 0, 0, 0, 1
-#:set TXT_COLOR 1, 1, 1, 1
+#:set TXT_COLOR 0, 0, 0, 1
+#:set ALT_TXT_COLOR 252/255, 186/255, 3/255, 1
 
 #:set BTN_COLOR 69/255, 90/255, 100/255, 0.9
 
@@ -31,6 +27,7 @@
 #:include layout_files/TraumaticBrainInjury.kv
 #:include layout_files/CognitiveDecline.kv
 #:include layout_files/RiskAssesment.kv
+#:include layout_files/About.kv
 
 WindowManager:
 	id: WindowManager
@@ -60,8 +57,14 @@ WindowManager:
 		id:SociodemographicPage
 		name:'SociodemographicPage'
 
+	# ------------------------------------- #
 	LocationPage:
+		id:LocationPage
 		name:'LocationPage'
+
+	LocationScorePage:
+		id:LocationScorePage
+		name:'LocationScorePage'
 
 	# ------------------------------------- #
 	AirPollutionLandingPage:
@@ -169,263 +172,40 @@ WindowManager:
 		id:CognitiveDeclineScorePage
 		name:'CognitiveDeclineScorePage'
 
-# # =======================================
-# <RiskAssesmentPage>:
+# =======================================
+
+# <QuestionsPage@SubPageTemplate>:
 # 	BoxLayout:
 # 		orientation: 'vertical'
+# 		self.page_name="pg1"
 
 # 		MyActionBar:
-# 			title:"Risk Assesment"
+# 			id:actionbar
+# 			title:"New"
 
 # 		BoxLayout:
-# 			orientation:'horizontal'
-# 			# md_bg_color:(90/255, 90/255, 90/255,0.25)
-# 			size_hint_y:.15
+# 			size_hint_y:0.6
+# 			orientation:'vertical'
+# 			pos_hint:{'center_x':0.5}
 
-# 			BoxLayout:
-# 				orientation:'horizontal'
-# 				# BoxLayout:
-# 				# 	orientation:'vertical'
-# 				Label:
+# 			Label:
+# 				id:label1
+# 				size_hint_x:0.8
+# 				text_size: root.width*self.size_hint_x, None
+# 			    size: self.texture_size
+# 			    color: TXT_COLOR
+# 				text:""
+# 				halign:'center'
+# 				pos_hint:{'center_x':0.5}
 
-# 					text: 'Your Score:\n(higher is better)'
-# 					halign: 'center'
-# 					font_size:'14sp'
-# 					color: TXT_COLOR
-
-# 					# Label:
-# 					# 	text: ''
-# 					# 	halign: 'center'
-
-# 				Label:
-# 					color: TXT_COLOR
-# 					id:score_label
-# 					text: '0'
-# 					halign: 'left'
-# 					font_size:'26sp'
-
-# 				Button:
-# 					text: '    Reset    '
-# 					halign: 'center'
-
-# 					pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-# 					# background_color: BTN_COLOR
-# 					font_style:'Button'
-# 					# size_hint:(1,1)
-# 					# size_hint_y:0.5
-# 					size_hint_x:1
-# 					# _no_ripple_effect: True
-
-# 		Label:
-# 			text:''
-# 			size_hint_y:0.005
-# 			canvas.before:
-# 				Color:
-# 				    # rgba: 0, 1, 1, .6
-# 				    rgba: 252/255, 186/255, 3/255, 1
-# 			    Rectangle:
-# 			        size: self.size
-# 			        pos: self.pos
-
-# 		ScrollView:
-# 			scroll_type: ['bars','content']
-# 			# scroll_wheel_distance: 20
-# 			bar_width: 10
-# 			do_scroll_x: False
-# 			do_scroll_y: True
-# 			bar_inactive_color: .55, .55, .55, 1
-# 			bar_color: .663, .663, .663, 1
-
-# 			BoxLayout:
-# 				orientation:'vertical'
-# 				height:1500
-# 				size_hint_y:None
-# 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-# 				pos_hint_x:0.5
-
-# 				MyButton2:
-# 					id:SocioDemographicPage_label
-# 					text: 'Demographics [size=8sp]' + SEC_TEXT +'[/size]'
-# 					on_release:
-# 						root.manager.current="SociodemographicPage"
-# 						root.manager.transition.direction="left"
-
-
-# 				MyButton2:
-# 					id:LocationPage_label
-# 					text: 'Location' + SEC_TEXT
-# 					on_release:
-# 						root.manager.current="LocationPage"
-# 						root.manager.transition.direction="left"
-
-
-# 				MyButton2:
-# 					id:AirPollutionPage_label
-# 					text: 'Air Pollution [size=8sp]' + SEC_TEXT +'[/size]'
-# 					on_release:
-# 						root.manager.current="AirPollutionLandingPage"
-# 						root.manager.transition.direction="left"
-
-
-
-# 				MyButton2:
-# 					id:DietAndFoodPage_label
-# 					text: 'Diet & Food' + SEC_TEXT
-# 					on_release:
-# 						root.manager.current="DietLandingPage"
-# 						root.manager.transition.direction="left"
-
-
-# 				MyButton2:
-# 					id:PhysicalActivityPage_label
-# 					text: 'Physical Activity' + SEC_TEXT
-# 					on_release:
-# 						root.manager.current="PhysicalActivityLandingPage"
-# 						root.manager.transition.direction="left"
-# 					# IconLeftWidget:
-# 					# 	icon:'arm-flex-outline'
-
-# 				MyButton2:
-# 					id:AlcoholUsagePage_label
-# 					text: 'Alcohol Usage' + SEC_TEXT
-# 					on_release:
-# 						root.manager.current="AlcoholLandingPage"
-# 						root.manager.transition.direction="left"
-# 					# IconLeftWidget:
-# 					# 	icon:'glass-cocktail'
-
-# 				MyButton2:
-# 					id:DepressionPage_label
-# 					text: 'Depression' + SEC_TEXT
-# 					on_release:
-# 						root.manager.current="DepressionLandingPage"
-# 						root.manager.transition.direction="left"
-# 					# IconLeftWidget:
-# 					# 	icon:'head-alert-outline'
-
-
-# 				MyButton2:
-# 					id:HyperTensionPage_label
-# 					text: 'Hypertension' + SEC_TEXT
-# 					on_release:
-# 						root.manager.current="HyperTensionLandingPage"
-# 						root.manager.transition.direction="left"
-# 					# IconLeftWidget:
-# 					# 	icon:'calculator-variant-outline'
-
-
-
-# 				MyButton2:
-# 					id:TraumaticBrainInjuryPage_label
-# 					text: 'Traumatic Brain Injury' + SEC_TEXT
-# 					on_release:
-# 						root.manager.current="TraumaticBrainInjuryLandingPage"
-# 						root.manager.transition.direction="left"
-# 					# IconLeftWidget:
-# 					# 	icon:'brain'
-
-# 				MyButton2:
-# 					id:CognitiveDeclinePage_label
-# 					text: 'Cognitive Decline' + SEC_TEXT
-# 					on_release:
-# 						root.manager.current="CognitiveDeclineLandingPage"
-# 						root.manager.transition.direction="left"
-# 					# IconLeftWidget:
-# 					# 	icon:'chart-multiline'
-
-# # =======================================
-# # ----
-
-
-# # ----
-
-
-# <MyButton>:
-# 	text:""
-# 	pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-# 	halign: 'center'
-# 	size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
-# 	font_style:'Button'
-# 	background_color: BTN_COLOR
-# 	# border: [0,0,0,0]
-
-# <MyButton2>:
-# 	text:""
-# 	pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-# 	size_hint_x:0.8
-# 	font_style:'Button'
-# 	background_color: BTN_COLOR
-# 	halign: 'center'
-# 	markup:True
-
-
-# <RoundedButton>:
-# 	background_color: (0,0,0,0)
-# 	background_normal:''
-# 	canvas.before:
-# 		Color:
-# 			rgba: BTN_COLOR
-# 		RoundedRectangle:
-# 			size:self.size
-# 			pos:self.pos
-# 			radius: [18]
-
-# 	# on_press: canvas.before:
-# 	# 			Color:
-# 	# 				rgba: BTN_COLOR
-# 	# 			RoundedRectangle:
-# 	# 				size:self.size
-# 	# 				pos:self.pos
-# 	# 				radius: [18]
-
-# <MyActionBar>:
-# 	title:""
-# 	to_page:root.parent.parent
-# 	pos_hint: {'top':1}
-# 	background_color:BTN_COLOR
-# 	# background_image:"pics/presplash_logo.png"
-# 	icon: "reset.png"
-# 	markup:True
-# 	ActionView:
-# 		HiddenIcon_ActionPrevious:
-# 		# # ActionPrevious:
-# 		ActionButton:
-# 			icon:"pics/left.png"
-# 			important: True
-# 			on_release: root.chevron_left(root.parent.parent)
-# 		ActionButton:
-# 			id: AD
-# 			text:root.title
-# 			important: True
-# 			background_down: self.background_normal
-# 			on_release: root.chevron_left(root.parent.parent)
-# 		ActionButton:
-# 			# text:"  "
-# 		ActionButton:
-# 			important: True
-# 			icon:'pics/sun.png'
-# 			on_release: app.toggle_theme()
-
-
-# =======================================
-<AboutPage>:
-	BoxLayout:
-		orientation: 'vertical'
-		MyActionBar:
-			title:"About"
-			to_page:"LandingPage"
-			# ActionView:
-			# 	ActionPrevious:
-			# 		title: 'About'
-			# 		on_release: root.chevron_left()
-		Widget
-		Label:
-			canvas:
-				Rectangle:
-					id:rect
-					source: 'pics/logo_minimal.png'
-					# pos: (20,self.pos[1]+20)
-					pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
-					# pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
-					size: (xx,yy)
-
+# 			# BoxLayout:
+# 			Label:
+# 				id:aq_label
+# 				size_hint_x:0.8
+# 				text_size: root.width*self.size_hint_x, None
+# 				color: TXT_COLOR
+# 			    size: self.texture_size
+# 				text: ""
+# 				halign:'center'
+# 				pos_hint:{'center_x':0.5,'center_y':0.3}
+# 				# pos_hint:{}

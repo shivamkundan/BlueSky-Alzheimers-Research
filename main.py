@@ -92,20 +92,25 @@ class RiskAssesmentPage(Screen):
 		self.prev_page="LandingPage"
 
 	def update_score(self):
-		pgs=["AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
+		pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
 			"AlcoholUsagePage"]
-		titles=["Air Pollution","Diet & Food","Physical Activity","Alcohol Usage"]
+		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage"]
 
-		for p,t in zip(pgs,titles):
-			self.ids[p+"_label"].text=f"{t}\n[size=10sp][color=#fcba03][{self.parent.ids[p].pct}% complete][/color][/size]"
+		# for second line text
+		for page,text in zip(pgs,titles):
+			if self.parent.ids[page].pct==100:
+				C="#00FF00"
+			else:
+				C="#fcba03"
+			self.ids[page+"_label"].text=f"[size=16sp]{text}\n[size=11sp][color={C}]{self.parent.ids[page].pct}% done[/color][/size]"
 
 	def on_enter(self):
 		temp=0
 		for page,score in self.parent.score_vars_dict.items():
 			temp+=score
-		self.ids['score_label'].text=str(temp)
-		self.update_score()
 
+		self.ids['score_label'].text=f"[b]{temp}[/b]"
+		self.update_score()
 
 	def chevron_left(self):
 		chevron_left_global(self,next_pg='LandingPage')
@@ -312,57 +317,59 @@ class SociodemographicPage(Screen):
 
 # --------------------------------------------------------------------- #
 
-class LocationPage(Screen):
+class LocationPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(LocationPage,self).__init__(**kwargs)
 		self.option_names_dict={'left_icon_urban':None,'left_icon_large_rural':None,'left_icon_small_rural':None,'left_icon_isolated':None}
 		self.prev_page="SociodemographicPage"
+		self.next_page="LocationScorePage"
+		self.btn_names=["B1","B2","B3","B4"]
+		self.btn_scores={"B1":4,"B2":3,"B3":2,"B4":1}
+		self.total_score=0
+		self.pct=0
+
+	def update_score(self):
+		total=self.total_score
+		num_done=0
+
+		pct=100
+		self.pct=pct
+		pct_txt=str(pct)+'% Complete'
+		# self.parent.ids[self.next_page].score=total
+		# self.parent.ids[self.next_page].score=total
+		print (f"fself.parent.ids[self.next_page].score: {self.parent.ids[self.next_page].score}")
+		return total, pct_txt
+
+
+	def toggle(self,btn,*args):
+
+		for b_name in self.btn_names:
+			# print (b_name)
+
+			if (b_name==btn.name):
+				self.ids[b_name].background_color=BTN_COLOR_PRESSED
+			else:
+				self.ids[b_name].background_color=BTN_COLOR
+		self.total_score=self.btn_scores[btn.name]
+		self.arrow_right()
+
+
+	def on_pre_leave(self):
+		self.total_score,pct_txt=self.update_score()
+		print (f"total: {self.total_score}")
+		print (pct_txt)
+		self.parent.score_vars_dict[self.page_name]=self.total_score
+
+class LocationScorePage(ScorePageTemplate):
+	def __init__(self,**kwargs):
+		super(LocationScorePage,self).__init__(**kwargs)
+		self.landing_page="LocationPage"
+		self.prev_page="LocationPage"
 		self.next_page="AirPollutionLandingPage"
 
-	def chevron_left(self):
-		chevron_left_global(self)
-
-	def next_question(self,*args):
-		self.parent.ids['RiskAssesmentPage'].ids['location_label'].secondary_text='100% Complete'
-
-	def arrow_right(self):
-		self.parent.transition.direction="left"
-		self.parent.current=self.next_page
-
-
-	def arrow_left(self):
-		self.parent.transition.direction="right"
-		self.parent.current=self.prev_page
-
-	def toggle(self,*args):
-
-		print ("toggle function")
-		# # print (type(args[0].ids['_left_container'].walk))
-		# curr_icon=None
-
-		# for item in args[0].ids['_left_container'].walk():
-		# 	try:
-		# 		# print(item.name)
-		# 		if ('left_icon' in item.name):
-		# 			# print (dir(item))
-		# 			self.option_names_dict[item.name]=item
-		# 			curr_icon=item.name
-		# 			if item.icon=='circle-slice-8':
-		# 				item.icon='checkbox-blank-circle-outline'
-		# 			else:
-		# 				item.icon='circle-slice-8'
-		# 			break
-		# 	except:
-		# 		pass
-		# print ('selected: ',curr_icon)
-
-		# try:
-		# 	for k,v in self.option_names_dict.items():
-		# 		# print (k,v)
-		# 		if k!=curr_icon:
-		# 			v.icon='checkbox-blank-circle-outline'
-		# except:
-		# 	pass
+	# def on_enter(self):
+	# 	print (self.parent.ids[self.prev_page])
+	# 	# self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
 
 # ===================================================================== #
 
@@ -476,11 +483,52 @@ class DietLandingPage(SubPageBase):
 class DietAndFoodPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(DietAndFoodPage,self).__init__(**kwargs)
-		self.tab_names=['1','2','3','4','5','6','7','8','9','10','11']
 		self.page_name='DietAndFoodPage'
 		self.prev_page="DietLandingPage"
 		self.next_page="DietScorePage"
-		self.init_subpage()
+
+		self.num_questions=11 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':'Eat nuts or peanut buttersk\n[1/7]',			'response':0,'completed':False},
+			1: {'q':'Eat beans, peas, or lentilssk\n[2/7]',			'response':0,'completed':False},
+			2: {'q':'Eat eggssk\n[3/7]',			'response':0,'completed':False},
+			3: {'q':'Eat pickles, olives, or other vegetables in brinesk\n[4/7]',			'response':0,'completed':False},
+			4: {'q':'Eat at least 5 servings of fruits and vegetables\n[5/7]',				'response':0,'completed':False},
+			5: {'q':'Eat at least 1 serving of fruiton mask\n[6/7]','response':0,'completed':False},
+			6: {'q':'Eat at least 1 serving of vegetables\n[7/7]',			'response':0,'completed':False},
+			7: {'q':'Drink milk (in a glass, with cereal, or in coffee, tea, or cocoa)\n[7/7]',			'response':0,'completed':False},
+			8: {'q':'Eat broccoli, collard greens, spinach, potatoes, squash, or sweet potatoes\n[7/7]',			'response':0,'completed':False},
+			9: {'q':'Eat apples, bananas, oranges, melon, or raisins\n[7/7]',			'response':0,'completed':False},
+			10: {'q':'Eat whole grain breads, cereals, grits, oatmeal, or brown rice\n[7/7]',			'response':0,'completed':False},
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+		self.init_my_subpage()
+
+	def button_press(self,btn):
+		print ("pressed: ")
+		print (btn.text)
+		num=int(btn.text)
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
+		self.arrow_right()
+
+	def init_my_subpage(self):
+		for item in self.ids:
+			print (item)
+		print()
+
+
+
+
+	# def button_press(self,btn):
+	# 	num=btn.text
+	# 	self.questions_dict[self.curr_question_num]['response']=num
+	# 	self.questions_dict[self.curr_question_num]['completed']=True
+	# 	self.arrow_right()
 
 class DietScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
@@ -677,12 +725,12 @@ class CognitiveDeclineLandingPage(SubPageBase):
 class CognitiveDeclinePage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclinePage,self).__init__(**kwargs)
-		self.tab_names=['1','2','3']
+		self.tab_names=['1']
 		self.num_tabs=len(self.tab_names)
 		self.page_name='CognitiveDeclinePage'
 		self.prev_page="CognitiveDeclineLandingPage"
 		self.next_page="CognitiveDeclineScorePage"
-
+		self.curr_tab_num=1
 		self.total_score=0
 
 	def validate_text(self,*args):
@@ -701,13 +749,13 @@ class CognitiveDeclinePage(SubPageTemplate):
 	def arrow_right(self):
 		print ("arrow_right")
 		# if self.curr_tab_num==self.num_tabs-1:
-		# 	self.parent.transition.direction="left"
-		# 	self.parent.current=self.next_page
-		# else:
-		# 	self.curr_tab_num+=1
-		# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-		# self.validate_text()
-		# print (self.ids['year'].text)
+		self.parent.transition.direction="left"
+		self.parent.current=self.next_page
+	# 	# else:
+	# 	# 	self.curr_tab_num+=1
+	# 	# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+	# 	# self.validate_text()
+	# 	# print (self.ids['year'].text)
 
 class CognitiveDeclineScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
@@ -715,6 +763,10 @@ class CognitiveDeclineScorePage(ScorePageTemplate):
 		self.landing_page="CognitiveDeclineLandingPage"
 		self.prev_page="CognitiveDeclinePage"
 		self.next_page="RiskAssesmentPage"
+
+	def arrow_right(self):
+		self.parent.transition.direction="right"
+		self.parent.current=self.next_page
 
 # --------------------------------------------------------------------- #
 
@@ -778,8 +830,8 @@ class BlueSkyApp(App):
 		super(BlueSkyApp,self).__init__(**kwargs)
 		self.curr_state='close'
 
-		self.BG_COLOR="BLACK"
-		Window.clearcolor=(0,0,0,1)
+		self.BG_COLOR="WHITE"
+		Window.clearcolor=(1,1,1,1)
 
 	# --------------------------------------------------------------------- #
 
@@ -809,12 +861,13 @@ class BlueSkyApp(App):
 		self.WindowManager.get_screen("LandingPage").ids["my_im"].source=I
 		self.WindowManager.get_screen("LandingPage").ids["landing_page_bottom_label"].color=C
 
+		self.WindowManager.get_screen("RiskAssesmentPage").ids["score_label"].color=C
 		t=type(Label(text=""))
 
 		# toggle label text colors in all screen
 		for s in self.WindowManager.screen_names:
 			curr=self.WindowManager.get_screen(s)
-			print(curr)
+			# print(curr)
 			for w in [widget for widget in curr.walk(loopback=True)]:
 				if type(w)==t:
 					w.color=C

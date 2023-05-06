@@ -1,5 +1,5 @@
 
-
+#:set SEC_TEXT " [0% Complete]"
 # =======================================
 <RiskAssesmentPage>:
 	BoxLayout:
@@ -15,25 +15,57 @@
 
 			BoxLayout:
 				orientation:'horizontal'
-				# BoxLayout:
-				# 	orientation:'vertical'
-				Label:
 
-					text: 'Your Score:\n(higher is better)'
-					halign: 'center'
-					font_size:'14sp'
-					color: TXT_COLOR
+				BoxLayout:
+					orientation:'vertical'
+					Label:
+						# text: "Your Score:\n[size=10sp][color=#fcba03](higher is better)[/color][/size]"
+						text: "\nYour Score:"
+						halign: 'center'
+						# font_size:'14sp'
+						font_size: self.height*0.5
+						# padding: dp(0), dp(0)
+						# spacing: dp(-10), dp(-10)
+						color: TXT_COLOR
+						pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+						# size_hint_y:0.3
+						# canvas.before:
+						# 	Color:
+						# 		rgba: 0, .4, .3, .85
+						# 	Rectangle:
+						# 		size: self.size
+						# 		pos: self.pos
+						# text_size: root.width*self.size_hint_x, None
 
-					# Label:
-					# 	text: ''
-					# 	halign: 'center'
+					Label:
+						size_hint_y:0.2
+					Label:
+						text: "(higher is better)\n"
+						font_size: self.height*0.4
+						# padding: dp(0), dp(0)
+						# spacing: dp(-10), dp(-10)
+						# font_size:'10sp'
+						color: TXT_COLOR
+						halign: 'center'
+						valign:'top'
+						size_hint_y:0.7
+						# canvas.before:
+						# 	Color:
+						# 		rgba: 1, .4, .3, .85
+						# 	Rectangle:
+						# 		size: self.size
+						# 		pos: self.pos
 
-				Label:
+				Button:
 					color: TXT_COLOR
 					id:score_label
-					text: '0'
+					text: '[b]3[/b]'
 					halign: 'left'
 					font_size:'26sp'
+					background_color: (0,0,0,0)
+					markup: True
+					# background_down: root.parent.clearcolor
+					# background_normal: root.parent.clearcolor
 
 				Button:
 					text: '    Reset    '
@@ -47,25 +79,30 @@
 					size_hint_x:1
 					# _no_ripple_effect: True
 
+
 		Label:
 			text:''
 			size_hint_y:0.005
 			canvas.before:
 				Color:
-				    # rgba: 0, 1, 1, .6
-				    rgba: 252/255, 186/255, 3/255, 1
-			    Rectangle:
-			        size: self.size
-			        pos: self.pos
+					# rgba: 0, 1, 1, .6
+					rgba: 252/255, 186/255, 3/255, 1
+				Rectangle:
+					size: self.size
+					pos: self.pos
+		Widget:
+			size_hint_y:0.02
 
 		ScrollView:
 			scroll_type: ['bars','content']
 			# scroll_wheel_distance: 20
-			bar_width: 10
+			bar_width: 7
 			do_scroll_x: False
 			do_scroll_y: True
 			bar_inactive_color: .55, .55, .55, 1
-			bar_color: .663, .663, .663, 1
+			# bar_color: .663, .663, .663, 1
+			bar_inactive_color: ALT_TXT_COLOR[0], ALT_TXT_COLOR[1], ALT_TXT_COLOR[2], 0.5
+			bar_color: ALT_TXT_COLOR
 
 			BoxLayout:
 				orientation:'vertical'
@@ -163,3 +200,6 @@
 						root.manager.transition.direction="left"
 					# IconLeftWidget:
 					# 	icon:'chart-multiline'
+
+		Widget:
+			size_hint_y:0.01
