@@ -357,7 +357,8 @@ WindowManager:
 	font_style:'Button'
 	background_color: BTN_COLOR
 
-<AirP_ActionBar>:
+<MyActionBar>:
+	title:""
 	pos_hint: {'top':1}
 	ActionView:
 		HiddenIcon_ActionPrevious:
@@ -367,9 +368,11 @@ WindowManager:
 			important: True
 			on_release: root.chevron_left(root.parent.parent)
 		ActionButton:
-			text:"Air Pollution"
+			id: AD
+			text:root.title
 			important: True
 			background_down: self.background_normal
+			on_release: root.chevron_left(root.parent.parent)
 		ActionButton:
 			# text:"  "
 		ActionButton:

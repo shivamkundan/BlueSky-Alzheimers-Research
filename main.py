@@ -107,13 +107,6 @@ class RiskAssesmentPage(Screen):
 		self.update_score()
 
 
-
-	def tap_target_start(self):
-		if self.tap_target_view.state == "close":
-			self.tap_target_view.start()
-		else:
-		   self.tap_target_view.stop()
-
 	def chevron_left(self):
 		chevron_left_global(self,next_pg='LandingPage')
 
@@ -759,11 +752,12 @@ class WindowManager(ScreenManager):
 
 		# Same as android 'back' key
 		if keycode == KEY_ESC:
+			print(f"self.current: {self.current}")
 			self.transition.direction = 'right'
 			if (self.current in ["RiskAssesmentPage","LoginPage","AboutPage"]):
 				self.current="LandingPage"
-			elif (self.current=="LandingPage"):
-				exit()
+			# elif (self.current=="LandingPage"):
+			# 	exit()
 			else:
 				self.current="RiskAssesmentPage" # all other pages return to risk assesment
 
@@ -798,23 +792,41 @@ class BlueSkyApp(App):
 			App.get_running_app().root.ids["LandingPage"].ids["my_im"].source='pics/logo_minimal.png'
 			App.get_running_app().root.ids["LandingPage"].ids["landing_page_bottom_label"].color=BLACK
 
-			App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label1"].color=BLACK
-			App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label2"].color=BLACK
+			# App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label1"].color=BLACK
+			# App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label2"].color=BLACK
 
-			App.get_running_app().root.ids["AirPollutionPage"].ids["label1"].color=BLACK
-			App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color=BLACK
+			# App.get_running_app().root.ids["AirPollutionPage"].ids["label1"].color=BLACK
+			# App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color=BLACK
+			C=BLACK
 
 		else:
 			self.BG_COLOR="BLACK"
 			Window.clearcolor=BLACK
 			App.get_running_app().root.ids["LandingPage"].ids["my_im"].source='pics/logo_minimal_white.png'
 			App.get_running_app().root.ids["LandingPage"].ids["landing_page_bottom_label"].color=WHITE
+			C=WHITE
+			# App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label1"].color=WHITE
+			# App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label2"].color=WHITE
 
-			App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label1"].color=WHITE
-			App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label2"].color=WHITE
+			# App.get_running_app().root.ids["AirPollutionPage"].ids["label1"].color=WHITE
+			# App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color=WHITE
 
-			App.get_running_app().root.ids["AirPollutionPage"].ids["label1"].color=WHITE
-			App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color=WHITE
+
+		# self.WindowManager.get_screen('AirPollutionPage').ids["air_pollution_q_label"].color=(1,0,0,1)
+		# print ("----->",App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color)
+		# print ("----->",self.WindowManager.get_screen('AirPollutionPage').ids["air_pollution_q_label"].color)
+
+		t=type(Label(text=""))
+		print(dir(t))
+		# print(self.WindowManager.screen_names)
+
+		for s in self.WindowManager.screen_names:
+			curr=self.WindowManager.get_screen(s)
+			print(curr)
+			for w in [widget for widget in curr.walk(loopback=True)]:
+				if type(w)==t:
+					w.color=C
+
 
 		# reload image
 		App.get_running_app().root.ids["LandingPage"].ids["my_im"].reload()

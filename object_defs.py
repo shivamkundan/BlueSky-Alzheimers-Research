@@ -11,14 +11,17 @@ class MyButton(Button):
 class MyButton2(Button):
 	pass
 
-class AirP_ActionBar(ActionBar):
+class MyActionBar(ActionBar):
+	NAME=StringProperty("None")
 	def __init__(self,**kwargs):
-		super(AirP_ActionBar,self).__init__(**kwargs)
-		NAME=StringProperty("Name")
+
+		super(MyActionBar,self).__init__(**kwargs)
+
 
 	def chevron_left(self,name,to_pg='RiskAssesmentPage'):
 		print ("chevron_left")
 		print (name)
+		# print ()
 		App.get_running_app().root.transition.direction="right"
 		App.get_running_app().root.current=to_pg
 
