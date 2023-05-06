@@ -8,7 +8,7 @@
 #:set air_Q5 'I would be better wearing a pollution mask'
 #:set air_Q6 'I prefer wearing a pollution mask'
 
-#:set PG_TITLE "Air Pollution"
+#:set air_toolbar_title "Air Pollution"
 
 # ----
 <AirPollutionLandingPage>:
@@ -16,7 +16,7 @@
 		orientation: 'vertical'
 
 		MyActionBar:
-			title:"aaa"
+			title:air_toolbar_title
 
 		BoxLayout:
 			orientation: 'vertical'
@@ -67,8 +67,7 @@
 		orientation: 'vertical'
 
 		MyActionBar:
-			# NAME: 'AAAA'
-			title:"LLL"
+			title:air_toolbar_title
 		BoxLayout:
 			size_hint_y:0.6
 			orientation:'vertical'
@@ -163,6 +162,7 @@
 		orientation: 'vertical'
 
 		MyActionBar:
+			title:air_toolbar_title
 
 		BoxLayout:
 			orientation:'vertical'

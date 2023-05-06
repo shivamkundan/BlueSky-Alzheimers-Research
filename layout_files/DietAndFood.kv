@@ -52,15 +52,12 @@
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
 
-        Button:
+        MyButton2:
             text:"Begin"
-            font_style:'Button'
-            # size_hint_x:0.7
-            pos_hint:{'center_x':0.5}
-            on_release:
-                root.manager.current='DietAndFoodPage'
-                root.manager.transition.direction="left"
-                # root.parent.ids['DietAndFoodPage'].ids['android_tabs'].switch_tab('1')
+            # font_style:'Button'
+            # # size_hint_x:0.7
+            # pos_hint:{'center_x':0.5}
+            on_release:root.arrow_right()
 
 
         NavButtons
@@ -265,30 +262,26 @@
             text: ''
             halign: 'center'
 
-        Button:
-            id:restart_button
+        MyButton2:
             text:'Try Again'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.reset_quiz()
         Widget:
             size_hint_y:0.05
-        Button:
-            id:next_section
+        MyButton2:
+            # id:next_section
             text:'Back'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            # font_style:'Button'
+            # size_hint_x:0.7
+            # pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.chevron_left()
         Widget:
             size_hint_y:0.05
-        Button:
-            id:next_section
+        MyButton2:
+            # id:next_section
             text:'Next'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            # font_style:'Button'
+            # size_hint_x:0.7
+            # pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.arrow_right()
 
 

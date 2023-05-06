@@ -38,11 +38,11 @@
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
 
-        Button:
+        MyButton2:
             text:"Begin"
-            font_style:'Button'
+            # font_style:'Button'
             # size_hint_x:0.7
-            pos_hint:{'center_x':0.5}
+            # pos_hint:{'center_x':0.5}
             on_release:
                 # root.parent.ids['TraumaticBrainInjuryPage'].ids['android_tabs'].switch_tab('1')
                 root.arrow_right()
@@ -118,16 +118,14 @@
             size_hint_y:0.5
             Widget:
                 size_hint_x:0.2
-            Button:
+            MyButton2:
                 text:'Yes'
-                size_hint_x:1
                 on_release: root.button_press(0)
             Widget:
                 size_hint_x:0.1
 
-            Button:
+            MyButton2:
                 text:'No'
-                size_hint_x:1
                 on_release: root.button_press(1)
             Widget:
                 size_hint_x:0.2
@@ -152,30 +150,18 @@
             text: ''
             halign: 'center'
 
-        Button:
-            id:restart_button
+        MyButton2:
             text:'Try Again'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.reset_quiz()
         Widget:
             size_hint_y:0.05
-        Button:
-            id:next_section
+        MyButton2:
             text:'Back'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.chevron_left()
         Widget:
             size_hint_y:0.05
-        Button:
-            id:next_section
+        MyButton2:
             text:'Next'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.arrow_right()
 
 

@@ -1,6 +1,6 @@
-#:set depression_Q0 'Over the last 2 weeks, how often have you been bothered by the following problems:'
-#:set depression_Q1 'Little interest or pleasure in doing things'
-#:set depression_Q2 'Feeling down, depressed, or hopeless'
+#:set depression_Q_main 'Over the last 2 weeks, how often have you been bothered by the following problems:'
+#:set depression_Q0 'Little interest or pleasure in doing things'
+#:set depression_Q1 'Feeling down, depressed, or hopeless'
 #:set depression_toolbar_title 'Depression'
 
 <DepressionLandingPage>:
@@ -30,14 +30,12 @@
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
 
-        Button:
+        MyButton2:
             text:"Begin"
-            font_style:'Button'
-            # size_hint_x:0.7
-            pos_hint:{'center_x':0.5}
-            on_release:
-                # root.parent.ids['DepressionPage'].ids['android_tabs'].switch_tab('1')
-                root.arrow_right()
+            # font_style:'Button'
+            # # size_hint_x:0.7
+            # pos_hint:{'center_x':0.5}
+            on_release: root.arrow_right()
 
         NavButtons
 
@@ -47,106 +45,72 @@
         MyActionBar:
             title:depression_toolbar_title
 
+        Label:
+            id:label1
+            text_size: root.width*self.size_hint_x, None
+            size: self.texture_size
+            color: TXT_COLOR
+            text:depression_Q_main
+            halign:'center'
+            pos_hint:{'center_x':0.5}
+            size_hint_y:0.5
+
         # BoxLayout:
-        #     size_hint_y:0.7
+        Label:
+            size_hint_x:0.8
+            # size_hint_y:0.6
+            id:q_label
+            text_size: root.width*self.size_hint_x, None
+            color: TXT_COLOR
+            size: self.texture_size
+            text: depression_Q0
+            halign:'center'
+            pos_hint:{'center_x':0.5,'center_y':0.3}
+            size_hint_y:0.5
 
-            # MDTabs:
-            #     id: android_tabs
-            #     tab_pos:'left_top'
-            #     on_tab_switch: root.on_tab_switch(*args)
+        # BoxLayout:
+        #     orientation:'vertical'
+        #     # Button:
+        #     #     icon:'numeric-3'
+        #     #     text:'Not at all'
+        #     #     halign:'left'
+        #     #     size_hint_x:0.8
+        #     #     font_style:'Button'
+        #     #     theme_text_color: "Custom"
+        #     #     # color_icon_root_button: app.theme_cls.accent_color
+        #     #     pos_hint:{'center_x':0.5}
 
-            #     Tab:
-            #         icon:'blank'
-            #         text:'1'
-            #         BoxLayout:
-            #             orientation:'vertical'
+        MyButton2:
+            text:'Not at all'
+            on_release: root.button_press(3)
 
-            #             Label:
-            #                 text: depression_Q1
-            #                 halign: 'center'
-            #                 size_hint_x:0.9
+        Label:
+            text:''
+            size_hint_y:0.05
 
-            #     Tab:
-            #         icon:'blank'
-            #         text:'2'
-            #         BoxLayout:
-            #             orientation:'vertical'
-            #             Label:
-            #                 text: depression_Q2
-            #                 halign: 'center'
-            #                 size_hint_x:0.9
+        MyButton2:
+            text:'Several days'
+            on_release: root.button_press(2)
+        Label:
+            text:''
+            size_hint_y:0.05
 
-        # MDGridLayout:
-        #     cols:4
-        BoxLayout:
-            orientation:'vertical'
-            Button:
-                icon:'numeric-3'
-                text:'Not at all'
-                halign:'left'
-                size_hint_x:0.8
-                font_style:'Button'
-                theme_text_color: "Custom"
-                # color_icon_root_button: app.theme_cls.accent_color
-                pos_hint:{'center_x':0.5}
+        MyButton2:
+            text:'more than half the days'
+            on_release: root.button_press(1)
+        Label:
+            text:''
+            size_hint_y:0.05
 
-                on_release:
-                    root.button_press(3)
-            Label:
-                text:''
-                size_hint_y:0.05
-            Button:
-                id:button6
-                icon:'numeric-2'
-                text:'Several days'
-                halign:'left'
-                size_hint_x:0.8
-                font_style:'Button'
-                # size_hint_y:0.8
-                pos_hint:{'center_x':0.5}
-                on_release: root.button_press(2)
-                custom_color: 0, 1, 0, 1
-            Label:
-                text:''
-                size_hint_y:0.05
-            Button:
-                id:button5
-                icon:'numeric-1'
-                text:'more than half the days'
-                halign:'left'
-                size_hint_x:0.8
-                font_style:'Button'
-                # size_hint_y:0.8
-                pos_hint:{'center_x':0.5}
-                on_release: root.button_press(1)
-            Label:
-                text:''
-                size_hint_y:0.05
-            Button:
-                id:button4
-                icon:'numeric-0'
-                text:'nearly everyday'
-                halign:'left'
-                size_hint_x:0.8
-                font_style:'Button'
-                pos_hint:{'center_x':0.5}
-                on_release: root.button_press(0)
-            Label:
-                text:''
-                size_hint_y:0.15
+        MyButton2:
+            text:'nearly everyday'
+            on_release: root.button_press(0)
+        Widget:
+            size_hint_y:0.25
 
 
         NavButtons
 
-    FloatLayout:
-        orientation: 'vertical'
-        Label:
-            pos:(50,950)
-            text: depression_Q0
-            md_bg_color:0,0,1,0.05
-            size_hint_y:0.15
-            size_hint_x:0.9
-            text_color:1,1,1,1
 
 <DepressionScorePage>:
     score_label:score_label
@@ -164,30 +128,30 @@
             text: ''
             halign: 'center'
 
-        Button:
-            id:restart_button
+        MyButton2:
+            # id:restart_button
             text:'Try Again'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            # font_style:'Button'
+            # size_hint_x:0.7
+            # pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.reset_quiz()
         Widget:
             size_hint_y:0.05
-        Button:
-            id:next_section
+        MyButton2:
+            # id:next_section
             text:'Back'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            # font_style:'Button'
+            # size_hint_x:0.7
+            # pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.chevron_left()
         Widget:
             size_hint_y:0.05
-        Button:
-            id:next_section
+        MyButton2:
+            # id:next_section
             text:'Next'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            # font_style:'Button'
+            # size_hint_x:0.7
+            # pos_hint:{'center_x': 0.5, 'center_y': 0.5}
             on_release:root.arrow_right()
 
 
