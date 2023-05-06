@@ -3,12 +3,8 @@
 
 		orientation:'vertical'
 
-		ActionBar:
-			ActionView:
-				ActionPrevious:
-					title: 'Location'
-					# with_previous: False
-					on_release: root.chevron_left()
+		MyActionBar:
+			title:"Location"
 
 		Label:
 			text:'Please select the category that you think best describes the community where you live:'
@@ -57,20 +53,20 @@
 					Switch:
 
 
-
-		BoxLayout:
-			orientation: 'horizontal'
-			Button:
-				text:'                     <                       '
-				size_hint_x:1
-				size_hint_y:0.3
-				on_release:
-					root.manager.current='SociodemographicPage'
-					root.manager.transition.direction="right"
-			Button:
-				text:'                     >                       '
-				size_hint_x:1
-				size_hint_y:0.3
-				on_release:
-					root.manager.current='AirPollutionLandingPage'
-					root.manager.transition.direction="left"
+		NavButtons:
+		# BoxLayout:
+		# 	orientation: 'horizontal'
+		# 	Button:
+		# 		text:'                     <                       '
+		# 		size_hint_x:1
+		# 		size_hint_y:0.3
+		# 		on_release:
+		# 			root.manager.current='SociodemographicPage'
+		# 			root.manager.transition.direction="right"
+		# 	Button:
+		# 		text:'                     >                       '
+		# 		size_hint_x:1
+		# 		size_hint_y:0.3
+		# 		on_release:
+		# 			root.manager.current='AirPollutionLandingPage'
+		# 			root.manager.transition.direction="left"

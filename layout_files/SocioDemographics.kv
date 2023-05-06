@@ -5,17 +5,8 @@
     BoxLayout:
         orientation: 'vertical'
 
-        # MDTopAppBar:
-        #     title: 'Demographics'
-        #     halign: 'left'
-        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-        #     elevation:8
-        ActionBar:
-            ActionView:
-                ActionPrevious:
-                    title: 'Demographics'
-                    on_release: root.chevron_left()
+        MyActionBar:
+            title:"Demographics"
 
         # # MDTabs:
         #     id: android_tabs
@@ -268,16 +259,4 @@
         #                             name:'left_icon_N/A'
         #                             icon:'checkbox-blank-circle-outline'
 
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y:0.1
-            Button:
-                text:'                     <                       '
-                size_hint_x:1
-                size_hint_y:0.15
-                on_release:root.arrow_left()
-            Button:
-                text:'                     >                       '
-                size_hint_x:1
-                size_hint_y:0.15
-                on_release:root.arrow_right()
+        NavButtons

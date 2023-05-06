@@ -4,18 +4,8 @@
     BoxLayout:
         orientation: 'vertical'
 
-        # MDTopAppBar:
-        #     title: hypertension_toolbar_title
-        #     halign: 'left'
-        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-        #     elevation:8
-        ActionBar:
-            ActionView:
-                ActionPrevious:
-                    title: hypertension_toolbar_title
-                    on_release: root.chevron_left()
+        MyActionBar:
+            title:hypertension_toolbar_title
 
         Label:
             text:''
@@ -45,33 +35,14 @@
             on_release: root.arrow_right()
 
 
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y:0.3
-            Button:
-                # size_hint_x:1
-                text:'                     <                       '
-                on_release:root.arrow_left()
-            Button:
-                size_hint_x:1
-                text:'                     >                       '
-                on_release: root.arrow_right()
+        NavButtons
 
 <HyperTensionPage>:
     BoxLayout:
 
-        orientation:'vertical'
-        # MDTopAppBar:
-        #     title: hypertension_toolbar_title
-        #     # size_hint_y:0.1
-        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: app.callback_2()]]
-        #     elevation:8
-        ActionBar:
-            ActionView:
-                ActionPrevious:
-                    title: hypertension_toolbar_title
-                    on_release: root.chevron_left()
+        MyActionBar:
+            title:hypertension_toolbar_title
+
 
         Label:
             text:'Have you ever been told by a doctor or other health professional that you had hypertension, also called high blood pressure?'
@@ -100,35 +71,16 @@
                 size_hint_x:0.2
 
 
-        BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                text:'                     <                       '
-                size_hint_x:1
-                on_release:root.arrow_left()
-            Button:
-                text:'                     >                       '
-                size_hint_x:1
-                on_release:root.arrow_right()
+        NavButtons
 
 
 <HyperTensionScorePage>:
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
-        # MDTopAppBar:
+        MyActionBar:
+            title:hypertension_toolbar_title
 
-        #     title: hypertension_toolbar_title
-        #     left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-        #     right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-        #     # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-        #     elevation:8
-
-        ActionBar:
-            ActionView:
-                ActionPrevious:
-                    title: hypertension_toolbar_title
-                    on_release: root.chevron_left()
 
         Label:
             text: 'Your score is:'
@@ -170,13 +122,4 @@
             size_hint_y:0.7
 
 
-        BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                text:'                     <                       '
-                size_hint_x:1
-                on_release:root.arrow_left()
-            Button:
-                text:'                     >                       '
-                size_hint_x:1
-                on_release:root.arrow_right()
+        NavButtons

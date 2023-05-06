@@ -119,7 +119,8 @@ class SociodemographicPage(Screen):
 		self.tab_num_dict={'Age':1,'Sex':2,'Zip Code':3,'Military (1)':4,'Military (2)':5}
 		self.num_tabs=len(self.tab_names)
 		self.curr_tab_num=0
-		self.prev_page="LandingPage"
+		self.prev_page="RiskAssesmentPage"
+		self.next_page="LocationPage"
 
 		self.done_dict={}
 		for item in self.tab_names:
@@ -218,18 +219,18 @@ class SociodemographicPage(Screen):
 	def arrow_left(self):
 		if self.curr_tab_num==0:
 			self.parent.transition.direction="right"
-			self.parent.current="RiskAssesmentPage"
+			self.parent.current=self.prev_page
 		else:
 			self.curr_tab_num-=1
 			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 	def arrow_right(self):
-		self.done_dict[self.tab_names[self.curr_tab_num]]=True
-		if self.curr_tab_num==self.num_tabs-1:
+		# self.done_dict[self.tab_names[self.curr_tab_num]]=True
+		# if self.curr_tab_num==self.num_tabs-1:
 			self.parent.transition.direction="left"
-			self.parent.current="LocationPage"
-		else:
-			self.curr_tab_num+=1
+			self.parent.current=self.next_page
+		# else:
+			# self.curr_tab_num+=1
 			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 
@@ -315,7 +316,8 @@ class LocationPage(Screen):
 	def __init__(self,**kwargs):
 		super(LocationPage,self).__init__(**kwargs)
 		self.option_names_dict={'left_icon_urban':None,'left_icon_large_rural':None,'left_icon_small_rural':None,'left_icon_isolated':None}
-		self.prev_page="LandingPage"
+		self.prev_page="SociodemographicPage"
+		self.next_page="AirPollutionLandingPage"
 
 	def chevron_left(self):
 		chevron_left_global(self)
@@ -324,7 +326,13 @@ class LocationPage(Screen):
 		self.parent.ids['RiskAssesmentPage'].ids['location_label'].secondary_text='100% Complete'
 
 	def arrow_right(self):
-		pass
+		self.parent.transition.direction="left"
+		self.parent.current=self.next_page
+
+
+	def arrow_left(self):
+		self.parent.transition.direction="right"
+		self.parent.current=self.prev_page
 
 	def toggle(self,*args):
 
@@ -789,37 +797,21 @@ class BlueSkyApp(App):
 		if (self.BG_COLOR=="BLACK"):
 			self.BG_COLOR="WHITE"
 			Window.clearcolor=WHITE
-			App.get_running_app().root.ids["LandingPage"].ids["my_im"].source='pics/logo_minimal.png'
-			App.get_running_app().root.ids["LandingPage"].ids["landing_page_bottom_label"].color=BLACK
-
-			# App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label1"].color=BLACK
-			# App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label2"].color=BLACK
-
-			# App.get_running_app().root.ids["AirPollutionPage"].ids["label1"].color=BLACK
-			# App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color=BLACK
+			I='pics/logo_minimal.png'
 			C=BLACK
 
 		else:
 			self.BG_COLOR="BLACK"
 			Window.clearcolor=BLACK
-			App.get_running_app().root.ids["LandingPage"].ids["my_im"].source='pics/logo_minimal_white.png'
-			App.get_running_app().root.ids["LandingPage"].ids["landing_page_bottom_label"].color=WHITE
+			I='pics/logo_minimal_white.png'
 			C=WHITE
-			# App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label1"].color=WHITE
-			# App.get_running_app().root.ids["AirPollutionLandingPage"].ids["label2"].color=WHITE
 
-			# App.get_running_app().root.ids["AirPollutionPage"].ids["label1"].color=WHITE
-			# App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color=WHITE
-
-
-		# self.WindowManager.get_screen('AirPollutionPage').ids["air_pollution_q_label"].color=(1,0,0,1)
-		# print ("----->",App.get_running_app().root.ids["AirPollutionPage"].ids["air_pollution_q_label"].color)
-		# print ("----->",self.WindowManager.get_screen('AirPollutionPage').ids["air_pollution_q_label"].color)
+		self.WindowManager.get_screen("LandingPage").ids["my_im"].source=I
+		self.WindowManager.get_screen("LandingPage").ids["landing_page_bottom_label"].color=C
 
 		t=type(Label(text=""))
-		print(dir(t))
-		# print(self.WindowManager.screen_names)
 
+		# toggle label text colors in all screen
 		for s in self.WindowManager.screen_names:
 			curr=self.WindowManager.get_screen(s)
 			print(curr)
