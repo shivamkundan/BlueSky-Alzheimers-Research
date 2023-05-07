@@ -1,50 +1,76 @@
 from kivy_imports import *
+from kivy.properties import StringProperty
+from kivy.graphics import Color
+from kivy.graphics import RoundedRectangle
+
+# ===================================================================== #
+class WrapLabel(Label):
+	pass
+# ===================================================================== #
+
+class MyButton(Button):
+	def on_release_custom(self,to_page,direction="left",*args,**kwargs):
+		App.get_running_app().root.current=to_page
+		App.get_running_app().root.transition.direction=direction
+
+class MyButton2(Button):
+	pass
+
+class RoundedButton(MyButton):
+	def __init__(self,**kwargs):
+		super(RoundedButton,self).__init__(**kwargs)
+		self.btn_radius=[8]
+		self.pressed_color=(69/255, 90/255, 100/255, 0.6)
+
+	def on_press(self):
+		print ("on_press")
+		self.change_color()
+
+	def on_release(self):
+		self.change_color_back()
+
+	def on_release_custom(self,to_page,direction="left",*args,**kwargs):
+		print ("on_release")
+		self.change_color_back()
+		App.get_running_app().root.current=to_page
+		App.get_running_app().root.transition.direction=direction
+
+	def change_color(self, *args,**kwargs):
+		print ("change_color")
+		# self.background_color=(69/255, 90/255, 100/255, 0.4)
+		self.background_color=self.pressed_color
+		with self.canvas.before:
+			# Color(1/255, 0/255, 0/255, 0.9)
+			Color(self.background_color)
+			self.rect=RoundedRectangle(pos=self.pos, size=self.size,radius=self.btn_radius)
+
+	def change_color_back(self, *args):
+		print ("change_color_back")
+		self.background_color=(0,0,0,0)
+		with self.canvas.before:
+			Color(69/255, 90/255, 100/255, 0.9)
+			self.rect=RoundedRectangle(pos=self.pos, size=self.size,radius=self.btn_radius)
 
 # ===================================================================== #
 
-class tab_template(FloatLayout, MDTabsBase):
+class MyActionBar(ActionBar):
+	NAME=StringProperty("None")
 	def __init__(self,**kwargs):
-		super(tab_template,self).__init__(**kwargs)
-		text = StringProperty()
 
-class ItemConfirm(OneLineAvatarIconListItem):
-	divider = None
+		super(MyActionBar,self).__init__(**kwargs)
 
-	def set_icon(self, instance_check):
-		instance_check.active = True
-		check_list = instance_check.get_widgets(instance_check.group)
-		for check in check_list:
-			if check != instance_check:
-				check.active = False
 
-class NavButtons(Widget):
+	def chevron_left(self,scr,to_pg='RiskAssesmentPage'):
+		print ("chevron_left")
+		print (scr.name)
+
+		if scr.name in ["AboutPage","RiskAssesmentPage"]:
+			to_pg="LandingPage"
+		# print ()
+		App.get_running_app().root.transition.direction="right"
+		App.get_running_app().root.current=to_pg
+
+# ===================================================================== #
+
+class NavButtons(BoxLayout):
 	pass
-
-class ButtonSet(MDBoxLayout):
-	def __init__(self,**kwargs):
-		super(ButtonSet,self).__init__(**kwargs)
-
-class ContentNavigationDrawer(MDBoxLayout):
-	pass
-
-class Tab(FloatLayout, MDTabsBase):
-	'''Class implementing content for a tab.'''
-	text=StringProperty()
-
-class ItemDrawer(OneLineIconListItem):
-	icon = StringProperty()
-	text_color = ListProperty((0, 0, 0, 1))
-
-class DrawerList(ThemableBehavior, MDList):
-	def set_color_item(self, instance_item):
-		"""Called when tap on a menu item."""
-
-		# Set the color of the icon and text for the menu item.
-		for item in self.children:
-			if item.text_color == self.theme_cls.primary_color:
-				item.text_color = self.theme_cls.text_color
-				break
-		instance_item.text_color = self.theme_cls.primary_color
-
-class MenuHeader(MDBoxLayout):
-	'''An instance of the class that will be added to the menu header.'''

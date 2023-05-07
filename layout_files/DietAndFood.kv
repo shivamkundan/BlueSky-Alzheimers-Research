@@ -26,317 +26,166 @@
 
 <DietLandingPage>:
 
-    BoxLayout:
-        orientation: 'vertical'
+	BoxLayout:
+		orientation: 'vertical'
+		MyActionBar:
+			title:diet_toolbar_title
 
-        MDTopAppBar:
-            title: diet_toolbar_title
-            halign: 'left'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
-
-        Widget:
-            size_hint_y:0.3
-        MDLabel:
-            text: diet_landing_blurb
-
-            font_size:'14sp'
-            halign: 'left'
-            size_hint_x:0.8
-            pos_hint:{'center_x':0.5}
-
-        MDLabel:
-            # font_size:'2xw0sp'
-            text: diet_landing_subtitle
-            # text_color:DARK_BLUE
-            theme_text_color:"Hint"
-            halign: 'left'
-            size_hint_x:0.8
-            # size_hint_x:0.5
-            pos_hint:{'center_x':0.5}
-
-        Button:
-            text:"Begin"
-            font_style:'Button'
-            # size_hint_x:0.7
-            pos_hint:{'center_x':0.5}
-            on_release:
-                root.manager.current='DietAndFoodPage'
-                root.manager.transition.direction="left"
-                root.parent.ids['DietAndFoodPage'].ids['android_tabs'].switch_tab('1')
+		# Widget:
+		# 	size_hint_y:0.3
+		WrapLabel:
+			text: diet_landing_blurb
+			padding: dp(0), dp(30)
 
 
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y:0.3
-            Button:
-                # size_hint_x:1
-                text:'                     <                       '
-                on_release:root.arrow_left()
-            Button:
-                size_hint_x:1
-                text:'                     >                       '
-                on_release:
-                    root.parent.ids['DietAndFoodPage'].ids['android_tabs'].switch_tab('1')
-                    root.arrow_right()
+		Label:
+			# font_size:'2xw0sp'
+			text: diet_landing_subtitle
+			# text_color:DARK_BLUE
+			color: TXT_COLOR
+			theme_text_color:"Hint"
+			halign: 'left'
+			size_hint_x:0.8
+			# size_hint_x:0.5
+			pos_hint:{'center_x':0.5}
+
+		MyButton2:
+			text:"Begin"
+			# font_style:'Button'
+			# # size_hint_x:0.7
+			# pos_hint:{'center_x':0.5}
+			on_release:root.arrow_right()
+
+
+		NavButtons
 
 
 <DietAndFoodPage>:
 
-    BoxLayout:
-        orientation: 'vertical'
-        MDTopAppBar:
-            title: diet_toolbar_title
-            halign: 'left'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
-
-        MDBoxLayout:
-            size_hint_y:0.7
-
-            MDTabs:
-                id: android_tabs
-                tab_pos:'left_top'
-                on_tab_switch: root.on_tab_switch(*args)
-
-                Tab:
-                    icon:'blank'
-                    text:'1'
-                    MDBoxLayout:
-                        orientation:'vertical'
-
-                        MDLabel:
-                            text: diet_Q1
-                            halign: 'center'
-                            size_hint_x:0.9
-
-                Tab:
-                    icon:'blank'
-                    text:'2'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q2
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'3'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q3
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'4'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q4
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'5'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q5
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'6'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q6
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'7'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q7
-                            halign: 'center'
-                            size_hint_x:0.9
-
-                Tab:
-                    icon:'blank'
-                    text:'8'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q8
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'9'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q9
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'10'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q10
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'11'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: diet_Q11
-                            halign: 'center'
-                            size_hint_x:0.9
-
-        MDGridLayout:
-            cols:3
-            # rows:4
-
-            on_parent:
-                for i in range(0,8): txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.button_press))
-
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y:0.3
-            Button:
-                size_hint_x:1
-                text:'                     <                       '
-                on_release:root.arrow_left()
-            Button:
-                size_hint_x:1
-                text:'                     >                       '
-                on_release:root.arrow_right()
+	BoxLayout:
+		orientation: 'vertical'
+		MyActionBar:
+			title:diet_toolbar_title
 
 
+		BoxLayout:
 
-    FloatLayout:
-        orientation: 'vertical'
-        MDLabel:
-            pos:(50,950)
-            text: diet_Q0
-            # md_bg_color:0,0,1,0.05
-            size_hint_y:0.15
-            size_hint_x:0.9
-            text_color:1,1,1,1
+			orientation:'vertical'
+			size_hint_y:0.6
+			pos_hint:{'center_x':0.5}
+
+			Label:
+				size_hint_x:0.8
+				id:label1
+				text_size: root.width*self.size_hint_x, None
+				size: self.texture_size
+				color: TXT_COLOR
+				text:diet_Q0
+				halign:'center'
+				pos_hint:{'center_x':0.5}
+
+			# BoxLayout:
+			Label:
+				size_hint_x:0.8
+				# size_hint_y:0.6
+				id:q_label
+				text_size: root.width*self.size_hint_x, None
+				color: TXT_COLOR
+				size: self.texture_size
+				text:""
+				halign:'center'
+				pos_hint:{'center_x':0.5,'center_y':0.3}
+
+
+		GridLayout:
+			cols:3
+			# rows:4
+
+			on_parent:
+				for i in range(0,8): txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
+
+		NavButtons
+
 
 
 <Template>:
-    MDLabel:
-        text: 'Your score is:'
-        halign: 'center'
+	Label:
+		text: 'Your score is:'
+		halign: 'center'
 
-    MDLabel:
-        id:score_label
-        text: ''
-        halign: 'center'
+	Label:
+		id:score_label
+		text: ''
+		halign: 'center'
 
-    Button:
-        id:restart_button
-        text:'Try Again'
-        font_style:'Button'
-        size_hint_x:0.7
-        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-        on_release:root.reset_quiz()
-    Widget:
-        size_hint_y:0.05
-    Button:
-        id:next_section
-        text:'Back'
-        font_style:'Button'
-        size_hint_x:0.7
-        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-        on_release:root.chevron_left()
-    Widget:
-        size_hint_y:0.05
-    Button:
-        id:next_section
-        text:'Next'
-        font_style:'Button'
-        size_hint_x:0.7
-        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-        on_release:root.arrow_right()
+	Button:
+		id:restart_button
+		text:'Try Again'
+		font_style:'Button'
+		size_hint_x:0.7
+		pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+		on_release:root.reset_quiz()
+	Widget:
+		size_hint_y:0.05
+	Button:
+		id:next_section
+		text:'Back'
+		font_style:'Button'
+		size_hint_x:0.7
+		pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+		on_release:root.chevron_left()
+	Widget:
+		size_hint_y:0.05
+	Button:
+		id:next_section
+		text:'Next'
+		font_style:'Button'
+		size_hint_x:0.7
+		pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+		on_release:root.arrow_right()
 
 
-    MDLabel:
-        size_hint_y:0.7
+	Label:
+		size_hint_y:0.7
 
+# -------------
 <DietScorePage>:
-    score_label:score_label
-    BoxLayout:
-        orientation: 'vertical'
-        MDTopAppBar:
+	score_label:score_label
+	BoxLayout:
+		orientation: 'vertical'
 
-            title: diet_toolbar_title
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+		MyActionBar:
+			title:air_toolbar_title
 
-        MDLabel:
-            text: 'Your score is:'
-            halign: 'center'
+		BoxLayout:
+			orientation:'vertical'
+			Label:
+				text: 'Your score is:'
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'16sp'
 
-        MDLabel:
-            id:score_label
-            text: ''
-            halign: 'center'
+			Label:
+				id:score_label
+				text: ''
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'34sp'
 
-        Button:
-            id:restart_button
-            text:'Try Again'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.reset_quiz()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Back'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.chevron_left()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Next'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.arrow_right()
+			MyButton2:
+				text:'Try Again'
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Back'
+				on_release:root.chevron_left()
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Next'
+				on_release:root.arrow_right()
 
+			Widget:
+				size_hint_y:0.2
 
-        MDLabel:
-            size_hint_y:0.7
-
-
-        BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                text:'                     <                       '
-                size_hint_x:1
-                on_release:root.arrow_left()
-            Button:
-                text:'                     >                       '
-                size_hint_x:1
-                on_release:root.arrow_right()
+		NavButtons:

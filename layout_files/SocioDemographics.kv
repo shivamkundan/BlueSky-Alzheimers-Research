@@ -5,274 +5,258 @@
     BoxLayout:
         orientation: 'vertical'
 
-        MDTopAppBar:
-            title: 'Demographics'
-            halign: 'left'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            elevation:8
+        MyActionBar:
+            title:"Demographics"
 
-        MDTabs:
-            id: android_tabs
-            tab_pos:'left_top'
-            # font_size:'12sp'
-            # tab_width:20
-            on_tab_switch: root.on_tab_switch(*args)
-            width:10
+        # # MDTabs:
+        #     id: android_tabs
+        #     tab_pos:'left_top'
+        #     # font_size:'12sp'
+        #     # tab_width:20
+        #     on_tab_switch: root.on_tab_switch(*args)
+        #     width:10
 
-            Tab:
-                icon:'blank'
-                # tab_width:5
-                text:'Age'
-                MDBoxLayout:
-                    orientation:'vertical'
-                    MDLabel:
-                        text:'Enter your date of birth'
-                        size_hint_x:0.9
-                        size_hint_y:0.5
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                        halign:'center'
+        #     Tab:
+        #         icon:'blank'
+        #         # tab_width:5
+        #         text:'Age'
+        #         BoxLayout:
+        #             orientation:'vertical'
+        #             Label:
+        #                 text:'Enter your date of birth'
+        #                 size_hint_x:0.9
+        #                 size_hint_y:0.5
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        #                 halign:'center'
 
-                    MDLabel:
-                        id:age_text_field
-                        name:'age_text_field'
-                        # md_bg_color:(1,1,0,0.1)
-                        done:False
-                        size_hint_x:0.9
-                        size_hint_y:0.5
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                        text:'< MM / DD / YYYY >'
-                        # font_style:'Button'
-                        font_size:'24sp'
-                        text_color:0,0,0,0.05
-                        halign:'center'
-                        # helper_text: "Date of Birth"
-                        # halign:'left'
-                        # hint_text: "mm/dd/yyyy"
-                        # helper_text_mode: "on_focus"
-                        # icon_right:'info'
-                        # multiline:False
-                        # max_text_length:10
-                        # on_text_validate: root.validate_text(self)
-                    # MDLabel:
-                    #     text:''
+        #             Label:
+        #                 id:age_text_field
+        #                 name:'age_text_field'
+        #                 # md_bg_color:(1,1,0,0.1)
+        #                 done:False
+        #                 size_hint_x:0.9
+        #                 size_hint_y:0.5
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        #                 text:'< MM / DD / YYYY >'
+        #                 # font_style:'Button'
+        #                 font_size:'24sp'
+        #                 text_color:0,0,0,0.05
+        #                 halign:'center'
+        #                 # helper_text: "Date of Birth"
+        #                 # halign:'left'
+        #                 # hint_text: "mm/dd/yyyy"
+        #                 # helper_text_mode: "on_focus"
+        #                 # icon_right:'info'
+        #                 # multiline:False
+        #                 # max_text_length:10
+        #                 # on_text_validate: root.validate_text(self)
+        #             # Label:
+        #             #     text:''
 
-                    MDGridLayout:
-                        cols:3
-                        rows:4
-                        # adaptive_height: True
-                        # adaptive_width: True
-                        # adaptive_size: True
-                        on_parent:
-                            for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press,background_color= app.theme_cls.colors['Light']['StatusBar']))
+        #             MDGridLayout:
+        #                 cols:3
+        #                 rows:4
+        #                 # adaptive_height: True
+        #                 # adaptive_width: True
+        #                 # adaptive_size: True
+        #                 on_parent:
+        #                     for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press,background_color= app.theme_cls.colors['Light']['StatusBar']))
 
-            Tab:
-                icon:'blank'
-                text:'Sex'
-                MDBoxLayout:
-                    orientation:'vertical'
-                    MDLabel:
-                        text:'What is your sex?'
-                        size_hint_x:0.9
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                        halign:'center'
+        #     Tab:
+        #         icon:'blank'
+        #         text:'Sex'
+        #         BoxLayout:
+        #             orientation:'vertical'
+        #             Label:
+        #                 text:'What is your sex?'
+        #                 size_hint_x:0.9
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        #                 halign:'center'
 
-                    BoxLayout:
-                        orientation:'horizontal'
-                        MDLabel:
-                            size_hint_x:0.1
-                        MDLabel:
-                            text:'Male'
-                            halign:'left'
-                            size_hint_x:0.5
-                        MDCheckbox:
-                            group:'g1'
-                    BoxLayout:
-                        orientation:'horizontal'
-                        MDLabel:
-                            size_hint_x:0.1
-                        MDLabel:
-                            text:'Female'
-                            halign:'left'
-                            size_hint_x:0.5
-                        MDCheckbox:
-                            group:'g1'
+        #             BoxLayout:
+        #                 orientation:'horizontal'
+        #                 Label:
+        #                     size_hint_x:0.1
+        #                 Label:
+        #                     text:'Male'
+        #                     halign:'left'
+        #                     size_hint_x:0.5
+        #                 MDCheckbox:
+        #                     group:'g1'
+        #             BoxLayout:
+        #                 orientation:'horizontal'
+        #                 Label:
+        #                     size_hint_x:0.1
+        #                 Label:
+        #                     text:'Female'
+        #                     halign:'left'
+        #                     size_hint_x:0.5
+        #                 MDCheckbox:
+        #                     group:'g1'
 
-            Tab:
-                icon:'blank'
-                text:'Zip Code'
-                MDBoxLayout:
-                    orientation:'vertical'
-                    MDLabel:
-                        text:'What is your zip code for home?'
-                        size_hint_x:0.9
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                        halign:'left'
+        #     Tab:
+        #         icon:'blank'
+        #         text:'Zip Code'
+        #         BoxLayout:
+        #             orientation:'vertical'
+        #             Label:
+        #                 text:'What is your zip code for home?'
+        #                 size_hint_x:0.9
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        #                 halign:'left'
 
-                    MDTextField:
-                        focus:True
-                        # text:'home age'
-                        # helper_text: "Home zip code"
-                        hint_text: "Home zip code"
-                        # padding:20
-                        size_hint_x:0.25
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                        # helper_text_mode: "on_focus"
-                        icon_right:'info'
+        #             MDTextField:
+        #                 focus:True
+        #                 # text:'home age'
+        #                 # helper_text: "Home zip code"
+        #                 hint_text: "Home zip code"
+        #                 # padding:20
+        #                 size_hint_x:0.25
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        #                 # helper_text_mode: "on_focus"
+        #                 icon_right:'info'
 
 
-                    MDLabel:
-                        text:'What is your zip code for work?'
-                        size_hint_x:0.8
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                        halign:'left'
+        #             Label:
+        #                 text:'What is your zip code for work?'
+        #                 size_hint_x:0.8
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        #                 halign:'left'
 
-                    MDTextField:
-                        id:zip_code_work
-                        # text:'Enter age'
-                        hint_text: "Work zip code"
-                        size_hint_x:0.25
-                        # helper_text_mode: "on_focus"
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-                        icon_right:'info'
+        #             MDTextField:
+        #                 id:zip_code_work
+        #                 # text:'Enter age'
+        #                 hint_text: "Work zip code"
+        #                 size_hint_x:0.25
+        #                 # helper_text_mode: "on_focus"
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        #                 icon_right:'info'
 
-            Tab:
-                icon:'blank'
-                text:'Military (1)'
-                MDBoxLayout:
-                    orientation:'vertical'
-                    MDLabel:
-                        text:''
-                        size_hint_y:1.0
-                    MDLabel:
-                        text:'Have you ever served in the United States Armed Forces?'
-                        halign: 'center'
-                        size_hint_x:0.9
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-
-
-                    ScrollView:
-                        # on_parent:root.get_wids(self)
-                        scroll_type: ['bars','content']
-                        MDList:
-                            # on_parent:root.get_wids(self)
-                            OneLineIconListItem:
-                                text:'Yes, currently'
-                                on_release: root.toggle_military_2(self)
-
-                                IconLeftWidget:
-                                    # theme_text_color:'Custom'
-                                    # text_color:app.theme_cls.accent_color
-                                    name:'left_icon_yes_current'
-                                    icon:'checkbox-blank-circle-outline'
+        #     Tab:
+        #         icon:'blank'
+        #         text:'Military (1)'
+        #         BoxLayout:
+        #             orientation:'vertical'
+        #             Label:
+        #                 text:''
+        #                 size_hint_y:1.0
+        #             Label:
+        #                 text:'Have you ever served in the United States Armed Forces?'
+        #                 halign: 'center'
+        #                 size_hint_x:0.9
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 
 
-                            OneLineIconListItem:
-                                text:'Yes, formerly'
-                                on_release: root.toggle_military_2(self)
-                                IconLeftWidget:
-                                    name:'left_icon_yes_former'
-                                    icon:'checkbox-blank-circle-outline'
+        #             ScrollView:
+        #                 # on_parent:root.get_wids(self)
+        #                 scroll_type: ['bars','content']
+        #                 MDList:
+        #                     # on_parent:root.get_wids(self)
+        #                     OneLineIconListItem:
+        #                         text:'Yes, currently'
+        #                         on_release: root.toggle_military_2(self)
+
+        #                         IconLeftWidget:
+        #                             # theme_text_color:'Custom'
+        #                             # text_color:app.theme_cls.accent_color
+        #                             name:'left_icon_yes_current'
+        #                             icon:'checkbox-blank-circle-outline'
 
 
-                            OneLineIconListItem:
-                                text:'No'
-                                on_release: root.toggle_military_2(self)
-                                IconLeftWidget:
-                                    name:'left_icon_no'
-                                    icon:'checkbox-blank-circle-outline'
-
-            Tab:
-                icon:'blank'
-                text:'Military (2)'
-                MDBoxLayout:
-                    orientation:'vertical'
-                    MDLabel:
-                        text:'Which branch of the military did/do you serve in?'
-                        halign: 'left'
-                        size_hint_x:0.9
-                        size_hint_y:0.1
-                        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-
-                    ScrollView:
-                        scroll_type: ['bars','content']
-                        MDList:
-
-                            OneLineIconListItem:
-                                text:'Air Force'
-                                on_release: root.toggle_military_2(self)
-
-                                IconLeftWidget:
-                                    on_parent:root.get_wids(self)
-                                    # theme_text_color:'Custom'
-                                    # text_color:app.theme_cls.accent_color
-                                    name:'left_icon_Air Force'
-                                    icon:'checkbox-blank-circle-outline'
+        #                     OneLineIconListItem:
+        #                         text:'Yes, formerly'
+        #                         on_release: root.toggle_military_2(self)
+        #                         IconLeftWidget:
+        #                             name:'left_icon_yes_former'
+        #                             icon:'checkbox-blank-circle-outline'
 
 
-                            OneLineIconListItem:
-                                text:'Army'
-                                on_release: root.toggle_military_2(self)
-                                IconLeftWidget:
-                                    on_parent:root.get_wids(self)
-                                    name:'left_icon_Army'
-                                    icon:'checkbox-blank-circle-outline'
+        #                     OneLineIconListItem:
+        #                         text:'No'
+        #                         on_release: root.toggle_military_2(self)
+        #                         IconLeftWidget:
+        #                             name:'left_icon_no'
+        #                             icon:'checkbox-blank-circle-outline'
+
+        #     Tab:
+        #         icon:'blank'
+        #         text:'Military (2)'
+        #         BoxLayout:
+        #             orientation:'vertical'
+        #             Label:
+        #                 text:'Which branch of the military did/do you serve in?'
+        #                 halign: 'left'
+        #                 size_hint_x:0.9
+        #                 size_hint_y:0.1
+        #                 pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+
+        #             ScrollView:
+        #                 scroll_type: ['bars','content']
+        #                 MDList:
+
+        #                     OneLineIconListItem:
+        #                         text:'Air Force'
+        #                         on_release: root.toggle_military_2(self)
+
+        #                         IconLeftWidget:
+        #                             on_parent:root.get_wids(self)
+        #                             # theme_text_color:'Custom'
+        #                             # text_color:app.theme_cls.accent_color
+        #                             name:'left_icon_Air Force'
+        #                             icon:'checkbox-blank-circle-outline'
 
 
-                            OneLineIconListItem:
-                                text:'Marines'
-                                on_release: root.toggle_military_2(self)
-                                IconLeftWidget:
-                                    on_parent:root.get_wids(self)
-                                    name:'left_icon_Marines'
-                                    icon:'checkbox-blank-circle-outline'
+        #                     OneLineIconListItem:
+        #                         text:'Army'
+        #                         on_release: root.toggle_military_2(self)
+        #                         IconLeftWidget:
+        #                             on_parent:root.get_wids(self)
+        #                             name:'left_icon_Army'
+        #                             icon:'checkbox-blank-circle-outline'
 
 
-                            OneLineIconListItem:
-                                text:'Navy'
-                                on_release: root.toggle_military_2(self)
-                                IconLeftWidget:
-                                    on_parent:root.get_wids(self)
-                                    name:'left_icon_Navy'
-                                    icon:'checkbox-blank-circle-outline'
+        #                     OneLineIconListItem:
+        #                         text:'Marines'
+        #                         on_release: root.toggle_military_2(self)
+        #                         IconLeftWidget:
+        #                             on_parent:root.get_wids(self)
+        #                             name:'left_icon_Marines'
+        #                             icon:'checkbox-blank-circle-outline'
 
 
-                            OneLineIconListItem:
-                                text:'Coast Guard'
-                                on_release: root.toggle_military_2(self)
-                                IconLeftWidget:
-                                    on_parent:root.get_wids(self)
-                                    name:'left_icon_Coast Guard'
-                                    icon:'checkbox-blank-circle-outline'
+        #                     OneLineIconListItem:
+        #                         text:'Navy'
+        #                         on_release: root.toggle_military_2(self)
+        #                         IconLeftWidget:
+        #                             on_parent:root.get_wids(self)
+        #                             name:'left_icon_Navy'
+        #                             icon:'checkbox-blank-circle-outline'
 
 
-                            OneLineIconListItem:
-                                text:'Space Force'
-                                on_release: root.toggle_military_2(self)
-                                IconLeftWidget:
-                                    on_parent:root.get_wids(self)
-                                    name:'left_icon_Space Force'
-                                    icon:'checkbox-blank-circle-outline'
+        #                     OneLineIconListItem:
+        #                         text:'Coast Guard'
+        #                         on_release: root.toggle_military_2(self)
+        #                         IconLeftWidget:
+        #                             on_parent:root.get_wids(self)
+        #                             name:'left_icon_Coast Guard'
+        #                             icon:'checkbox-blank-circle-outline'
 
 
-                            OneLineIconListItem:
-                                text:'N/A'
-                                on_release: root.toggle_military_2(self)
-                                IconLeftWidget:
-                                    on_parent:root.get_wids(self)
-                                    name:'left_icon_N/A'
-                                    icon:'checkbox-blank-circle-outline'
+        #                     OneLineIconListItem:
+        #                         text:'Space Force'
+        #                         on_release: root.toggle_military_2(self)
+        #                         IconLeftWidget:
+        #                             on_parent:root.get_wids(self)
+        #                             name:'left_icon_Space Force'
+        #                             icon:'checkbox-blank-circle-outline'
 
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y:0.1
-            Button:
-                text:'                     <                       '
-                size_hint_x:1
-                size_hint_y:0.15
-                on_release:root.arrow_left()
-            Button:
-                text:'                     >                       '
-                size_hint_x:1
-                size_hint_y:0.15
-                on_release:root.arrow_right()
+
+        #                     OneLineIconListItem:
+        #                         text:'N/A'
+        #                         on_release: root.toggle_military_2(self)
+        #                         IconLeftWidget:
+        #                             on_parent:root.get_wids(self)
+        #                             name:'left_icon_N/A'
+        #                             icon:'checkbox-blank-circle-outline'
+
+        NavButtons

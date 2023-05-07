@@ -14,154 +14,117 @@
     BoxLayout:
         orientation: 'vertical'
 
-        MDTopAppBar:
-            title: trauma_toolbar_title
-            halign: 'left'
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
+        MyActionBar:
+            title:trauma_toolbar_title
 
-        MDLabel:
-            text:''
-            size_hint_y:0.3
-        MDLabel:
+        WrapLabel:
             text: trauma_landing_blurb
-            font_size:'14sp'
-            halign: 'left'
-            size_hint_x:0.8
-            pos_hint:{'center_x':0.5}
+            padding: dp(0), dp(30)
+            halign:'center'
 
-        MDLabel:
+        Label:
             # font_size:'2xw0sp'
             text: trauma_landing_subtitle
-            # text_color:DARK_BLUE
+            color: TXT_COLOR
             theme_text_color:"Hint"
             halign: 'left'
             size_hint_x:0.8
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
 
-        Button:
+        MyButton2:
             text:"Begin"
-            font_style:'Button'
+            # font_style:'Button'
             # size_hint_x:0.7
-            pos_hint:{'center_x':0.5}
+            # pos_hint:{'center_x':0.5}
             on_release:
-                root.parent.ids['TraumaticBrainInjuryPage'].ids['android_tabs'].switch_tab('1')
+                # root.parent.ids['TraumaticBrainInjuryPage'].ids['android_tabs'].switch_tab('1')
                 root.arrow_right()
 
 
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y:0.3
-            Button:
-                # size_hint_x:1
-                text:'                     <                       '
-                on_release:root.arrow_left()
-            Button:
-                size_hint_x:1
-                text:'                     >                       '
-                on_release:
-                    root.parent.ids['TraumaticBrainInjuryPage'].ids['android_tabs'].switch_tab('1')
-                    root.arrow_right()
+        NavButtons
 
 
 <TraumaticBrainInjuryPage>:
     BoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
-            title: trauma_toolbar_title
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()],["help", lambda x: root.tap_target_start()]]
-            elevation:8
-        MDBoxLayout:
-            size_hint_y:0.7
+        MyActionBar:
+            title:trauma_toolbar_title
+        # BoxLayout:
+        #     size_hint_y:0.7
 
-            MDTabs:
-                id: android_tabs
-                tab_pos:'left_top'
-                on_tab_switch: root.on_tab_switch(*args)
+            # MDTabs:
+            #     id: android_tabs
+            #     tab_pos:'left_top'
+            #     on_tab_switch: root.on_tab_switch(*args)
 
-                Tab:
-                    icon:'blank'
-                    text:'1'
-                    MDBoxLayout:
-                        orientation:'vertical'
+            #     Tab:
+            #         icon:'blank'
+            #         text:'1'
+            #         BoxLayout:
+            #             orientation:'vertical'
 
-                        MDLabel:
-                            text: trauma_Q1
-                            halign: 'left'
-                            size_hint_x:1
+            #             Label:
+            #                 text: trauma_Q1
+            #                 halign: 'left'
+            #                 size_hint_x:1
 
-                Tab:
-                    icon:'blank'
-                    text:'2'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: trauma_Q2
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'3'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: trauma_Q3
-                            halign: 'left'
-                            size_hint_x:1
+            #     Tab:
+            #         icon:'blank'
+            #         text:'2'
+            #         BoxLayout:
+            #             orientation:'vertical'
+            #             Label:
+            #                 text: trauma_Q2
+            #                 halign: 'center'
+            #                 size_hint_x:0.9
+            #     Tab:
+            #         icon:'blank'
+            #         text:'3'
+            #         BoxLayout:
+            #             orientation:'vertical'
+            #             Label:
+            #                 text: trauma_Q3
+            #                 halign: 'left'
+            #                 size_hint_x:1
 
-                Tab:
-                    icon:'blank'
-                    text:'4'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: trauma_Q4
-                            halign: 'center'
-                            size_hint_x:0.9
-                Tab:
-                    icon:'blank'
-                    text:'5'
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        MDLabel:
-                            text: trauma_Q5
-                            halign: 'left'
-                            size_hint_x:1
+            #     Tab:
+            #         icon:'blank'
+            #         text:'4'
+            #         BoxLayout:
+            #             orientation:'vertical'
+            #             Label:
+            #                 text: trauma_Q4
+            #                 halign: 'center'
+            #                 size_hint_x:0.9
+            #     Tab:
+            #         icon:'blank'
+            #         text:'5'
+            #         BoxLayout:
+            #             orientation:'vertical'
+            #             Label:
+            #                 text: trauma_Q5
+            #                 halign: 'left'
+            #                 size_hint_x:1
 
-        MDBoxLayout:
+        BoxLayout:
             orientation:'horizontal'
             size_hint_y:0.5
             Widget:
                 size_hint_x:0.2
-            Button:
+            MyButton2:
                 text:'Yes'
-                size_hint_x:1
                 on_release: root.button_press(0)
             Widget:
                 size_hint_x:0.1
 
-            Button:
+            MyButton2:
                 text:'No'
-                size_hint_x:1
                 on_release: root.button_press(1)
             Widget:
                 size_hint_x:0.2
 
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y:0.3
-            Button:
-                text:'                     <                       '
-                size_hint_x:1
-                on_release:root.arrow_left()
-            Button:
-                text:'                     >                       '
-                size_hint_x:1
-                on_release:root.arrow_right()
+        NavButtons
 
 
 
@@ -169,61 +132,39 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
-        MDTopAppBar:
 
-            title: trauma_toolbar_title
-            left_action_items: [["chevron-left", lambda x: root.chevron_left()]]
-            right_action_items: [["dots-vertical", lambda x:app.show_theme_picker()]]
-            # right_action_items: [["dots-vertical", lambda x: app.callback()], ["clock", lambda x: app.callback_2()]]
-            elevation:8
-
-        MDLabel:
-            text: 'Your score is:'
-            halign: 'center'
-
-        MDLabel:
-            id:score_label
-            text: ''
-            halign: 'center'
-
-        Button:
-            id:restart_button
-            text:'Try Again'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.reset_quiz()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Back'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.chevron_left()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Next'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.arrow_right()
-
-
-        MDLabel:
-            size_hint_y:0.7
-
+        MyActionBar:
+            title:physical_toolbar_title
 
         BoxLayout:
-            orientation: 'horizontal'
-            Button:
-                text:'                     <                       '
-                size_hint_x:1
-                on_release:root.arrow_left()
-            Button:
-                text:'                     >                       '
-                size_hint_x:1
+            orientation:'vertical'
+            Label:
+                text: 'Your score is:'
+                color: TXT_COLOR
+                halign: 'center'
+                font_size:'16sp'
+
+            Label:
+                id:score_label
+                text: ''
+                color: TXT_COLOR
+                halign: 'center'
+                font_size:'34sp'
+
+            MyButton2:
+                text:'Try Again'
+            Widget:
+                size_hint_y:0.05
+            MyButton2:
+                text:'Back'
+                on_release:root.chevron_left()
+            Widget:
+                size_hint_y:0.05
+            MyButton2:
+                text:'Next'
                 on_release:root.arrow_right()
+
+            Widget:
+                size_hint_y:0.2
+
+        NavButtons:

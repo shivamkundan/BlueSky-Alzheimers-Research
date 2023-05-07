@@ -1,163 +1,82 @@
 
-# <ButtonSet>:
+<SubPageTemplate>:
 
-#     MDBoxLayout:
-#         orientation:'vertical'
-#         Button:
-#             # id:button7
-#             icon:'numeric-7'
-#             text:'Strongly agree'
-#             halign:'left'
-#             size_hint_x:0.8
-#             font_style:'Button'
-#             # background_palette: 'ContrastParentBackground'
-#             # text_color:app.theme_cls.accent_color
-#             # label_text_color:app.theme_cls.accent_color
-#             color_icon_root_button: app.theme_cls.accent_color
-#             # size_hint_y:0.8
-#             pos_hint:{'center_x':0.5}
-#             on_release: root.button_press(7)
-#         MDLabel:
-#             text:''
-#             size_hint_y:0.05
-#         Button:
-#             id:button6
-#             icon:'numeric-6'
-#             text:'Agree'
-#             halign:'left'
-#             size_hint_x:0.8
-#             font_style:'Button'
-#             # size_hint_y:0.8
-#             pos_hint:{'center_x':0.5}
-#             on_release: root.button_press(6)
-#             custom_color: 0, 1, 0, 1
-#         MDLabel:
-#             text:''
-#             size_hint_y:0.05
-#         Button:
-#             id:button5
-#             icon:'numeric-5'
-#             text:'Somewhat agree'
-#             halign:'left'
-#             size_hint_x:0.8
-#             font_style:'Button'
-#             # size_hint_y:0.8
-#             pos_hint:{'center_x':0.5}
-#             on_release: root.button_press(5)
-#         MDLabel:
-#             text:''
-#             size_hint_y:0.05
-#         Button:
-#             id:button4
-#             icon:'numeric-4'
-#             text:'Neutral'
-#             halign:'left'
-#             size_hint_x:0.8
-#             font_style:'Button'
-#             pos_hint:{'center_x':0.5}
-#             on_release: root.button_press(4)
-#         MDLabel:
-#             text:''
-#             size_hint_y:0.05
-#         Button:
-#             id:button3
-#             icon:'numeric-3'
-#             text:'Somewhat disagree'
-#             halign:'left'
-#             size_hint_x:0.8
-#             font_style:'Button'
-#             pos_hint:{'center_x':0.5}
-#             on_release: root.button_press(3)
-#         MDLabel:
-#             text:''
-#             size_hint_y:0.05
-#         Button:
-#             id:button2
-#             icon:'numeric-2'
-#             text:'Disagree'
-#             halign:'left'
-#             size_hint_x:0.8
-#             font_style:'Button'
-#             pos_hint:{'center_x':0.5}
-#             on_release: root.button_press(2)
-#         MDLabel:
-#             text:''
-#             size_hint_y:0.05
-#         Button:
-#             id:button1
-#             icon:'numeric-1'
-#             text:'Strongly Disagree'
-#             halign:'left'
-#             size_hint_x:0.8
-#             font_style:'Button'
-#             pos_hint:{'center_x':0.5}
-#             on_release: root.button_press(1)
+
+# -----------------------------------------------------
+
+# A label widget that wraps text
+<WrapLabel>:
+    text:""
+    color: TXT_COLOR
+    pos_hint:{'center_x':0.5, 'center_y':0.5}
+    text_size: self.width, None
+    size_hint: 0.8, None
+    height: self.texture_size[1]
+# -----------------------------------------------------
+
+<MyButton>:
+    text:""
+    pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+    halign: 'center'
+    size_hint:BTN_WIDTH,BTN_HEIGHT  #separate size hints results in clock iteration error
+    font_style:'Button'
+    background_color: BTN_COLOR
+    # border: [0,0,0,0]
+
+<MyButton2>:
+    text:""
+    pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+    size_hint_x:0.8
+    font_style:'Button'
+    background_color: BTN_COLOR
+    halign: 'center'
+    markup:True
+
+
+<RoundedButton>:
+    background_color: (0,0,0,0)
+    background_normal:''
+    canvas.before:
+        Color:
+            rgba: BTN_COLOR
+        RoundedRectangle:
+            size:self.size
+            pos:self.pos
+            radius: [18]
+
+# -----------------------------------------------------
+
+<MyActionBar>:
+    title:""
+    to_page:root.parent.parent
+    pos_hint: {'top':1}
+    background_color:BTN_COLOR
+    # background_image:"pics/presplash_logo.png"
+    icon: "reset.png"
+    markup:True
+    ActionView:
+        HiddenIcon_ActionPrevious:
+        # # ActionPrevious:
+        ActionButton:
+            icon:"pics/left.png"
+            important: True
+            on_release: root.chevron_left(root.parent.parent)
+        ActionButton:
+            id: AD
+            text:root.title
+            important: True
+            background_down: self.background_normal
+            on_release: root.chevron_left(root.parent.parent)
+        # ActionButton:
+            # text:"  "
+        ActionButton:
+            important: True
+            icon:'pics/sun.png'
+            on_release: app.toggle_theme()
+
 
 # =======================================
-<ItemDrawer>:
-    # Menu item in the DrawerList list.
-    theme_text_color: "Custom"
-    on_release:
-        self.parent.set_color_item(self)
-        self.parent.parent.parent.parent.set_state('close')
-        app.nav_closer(*args)
-
-        # self.parent.parent.parent.parent.parent.hide_widget(dohide=False)
-
-    IconLeftWidget:
-        id: icon
-        icon: root.icon
-        theme_text_color: "Custom"
-        text_color: root.text_color
-
-<ContentNavigationDrawer>:
-    orientation: "vertical"
-    padding: "8dp"
-    spacing: "8dp"
-    md_list:md_list
-    AnchorLayout:
-        anchor_x: "left"
-        size_hint_y: None
-        height: avatar.height
-
-        MDIconButton:
-            id: avatar
-            # size_hint: None, None
-            size: "56dp", "56dp"
-            # source: "data/logo/kivy-icon-256.png"
-            icon:"close-thick"
-            on_release: app.nav_closer(*args)
-
-
-    MDLabel:
-        text: "Blue Sky"
-        font_style: "H5"
-        adaptive_height: True
-
-    MDLabel:
-        text: "Alzheimer's Disease\nPrevention Program"
-        font_style: "Caption"
-        adaptive_height: True
-
-    ScrollView:
-        md_list:md_list
-        DrawerList:
-            id: md_list
-
-<Tab>:
-
-    MDLabel:
-        id: label
-        MDLabel:
-            # text: ""
-            font_style:'Subtitle2'
-            theme_text_color:"Hint"
-            # halign: 'left'
-            # size_hint_y:0.2
-            size_hint_x:0.9
-
-# =======================================
-<ScaleLabel@MDLabel>:
+<ScaleLabel@Label>:
     _scale: 1. if self.texture_size[0] < self.width else float(self.width) / self.texture_size[0]
     # _scale: 1. if self.texture_size[0] < self.width else float(self.width) / self.texture_size[0]
     canvas.before:
@@ -197,15 +116,17 @@
 # =======================================
 
 <NavButtons>:
-    BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y:0.3
-        Button:
-            text:'                     <                       '
-            on_release:self.parent.parent.root.arrow_left()
-
-        Widget:
-            size_hint_x:0.1
-        Button:
-            text:'                     >                       '
-            on_release:self.parent.parent.root.arrow_right()
+    orientation: 'horizontal'
+    size_hint_y:0.3
+    Button:
+        background_color: BTN_COLOR
+        size_hint_y:0.5
+        text:'                     <                       '
+        on_release:root.parent.parent.arrow_left()
+    Button:
+        background_color: BTN_COLOR
+        size_hint_y:0.5
+        text:'                     >                       '
+        on_release:
+            # root.parent.ids['AirPollutionPage'].ids['android_tabs'].switch_tab('1')
+            root.parent.parent.arrow_right()

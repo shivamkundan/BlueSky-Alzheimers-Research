@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = BlueSky v16
+title = BlueSky v22
 
 # (str) Package name
-package.name = blueskyv16
+package.name = blueskyv22
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.test
@@ -36,18 +36,19 @@ version = 0.1
 # version.filename = %(source.dir)s/main.py
 
 # (list) Application requirements
-# comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.0.0,https://github.com/kivymd/KivyMd/archive/master.zip,pygments,sdl2_ttf==2.0.15,pillow,docutils,plyer,os,datetime,time
+# comma separated e.g. requirements = sqlite3,kivy,kivy==2.1.0
+requirements = python3,kivy,sdl2_ttf==2.0.15,pillow,docutils,plyer
+# kivy==2.0.0,sdl2_ttf==2.0.15,pillow,docutils,plyer,datetime,time
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/pics/logo_minimal_white.png
+presplash.filename = %(source.dir)s/pics/presplash_logo_white.png
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
+icon.filename = %(source.dir)s/pics/icon_brain_blue.png
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
@@ -81,7 +82,9 @@ fullscreen = 0
 # red, blue, green, black, white, gray, cyan, magenta, yellow, lightgray,
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
-#android.presplash_color = #FFFFFF
+# android.presplash_color = #FFFFFF
+android.presplash_color = #000000
+# android.presplash_color = #455A64
 
 # (string) Presplash animation using Lottie format.
 # see https://lottiefiles.com/ for examples and https://airbnb.design/lottie/
@@ -104,7 +107,7 @@ fullscreen = 0
 #android.api = 31
 
 # (int) Minimum API your APK / AAB will support.
-#android.minapi = 21
+android.minapi = 21
 
 # (int) Android SDK version to use
 #android.sdk = 20
@@ -273,7 +276,7 @@ fullscreen = 0
 #android.uses_library =
 
 # (str) Android logcat filters to use
-#android.logcat_filters = *:S python:D
+android.logcat_filters = *:S python:D
 
 # (bool) Android logcat only display log for activity's pid
 #android.logcat_pid_only = False
@@ -307,7 +310,7 @@ android.allow_backup = True
 # (bool) Skip byte compile for .py files
 # android.no-byte-compile-python = False
 
-# (str) The format used to package the app for release mode (aab or apk or aar).
+# # (str) The format used to package the app for release mode (aab or apk or aar).
 # android.release_artifact = aab
 
 # (str) The format used to package the app for debug mode (apk or aar).

@@ -19,14 +19,14 @@ KV_FILE='health_app.kv' # kivy design file
 # Config.set('graphics', 'width', MAX_SIZE[0])
 # Config.set('graphics', 'height', MAX_SIZE[1])
 
-# These resolutions are in software pixels
-resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
-Window.size = resolutions[2]
+# # These resolutions are in software pixels
+# resolutions=[(330, 550),(390, 844),(400, 667),(412,732),(1280,800)]
+# Window.size = resolutions[2]
 
-from kivymd.icon_definitions import md_icons
+LOADING_PAGE_PAUSE_SECONDS=1
 
 # ===================================================================== #
-class LoadingPage(MDScreen):
+class LoadingPage(Screen):
 	def __init__(self,**kwargs):
 		super(LoadingPage,self).__init__(**kwargs)
 
@@ -35,6 +35,7 @@ class LoadingPage(MDScreen):
 
 		# for item in widget.ids:
 		#     print (item)
+		print("size: ",(self.ids['my_im'].size[0]//2,self.ids['my_im'].size[1]//2))
 		anim=Animation(size=(self.ids['my_im'].size[0]//2,self.ids['my_im'].size[1]//2))
 		# anim=Animation(anchor_x='top',anchor_y='center')
 		anim.start(self.ids['my_im'])
@@ -43,128 +44,88 @@ class LoadingPage(MDScreen):
 		# self.parent.transition=FadeTransition()
 		self.parent.current='LandingPage'
 
-	def on_enter(self):
-		Clock.schedule_once(self.transitioner,5)
-		# self.ids['prog'].start()
-		for item in self.ids:
-			print(item)
+	# def on_enter(self):
+	# 	# Clock.schedule_once(self.transitioner,LOADING_PAGE_PAUSE_SECONDS)
+	# 	# self.ids['prog'].start()
+	# 	# self.parent.current='LandingPage'
+	# 	for item in self.ids:
+	# 		print(item)
 
-class LandingPage(ThemableBehavior,MDScreen):
+class LandingPage(Screen):
 	def __init__(self,**kwargs):
 		super(LandingPage,self).__init__(**kwargs)
+		self.prev_page="LandingPage"
 
-	def chevron_left(self,*args):
-		self.parent.transition.direction="right"
-		self.parent.current='RiskAssesmentPage'
+	# def chevron_left(self,*args):
+	# 	self.parent.transition.direction="right"
+	# 	self.parent.current='RiskAssesmentPage'
 
-	def motion(self,wid,*args):
-		print(widget,args)
-
-	def on_pre_enter(self):
-		release_keyboard_global(self)
-		Clock.schedule_once(self.themer,0.1)
-
-
-	def themer(self,*args):
-		self.ids['my_im'].reload()
-
-	def hide_widget(self,wid=None, dohide=True):
-		# print (self.get_widgets())
-		for item in ['nav_drawer','l2','btn1','btn2','btn3','btn4']:
-		# for item in ['BL']:
-			wid=self.ids[item]
-			if hasattr(wid, 'saved_attrs'):
-				if not dohide:
-					wid.height, wid.size_hint_y, wid.opacity, wid.disabled = wid.saved_attrs
-					del wid.saved_attrs
-			elif dohide:
-				wid.saved_attrs = wid.height, wid.size_hint_y, wid.opacity, wid.disabled
-				wid.height, wid.size_hint_y, wid.opacity, wid.disabled = 0, None, 0, True
-
-class LoginPage(MDScreen):
+class LoginPage(Screen):
 	def __init__(self,**kwargs):
 		super(LoginPage,self).__init__(**kwargs)
 		self.dialog=False
+		self.prev_page="LandingPage"
 
 	def chevron_left(self):
 		chevron_left_global(self,next_pg='LandingPage')
 
 	def show_alert_dialog(self,*args):
 		print (args)
-		if not self.dialog:
-			self.dialog = MDDialog(
-				text="This feature has not been implemented yet",
-				buttons=[MDFlatButton(text="close",on_release=self.close_dialog),
-					# MDFlatButton(text="DISCARD",),
-					],
-			)
-		self.dialog.open()
+		print ("show_alert_dialog")
+		# if not self.dialog:
+		# 	self.dialog = MDDialog(
+		# 		text="This feature has not been implemented yet",
+		# 		buttons=[Button(text="close",on_release=self.close_dialog),
+		# 			# MDFlatButton(text="DISCARD",),
+		# 			],
+		# 	)
+		# self.dialog.open()
 
 	def close_dialog(self,*args):
 		self.dialog.dismiss()
 
 # --------------------------------------------------------------------- #
 
-class RiskAssesmentPage(MDScreen):
+class RiskAssesmentPage(Screen):
 	def __init__(self,**kwargs):
 		super(RiskAssesmentPage,self).__init__(**kwargs)
-		# self.score=0
-		# self.air_pollution_pct=0
-		# Clock.schedule_once(self.init_tap_target, 1)
+		self.prev_page="LandingPage"
 
-	# def init_tap_target(self,*args):
-	# 	self.tap_target_view = MDTapTargetView(
-	# 		widget=self.ids.button,
-	# 		title_text="This is an add button",
-	# 		description_text="This is a description of the button",
-	# 		widget_position="right_top",
-	# 		cancelable=True,
-	# 		# outer_circle_color=(1,0,0),
-	# 		target_radius=50,
-	# 		outer_radius=300,
-	# 		outer_circle_alpha=1.0,
-	# 		# target_circle_color=(0, 1, 0),
-	# 	)
+	def update_score(self):
+		pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
+			"AlcoholUsagePage","DepressionPage"]
+		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression"]
 
-<<<<<<< Updated upstream
-	def update_score(self,dt):
-=======
 		# for second line text
 		for page,text in zip(pgs,titles):
 			if self.parent.ids[page].pct==100:
-				C="#00AA00"
+				C="#00FF00"
 			else:
 				C="#fcba03"
 			self.ids[page+"_label"].text=f"[size=16sp]{text}\n[size=11sp][color={C}]{self.parent.ids[page].pct}% done[/color][/size]"
 
 	def on_enter(self):
->>>>>>> Stashed changes
 		temp=0
 		for page,score in self.parent.score_vars_dict.items():
 			temp+=score
-		self.ids['score_label'].text=str(temp)
 
-	def on_pre_enter(self):
-		Clock.schedule_once(self.update_score,0.2)
-
-	def tap_target_start(self):
-		if self.tap_target_view.state == "close":
-			self.tap_target_view.start()
-		else:
-		   self.tap_target_view.stop()
+		self.ids['score_label'].text=f"[b]{temp}[/b]"
+		self.update_score()
 
 	def chevron_left(self):
 		chevron_left_global(self,next_pg='LandingPage')
 
 # --------------------------------------------------------------------- #
 
-class SociodemographicPage(MDScreen):
+class SociodemographicPage(Screen):
 	def __init__(self,**kwargs):
 		super(SociodemographicPage,self).__init__(**kwargs)
 		self.tab_names=['Age','Sex','Zip Code','Military (1)','Military (2)']
 		self.tab_num_dict={'Age':1,'Sex':2,'Zip Code':3,'Military (1)':4,'Military (2)':5}
 		self.num_tabs=len(self.tab_names)
 		self.curr_tab_num=0
+		self.prev_page="RiskAssesmentPage"
+		self.next_page="LocationPage"
 
 		self.done_dict={}
 		for item in self.tab_names:
@@ -180,47 +141,9 @@ class SociodemographicPage(MDScreen):
 		# print (args)
 		# print ('GET WIDS!!!!!!!!!!!!')
 		self.wids.append(args[0])
-		# # print()
-		# # # for item in args[0].ids['_left_container'].walk():
-		# # for item in args[0].walk():
-		# #     try:
-		# #         if 'left_icon' in item.name:
-		# #             print (item.name)
-		# #             self.wids.append(item)
-		# #     except :
-		# #         pass
-		# #     # print (type(item))
 
-		# 	# print (item)
-		# print ('----')
-		# 	# try:
-		# 	#     if ('left_icon' in item.name):
-		# 	#         self.wids.append(item)
-		# 	# except:
-		# 	#     pass
-
-		# print (self.wids)
 
 	def toggle_military_2(self,*args):
-		# print(dir(args[0]))
-		# print('children: ',(args[0].children))
-		# # for item in args[0].walk():
-		# #     print (item)
-		# # print ()
-
-		# for item in self.wids:
-		#     print (item.name)
-		#     if args[0]!=item:
-		#         # try:
-		#         item.icon='checkbox-blank-circle-outline'
-		#         if item.icon=='circle-slice-8':
-		#             item.icon='checkbox-blank-circle-outline'
-		#         else:
-		#             item.icon='circle-slice-8'
-		#         # except:
-		#         #     pass
-		#     print ()
-
 		# print (type(args[0].ids['_left_container'].walk))
 		curr_icon=None
 
@@ -263,19 +186,19 @@ class SociodemographicPage(MDScreen):
 	def arrow_left(self):
 		if self.curr_tab_num==0:
 			self.parent.transition.direction="right"
-			self.parent.current="RiskAssesmentPage"
+			self.parent.current=self.prev_page
 		else:
 			self.curr_tab_num-=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 	def arrow_right(self):
-		self.done_dict[self.tab_names[self.curr_tab_num]]=True
-		if self.curr_tab_num==self.num_tabs-1:
+		# self.done_dict[self.tab_names[self.curr_tab_num]]=True
+		# if self.curr_tab_num==self.num_tabs-1:
 			self.parent.transition.direction="left"
-			self.parent.current="LocationPage"
-		else:
-			self.curr_tab_num+=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+			self.parent.current=self.next_page
+		# else:
+			# self.curr_tab_num+=1
+			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 
 	def chevron_left(self):
@@ -288,9 +211,9 @@ class SociodemographicPage(MDScreen):
 		print (Window.softinput_mode)
 		# Window.release_all_keyboards()
 
-		self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
+		# self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
 		Window.release_all_keyboards()
-		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+		# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
 
 
 	def on_pre_leave(self):
@@ -356,49 +279,58 @@ class SociodemographicPage(MDScreen):
 
 # --------------------------------------------------------------------- #
 
-class LocationPage(MDScreen):
+class LocationPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(LocationPage,self).__init__(**kwargs)
 		self.option_names_dict={'left_icon_urban':None,'left_icon_large_rural':None,'left_icon_small_rural':None,'left_icon_isolated':None}
+		self.prev_page="SociodemographicPage"
+		self.next_page="LocationScorePage"
+		self.btn_names=["B1","B2","B3","B4"]
+		self.btn_scores={"B1":4,"B2":3,"B3":2,"B4":1}
+		self.total_score=0
+		self.pct=0
+		self.num_questions=1
 
-	def chevron_left(self):
-		chevron_left_global(self)
+		# self.questions_dict={0:{'q':"","completed":False,"response":0}}
+		self.done=False
 
-	def next_question(self,*args):
-		self.parent.ids['RiskAssesmentPage'].ids['location_label'].secondary_text='100% Complete'
+	def update_score(self):
+		total=0
+		pct_txt="0% done"
+		if (self.done):
+			total=self.total_score
+			self.pct=100
+			pct_txt="100% done"
+		return total, pct_txt
 
-	def arrow_right(self):
-		pass
+	def toggle(self,btn,*args):
+		self.done=True
+		for b_name in self.btn_names:
+			if (b_name==btn.name):
+				self.ids[b_name].background_color=BTN_COLOR_PRESSED
+			else:
+				self.ids[b_name].background_color=BTN_COLOR
 
-	def toggle(self,*args):
 
+		self.total_score=self.btn_scores[btn.name]
+		self.arrow_right()
 
-		# print (type(args[0].ids['_left_container'].walk))
-		curr_icon=None
+	def on_pre_leave(self):
+		self.total_score,pct_txt=self.update_score()
+		print (f"total: {self.total_score}")
+		print (pct_txt)
+		self.parent.score_vars_dict[self.page_name]=self.total_score
 
-		for item in args[0].ids['_left_container'].walk():
-			try:
-				# print(item.name)
-				if ('left_icon' in item.name):
-					# print (dir(item))
-					self.option_names_dict[item.name]=item
-					curr_icon=item.name
-					if item.icon=='circle-slice-8':
-						item.icon='checkbox-blank-circle-outline'
-					else:
-						item.icon='circle-slice-8'
-					break
-			except:
-				pass
-		print ('selected: ',curr_icon)
+class LocationScorePage(ScorePageTemplate):
+	def __init__(self,**kwargs):
+		super(LocationScorePage,self).__init__(**kwargs)
+		self.landing_page="LocationPage"
+		self.prev_page="LocationPage"
+		self.next_page="AirPollutionLandingPage"
 
-		try:
-			for k,v in self.option_names_dict.items():
-				# print (k,v)
-				if k!=curr_icon:
-					v.icon='checkbox-blank-circle-outline'
-		except:
-			pass
+	# def on_enter(self):
+	# 	print (self.parent.ids[self.prev_page])
+	# 	# self.ids['score_label'].text=str(self.parent.ids[self.prev_page].total_score)
 
 # ===================================================================== #
 
@@ -411,17 +343,87 @@ class AirPollutionLandingPage(SubPageBase):
 class AirPollutionPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(AirPollutionPage,self).__init__(**kwargs)
-		self.tab_names=['1','2','3','4','5','6','7']
+		# self.tab_names=['1','2','3','4','5','6','7']
 		self.page_name='AirPollutionPage'
 		self.prev_page="AirPollutionLandingPage"
 		self.next_page="AirPollutionScorePage"
-		self.init_subpage()
+		self.total_score=0
+		self.pct=0
+
+		self.num_questions=7 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':'I expect to wear a pollution mask\n[1/7]',			'response':0,'completed':False},
+			1: {'q':'I want to wear a pollution mask\n[2/7]',			'response':0,'completed':False},
+			2: {'q':'I intend to wear a pollution mask\n[3/7]',			'response':0,'completed':False},
+			3: {'q':'I choose to wear a pollution mask\n[4/7]',			'response':0,'completed':False},
+			4: {'q':'I will wear a pollution mask\n[5/7]',				'response':0,'completed':False},
+			5: {'q':'I would be better wearing a pollution mask\n[6/7]','response':0,'completed':False},
+			6: {'q':'I prefer wearing a pollution mask\n[7/7]',			'response':0,'completed':False},
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+		# self.init_subpage()
+
+	def reset(self):
+		for i in range (self.num_questions):
+			self.questions_dict[i]['completed']=False
+			self.questions_dict[i]['response']=0
+		self.curr_question_num=0
 
 	def button_press(self,num):
 		print ("num: ",num)
-		self.responses_dict[self.curr_tab_num+1]=int(num)
-		self.done_dict[self.curr_tab_num+1]=True
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['air_pollution_q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def arrow_left(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num>0:
+			self.curr_question_num-=1
+			self.ids['air_pollution_q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="right"
+			self.parent.current=self.prev_page
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		self.ids['air_pollution_q_label'].text=self.questions_dict[self.curr_question_num]['q']
+
+	def update_score(self):
+		total=0
+		num_done=0
+		for i in range (self.num_questions):
+			if self.questions_dict[i]['completed']:
+				total+=self.questions_dict[i]['response']
+				num_done+=1
+
+		pct=int(round(100*(num_done/self.num_questions),0))
+		self.pct=pct
+		pct_txt=str(pct)+'% Complete'
+		# self.parent.ids[self.next_page].score=total
+		# self.parent.ids[self.next_page].score=total
+		print (f"fself.parent.ids[self.next_page].score: {self.parent.ids[self.next_page].score}")
+		return total, pct_txt
+
+	def on_pre_leave(self):
+		self.total_score,pct_txt=self.update_score()
+		print (f"total: {self.total_score}")
+		print (pct_txt)
+		self.parent.score_vars_dict[self.page_name]=self.total_score
+		# self.parent.ids['RiskAssesmentPage'].ids[self.name+"_label"].secondary_text=pct_txt
 
 class AirPollutionScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
@@ -441,11 +443,64 @@ class DietLandingPage(SubPageBase):
 class DietAndFoodPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(DietAndFoodPage,self).__init__(**kwargs)
-		self.tab_names=['1','2','3','4','5','6','7','8','9','10','11']
 		self.page_name='DietAndFoodPage'
 		self.prev_page="DietLandingPage"
 		self.next_page="DietScorePage"
-		self.init_subpage()
+
+		self.num_questions=11 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':f"Eat nuts or peanut butter\n[1/{self.num_questions}]",																	'response':0,'completed':False},
+			1: {'q':f"Eat beans, peas, or lentilss\n[2/{self.num_questions}]",																'response':0,'completed':False},
+			2: {'q':f"Eat eggssk\n[3/{self.num_questions}]",																'response':0,'completed':False},
+			3: {'q':f"Eat pickles, olives, or other vegetables in brines\n[4/{self.num_questions}]",						'response':0,'completed':False},
+			4: {'q':f"Eat at least 5 servings of fruits and vegetables\n[5/{self.num_questions}]",							'response':0,'completed':False},
+			5: {'q':f"Eat at least 1 serving of fruiton mask\n[6/{self.num_questions}]",									'response':0,'completed':False},
+			6: {'q':f"Eat at least 1 serving of vegetables\n[7/{self.num_questions}]",										'response':0,'completed':False},
+			7: {'q':f"Drink milk (in a glass, with cereal, or in coffee, tea, or cocoa)\n[8/{self.num_questions}]",			'response':0,'completed':False},
+			8: {'q':f"Eat broccoli, collard greens, spinach, potatoes, squash, or sweet potatoes\n[9/{self.num_questions}]",'response':0,'completed':False},
+			9: {'q':f"Eat apples, bananas, oranges, melon, or raisins\n[10/{self.num_questions}]",							'response':0,'completed':False},
+			10: {'q':f"Eat whole grain breads, cereals, grits, oatmeal, or brown rice\n[11/{self.num_questions}]",			'response':0,'completed':False},
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+		self.init_my_subpage()
+
+	def button_press(self,btn):
+		print ("pressed: ")
+		print (btn.text)
+		num=int(btn.text)
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
+		self.arrow_right()
+
+	def init_my_subpage(self):
+		for item in self.ids:
+			print (item)
+		print()
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		self.ids['q_label'].text=""
+		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+
+	# def button_press(self,btn):
+	# 	num=btn.text
+	# 	self.questions_dict[self.curr_question_num]['response']=num
+	# 	self.questions_dict[self.curr_question_num]['completed']=True
+	# 	self.arrow_right()
 
 class DietScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
@@ -500,10 +555,10 @@ class PhysicalActivityPage(SubPageTemplate):
 		else:
 			tab.text+=args[0].text
 
-
-class PhysicalActivityScorePage(SubPageBase):
+class PhysicalActivityScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
 		super(PhysicalActivityScorePage,self).__init__(**kwargs)
+		self.landing_page="PhysicalActivityLandingPage"
 		self.prev_page="PhysicalActivityPage"
 		self.next_page="AlcoholLandingPage"
 
@@ -518,16 +573,41 @@ class AlcoholLandingPage(SubPageBase):
 class AlcoholUsagePage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(AlcoholUsagePage,self).__init__(**kwargs)
-		self.tab_names=['1','2','3']
 		self.page_name="AlcoholUsagePage"
 		self.prev_page="AlcoholLandingPage"
 		self.next_page="AlcoholScorePage"
-		self.init_subpage()
+
+		self.num_questions=3 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':f"How often do you have a drink containing alcohol?\n[1/{self.num_questions}]",		'response':0,'completed':False},
+			1: {'q':f"How many drinks containing alcohol do you have on a typical day when you are drinking?\n[2/{self.num_questions}]",	'response':0,'completed':False},
+			2: {'q':f"How often do you have X (5 for men, 4 for women or men over age 65) or more drinks on one occasion?\n[3/{self.num_questions}]",					'response':0,'completed':False},
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		self.ids['q_label'].text=""
+		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
 
 	def button_press(self,num):
-		print ("num: ",num)
-		self.responses_dict[self.curr_tab_num+1]=int(num)
-		self.done_dict[self.curr_tab_num+1]=True
+		print ("pressed: ")
+		print (num)
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()
 
 class AlcoholScorePage(ScorePageTemplate):
@@ -548,18 +628,40 @@ class DepressionLandingPage(SubPageBase):
 class DepressionPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(DepressionPage,self).__init__(**kwargs)
-
-		self.tab_names=['1','2']
 		self.page_name='DepressionPage'
 		self.prev_page="DepressionLandingPage"
 		self.next_page="DepressionScorePage"
 
-		self.init_subpage()
+		self.num_questions=2 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':f"Little interest or pleasure in doing things\n[1/{self.num_questions}]",'response':0,'completed':False},
+			1: {'q':f"Feeling down, depressed, or hopeless\n[2/{self.num_questions}]",		'response':0,'completed':False}
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		# self.ids['q_label'].text=""
+		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
 
 	def button_press(self,num):
-		print ("num: ",num)
-		self.responses_dict[self.curr_tab_num+1]=int(num)
-		self.done_dict[self.curr_tab_num+1]=True
+		print ("pressed: ")
+		print (num)
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()
 
 class DepressionScorePage(ScorePageTemplate):
@@ -617,12 +719,36 @@ class TraumaticBrainInjuryPage(SubPageTemplate):
 		self.page_name='TraumaticBrainInjuryPage'
 		self.prev_page="TraumaticBrainInjuryLandingPage"
 		self.next_page="TraumaticBrainInjuryScorePage"
-		self.init_subpage()
+		self.num_questions=2 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':f"Little interest or pleasure in doing things\n[1/{self.num_questions}]",'response':0,'completed':False},
+			1: {'q':f"Feeling down, depressed, or hopeless\n[2/{self.num_questions}]",		'response':0,'completed':False}
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		# self.ids['q_label'].text=""
+		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
 
 	def button_press(self,num):
-		print ("num: ",num)
-		self.responses_dict[self.curr_tab_num+1]=int(num)
-		self.done_dict[self.curr_tab_num+1]=True
+		print ("pressed: ")
+		print (num)
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()
 
 class TraumaticBrainInjuryScorePage(ScorePageTemplate):
@@ -642,12 +768,12 @@ class CognitiveDeclineLandingPage(SubPageBase):
 class CognitiveDeclinePage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclinePage,self).__init__(**kwargs)
-		self.tab_names=['1','2','3']
+		self.tab_names=['1']
 		self.num_tabs=len(self.tab_names)
 		self.page_name='CognitiveDeclinePage'
 		self.prev_page="CognitiveDeclineLandingPage"
 		self.next_page="CognitiveDeclineScorePage"
-
+		self.curr_tab_num=1
 		self.total_score=0
 
 	def validate_text(self,*args):
@@ -664,14 +790,15 @@ class CognitiveDeclinePage(SubPageTemplate):
 			self.ids['year'].text+=args[0].text
 
 	def arrow_right(self):
-		if self.curr_tab_num==self.num_tabs-1:
-			self.parent.transition.direction="left"
-			self.parent.current=self.next_page
-		else:
-			self.curr_tab_num+=1
-			self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-		# self.validate_text()
-		print (self.ids['year'].text)
+		print ("arrow_right")
+		# if self.curr_tab_num==self.num_tabs-1:
+		self.parent.transition.direction="left"
+		self.parent.current=self.next_page
+	# 	# else:
+	# 	# 	self.curr_tab_num+=1
+	# 	# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
+	# 	# self.validate_text()
+	# 	# print (self.ids['year'].text)
 
 class CognitiveDeclineScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
@@ -680,15 +807,20 @@ class CognitiveDeclineScorePage(ScorePageTemplate):
 		self.prev_page="CognitiveDeclinePage"
 		self.next_page="RiskAssesmentPage"
 
+	def arrow_right(self):
+		self.parent.transition.direction="right"
+		self.parent.current=self.next_page
+
 # --------------------------------------------------------------------- #
 
-class AboutPage(MDScreen):
+class AboutPage(Screen):
 	def __init__(self,**kwargs):
 		super(AboutPage,self).__init__(**kwargs)
+		self.prev_page="LandingPage"
 
 	def chevron_left(self):
 		self.parent.transition.direction = 'right'
-		self.parent.current='LandingPage'
+		self.parent.current=self.prev_page
 
 # ----------------------------------------
 class WindowManager(ScreenManager):
@@ -704,170 +836,93 @@ class WindowManager(ScreenManager):
 			'TraumaticBrainInjuryPage':0,
 			'CognitiveDeclinePage':0
 		}
-
 		self._keyboard=None
-		Window.bind(on_resize=self.on_window_resize)
-		self.on_pre_enter()
-
-	def on_window_resize(self, window, width, height):
-		print (width,height)
-
-	def toggle_theme(self):
-		self.parent.theme_cls='Dark'
+		Window.bind(on_keyboard=self._on_keyboard_up)
+		# self.on_pre_enter()
 
 	def _keyboard_closed(self):
 		if self._keyboard!=None:
 			self._keyboard.unbind(on_key_up=self._on_keyboard_up)
 		self._keyboard = None
 
-	def _on_keyboard_up(self, keyboard, keycode):#, text, modifiers):
-		print(keyboard,keycode)
-		if keycode[1]=='close':
+	def _on_keyboard_up(self, keyboard, keycode,*largs):#, text, modifiers):
+		if keycode=='close':
 			Window.release_all_keyboards()
-		if keycode[1] == 'q':
+		if keycode == KEY_Q:
 			exit()
-		if keycode[1] == 'h':
+		if keycode == KEY_H:
 			self.current='LandingPage'
 
-		if keycode[1] == 'l':
-			self.current='LoadingPage'
-
+		# Same as android 'back' key
+		if keycode == KEY_ESC:
+			print(f"self.current: {self.current}")
+			self.transition.direction = 'right'
+			if (self.current in ["RiskAssesmentPage","LoginPage","AboutPage"]):
+				self.current="LandingPage"
+			# elif (self.current=="LandingPage"):
+			# 	exit()
+			else:
+				self.current="RiskAssesmentPage" # all other pages return to risk assesment
 
 	def on_pre_enter(self):
 		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
 		self._keyboard.bind(on_key_up=self._on_keyboard_up)
 
-class BlueSkyApp(MDApp):
+class BlueSkyApp(App):
 	def __init__(self,**kwargs):
 		super(BlueSkyApp,self).__init__(**kwargs)
 		self.curr_state='close'
 
-	def sidebar(self,dt=None):
-		# self.root.current='LoadingPage'
-		icons_item = {
-			"home-outline": "Home",
-			"account-outline": "Account",
-			"brush": "Themes",
-			"cogs": "Settings",
-			"wrench-outline": "Developer",
-			"upload": "Share",
-			"exit-run": "Exit",
-			"information-variant": "About",
-		}
-
-		for icon_name in icons_item.keys():
-			self.root.ids['LandingPage'].ids['content_drawer'].ids['md_list'].add_widget(
-				ItemDrawer(icon=icon_name, text=icons_item[icon_name]))
+		self.BG_COLOR="WHITE"
+		Window.clearcolor=(1,1,1,1)
 
 	# --------------------------------------------------------------------- #
 
 	def build(self):
-		self.theme_cls.primary_palette = "BlueGray"
-		self.theme_cls.primary_hue = "700"
-
-		self.icon = 'logo5.png'
-		# self.theme_cls.accent_palette = "Orange"
-		# self.theme_cls.theme_style = "Dark"
-
-		self.theme_cls.accent_palette = "Amber"
-		self.theme_cls.theme_style = "Light"
-
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
-
-
-		# print (dir(self.theme_cls))
-		# print (self.theme_cls.primary_hue)
-		# print (self.theme_cls.primary_light_hue)
-		# print (self.theme_cls.sync_theme_styles)
-		# print (self.theme_cls.on_theme_style)
-		# print (self.theme_cls.colors['Light']['AppBar'])
-		# print (self.theme_cls.colors['Light']['StatusBar'])
-		# print (self.theme_cls.colors['Dark']['AppBar'])
-		# print (self.theme_cls.colors['Dark']['StatusBar'])
-
-		Clock.schedule_once(self.sidebar, 1)  #otherwise widgets don't get added
-
-
 		return self.WindowManager
 
-	def menu_callback(self, text_item):
-		print(text_item)
 
-	def callback_2(self):
-		print ('hello')
+	def toggle_theme(self):
 
-	def themer(self,*args):
-		print ('themer')
+		WHITE=(1,1,1,1)
+		BLACK=(0,0,0,1)
+		# bg color and logo path
+		if (self.BG_COLOR=="BLACK"):
+			self.BG_COLOR="WHITE"
+			Window.clearcolor=WHITE
+			I='pics/logo_minimal.png'
+			C=BLACK
 
-		if self.theme_cls.theme_style=='Dark':
-			self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal_white.png'
+		else:
+			self.BG_COLOR="BLACK"
+			Window.clearcolor=BLACK
+			I='pics/logo_minimal_white.png'
+			C=WHITE
 
-		elif self.theme_cls.theme_style=='Light':
-			self.root.ids['LandingPage'].ids['my_im'].source='pics/logo_minimal.png'
+		self.WindowManager.get_screen("LandingPage").ids["my_im"].source=I
+		self.WindowManager.get_screen("LandingPage").ids["landing_page_bottom_label"].color=C
 
-	def show_theme_picker(self):
-		pass
-		# theme_dialog = MDThemePicker(on_dismiss=self.themer)
-		# for item in theme_dialog.ids:
-		# 	print (item)
-
-		# for item in theme_dialog.ids['theme_tab'].walk():
-		# 	print (item)
-		# print ('---')
-		# for item in theme_dialog.ids['primary_box'].walk():
-		# 	print (item.ids)
-
-		# theme_dialog.open()
-
-	def nav_handler(self):
-		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("open")
-		curr_state=self.root.ids['LandingPage'].ids['nav_drawer'].state
-
-	def nav_closer(self,*args):
-		selected_button=args[0].text
-
-		# print ('selected_button: ',selected_button)
-
-		if selected_button=='About':
-			self.root.current='AboutPage'
+		self.WindowManager.get_screen("RiskAssesmentPage").ids["score_label"].color=C
+		t=type(Label(text=""))
 
 
-		elif selected_button=='Account':
-			# print ('log')
-			self.root.current='LoginPage'
-			self.root.transition.direction='left'
+		t1=self.WindowManager.get_screen("AirPollutionLandingPage").ids["label1"].__class__
 
-<<<<<<< Updated upstream
-		elif selected_button=='Home':
-			self.root.current='LandingPage'
-=======
 		# toggle label text colors in all screen
 		for s in self.WindowManager.screen_names:
 			curr=self.WindowManager.get_screen(s)
 			# print(curr)
 			for w in [widget for widget in curr.walk(loopback=True)]:
 				if (type(w)==t) or (type(w)==t1):
+					print (t1)
 					w.color=C
->>>>>>> Stashed changes
 
-		elif selected_button=='Exit':
-			exit()
 
-		elif selected_button=='Developer':
-			MDApp.open_settings(self)
+		# reload image
+		App.get_running_app().root.ids["LandingPage"].ids["my_im"].reload()
 
-		elif selected_button=='Themes':
-			self.show_theme_picker()
-
-		self.root.ids['LandingPage'].ids['nav_drawer'].set_state("close")
-		curr_state=self.root.ids['LandingPage'].ids['nav_drawer'].state
-		# print(self.root.ids['LandingPage'].ids['nav_drawer'].status)
-		# print('curr_state: ',curr_state)
-		# print ()
-
-	# def unhide(self):
-	#     self.root.ids['DietAndFoodPage'].hide_widget(dohide=False)
 
 if __name__=='__main__':
 	# Config.set('kivy', 'keyboard_mode', 'systemandmulti')
