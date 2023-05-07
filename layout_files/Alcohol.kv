@@ -226,6 +226,7 @@
 	        text_color:1,1,1,1
 
 <AlcoholScorePage>:
+<<<<<<< Updated upstream
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
@@ -245,34 +246,44 @@
             id:score_label
             text: ''
             halign: 'center'
+=======
+	score_label:score_label
+	BoxLayout:
+		orientation: 'vertical'
 
-        Button:
-            id:restart_button
-            text:'Try Again'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.reset_quiz()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Back'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.chevron_left()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Next'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.arrow_right()
+		MyActionBar:
+			title:air_toolbar_title
 
+		BoxLayout:
+			orientation:'vertical'
+			Label:
+				text: 'Your score is:'
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'16sp'
+>>>>>>> Stashed changes
 
+			Label:
+				id:score_label
+				text: ''
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'34sp'
+
+			MyButton2:
+				text:'Try Again'
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Back'
+				on_release:root.chevron_left()
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Next'
+				on_release:root.arrow_right()
+
+<<<<<<< Updated upstream
         MDLabel:
             size_hint_y:0.7
 
@@ -287,3 +298,9 @@
                 text:'                     >                       '
                 size_hint_x:1
                 on_release:root.arrow_right()
+=======
+			Widget:
+				size_hint_y:0.2
+
+		NavButtons:
+>>>>>>> Stashed changes

@@ -126,7 +126,19 @@ class RiskAssesmentPage(MDScreen):
 	# 		# target_circle_color=(0, 1, 0),
 	# 	)
 
+<<<<<<< Updated upstream
 	def update_score(self,dt):
+=======
+		# for second line text
+		for page,text in zip(pgs,titles):
+			if self.parent.ids[page].pct==100:
+				C="#00AA00"
+			else:
+				C="#fcba03"
+			self.ids[page+"_label"].text=f"[size=16sp]{text}\n[size=11sp][color={C}]{self.parent.ids[page].pct}% done[/color][/size]"
+
+	def on_enter(self):
+>>>>>>> Stashed changes
 		temp=0
 		for page,score in self.parent.score_vars_dict.items():
 			temp+=score
@@ -826,8 +838,18 @@ class BlueSkyApp(MDApp):
 			self.root.current='LoginPage'
 			self.root.transition.direction='left'
 
+<<<<<<< Updated upstream
 		elif selected_button=='Home':
 			self.root.current='LandingPage'
+=======
+		# toggle label text colors in all screen
+		for s in self.WindowManager.screen_names:
+			curr=self.WindowManager.get_screen(s)
+			# print(curr)
+			for w in [widget for widget in curr.walk(loopback=True)]:
+				if (type(w)==t) or (type(w)==t1):
+					w.color=C
+>>>>>>> Stashed changes
 
 		elif selected_button=='Exit':
 			exit()
