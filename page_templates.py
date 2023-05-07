@@ -47,7 +47,7 @@ class SubPageTemplate(SubPageBase):
 
 	def button_press(self,num):
 		print ("num: ",num)
-		self.init_subpage()
+		# self.init_subpage()
 		self.questions_dict[self.curr_question_num]['response']=num
 		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()

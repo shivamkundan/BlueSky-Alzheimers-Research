@@ -327,32 +327,31 @@ class LocationPage(SubPageBase):
 		self.btn_scores={"B1":4,"B2":3,"B3":2,"B4":1}
 		self.total_score=0
 		self.pct=0
+		self.num_questions=1
+
+		# self.questions_dict={0:{'q':"","completed":False,"response":0}}
+		self.done=False
 
 	def update_score(self):
-		total=self.total_score
-		num_done=0
-
-		pct=100
-		self.pct=pct
-		pct_txt=str(pct)+'% Complete'
-		# self.parent.ids[self.next_page].score=total
-		# self.parent.ids[self.next_page].score=total
-		print (f"fself.parent.ids[self.next_page].score: {self.parent.ids[self.next_page].score}")
+		total=0
+		pct_txt="0% done"
+		if (self.done):
+			total=self.total_score
+			self.pct=100
+			pct_txt="100% done"
 		return total, pct_txt
 
-
 	def toggle(self,btn,*args):
-
+		self.done=True
 		for b_name in self.btn_names:
-			# print (b_name)
-
 			if (b_name==btn.name):
 				self.ids[b_name].background_color=BTN_COLOR_PRESSED
 			else:
 				self.ids[b_name].background_color=BTN_COLOR
+
+
 		self.total_score=self.btn_scores[btn.name]
 		self.arrow_right()
-
 
 	def on_pre_leave(self):
 		self.total_score,pct_txt=self.update_score()
@@ -490,17 +489,17 @@ class DietAndFoodPage(SubPageTemplate):
 		self.num_questions=11 # hard-coded for speedy initialization
 
 		self.questions_dict={
-			0: {'q':'Eat nuts or peanut buttersk\n[1/7]',			'response':0,'completed':False},
-			1: {'q':'Eat beans, peas, or lentilssk\n[2/7]',			'response':0,'completed':False},
-			2: {'q':'Eat eggssk\n[3/7]',			'response':0,'completed':False},
-			3: {'q':'Eat pickles, olives, or other vegetables in brinesk\n[4/7]',			'response':0,'completed':False},
-			4: {'q':'Eat at least 5 servings of fruits and vegetables\n[5/7]',				'response':0,'completed':False},
-			5: {'q':'Eat at least 1 serving of fruiton mask\n[6/7]','response':0,'completed':False},
-			6: {'q':'Eat at least 1 serving of vegetables\n[7/7]',			'response':0,'completed':False},
-			7: {'q':'Drink milk (in a glass, with cereal, or in coffee, tea, or cocoa)\n[7/7]',			'response':0,'completed':False},
-			8: {'q':'Eat broccoli, collard greens, spinach, potatoes, squash, or sweet potatoes\n[7/7]',			'response':0,'completed':False},
-			9: {'q':'Eat apples, bananas, oranges, melon, or raisins\n[7/7]',			'response':0,'completed':False},
-			10: {'q':'Eat whole grain breads, cereals, grits, oatmeal, or brown rice\n[7/7]',			'response':0,'completed':False},
+			0: {'q':f"Eat nuts or peanut butter\n[1/{self.num_questions}]",																	'response':0,'completed':False},
+			1: {'q':f"Eat beans, peas, or lentilss\n[2/{self.num_questions}]",																'response':0,'completed':False},
+			2: {'q':f"Eat eggssk\n[3/{self.num_questions}]",																'response':0,'completed':False},
+			3: {'q':f"Eat pickles, olives, or other vegetables in brines\n[4/{self.num_questions}]",						'response':0,'completed':False},
+			4: {'q':f"Eat at least 5 servings of fruits and vegetables\n[5/{self.num_questions}]",							'response':0,'completed':False},
+			5: {'q':f"Eat at least 1 serving of fruiton mask\n[6/{self.num_questions}]",									'response':0,'completed':False},
+			6: {'q':f"Eat at least 1 serving of vegetables\n[7/{self.num_questions}]",										'response':0,'completed':False},
+			7: {'q':f"Drink milk (in a glass, with cereal, or in coffee, tea, or cocoa)\n[8/{self.num_questions}]",			'response':0,'completed':False},
+			8: {'q':f"Eat broccoli, collard greens, spinach, potatoes, squash, or sweet potatoes\n[9/{self.num_questions}]",'response':0,'completed':False},
+			9: {'q':f"Eat apples, bananas, oranges, melon, or raisins\n[10/{self.num_questions}]",							'response':0,'completed':False},
+			10: {'q':f"Eat whole grain breads, cereals, grits, oatmeal, or brown rice\n[11/{self.num_questions}]",			'response':0,'completed':False},
 		}
 
 		self.curr_question_num=0
@@ -521,8 +520,20 @@ class DietAndFoodPage(SubPageTemplate):
 			print (item)
 		print()
 
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
 
 
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		self.ids['q_label'].text=""
+		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
 
 	# def button_press(self,btn):
 	# 	num=btn.text
