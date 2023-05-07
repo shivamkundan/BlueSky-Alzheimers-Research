@@ -93,8 +93,8 @@ class RiskAssesmentPage(Screen):
 
 	def update_score(self):
 		pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
-			"AlcoholUsagePage"]
-		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage"]
+			"AlcoholUsagePage","DepressionPage"]
+		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression"]
 
 		# for second line text
 		for page,text in zip(pgs,titles):
@@ -463,7 +463,6 @@ class AirPollutionPage(SubPageTemplate):
 		self.parent.score_vars_dict[self.page_name]=self.total_score
 		# self.parent.ids['RiskAssesmentPage'].ids[self.name+"_label"].secondary_text=pct_txt
 
-
 class AirPollutionScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
 		super(AirPollutionScorePage,self).__init__(**kwargs)
@@ -594,10 +593,10 @@ class PhysicalActivityPage(SubPageTemplate):
 		else:
 			tab.text+=args[0].text
 
-
-class PhysicalActivityScorePage(SubPageBase):
+class PhysicalActivityScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
 		super(PhysicalActivityScorePage,self).__init__(**kwargs)
+		self.landing_page="PhysicalActivityLandingPage"
 		self.prev_page="PhysicalActivityPage"
 		self.next_page="AlcoholLandingPage"
 
@@ -612,16 +611,41 @@ class AlcoholLandingPage(SubPageBase):
 class AlcoholUsagePage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(AlcoholUsagePage,self).__init__(**kwargs)
-		self.tab_names=['1','2','3']
 		self.page_name="AlcoholUsagePage"
 		self.prev_page="AlcoholLandingPage"
 		self.next_page="AlcoholScorePage"
-		self.init_subpage()
+
+		self.num_questions=3 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':f"How often do you have a drink containing alcohol?\n[1/{self.num_questions}]",		'response':0,'completed':False},
+			1: {'q':f"How many drinks containing alcohol do you have on a typical day when you are drinking?\n[2/{self.num_questions}]",	'response':0,'completed':False},
+			2: {'q':f"How often do you have X (5 for men, 4 for women or men over age 65) or more drinks on one occasion?\n[3/{self.num_questions}]",					'response':0,'completed':False},
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		self.ids['q_label'].text=""
+		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
 
 	def button_press(self,num):
-		print ("num: ",num)
-		self.responses_dict[self.curr_tab_num+1]=int(num)
-		self.done_dict[self.curr_tab_num+1]=True
+		print ("pressed: ")
+		print (num)
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()
 
 class AlcoholScorePage(ScorePageTemplate):
@@ -642,18 +666,40 @@ class DepressionLandingPage(SubPageBase):
 class DepressionPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(DepressionPage,self).__init__(**kwargs)
-
-		self.tab_names=['1','2']
 		self.page_name='DepressionPage'
 		self.prev_page="DepressionLandingPage"
 		self.next_page="DepressionScorePage"
 
-		self.init_subpage()
+		self.num_questions=2 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':f"Little interest or pleasure in doing things\n[1/{self.num_questions}]",'response':0,'completed':False},
+			1: {'q':f"Feeling down, depressed, or hopeless\n[2/{self.num_questions}]",		'response':0,'completed':False}
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		# self.ids['q_label'].text=""
+		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
 
 	def button_press(self,num):
-		print ("num: ",num)
-		self.responses_dict[self.curr_tab_num+1]=int(num)
-		self.done_dict[self.curr_tab_num+1]=True
+		print ("pressed: ")
+		print (num)
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()
 
 class DepressionScorePage(ScorePageTemplate):
@@ -711,12 +757,36 @@ class TraumaticBrainInjuryPage(SubPageTemplate):
 		self.page_name='TraumaticBrainInjuryPage'
 		self.prev_page="TraumaticBrainInjuryLandingPage"
 		self.next_page="TraumaticBrainInjuryScorePage"
-		self.init_subpage()
+		self.num_questions=2 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':f"Little interest or pleasure in doing things\n[1/{self.num_questions}]",'response':0,'completed':False},
+			1: {'q':f"Feeling down, depressed, or hopeless\n[2/{self.num_questions}]",		'response':0,'completed':False}
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+	def arrow_right(self):
+		print (self.questions_dict[self.curr_question_num])
+		if self.curr_question_num<self.num_questions-1:
+			self.curr_question_num+=1
+			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		else:
+			self.parent.transition.direction="left"
+			self.parent.current=self.next_page
+
+
+	def on_pre_enter(self):
+		self.curr_question_num=0
+		# self.ids['q_label'].text=""
+		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
 
 	def button_press(self,num):
-		print ("num: ",num)
-		self.responses_dict[self.curr_tab_num+1]=int(num)
-		self.done_dict[self.curr_tab_num+1]=True
+		print ("pressed: ")
+		print (num)
+		self.questions_dict[self.curr_question_num]['response']=num
+		self.questions_dict[self.curr_question_num]['completed']=True
 		self.arrow_right()
 
 class TraumaticBrainInjuryScorePage(ScorePageTemplate):
@@ -875,12 +945,16 @@ class BlueSkyApp(App):
 		self.WindowManager.get_screen("RiskAssesmentPage").ids["score_label"].color=C
 		t=type(Label(text=""))
 
+
+		t1=self.WindowManager.get_screen("AirPollutionLandingPage").ids["label1"].__class__
+
 		# toggle label text colors in all screen
 		for s in self.WindowManager.screen_names:
 			curr=self.WindowManager.get_screen(s)
 			# print(curr)
 			for w in [widget for widget in curr.walk(loopback=True)]:
-				if type(w)==t:
+				if (type(w)==t) or (type(w)==t1):
+					print (t1)
 					w.color=C
 
 

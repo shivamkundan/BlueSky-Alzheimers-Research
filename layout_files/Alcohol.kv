@@ -17,13 +17,10 @@
 		Label:
 			text:''
 			size_hint_y:0.3
-		Label:
+		WrapLabel:
 			text: alcohol_landing_blurb
-			color: TXT_COLOR
-			font_size:'14sp'
-			halign: 'left'
-			size_hint_x:0.8
-			pos_hint:{'center_x':0.5}
+			padding: dp(0), dp(30)
+			halign:'center'
 
 		Label:
 			# font_size:'2xw0sp'
@@ -33,17 +30,13 @@
 			theme_text_color:"Hint"
 			halign: 'left'
 			size_hint_x:0.8
+			color: TXT_COLOR
 			# size_hint_x:0.5
 			pos_hint:{'center_x':0.5}
 
-		Button:
+		MyButton2:
 			text:"Begin"
-			font_style:'Button'
-			# size_hint_x:0.7
-			pos_hint:{'center_x':0.5}
-			on_release:
-				# root.parent.ids['AlcoholUsagePage'].ids['android_tabs'].switch_tab('1')
-				root.arrow_right()
+			on_release: root.arrow_right()
 
 
 		NavButtons
@@ -53,46 +46,23 @@
 		orientation: 'vertical'
 		MyActionBar:
             title:alcohol_toolbar_title
-		# Label:
-		# 	text:''
 
-		# BoxLayout:
-		# 	size_hint_y:0.7
+		BoxLayout:
 
-			# MDTabs:
-			# 	id: android_tabs
-			# 	tab_pos:'left_top'
-			# 	on_tab_switch: root.on_tab_switch(*args)
+		    orientation:'vertical'
+		    size_hint_y:0.6
+		    pos_hint:{'center_x':0.5}
 
-			# 	Tab:
-			# 		icon:'blank'
-			# 		text:'1'
-			# 		BoxLayout:
-			# 			orientation:'vertical'
-
-			# 			Label:
-			# 				text: alcohol_Q1
-			# 				halign: 'center'
-			# 				size_hint_x:0.9
-
-			# 	Tab:
-			# 		icon:'blank'
-			# 		text:'2'
-			# 		BoxLayout:
-			# 			orientation:'vertical'
-			# 			Label:
-			# 				text: alcohol_Q2
-			# 				halign: 'center'
-			# 				size_hint_x:0.9
-			# 	Tab:
-			# 		icon:'blank'
-			# 		text:'3'
-			# 		BoxLayout:
-			# 			orientation:'vertical'
-			# 			Label:
-			# 				text: alcohol_Q3
-			# 				halign: 'center'
-			# 				size_hint_x:0.9
+		    Label:
+		        size_hint_x:0.8
+		        # size_hint_y:0.6
+		        id:q_label
+		        text_size: root.width*self.size_hint_x, None
+		        color: TXT_COLOR
+		        size: self.texture_size
+		        text:""
+		        halign:'center'
+		        pos_hint:{'center_x':0.5,'center_y':0.3}
 
 		BoxLayout:
 		    orientation:'vertical'

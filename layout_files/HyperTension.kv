@@ -15,6 +15,7 @@
             font_size:'14sp'
             halign: 'left'
             size_hint_x:0.8
+            color: TXT_COLOR
             pos_hint:{'center_x':0.5}
 
         Label:
@@ -24,14 +25,12 @@
             theme_text_color:"Hint"
             halign: 'left'
             size_hint_x:0.8
+            color: TXT_COLOR
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
 
-        Button:
+        MyButton2:
             text:"Begin"
-            font_style:'Button'
-            # size_hint_x:0.7
-            pos_hint:{'center_x':0.5}
             on_release: root.arrow_right()
 
 
@@ -80,47 +79,37 @@
         orientation: 'vertical'
 
         MyActionBar:
-            title:hypertension_toolbar_title
+            title:physical_toolbar_title
 
+        BoxLayout:
+            orientation:'vertical'
+            Label:
+                text: 'Your score is:'
+                color: TXT_COLOR
+                halign: 'center'
+                font_size:'16sp'
 
-        Label:
-            text: 'Your score is:'
-            halign: 'center'
+            Label:
+                id:score_label
+                text: ''
+                color: TXT_COLOR
+                halign: 'center'
+                font_size:'34sp'
 
-        Label:
-            id:score_label
-            text: ''
-            halign: 'center'
+            MyButton2:
+                text:'Try Again'
+            Widget:
+                size_hint_y:0.05
+            MyButton2:
+                text:'Back'
+                on_release:root.chevron_left()
+            Widget:
+                size_hint_y:0.05
+            MyButton2:
+                text:'Next'
+                on_release:root.arrow_right()
 
-        Button:
-            id:restart_button
-            text:'Try Again'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.reset_quiz()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Back'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.chevron_left()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Next'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.arrow_right()
+            Widget:
+                size_hint_y:0.2
 
-
-        Label:
-            size_hint_y:0.7
-
-
-        NavButtons
+        NavButtons:

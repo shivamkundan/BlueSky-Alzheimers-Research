@@ -73,7 +73,7 @@ class SubPageTemplate(SubPageBase):
 
 	def on_pre_enter(self):
 		self.curr_question_num=0
-		self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
+		# self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
 
 	def update_score(self):
 		total=0

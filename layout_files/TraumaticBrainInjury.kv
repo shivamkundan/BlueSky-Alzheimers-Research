@@ -17,21 +17,15 @@
         MyActionBar:
             title:trauma_toolbar_title
 
-
-        Label:
-            text:''
-            size_hint_y:0.3
-        Label:
+        WrapLabel:
             text: trauma_landing_blurb
-            font_size:'14sp'
-            halign: 'left'
-            size_hint_x:0.8
-            pos_hint:{'center_x':0.5}
+            padding: dp(0), dp(30)
+            halign:'center'
 
         Label:
             # font_size:'2xw0sp'
             text: trauma_landing_subtitle
-            # text_color:DARK_BLUE
+            color: TXT_COLOR
             theme_text_color:"Hint"
             halign: 'left'
             size_hint_x:0.8
@@ -138,35 +132,39 @@
     score_label:score_label
     BoxLayout:
         orientation: 'vertical'
+
         MyActionBar:
-            title:trauma_toolbar_title
+            title:physical_toolbar_title
 
-        Label:
-            text: 'Your score is:'
-            halign: 'center'
+        BoxLayout:
+            orientation:'vertical'
+            Label:
+                text: 'Your score is:'
+                color: TXT_COLOR
+                halign: 'center'
+                font_size:'16sp'
 
-        Label:
-            id:score_label
-            text: ''
-            halign: 'center'
+            Label:
+                id:score_label
+                text: ''
+                color: TXT_COLOR
+                halign: 'center'
+                font_size:'34sp'
 
-        MyButton2:
-            text:'Try Again'
-            on_release:root.reset_quiz()
-        Widget:
-            size_hint_y:0.05
-        MyButton2:
-            text:'Back'
-            on_release:root.chevron_left()
-        Widget:
-            size_hint_y:0.05
-        MyButton2:
-            text:'Next'
-            on_release:root.arrow_right()
+            MyButton2:
+                text:'Try Again'
+            Widget:
+                size_hint_y:0.05
+            MyButton2:
+                text:'Back'
+                on_release:root.chevron_left()
+            Widget:
+                size_hint_y:0.05
+            MyButton2:
+                text:'Next'
+                on_release:root.arrow_right()
 
+            Widget:
+                size_hint_y:0.2
 
-        Label:
-            size_hint_y:0.7
-
-
-        NavButtons
+        NavButtons:

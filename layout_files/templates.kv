@@ -1,41 +1,18 @@
 
 <SubPageTemplate>:
-    BoxLayout:
-        orientation: 'vertical'
-        id:BL
-        MyActionBar:
-            title:air_toolbar_title
-        BoxLayout:
 
-            size_hint_y:0.6
-            orientation:'vertical'
-            pos_hint:{'center_x':0.5}
 
-            Label:
-                size_hint_x:0.8
-                id:label1
-                text_size: root.width*self.size_hint_x, None
-                size: self.texture_size
-                color: TXT_COLOR
-                text:""
-                halign:'center'
-                pos_hint:{'center_x':0.5}
+# -----------------------------------------------------
 
-            # BoxLayout:
-            Label:
-                size_hint_x:0.8
-                # size_hint_y:0.6
-                id:q_label
-                text_size: root.width*self.size_hint_x, None
-                color: TXT_COLOR
-                size: self.texture_size
-                text: "q_label"
-                halign:'center'
-                pos_hint:{'center_x':0.5,'center_y':0.3}
-                # pos_hint:{}
-
-# ----
-
+# A label widget that wraps text
+<WrapLabel>:
+    text:""
+    color: TXT_COLOR
+    pos_hint:{'center_x':0.5, 'center_y':0.5}
+    text_size: self.width, None
+    size_hint: 0.8, None
+    height: self.texture_size[1]
+# -----------------------------------------------------
 
 <MyButton>:
     text:""
@@ -67,13 +44,7 @@
             pos:self.pos
             radius: [18]
 
-    # on_press: canvas.before:
-    #           Color:
-    #               rgba: BTN_COLOR
-    #           RoundedRectangle:
-    #               size:self.size
-    #               pos:self.pos
-    #               radius: [18]
+# -----------------------------------------------------
 
 <MyActionBar>:
     title:""

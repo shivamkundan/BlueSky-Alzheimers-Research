@@ -16,7 +16,7 @@
 #:include layout_files/AirPollution.kv
 #:include layout_files/Alcohol.kv
 #:include layout_files/DietAndFood.kv
-#:include layout_files/Loading.kv
+# #:include layout_files/Loading.kv
 #:include layout_files/Landing.kv
 #:include layout_files/SocioDemographics.kv
 #:include layout_files/PhysicalActivity.kv
@@ -173,39 +173,3 @@ WindowManager:
 		name:'CognitiveDeclineScorePage'
 
 # =======================================
-
-# <QuestionsPage@SubPageTemplate>:
-# 	BoxLayout:
-# 		orientation: 'vertical'
-# 		self.page_name="pg1"
-
-# 		MyActionBar:
-# 			id:actionbar
-# 			title:"New"
-
-# 		BoxLayout:
-# 			size_hint_y:0.6
-# 			orientation:'vertical'
-# 			pos_hint:{'center_x':0.5}
-
-# 			Label:
-# 				id:label1
-# 				size_hint_x:0.8
-# 				text_size: root.width*self.size_hint_x, None
-# 			    size: self.texture_size
-# 			    color: TXT_COLOR
-# 				text:""
-# 				halign:'center'
-# 				pos_hint:{'center_x':0.5}
-
-# 			# BoxLayout:
-# 			Label:
-# 				id:aq_label
-# 				size_hint_x:0.8
-# 				text_size: root.width*self.size_hint_x, None
-# 				color: TXT_COLOR
-# 			    size: self.texture_size
-# 				text: ""
-# 				halign:'center'
-# 				pos_hint:{'center_x':0.5,'center_y':0.3}
-# 				# pos_hint:{}
