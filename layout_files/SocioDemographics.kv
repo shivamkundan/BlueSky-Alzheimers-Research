@@ -8,6 +8,8 @@
         MyActionBar:
             title:"Demographics"
 
+
+
         # # MDTabs:
         #     id: android_tabs
         #     tab_pos:'left_top'
@@ -259,4 +261,51 @@
         #                             name:'left_icon_N/A'
         #                             icon:'checkbox-blank-circle-outline'
 
+        NavButtons
+
+<SociodemographicPage_Age>:
+    BoxLayout:
+        orientation: 'vertical'
+        MyActionBar:
+            title:"Demographics"
+
+
+        BoxLayout:
+
+            orientation:'vertical'
+            size_hint_y:0.4
+            pos_hint:{'center_x':0.5}
+
+            Label:
+                size_hint_x:0.8
+                id:label1
+                text_size: root.width*self.size_hint_x, None
+                # size: self.texture_size
+                color: TXT_COLOR
+                text:"What is your age?"
+                halign:'center'
+                pos_hint:{'center_x':0.5}
+
+            Label:
+                size_hint_x:0.8
+                id:q_label
+                text_size: root.width*self.size_hint_x, None
+                # size: self.texture_size
+                color: TXT_COLOR
+                text:"<Age>"
+                halign:'center'
+                pos_hint:{'center_x':0.5}
+
+
+
+
+        GridLayout:
+            cols:3
+            # rows:4
+
+            on_parent:
+                for i in range(1,9+1): txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
+                self.add_widget(button.Button(text = "CLEAR",on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
+                self.add_widget(button.Button(text = "0",on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
+                self.add_widget(button.Button(text = "ENTER",on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
         NavButtons

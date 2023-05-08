@@ -118,165 +118,80 @@ class RiskAssesmentPage(Screen):
 
 # --------------------------------------------------------------------- #
 
-class SociodemographicPage(Screen):
+class SociodemographicPage(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(SociodemographicPage,self).__init__(**kwargs)
-		self.tab_names=['Age','Sex','Zip Code','Military (1)','Military (2)']
-		self.tab_num_dict={'Age':1,'Sex':2,'Zip Code':3,'Military (1)':4,'Military (2)':5}
-		self.num_tabs=len(self.tab_names)
-		self.curr_tab_num=0
+		self.page_name='SociodemographicPage'
 		self.prev_page="RiskAssesmentPage"
+		self.next_page="SociodemographicPage_Age"
+		self.total_score=0
+		self.pct=0
+
+		self.num_questions=1 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':'?',			'response':0,'completed':False}}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+
+
+
+
+	# def on_numpad_press(self,*args):
+	# 	print(args)
+
+	# 	if self.ids['age_text_field'].text=='< MM / DD / YYYY >':
+	# 		self.ids['age_text_field'].text=''
+
+	# 	if args[0].text=='del':
+	# 		if len(self.ids['age_text_field'].text)>0:
+	# 			self.ids['age_text_field'].text=self.ids['age_text_field'].text[0:len(self.ids['age_text_field'].text)-1]
+	# 			if len(self.ids['age_text_field'].text)==0:
+	# 				self.ids['age_text_field'].text='< MM / DD / YYYY >'
+	# 	else:
+	# 		self.ids['age_text_field'].text+=args[0].text
+
+
+class SociodemographicPage_Age(SubPageTemplate):
+	def __init__(self,**kwargs):
+		super(SociodemographicPage_Age,self).__init__(**kwargs)
+		self.page_name='SociodemographicPage_Age'
+		self.prev_page="SociodemographicPage"
 		self.next_page="LocationPage"
+		self.total_score=0
+		self.pct=0
 
-		self.done_dict={}
-		for item in self.tab_names:
-			self.done_dict[item]=False
+		self.num_questions=1 # hard-coded for speedy initialization
 
-		self.option_names_dict={'left_icon_Air Force':None,'left_icon_Army':None,'left_icon_Marines':None,'left_icon_Navy':None,'left_icon_Navy':None,'left_icon_Coast Guard':None,'left_icon_Space Force':None,'left_icon_N/A':None}
+		self.questions_dict={
+			0: {'q':'What is your age?',			'response':0,'completed':False}}
 
-		self.wids=[]
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
 
-		# Clock.schedule_once(self.get_wids,0.1)
-
-	def get_wids(self,*args):
-		# print (args)
-		# print ('GET WIDS!!!!!!!!!!!!')
-		self.wids.append(args[0])
+		self.score=0
+		self.done=False
 
 
-	def toggle_military_2(self,*args):
-		# print (type(args[0].ids['_left_container'].walk))
-		curr_icon=None
+	def button_press(self,btn):
+		print ("pressed: ")
+		print (btn.text)
+		# num=int(btn.text)
+		# self.questions_dict[self.curr_question_num]['response']=num
+		# self.questions_dict[self.curr_question_num]['completed']=True
+		# self.arrow_right()
 
-		for item in args[0].ids['_left_container'].walk():
-			try:
-				if ('left_icon' in item.name):
-					self.option_names_dict[item.name]=item
-					curr_icon=item.name
-					if item.icon=='circle-slice-8':
-						item.icon='checkbox-blank-circle-outline'
-					else:
-						item.icon='circle-slice-8'
-
-						# print (item.name,dir(item))
-
-						# for thing in item.ids:
-						#     print (thing)
-						# print(item.text_color)
-						# print(item.theme_cls)
-						# print(item.theme_text_color)
-					break
-			except:
-				pass
-		# print ('selected: ',curr_icon)
-
-
-		for k,v in self.option_names_dict.items():
-			if k!=curr_icon:
-				try:
-					v.icon='checkbox-blank-circle-outline'
-				except:
-					pass
-
-	def on_checkbox_active(self, checkbox, value):
-		if value:
-			print('The checkbox', checkbox, 'is active', 'and', checkbox.state, 'state')
-		else:
-			print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')
-
-	def arrow_left(self):
-		if self.curr_tab_num==0:
-			self.parent.transition.direction="right"
-			self.parent.current=self.prev_page
-		else:
-			self.curr_tab_num-=1
-			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-
-	def arrow_right(self):
-		# self.done_dict[self.tab_names[self.curr_tab_num]]=True
-		# if self.curr_tab_num==self.num_tabs-1:
-			self.parent.transition.direction="left"
-			self.parent.current=self.next_page
-		# else:
-			# self.curr_tab_num+=1
-			# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-
-
-	def chevron_left(self):
-		chevron_left_global(self)
-
-	def on_pre_enter(self):
-		self._keyboard = Window.request_keyboard(self.parent._keyboard_closed, self)
-		self._keyboard.bind(on_key_up=self.parent._on_keyboard_up)
-		Window.softinput_mode=''
-		print (Window.softinput_mode)
-		# Window.release_all_keyboards()
-
-		# self.vkeyboard = VKeyboard(on_key_up=self.parent._on_keyboard_up,target=self.ids.zip_code_work,docked=False,margin_hint=[0,0,0,0])
-		Window.release_all_keyboards()
-		# self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-
-
-	def on_pre_leave(self):
-		num_done=0
+	def update_score(self):
 		total=0
-		for k,v in self.done_dict.items():
-			if v==True:
-				num_done+=1
-				total+=1
-		# print (num_done)
-		pct=int(round(100*(num_done/self.num_tabs),0))
-		pct_txt=str(pct)+'% Complete'
-		# print (pct)
-		self.parent.ids['RiskAssesmentPage'].ids['SocioDemographicPage_label'].secondary_text=pct_txt
-		self.parent.demographics_score=total
+		pct_txt="0% done"
+		if (self.done):
+			total=self.total_score
+			self.pct=100
+			pct_txt="100% done"
+		return total, pct_txt
 
-	def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):
-		count_icon = instance_tab.text
-		# print it on shell/bash.
-		# print(f"Welcome to {count_icon}' tab'")
-
-		self.curr_tab_num=self.tab_num_dict[instance_tab.text]-1
-		self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-
-	def switch_tab_by_object(self):
-		try:
-			x = next(self.iter_list_objects)
-			print(f"Switch slide by object, next element to show: [{x}]")
-			self.root.ids.tabs.switch_tab(x)
-		except StopIteration:
-			# reset the iterator an begin again.
-			self.iter_list_objects = iter(list(self.root.ids.tabs.get_tab_list()))
-			self.switch_tab_by_object()
-
-	def switch_tab_by_name(self):
-		'''Switching the tab by name.'''
-		try:
-			x = next(self.iter_list_names)
-			print(f"Switch slide by name, next element to show: [{x}]")
-			self.root.ids.tabs.switch_tab(x)
-		except StopIteration:
-			# Reset the iterator an begin again.
-			self.iter_list_names = iter(list(self.icons))
-			self.switch_tab_by_name()
-
-	def validate_text(self,*args):
-		print (args[0])
-		print (args[0].name)
-
-	def on_numpad_press(self,*args):
-		print(args)
-
-		if self.ids['age_text_field'].text=='< MM / DD / YYYY >':
-			self.ids['age_text_field'].text=''
-
-		if args[0].text=='del':
-			if len(self.ids['age_text_field'].text)>0:
-				self.ids['age_text_field'].text=self.ids['age_text_field'].text[0:len(self.ids['age_text_field'].text)-1]
-				if len(self.ids['age_text_field'].text)==0:
-					self.ids['age_text_field'].text='< MM / DD / YYYY >'
-		else:
-			self.ids['age_text_field'].text+=args[0].text
 
 # --------------------------------------------------------------------- #
 
@@ -284,7 +199,7 @@ class LocationPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(LocationPage,self).__init__(**kwargs)
 		self.option_names_dict={'left_icon_urban':None,'left_icon_large_rural':None,'left_icon_small_rural':None,'left_icon_isolated':None}
-		self.prev_page="SociodemographicPage"
+		self.prev_page="SociodemographicPage_Age"
 		self.next_page="LocationScorePage"
 		self.btn_names=["B1","B2","B3","B4"]
 		self.btn_scores={"B1":4,"B2":3,"B3":2,"B4":1}
