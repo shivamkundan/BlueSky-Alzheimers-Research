@@ -287,12 +287,12 @@
 				pos_hint:{'center_x':0.5}
 
 			Label:
-				size_hint_x:0.8
-				id:q_label
+				size_hint_x:5
+				id:age_text_field
 				text_size: root.width*self.size_hint_x, None
 				# size: self.texture_size
 				color: TXT_COLOR
-				text:"<Age>"
+				text:"< Age >"
 				halign:'center'
 				pos_hint:{'center_x':0.5}
 
@@ -304,10 +304,10 @@
 			# rows:4
 
 			on_parent:
-				for i in range(1,9+1): txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
-				self.add_widget(button.Button(text = "CLEAR",on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
-				self.add_widget(button.Button(text = "0",on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
-				self.add_widget(button.Button(text = "ENTER",on_release=root.button_press, background_color= BTN_COLOR, font_style='Button'))
+				for i in range(1,9+1): txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
+				self.add_widget(button.Button(text = "DEL",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
+				self.add_widget(button.Button(text = "0",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
+				self.add_widget(button.Button(text = "ENTER",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
 		NavButtons
 
 
@@ -333,7 +333,15 @@
 				text:"What is your sex?"
 				halign:'center'
 				pos_hint:{'center_x':0.5}
-	NavButtons
+
+		MyButton2:
+			text:"Male"
+			on_release:root.button_press(self)
+		MyButton2:
+			text:"Female"
+			on_release:root.button_press(self)
+
+		NavButtons
 
 
 <SociodemographicPage_Military>:
@@ -358,7 +366,14 @@
 				text:"Have you ever served in the United States Armed Forces?"
 				halign:'center'
 				pos_hint:{'center_x':0.5}
-	NavButtons
+
+		MyButton2:
+			text:"Yes"
+			on_release:root.button_press(self)
+		MyButton2:
+			text:"No"
+			on_release:root.button_press(self)
+		NavButtons
 
 <SociodemographicPage_Military_2>:
 	BoxLayout:
@@ -382,4 +397,30 @@
 				text:"Which branch of the military did/do you serve in?"
 				halign:'center'
 				pos_hint:{'center_x':0.5}
-	NavButtons
+
+
+		MyButton2:
+			text:"Air Force"
+			on_release:root.button_press(self)
+		MyButton2:
+			text:"Army"
+			on_release:root.button_press(self)
+		MyButton2:
+			text:"Marines"
+			on_release:root.button_press(self)
+		MyButton2:
+			text:"Navy"
+			on_release:root.button_press(self)
+		MyButton2:
+			text:"Coast Guard"
+			on_release:root.button_press(self)
+		MyButton2:
+			text:"Space Force"
+			on_release:root.button_press(self)
+		MyButton2:
+			text:"N/A"
+			on_release:root.button_press(self)
+
+		NavButtons
+
+# ['Air Force','Army','Marines','Navy','Coast Guard','Space Force','N/A']

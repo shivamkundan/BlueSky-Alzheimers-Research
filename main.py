@@ -136,9 +136,6 @@ class SociodemographicPage(SubPageTemplate):
 		self.curr_question=self.questions_dict[0]['q']
 
 
-
-
-
 	# def on_numpad_press(self,*args):
 	# 	print(args)
 
@@ -159,7 +156,7 @@ class SociodemographicPage_Age(SubPageTemplate):
 		super(SociodemographicPage_Age,self).__init__(**kwargs)
 		self.page_name='SociodemographicPage_Age'
 		self.prev_page="SociodemographicPage"
-		self.next_page="LocationPage"
+		self.next_page="SociodemographicPage_Sex"
 		self.total_score=0
 		self.pct=0
 
@@ -174,6 +171,24 @@ class SociodemographicPage_Age(SubPageTemplate):
 		self.score=0
 		self.done=False
 
+
+
+	def on_numpad_press(self,*args):
+		# print(args)
+		if self.ids['age_text_field'].text=='< Age >':
+			self.ids['age_text_field'].text=''
+
+		if args[0].text=="ENTER":
+			self.arrow_right()
+
+		elif args[0].text=='DEL':
+			if self.ids['age_text_field'].text!='< Age >':
+				if len(self.ids['age_text_field'].text)>0:
+					self.ids['age_text_field'].text=self.ids['age_text_field'].text[0:len(self.ids['age_text_field'].text)-1]
+					if len(self.ids['age_text_field'].text)==0:
+						self.ids['age_text_field'].text='< Age >'
+		else:
+			self.ids['age_text_field'].text+=args[0].text
 
 	def button_press(self,btn):
 		print ("pressed: ")
@@ -193,13 +208,82 @@ class SociodemographicPage_Age(SubPageTemplate):
 		return total, pct_txt
 
 
+class SociodemographicPage_Sex(SubPageTemplate):
+	def __init__(self,**kwargs):
+		super(SociodemographicPage_Sex,self).__init__(**kwargs)
+		self.page_name='SociodemographicPage_Sex'
+		self.prev_page="SociodemographicPage_Age"
+		self.next_page="SociodemographicPage_Military"
+		self.total_score=0
+		self.pct=0
+
+		self.num_questions=1 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':'?',			'response':0,'completed':False}}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+
+	def button_press(self,btn):
+		print (btn.text)
+		self.arrow_right()
+
+class SociodemographicPage_Military(SubPageTemplate):
+	def __init__(self,**kwargs):
+		super(SociodemographicPage_Military,self).__init__(**kwargs)
+		self.page_name='SociodemographicPage_Military'
+		self.prev_page="SociodemographicPage_Sex"
+		self.next_page="SociodemographicPage_Military_2"
+		self.total_score=0
+		self.pct=0
+		self.score=0 #dummy
+
+		self.num_questions=1 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':'?',			'response':0,'completed':False}}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+	def button_press(self,btn):
+		print (btn.text)
+		self.arrow_right()
+
+class SociodemographicPage_Military_2(SubPageTemplate):
+	def __init__(self,**kwargs):
+		super(SociodemographicPage_Military_2,self).__init__(**kwargs)
+		self.page_name='SociodemographicPage_Military_2'
+		self.prev_page="SociodemographicPage_Military"
+		self.next_page="LocationPage"
+		self.total_score=0
+		self.pct=0
+		self.score=0 #dummy
+
+		self.num_questions=1 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':'?',			'response':0,'completed':False}}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
+
+		self.options=['Air Force','Army','Marines','Navy','Coast Guard','Space Force','N/A']
+
+
+	def button_press(self,btn):
+		print (btn.text)
+		self.arrow_right()
+
 # --------------------------------------------------------------------- #
 
 class LocationPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(LocationPage,self).__init__(**kwargs)
 		self.option_names_dict={'left_icon_urban':None,'left_icon_large_rural':None,'left_icon_small_rural':None,'left_icon_isolated':None}
-		self.prev_page="SociodemographicPage_Age"
+		self.prev_page="SociodemographicPage_Military_2"
 		self.next_page="LocationScorePage"
 		self.btn_names=["B1","B2","B3","B4"]
 		self.btn_scores={"B1":4,"B2":3,"B3":2,"B4":1}
@@ -207,6 +291,7 @@ class LocationPage(SubPageBase):
 		self.pct=0
 		self.num_questions=1
 
+		self.score=0 #dummy
 		# self.questions_dict={0:{'q':"","completed":False,"response":0}}
 		self.done=False
 
