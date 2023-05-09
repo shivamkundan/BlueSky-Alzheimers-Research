@@ -94,8 +94,9 @@ class RiskAssesmentPage(Screen):
 
 	def update_score(self):
 		pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
-			"AlcoholUsagePage","DepressionPage","HyperTensionPage"]
-		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression","Hypertension"]
+			"AlcoholUsagePage","DepressionPage","HyperTensionPage","TraumaticBrainInjuryPage"]
+		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression","Hypertension",
+				"Traumatic Brain Injury"]
 
 		# for second line text
 		for page,text in zip(pgs,titles):
@@ -755,24 +756,22 @@ class TraumaticBrainInjuryPage(SubPageTemplate):
 		self.page_name='TraumaticBrainInjuryPage'
 		self.prev_page="TraumaticBrainInjuryLandingPage"
 		self.next_page="TraumaticBrainInjuryScorePage"
-		self.num_questions=2 # hard-coded for speedy initialization
+		self.num_questions=5 # hard-coded for speedy initialization
+
+		self.pct=0
 
 		self.questions_dict={
-			0: {'q':f"Little interest or pleasure in doing things\n[1/{self.num_questions}]",'response':0,'completed':False},
-			1: {'q':f"Feeling down, depressed, or hopeless\n[2/{self.num_questions}]",		'response':0,'completed':False}
+			0: {'q':f"Have you ever hit your head or been hit on the head? Think about all incidents that my have occurred at any age, even those that did not seem serious, including vehicle accidents, falls, assault, abuse, sports, etc. A traumatic brain injury can also occur from violent shaking of the head, such as being shaken as a baby or child.\n[1/{self.num_questions}]",'response':0,'completed':False},
+			1: {'q':f"Were you ever seen in the emergency room, hospital, or by a doctor because of an injury to your head?\n[2/{self.num_questions}]",'response':0,'completed':False},
+			2: {'q':f"Did you ever lose consciousness or experience a period of being dazed and confused because of an injury to your head? People with traumatic brain injury may not lose consciousness but experience an \'alteration of consciousness\', which may include feeling dazed, confused, or disoriented at the time of injury, or being unable to remember the events surrounding the injury.\n[3/{self.num_questions}]",'response':0,'completed':False},
+			3: {'q':f"Do you experience any of these problems in your daily life since you hit your head?\n[4/{self.num_questions}]",'response':0,'completed':False},
+			4: {'q':f"Any significant sicknesses? Traumatic brain injury implies a physical blow to the head, but acquired brain injury may also be caused by medical conditions, such as brain tumor, meningitis, West Nile virus, stroke, seizures, or instances of oxygen deprivation following a heart attack, carbon monoxide poisoning, near drowning, or near suffocation.\n[5/{self.num_questions}]",'response':0,'completed':False},
+
 		}
 
 		self.curr_question_num=0
 		self.curr_question=self.questions_dict[0]['q']
 
-	def arrow_right(self):
-		print (self.questions_dict[self.curr_question_num])
-		if self.curr_question_num<self.num_questions-1:
-			self.curr_question_num+=1
-			self.ids['q_label'].text=self.questions_dict[self.curr_question_num]['q']
-		else:
-			self.parent.transition.direction="left"
-			self.parent.current=self.next_page
 
 
 	def on_pre_enter(self):
@@ -952,7 +951,7 @@ class BlueSkyApp(App):
 			# print(curr)
 			for w in [widget for widget in curr.walk(loopback=True)]:
 				if (type(w)==t) or (type(w)==t1):
-					print (t1)
+					# print (t1)
 					w.color=C
 
 

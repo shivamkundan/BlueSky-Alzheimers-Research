@@ -36,7 +36,26 @@
 		MyActionBar:
             title:cognitive_toolbar_title
 
-		# BoxLayout:
+		BoxLayout:
+			orientation:"vertical"
+			Label:
+				text:"Study the following objects:"
+			Image:
+				source: apple_image
+				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			Widget
+				size_hint_y:0.1
+			Image:
+				source: table_image
+				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			Widget
+				size_hint_y:0.1
+			Image:
+				source: penny_image
+				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			Widget
+				size_hint_y:0.1
+
 		# 	size_hint_y:1
 
 			# MDTabs:
@@ -106,7 +125,7 @@
 			# 				size_hint_x:0.9
 
 		Widget
-			size_hint_y:0.5
+			size_hint_y:0.1
 
 		NavButtons
 
@@ -117,7 +136,7 @@
         orientation: 'vertical'
 
         MyActionBar:
-            title:physical_toolbar_title
+            title:cognitive_toolbar_title
 
         BoxLayout:
             orientation:'vertical'

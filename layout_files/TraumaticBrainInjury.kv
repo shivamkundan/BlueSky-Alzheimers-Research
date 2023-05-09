@@ -50,62 +50,21 @@
         orientation: 'vertical'
         MyActionBar:
             title:trauma_toolbar_title
-        # BoxLayout:
-        #     size_hint_y:0.7
 
-            # MDTabs:
-            #     id: android_tabs
-            #     tab_pos:'left_top'
-            #     on_tab_switch: root.on_tab_switch(*args)
+        BoxLayout:
+            size_hint_y:0.6
+            orientation:'vertical'
+            pos_hint:{'center_x':0.5}
 
-            #     Tab:
-            #         icon:'blank'
-            #         text:'1'
-            #         BoxLayout:
-            #             orientation:'vertical'
-
-            #             Label:
-            #                 text: trauma_Q1
-            #                 halign: 'left'
-            #                 size_hint_x:1
-
-            #     Tab:
-            #         icon:'blank'
-            #         text:'2'
-            #         BoxLayout:
-            #             orientation:'vertical'
-            #             Label:
-            #                 text: trauma_Q2
-            #                 halign: 'center'
-            #                 size_hint_x:0.9
-            #     Tab:
-            #         icon:'blank'
-            #         text:'3'
-            #         BoxLayout:
-            #             orientation:'vertical'
-            #             Label:
-            #                 text: trauma_Q3
-            #                 halign: 'left'
-            #                 size_hint_x:1
-
-            #     Tab:
-            #         icon:'blank'
-            #         text:'4'
-            #         BoxLayout:
-            #             orientation:'vertical'
-            #             Label:
-            #                 text: trauma_Q4
-            #                 halign: 'center'
-            #                 size_hint_x:0.9
-            #     Tab:
-            #         icon:'blank'
-            #         text:'5'
-            #         BoxLayout:
-            #             orientation:'vertical'
-            #             Label:
-            #                 text: trauma_Q5
-            #                 halign: 'left'
-            #                 size_hint_x:1
+            Label:
+                size_hint_x:0.8
+                id:q_label
+                text_size: root.width*self.size_hint_x, None
+                size: self.texture_size
+                color: TXT_COLOR
+                text:trauma_Q1
+                halign:'center'
+                pos_hint:{'center_x':0.5}
 
         BoxLayout:
             orientation:'horizontal'
@@ -134,7 +93,7 @@
         orientation: 'vertical'
 
         MyActionBar:
-            title:physical_toolbar_title
+            title:trauma_toolbar_title
 
         BoxLayout:
             orientation:'vertical'
