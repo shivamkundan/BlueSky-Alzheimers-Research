@@ -94,8 +94,8 @@ class RiskAssesmentPage(Screen):
 
 	def update_score(self):
 		pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
-			"AlcoholUsagePage","DepressionPage"]
-		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression"]
+			"AlcoholUsagePage","DepressionPage","HyperTensionPage"]
+		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression","Hypertension"]
 
 		# for second line text
 		for page,text in zip(pgs,titles):
@@ -149,7 +149,6 @@ class SociodemographicPage(SubPageTemplate):
 	# 				self.ids['age_text_field'].text='< MM / DD / YYYY >'
 	# 	else:
 	# 		self.ids['age_text_field'].text+=args[0].text
-
 
 class SociodemographicPage_Age(SubPageTemplate):
 	def __init__(self,**kwargs):
@@ -206,7 +205,6 @@ class SociodemographicPage_Age(SubPageTemplate):
 			self.pct=100
 			pct_txt="100% done"
 		return total, pct_txt
-
 
 class SociodemographicPage_Sex(SubPageTemplate):
 	def __init__(self,**kwargs):
@@ -687,6 +685,20 @@ class HyperTensionPage(SubPageBase):
 		self.next_page="HyperTensionScorePage"
 		self.total_score=0
 		self.pct_txt="0% Complete"
+		self.pct=0
+
+		self.btn_names=["Yes","No"]
+		self.btn_scores={"Yes":0,"No":1}
+
+		self.num_questions=2 # hard-coded for speedy initialization
+
+		self.questions_dict={
+			0: {'q':f"Have you ever been told by a doctor or other health professional that you had hypertension, also called high blood pressure?",'response':0,'completed':False},
+
+		}
+
+		self.curr_question_num=0
+		self.curr_question=self.questions_dict[0]['q']
 
 	def button_press(self,num):
 		print ('pressed: ',num)
@@ -694,9 +706,32 @@ class HyperTensionPage(SubPageBase):
 		self.pct_txt="100% Complete"
 		self.arrow_right()
 
+	def update_score(self):
+		total=0
+		pct_txt="0% done"
+		if (self.done):
+			total=self.total_score
+			self.pct=100
+			pct_txt="100% done"
+		return total, pct_txt
+
+	def toggle(self,btn,*args):
+		self.done=True
+		for b_name in self.btn_names:
+			if (b_name==btn.text):
+				self.ids[b_name].background_color=BTN_COLOR_PRESSED
+			else:
+				self.ids[b_name].background_color=BTN_COLOR
+
+
+		self.total_score=self.btn_scores[btn.text]
+		self.arrow_right()
+
 	def on_pre_leave(self):
+		self.total_score,pct_txt=self.update_score()
+		print (f"total: {self.total_score}")
+		print (pct_txt)
 		self.parent.score_vars_dict[self.page_name]=self.total_score
-		self.parent.ids['RiskAssesmentPage'].ids[self.name+"_label"].secondary_text=self.pct_txt
 
 class HyperTensionScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
