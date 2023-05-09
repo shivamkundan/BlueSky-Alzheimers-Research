@@ -857,6 +857,24 @@ class AboutPage(Screen):
 		self.parent.transition.direction = 'right'
 		self.parent.current=self.prev_page
 
+class EducationalResourcesPage(Screen):
+	def __init__(self,**kwargs):
+		super(EducationalResourcesPage,self).__init__(**kwargs)
+		self.prev_page="LandingPage"
+
+	def chevron_left(self):
+		self.parent.transition.direction = 'right'
+		self.parent.current=self.prev_page
+
+class CognitiveRehabPage(Screen):
+	def __init__(self,**kwargs):
+		super(CognitiveRehabPage,self).__init__(**kwargs)
+		self.prev_page="LandingPage"
+
+	def chevron_left(self):
+		self.parent.transition.direction = 'right'
+		self.parent.current=self.prev_page
+
 # ----------------------------------------
 class WindowManager(ScreenManager):
 	def __init__(self,**kwargs):

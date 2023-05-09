@@ -64,7 +64,7 @@ class MyActionBar(ActionBar):
 		print ("chevron_left")
 		print (scr.name)
 
-		if scr.name in ["AboutPage","RiskAssesmentPage"]:
+		if scr.name in ["AboutPage","RiskAssesmentPage","EducationalResourcesPage","CognitiveRehabPage"]:
 			to_pg="LandingPage"
 		# print ()
 		App.get_running_app().root.transition.direction="right"
