@@ -1,6 +1,7 @@
 #:set xx 368
 #:set yy 286
 
+#:set txt_desc "[b]About[/b]\nApproximately 5.2 million Americans have Alzheimer’s disease (AD), which is a neuro degenerative disorder that affects memory and thinking, placing a $1.2 trillion burden on the USA healthcare system.[sup]1[/sup] Recent studies suggest that AD, which has been diagnosed in individuals as early as 30 years of age,[sup]2[/sup] can be prevented by modifying various health behaviors, especially physical activity, early in life.[sup]3[/sup] Individuals who have served in the military may be more likely to develop AD, primarily due to their risk for traumatic brain injury (TBI).[sup]1[/sup] As such, there is a need for the development of AD primary prevention programs aimed specifically at current and former members of the Armed Forces so as to ensure a mentally fit force and a mentally healthy transition out of the force at retirement. Although a recent theory in the field of Alzheimer’s research has been developed in order to address significant gaps in the prevention of AD (i.e., the AD exposome),[sup]4[/sup] programs utilizing it’s tenets have yet to be developed. [b]The significance of the proposed program, especially for the military[/b], is thus: recent research has shown that even individuals with TBI – one of the greatest risk factors for cognitive decline – can decrease their risk of Alzheimer’s disease by modifying lifestyle behaviors, particularly physical activity levels.[sup]5[/sup]\n"
 <AboutPage>:
 	BoxLayout:
 		orientation: 'vertical'
@@ -8,13 +9,30 @@
 			title:"About"
 			to_page:"LandingPage"
 
-		Widget
-		Label:
-			canvas:
-				Rectangle:
-					id:rect
-					source: 'pics/logo_minimal.png'
-					# pos: (20,self.pos[1]+20)
-					pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
-					# pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
-					size: (xx,yy)
+		# Widget
+		# Label:
+		# 	canvas:
+		# 		Rectangle:
+		# 			id:rect
+		# 			source: 'pics/logo_minimal.png'
+		# 			# pos: (20,self.pos[1]+20)
+		# 			pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
+		# 			# pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
+		# 			size: (xx,yy)
+
+		ScrollView:
+			scroll_type: ['bars','content']
+			# scroll_wheel_distance: 20
+			bar_width: 7
+			do_scroll_x: False
+			do_scroll_y: True
+			bar_inactive_color: .55, .55, .55, 1
+			# bar_color: .663, .663, .663, 1
+			bar_inactive_color: ALT_TXT_COLOR[0], ALT_TXT_COLOR[1], ALT_TXT_COLOR[2], 0.5
+			bar_color: ALT_TXT_COLOR
+
+			WrapLabel:
+				text:txt_desc
+				color: TXT_COLOR
+				padding: dp(30), dp(30)
+				markup: True
