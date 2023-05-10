@@ -10,7 +10,7 @@
         Label:
             text:''
             size_hint_y:0.3
-        Label:
+        WrapLabel:
             text: 'High blood pressure, especially in midlife, is associated with at least an 18% increase in the risk for Alzheimer\'s'
             font_size:'14sp'
             halign: 'left'
@@ -18,18 +18,18 @@
             color: TXT_COLOR
             pos_hint:{'center_x':0.5}
 
-        Label:
+        WrapLabel:
             # font_size:'2xw0sp'
             text: 'Answer the following questions about hypertension'
             # text_color:DARK_BLUE
             theme_text_color:"Hint"
-            halign: 'left'
+            halign: 'center'
             size_hint_x:0.8
             color: TXT_COLOR
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
 
-        MyButton2:
+        MyButton3:
             text:"Begin"
             on_release: root.arrow_right()
 

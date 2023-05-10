@@ -16,6 +16,9 @@ class MyButton(Button):
 class MyButton2(Button):
 	pass
 
+class MyButton3(Button):
+	pass
+
 class RoundedButton(MyButton):
 	def __init__(self,**kwargs):
 		super(RoundedButton,self).__init__(**kwargs)

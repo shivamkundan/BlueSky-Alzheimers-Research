@@ -16,16 +16,23 @@
 
 		WrapLabel:
 			text: cognitive_landing_blurb
+			color: TXT_COLOR
 			padding: dp(0), dp(30)
+			size_hint_y:0.6
 
-		Label:
+		WrapLabel:
 			text: cognitive_landing_subtitle
-			halign: 'left'
+			color: TXT_COLOR
+			halign: 'center'
 			size_hint_x:0.8
 			pos_hint:{'center_x':0.5}
+			size_hint_y:0.3
+			padding: dp(0), dp(30)
 
-		MyButton2:
+		MyButton3:
 			text:"Begin"
+			# size_hint:0.8,BTN_HEIGHT
+			# size_hint_y:0.25
 			on_release: root.arrow_right()
 
 		NavButtons

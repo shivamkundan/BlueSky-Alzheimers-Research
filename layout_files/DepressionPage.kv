@@ -16,22 +16,21 @@
             text: 'Depression, defined as having little interest in doing things and feeling down/hopeless more often than not in a 2-week period, is linked to increased risk of Alzheimer\'s disease.'
             padding: dp(0), dp(30)
 
-        Label:
+        WrapLabel:
             size_hint_x:0.8
             # font_size:'2xw0sp'
             text: 'Answer the following questions about depression'
             # text_color:DARK_BLUE
             theme_text_color:"Hint"
-            halign: 'left'
+            halign: 'center'
             size_hint_x:0.8
             color: TXT_COLOR
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
             size_hint_y:0.5
 
-        MyButton2:
+        MyButton3:
             text:"Begin"
-            size_hint_y:0.25
             on_release: root.arrow_right()
 
         NavButtons

@@ -95,9 +95,9 @@ class RiskAssesmentPage(Screen):
 
 	def update_score(self):
 		pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
-			"AlcoholUsagePage","DepressionPage","HyperTensionPage","TraumaticBrainInjuryPage"]
+			"AlcoholUsagePage","DepressionPage","HyperTensionPage","TraumaticBrainInjuryPage","CognitiveDeclinePage2"]
 		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression","Hypertension",
-				"Traumatic Brain Injury"]
+				"Traumatic Brain Injury","Cognitive Decline"]
 
 		# for second line text
 		for page,text in zip(pgs,titles):
@@ -845,6 +845,9 @@ class CognitiveDeclinePage2(SubPageBase):
 						"T3":{"ans":"penny","done":False},
 		}
 
+
+		self.pct=0
+
 	def validate(self,*args):
 		# print (args)
 		T_name=args[1]
@@ -860,7 +863,15 @@ class CognitiveDeclinePage2(SubPageBase):
 				self.ids[T_name].focus=False
 
 
+		self.pct=int(round(100*(self.total_score/3),0))
 		print (f"score: {self.total_score}")
+		print (f"pct: {self.pct}")
+
+
+	def on_pre_leave(self):
+		self.parent.score_vars_dict[self.page_name]=self.total_score
+
+
 
 	def on_pre_enter(self):
 		for T in ["T1","T2","T3"]:
@@ -924,7 +935,7 @@ class WindowManager(ScreenManager):
 			'CognitiveDeclinePage':0
 		}
 		self._keyboard=None
-		# Window.bind(on_keyboard=self._on_keyboard_up)
+		Window.bind(on_keyboard=self._on_keyboard_up)
 		# self.on_pre_enter()
 
 	def _keyboard_closed(self):
@@ -956,7 +967,7 @@ class WindowManager(ScreenManager):
 		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
 
 		self._keyboard.bind(on_key_up=self._on_keyboard_up)
-		Window.release_all_keyboards()
+		# Window.release_all_keyboards()
 
 class BlueSkyApp(App):
 	def __init__(self,**kwargs):
