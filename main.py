@@ -61,6 +61,7 @@ class LandingPage(Screen):
 	# 	self.parent.transition.direction="right"
 	# 	self.parent.current='RiskAssesmentPage'
 
+
 class LoginPage(Screen):
 	def __init__(self,**kwargs):
 		super(LoginPage,self).__init__(**kwargs)
@@ -923,7 +924,7 @@ class WindowManager(ScreenManager):
 			'CognitiveDeclinePage':0
 		}
 		self._keyboard=None
-		Window.bind(on_keyboard=self._on_keyboard_up)
+		# Window.bind(on_keyboard=self._on_keyboard_up)
 		# self.on_pre_enter()
 
 	def _keyboard_closed(self):
@@ -953,7 +954,9 @@ class WindowManager(ScreenManager):
 
 	def on_pre_enter(self):
 		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+
 		self._keyboard.bind(on_key_up=self._on_keyboard_up)
+		Window.release_all_keyboards()
 
 class BlueSkyApp(App):
 	def __init__(self,**kwargs):
@@ -961,7 +964,7 @@ class BlueSkyApp(App):
 		self.curr_state='close'
 
 		self.BG_COLOR="WHITE"
-		Window.clearcolor=(1,1,1,1)
+		Window.clearcolor=WHITE
 
 	# --------------------------------------------------------------------- #
 
@@ -973,8 +976,6 @@ class BlueSkyApp(App):
 
 	def toggle_theme(self):
 
-		WHITE=(1,1,1,1)
-		BLACK=(0,0,0,1)
 		# bg color and logo path
 		if (self.BG_COLOR=="BLACK"):
 			self.BG_COLOR="WHITE"
