@@ -807,15 +807,9 @@ class CognitiveDeclinePage(SubPageTemplate):
 		self.num_tabs=len(self.tab_names)
 		self.page_name='CognitiveDeclinePage'
 		self.prev_page="CognitiveDeclineLandingPage"
-		self.next_page="CognitiveDeclineScorePage"
+		self.next_page="CognitiveDeclinePage2"
 		self.curr_tab_num=1
 		self.total_score=0
-
-	def validate_text(self,*args):
-		print (args)
-		print (args[0])
-		print (args[0].name)
-		print (args[0].text)
 
 	def on_numpad_press(self,*args):
 		if args[0].text=='del':
@@ -835,11 +829,50 @@ class CognitiveDeclinePage(SubPageTemplate):
 	# 	# self.validate_text()
 	# 	# print (self.ids['year'].text)
 
+class CognitiveDeclinePage2(SubPageBase):
+	def __init__(self,**kwargs):
+		super(CognitiveDeclinePage2,self).__init__(**kwargs)
+		self.page_name='CognitiveDeclinePage2'
+		self.prev_page="CognitiveDeclinePage"
+		self.next_page="CognitiveDeclineScorePage"
+		self.score=0
+
+		self.total_score=0
+
+		self.ans_dict={ "T1":{"ans":"apple","done":False},
+						"T2":{"ans":"table","done":False},
+						"T3":{"ans":"penny","done":False},
+		}
+
+	def validate(self,*args):
+		# print (args)
+		T_name=args[1]
+		text_input=args[0]
+
+		if (self.ans_dict[T_name]["done"]==False):
+			if (text_input.lower()!=self.ans_dict[T_name]["ans"] ):
+				self.ids[T_name].background_color=RED
+			else:
+				self.total_score+=1
+				self.ans_dict[T_name]["done"]=True
+				self.ids[T_name].background_color=GREEN
+				self.ids[T_name].focus=False
+
+
+		print (f"score: {self.total_score}")
+
+	def on_pre_enter(self):
+		for T in ["T1","T2","T3"]:
+			self.ans_dict[T]["done"]==False
+			self.ids[T].text=""
+			self.ids[T].background_color=WHITE
+
+
 class CognitiveDeclineScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclineScorePage,self).__init__(**kwargs)
 		self.landing_page="CognitiveDeclineLandingPage"
-		self.prev_page="CognitiveDeclinePage"
+		self.prev_page="CognitiveDeclinePage2"
 		self.next_page="RiskAssesmentPage"
 
 	def arrow_right(self):
@@ -899,23 +932,24 @@ class WindowManager(ScreenManager):
 		self._keyboard = None
 
 	def _on_keyboard_up(self, keyboard, keycode,*largs):#, text, modifiers):
-		if keycode=='close':
-			Window.release_all_keyboards()
+		# print (f"keycode:{keycode}")
+		# print (f"current:{self.current}")
+		# print (f"largs: {largs}")
+		# if keycode=='close':
+		# 	Window.release_all_keyboards()
 		if keycode == KEY_Q:
-			exit()
-		if keycode == KEY_H:
-			self.current='LandingPage'
+			if self.current!="CognitiveDeclinePage2":
+				exit()
 
-		# Same as android 'back' key
-		if keycode == KEY_ESC:
-			print(f"self.current: {self.current}")
+		if (keycode==KEY_ESC):
 			self.transition.direction = 'right'
-			if (self.current in ["RiskAssesmentPage","LoginPage","AboutPage"]):
+			if (self.current in ["RiskAssesmentPage","LoginPage","AboutPage","EducationalResourcesPage","CognitiveRehabPage"]):
 				self.current="LandingPage"
-			# elif (self.current=="LandingPage"):
-			# 	exit()
+			elif (self.current=="LandingPage"):
+				exit()
 			else:
 				self.current="RiskAssesmentPage" # all other pages return to risk assesment
+
 
 	def on_pre_enter(self):
 		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)

@@ -12,7 +12,7 @@
 		orientation: 'vertical'
 
 		MyActionBar:
-            title:cognitive_toolbar_title
+			title:cognitive_toolbar_title
 
 		WrapLabel:
 			text: cognitive_landing_blurb
@@ -34,139 +34,133 @@
 	BoxLayout:
 		orientation: 'vertical'
 		MyActionBar:
-            title:cognitive_toolbar_title
+			title:cognitive_toolbar_title
 
 		BoxLayout:
 			orientation:"vertical"
 			Label:
-				text:"Study the following objects:"
+				text:"Observe the following objects:"
+				color: TXT_COLOR
+
 			Image:
 				source: apple_image
 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 			Widget
 				size_hint_y:0.1
+
 			Image:
 				source: table_image
 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 			Widget
 				size_hint_y:0.1
+
 			Image:
 				source: penny_image
 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 			Widget
 				size_hint_y:0.1
 
-		# 	size_hint_y:1
+		Widget
+			size_hint_y:0.1
 
-			# MDTabs:
-			# 	id: android_tabs
-			# 	tab_pos:'left_top'
-			# 	on_tab_switch: root.on_tab_switch(*args)
+		NavButtons
 
-			# 	Tab:
-			# 		icon:'blank'
-			# 		text:'1'
-			# 		BoxLayout:
-			# 		    orientation:'vertical'
-			# 		    Label:
-			# 		        text:'What year is this?'
-			# 		        size_hint_x:0.9
-			# 		        size_hint_y:1
-			# 		        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			# 		        halign:'left'
+<CognitiveDeclinePage2>:
+	BoxLayout:
+		orientation: 'vertical'
+		MyActionBar:
+			title:cognitive_toolbar_title
 
-			# 		    MDTextField:
-			# 		    	id:year
-			# 		        name:'year'
-			# 		        done:False
-			# 		        size_hint_x:0.5
-			# 		        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			# 		        text:''
-			# 		        halign:'left'
-			# 		        multiline:False
-			# 		        on_text_validate: root.validate_text(self)
-			# 		    # Label:
-			# 		    #     text:''
+		BoxLayout:
+			orientation:"vertical"
+			size_hint_x:0.8
+			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+			Label:
+				text:"What were the three objects?"
+				color: TXT_COLOR
 
-			# 		    MDGridLayout:
-			# 		        cols:3
-			# 		        rows:4
-			# 		        # adaptive_height: True
-			# 		        # adaptive_width: True
-			# 		        # adaptive_size: True
-			# 		        on_parent:
-			# 		            for i in [1,2,3,4,5,6,7,8,9,'/',0,'del']: txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press))
+			Label:
+				text:"Object 1:"
+				halign:"left"
+				color: TXT_COLOR
+			TextInput:
+				id:T1
+				name:T1
+				multiline: False
+				on_text_validate: root.validate(self.text, "T1")
+				focus:True
+			Widget
+				size_hint_y:0.1
+
+			Label:
+				text:"Object 2:"
+				halign:"left"
+				color: TXT_COLOR
+			TextInput:
+				id:T2
+				name:T2
+				multiline: False
+				on_text_validate: root.validate(self.text, "T2")
+			Widget
+				size_hint_y:0.1
+
+			Label:
+				text:"Object 3:"
+				halign:"left"
+				color: TXT_COLOR
+			TextInput:
+				id:T3
+				name:T3
+				multiline: False
+				on_text_validate: root.validate(self.text, "T3")
+			Widget
+				size_hint_y:0.1
 
 
-			# 	Tab:
-			# 		icon:'blank'
-			# 		text:'2'
-			# 		BoxLayout:
-			# 		    orientation: 'vertical'
-			# 		    md_bg_color:0,0,1,0.05
-
-			# 			Image:
-			# 				source: apple_image
-			# 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			# 			Image:
-			# 				source: table_image
-			# 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			# 			Image:
-			# 				source: penny_image
-			# 				pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			# 	Tab:
-			# 		icon:'blank'
-			# 		text:'3'
-			# 		BoxLayout:
-			# 			orientation:'vertical'
-			# 			Label:
-			# 				text: "What were the three objects I asked you to remember?"
-			# 				halign: 'center'
-			# 				size_hint_x:0.9
 
 		Widget
 			size_hint_y:0.1
 
 		NavButtons
 
-# -------------
+# -----------------------------------------------------------------
 <CognitiveDeclineScorePage>:
-    score_label:score_label
-    BoxLayout:
-        orientation: 'vertical'
+	score_label:score_label
+	BoxLayout:
+		orientation: 'vertical'
 
-        MyActionBar:
-            title:cognitive_toolbar_title
+		MyActionBar:
+			title:cognitive_toolbar_title
 
-        BoxLayout:
-            orientation:'vertical'
-            Label:
-                text: 'Your score is:'
-                color: TXT_COLOR
-                halign: 'center'
-                font_size:'16sp'
+		BoxLayout:
+			orientation:'vertical'
+			Label:
+				text: 'Your score is:'
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'16sp'
 
-            Label:
-                id:score_label
-                text: ''
-                color: TXT_COLOR
-                halign: 'center'
-                font_size:'34sp'
+			Label:
+				id:score_label
+				text: ''
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'34sp'
 
-            MyButton2:
-                text:'Try Again'
-            Widget:
-                size_hint_y:0.05
-            MyButton2:
-                text:'Back'
-                on_release:root.chevron_left()
-            Widget:
-                size_hint_y:0.05
-            MyButton2:
-                text:'Next'
-                on_release:root.arrow_right()
+			MyButton2:
+				text:'Try Again'
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Back'
+				on_release:root.chevron_left()
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Next'
+				on_release:root.arrow_right()
 
-            Widget:
-                size_hint_y:0.2
+			Widget:
+				size_hint_y:0.2
 
-        NavButtons:
+		NavButtons:

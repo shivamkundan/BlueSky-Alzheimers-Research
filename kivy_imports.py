@@ -2,6 +2,8 @@ import kivy
 # kivy.require("1.9.1")
 kivy.require("2.0.0")
 
+from kivy.config import Config
+Config.set('kivy', 'exit_on_escape', '0')
 
 # basics
 from kivy.app import App
