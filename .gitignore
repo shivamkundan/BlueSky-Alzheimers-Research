@@ -4,3 +4,7 @@ __*
 .DS_Store
 .buildozer*
 bin/*
+bluesky-arm64-v8a_armeabi-v7a-release_old.aab
+*.aab
+pics/1 copy.png
+pics/logo_minimal_white copy.png
