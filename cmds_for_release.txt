@@ -1,0 +1,6 @@
+
+buildozer android release
+
+keytool -importkeystore -srckeystore ~/keystores/mykey.keystore -destkeystore ~/keystores/mykey.keystore  -deststoretype pkcs12
+
+P4A_RELEASE_KEYSTORE=~/keystores/mykey.keystore P4A_RELEASE_KEYSTORE_PASSWD=shivam P4A_RELEASE_KEYALIAS_PASSWD=shivam P4A_RELEASE_KEYALIAS=myalias buildozer android release
