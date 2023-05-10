@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = BlueSky v22
+title = BlueSky v01
 
 # (str) Package name
 package.name = blueskyv01
