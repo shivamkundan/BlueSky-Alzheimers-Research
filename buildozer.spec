@@ -4,10 +4,10 @@
 title = BlueSky v22
 
 # (str) Package name
-package.name = blueskyv22
+package.name = blueskyv01
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.test
+package.domain = org.shivamkundan
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -327,7 +327,7 @@ android.allow_backup = True
 #p4a.fork = kivy
 
 # (str) python-for-android branch to use, defaults to master
-#p4a.branch = master
+p4a.branch = master
 
 # (str) python-for-android specific commit to use, defaults to HEAD, must be within p4a.branch
 #p4a.commit = HEAD

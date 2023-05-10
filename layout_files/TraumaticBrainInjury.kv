@@ -17,10 +17,16 @@
         MyActionBar:
             title:trauma_toolbar_title
 
+        Widget:
+            size_hint_y:0.1
+
         WrapLabel:
             text: trauma_landing_blurb
             padding: dp(0), dp(30)
             halign:'center'
+
+        Widget:
+            size_hint_y:0.2
 
         WrapLabel:
             # font_size:'2xw0sp'
@@ -31,6 +37,9 @@
             size_hint_x:0.8
             # size_hint_x:0.5
             pos_hint:{'center_x':0.5}
+
+        Widget:
+            size_hint_y:0.2
 
         MyButton3:
             text:"Begin"
@@ -68,7 +77,7 @@
 
         BoxLayout:
             orientation:'horizontal'
-            size_hint_y:0.5
+            size_hint_y:0.25
             Widget:
                 size_hint_x:0.2
             MyButton2:

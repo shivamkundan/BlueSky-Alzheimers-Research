@@ -14,13 +14,13 @@
 		MyActionBar:
             title:alcohol_toolbar_title
 
-		Label:
-			text:''
-			size_hint_y:0.3
 		WrapLabel:
 			text: alcohol_landing_blurb
 			padding: dp(0), dp(30)
 			halign:'center'
+
+		Widget:
+			size_hint_y:0.2
 
 		WrapLabel:
 			# font_size:'2xw0sp'
@@ -34,12 +34,16 @@
 			# size_hint_x:0.5
 			pos_hint:{'center_x':0.5}
 
+		Widget:
+			size_hint_y:0.2
+
 		MyButton2:
 			text:"Begin"
 			on_release: root.arrow_right()
+			size_hint_y:0.25
 
 
-		NavButtons
+		NavButtons:
 
 <AlcoholUsagePage>:
 	BoxLayout:

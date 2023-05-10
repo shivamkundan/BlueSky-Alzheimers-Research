@@ -95,9 +95,11 @@ class RiskAssesmentPage(Screen):
 
 	def update_score(self):
 		pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
-			"AlcoholUsagePage","DepressionPage","HyperTensionPage","TraumaticBrainInjuryPage","CognitiveDeclinePage2"]
+			"AlcoholUsagePage","DepressionPage","HyperTensionPage","TraumaticBrainInjuryPage",\
+			"CognitiveDeclinePage2","SociodemographicPage_Sex"]
+
 		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression","Hypertension",
-				"Traumatic Brain Injury","Cognitive Decline"]
+				"Traumatic Brain Injury","Cognitive Decline","Demographics"]
 
 		# for second line text
 		for page,text in zip(pgs,titles):
