@@ -8,66 +8,65 @@
 		MyActionBar:
 			title:L_toolbar_title
 
-		Label:
+		WrapLabel:
 			text:'Please select the category that you think best describes the community where you live:'
 			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
 			color: TXT_COLOR
 			size_hint_x:0.9
 			size_hint_y:0.6
+			padding: dp(0), dp(30)
+			halign:"center"
 
-		Widget:
-			size_hint_y:0.2
+		# Widget:
+		# 	size_hint_y:0.2
 		BoxLayout:
 			orientation:'horizontal'
-			size_hint_x:0.7
+			size_hint_x:1
 			pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-			ScrollView:
+			# ScrollView:
 				# id:listt
-				BoxLayout:
-					orientation: 'vertical'
-					MyButton2:
-						id:B1
-						name:"B1"
-						selected:True
-						text:"Urban[size=10sp][color=#fcba03]\n>49,999 residents[/color][/size]"
-						# background_normal: ''
-					    # background_color: if (selected==True): 1,1,0,1 else: BTN_COLOR
+			BoxLayout:
+				orientation: 'vertical'
+				MyButton2:
+					id:B1
+					name:"B1"
+					selected:True
+					text:"Urban[size=10sp][color=#fcba03]\n>49,999 residents[/color][/size]"
+					# background_normal: ''
+				    # background_color: if (selected==True): 1,1,0,1 else: BTN_COLOR
 
-						on_release: root.toggle(self)
+					on_release: root.toggle(self)
 
-					MyButton2:
-						id:B2
-						name:"B2"
-						selected:False
-						text:'Large Rural\n[size=10sp][color=#fcba03]10,000 – 49,999 residents[/color][/size]'
-						# secondary_text:''
-						# secondary_font_style:'Caption'
-						# halign:'cent'
-						# markup:True
-						on_release: root.toggle(self)
+				MyButton2:
+					id:B2
+					name:"B2"
+					selected:False
+					text:'Large Rural\n[size=10sp][color=#fcba03]10,000 – 49,999 residents[/color][/size]'
+					# secondary_text:''
+					# secondary_font_style:'Caption'
+					# halign:'cent'
+					# markup:True
+					on_release: root.toggle(self)
 
-					MyButton2:
-						id:B3
-						name:"B3"
-						selected:False
-						text:"Small Rural\n[size=10sp][color=#fcba03]2,500 – 9,999 residents[/color][/size]"
-						# secondary_text:'2,500 – 9,999 residents'
-						# secondary_font_style:'Caption'
-						# halign:'left'
-						on_release: root.toggle(self)
+				MyButton2:
+					id:B3
+					name:"B3"
+					selected:False
+					text:"Small Rural\n[size=10sp][color=#fcba03]2,500 – 9,999 residents[/color][/size]"
+					# secondary_text:'2,500 – 9,999 residents'
+					# secondary_font_style:'Caption'
+					# halign:'left'
+					on_release: root.toggle(self)
 
-					MyButton2:
-						id:B4
-						name:"B4"
-						selected:False
-						text:"Isolated\n[size=10sp][color=#fcba03]<2,500 residents[/color][/size]"
-						# secondary_text:'<2,500 residents'
-						# secondary_font_style:'Caption'
-						# halign:'left'
-						on_release: root.toggle(self)
-
-					Switch:
-
+				MyButton2:
+					id:B4
+					name:"B4"
+					selected:False
+					text:"Isolated\n[size=10sp][color=#fcba03]<2,500 residents[/color][/size]"
+					# secondary_text:'<2,500 residents'
+					# secondary_font_style:'Caption'
+					# halign:'left'
+					on_release: root.toggle(self)
 
 		NavButtons
 

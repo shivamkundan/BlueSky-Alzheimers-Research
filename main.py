@@ -881,7 +881,6 @@ class CognitiveDeclinePage2(SubPageBase):
 			self.ids[T].text=""
 			self.ids[T].background_color=WHITE
 
-
 class CognitiveDeclineScorePage(ScorePageTemplate):
 	def __init__(self,**kwargs):
 		super(CognitiveDeclineScorePage,self).__init__(**kwargs)
@@ -909,9 +908,25 @@ class EducationalResourcesPage(Screen):
 		super(EducationalResourcesPage,self).__init__(**kwargs)
 		self.prev_page="LandingPage"
 
+	# scroll_to(widget, padding=10, animate=True)
+
 	def chevron_left(self):
 		self.parent.transition.direction = 'right'
 		self.parent.current=self.prev_page
+
+		(self.ids['SV'].vbar)
+
+	def motion(self,etype, me):
+		# print("on_motion")
+		# print(etype, me)
+		pass
+
+
+	def touch_move(self,etype, me):
+		# print("on_touch_move")
+		# print(etype, round(me.vbar[0],6))
+		# print ()
+		pass
 
 class CognitiveRehabPage(Screen):
 	def __init__(self,**kwargs):
