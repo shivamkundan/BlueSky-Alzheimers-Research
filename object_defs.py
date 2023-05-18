@@ -1,4 +1,13 @@
+'''Definitions of objects'''
+# import the kivy stuff
 from kivy_imports import *
+
+# import my stuff
+from globals import *
+from object_defs import *
+from page_templates import *
+
+# from kivy_imports import *
 from kivy.properties import StringProperty
 from kivy.graphics import Color
 from kivy.graphics import RoundedRectangle

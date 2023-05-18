@@ -1,0 +1,59 @@
+:py:mod:`conf`
+==============
+
+.. py:module:: conf
+
+
+Module Contents
+---------------
+
+.. py:data:: project
+   :value: "BlueSky Alzheimer's Research"
+
+   
+
+.. py:data:: copyright
+   :value: '2023, Shivam Kundan'
+
+   
+
+.. py:data:: author
+   :value: 'Shivam Kundan'
+
+   
+
+.. py:data:: release
+   :value: '0'
+
+   
+
+.. py:data:: extensions
+   :value: ['autoapi.extension']
+
+   
+
+.. py:data:: templates_path
+   :value: ['_templates']
+
+   
+
+.. py:data:: exclude_patterns
+   :value: ['_build', 'Thumbs.db', '.DS_Store']
+
+   
+
+.. py:data:: autoapi_dirs
+   :value: ['../']
+
+   
+
+.. py:data:: html_theme
+   :value: 'sphinx_rtd_theme'
+
+   
+
+.. py:data:: html_static_path
+   :value: ['_static']
+
+   
+

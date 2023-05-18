@@ -1,0 +1,87 @@
+:py:mod:`globals`
+=================
+
+.. py:module:: globals
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   globals.chevron_left_global
+   globals.release_keyboard_global
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   globals.KEY_ESC
+   globals.KEY_Q
+   globals.KEY_H
+   globals.BTN_COLOR
+   globals.BTN_COLOR_PRESSED
+   globals.RED
+   globals.GREEN
+   globals.WHITE
+   globals.BLACK
+
+
+.. py:data:: KEY_ESC
+   :value: 27
+
+   
+
+.. py:data:: KEY_Q
+   :value: 113
+
+   
+
+.. py:data:: KEY_H
+   :value: 104
+
+   
+
+.. py:data:: BTN_COLOR
+   :value: ()
+
+   
+
+.. py:data:: BTN_COLOR_PRESSED
+   :value: ()
+
+   
+
+.. py:data:: RED
+   :value: (1, 0, 0, 0.5)
+
+   
+
+.. py:data:: GREEN
+   :value: (0, 1, 0, 0.5)
+
+   
+
+.. py:data:: WHITE
+   :value: (1, 1, 1, 1)
+
+   
+
+.. py:data:: BLACK
+   :value: (0, 0, 0, 1)
+
+   
+
+.. py:function:: chevron_left_global(curr, next_pg='RiskAssesmentPage')
+
+
+.. py:function:: release_keyboard_global(curr)
+
+

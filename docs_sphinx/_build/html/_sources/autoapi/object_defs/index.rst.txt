@@ -1,0 +1,90 @@
+:py:mod:`object_defs`
+=====================
+
+.. py:module:: object_defs
+
+.. autoapi-nested-parse::
+
+   Definitions of objects
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   object_defs.WrapLabel
+   object_defs.MyButton
+   object_defs.MyButton2
+   object_defs.MyButton3
+   object_defs.RoundedButton
+   object_defs.MyActionBar
+   object_defs.NavButtons
+
+
+
+
+.. py:class:: WrapLabel
+
+   Bases: :py:obj:`page_templates.Label`
+
+
+.. py:class:: MyButton
+
+   Bases: :py:obj:`page_templates.Button`
+
+   .. py:method:: on_release_custom(to_page, direction='left', *args, **kwargs)
+
+
+
+.. py:class:: MyButton2
+
+   Bases: :py:obj:`page_templates.Button`
+
+
+.. py:class:: MyButton3
+
+   Bases: :py:obj:`page_templates.Button`
+
+
+.. py:class:: RoundedButton(**kwargs)
+
+   Bases: :py:obj:`MyButton`
+
+   .. py:method:: on_press()
+
+
+   .. py:method:: on_release()
+
+
+   .. py:method:: on_release_custom(to_page, direction='left', *args, **kwargs)
+
+
+   .. py:method:: change_color(*args, **kwargs)
+
+
+   .. py:method:: change_color_back(*args)
+
+
+
+.. py:class:: MyActionBar(**kwargs)
+
+   Bases: :py:obj:`page_templates.ActionBar`
+
+   .. py:attribute:: NAME
+
+      
+
+   .. py:method:: chevron_left(scr, to_pg='RiskAssesmentPage')
+
+
+
+.. py:class:: NavButtons
+
+   Bases: :py:obj:`page_templates.BoxLayout`
+
+

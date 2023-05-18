@@ -1,0 +1,467 @@
+:py:mod:`main`
+==============
+
+.. py:module:: main
+
+.. autoapi-nested-parse::
+
+   The main module
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   main.LoadingPage
+   main.LandingPage
+   main.LoginPage
+   main.RiskAssesmentPage
+   main.SociodemographicPage
+   main.SociodemographicPage_Age
+   main.SociodemographicPage_Sex
+   main.SociodemographicPage_Military
+   main.SociodemographicPage_Military_2
+   main.LocationPage
+   main.LocationScorePage
+   main.AirPollutionLandingPage
+   main.AirPollutionPage
+   main.AirPollutionScorePage
+   main.DietLandingPage
+   main.DietAndFoodPage
+   main.DietScorePage
+   main.PhysicalActivityLandingPage
+   main.PhysicalActivityPage
+   main.PhysicalActivityScorePage
+   main.AlcoholLandingPage
+   main.AlcoholUsagePage
+   main.AlcoholScorePage
+   main.DepressionLandingPage
+   main.DepressionPage
+   main.DepressionScorePage
+   main.HyperTensionLandingPage
+   main.HyperTensionPage
+   main.HyperTensionScorePage
+   main.TraumaticBrainInjuryLandingPage
+   main.TraumaticBrainInjuryPage
+   main.TraumaticBrainInjuryScorePage
+   main.CognitiveDeclineLandingPage
+   main.CognitiveDeclinePage
+   main.CognitiveDeclinePage2
+   main.CognitiveDeclineScorePage
+   main.AboutPage
+   main.EducationalResourcesPage
+   main.CognitiveRehabPage
+   main.WindowManager
+   main.BlueSkyApp
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   main.KV_FILE
+   main.LOADING_PAGE_PAUSE_SECONDS
+
+
+.. py:data:: KV_FILE
+   :value: 'health_app.kv'
+
+   
+
+.. py:data:: LOADING_PAGE_PAUSE_SECONDS
+   :value: 1
+
+   
+
+.. py:class:: LoadingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.Screen`
+
+   .. py:method:: animate_logo(widget, *args)
+
+
+   .. py:method:: transitioner(dt)
+
+
+
+.. py:class:: LandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.Screen`
+
+   First page seen by the user
+
+
+.. py:class:: LoginPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.Screen`
+
+   .. py:method:: chevron_left()
+
+
+   .. py:method:: show_alert_dialog(*args)
+
+
+   .. py:method:: close_dialog(*args)
+
+
+
+.. py:class:: RiskAssesmentPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.Screen`
+
+   .. py:method:: update_score()
+
+
+   .. py:method:: on_enter()
+
+
+   .. py:method:: chevron_left()
+
+
+
+.. py:class:: SociodemographicPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+
+.. py:class:: SociodemographicPage_Age(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: on_numpad_press(*args)
+
+
+   .. py:method:: button_press(btn)
+
+
+   .. py:method:: update_score()
+
+
+
+.. py:class:: SociodemographicPage_Sex(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: button_press(btn)
+
+
+
+.. py:class:: SociodemographicPage_Military(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: button_press(btn)
+
+
+
+.. py:class:: SociodemographicPage_Military_2(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: button_press(btn)
+
+
+
+.. py:class:: LocationPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+   .. py:method:: update_score()
+
+
+   .. py:method:: toggle(btn, *args)
+
+
+   .. py:method:: on_pre_leave()
+
+
+
+.. py:class:: LocationScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+
+.. py:class:: AirPollutionLandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+
+.. py:class:: AirPollutionPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: reset()
+
+
+   .. py:method:: button_press(num)
+
+
+   .. py:method:: arrow_right()
+
+
+   .. py:method:: arrow_left()
+
+
+   .. py:method:: on_pre_enter()
+
+
+   .. py:method:: update_score()
+
+
+   .. py:method:: on_pre_leave()
+
+
+
+.. py:class:: AirPollutionScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+
+.. py:class:: DietLandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+
+.. py:class:: DietAndFoodPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: button_press(btn)
+
+
+   .. py:method:: init_my_subpage()
+
+
+   .. py:method:: arrow_right()
+
+
+   .. py:method:: on_pre_enter()
+
+
+
+.. py:class:: DietScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+
+.. py:class:: PhysicalActivityLandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+
+.. py:class:: PhysicalActivityPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: validate_text(*args)
+
+
+   .. py:method:: on_tab_switch(instance_tabs, instance_tab, instance_tab_label, tab_text)
+
+
+   .. py:method:: on_numpad_press(*args)
+
+
+
+.. py:class:: PhysicalActivityScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+
+.. py:class:: AlcoholLandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+
+.. py:class:: AlcoholUsagePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: arrow_right()
+
+
+   .. py:method:: on_pre_enter()
+
+
+   .. py:method:: button_press(num)
+
+
+
+.. py:class:: AlcoholScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+
+.. py:class:: DepressionLandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+
+.. py:class:: DepressionPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: arrow_right()
+
+
+   .. py:method:: on_pre_enter()
+
+
+   .. py:method:: button_press(num)
+
+
+
+.. py:class:: DepressionScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+
+.. py:class:: HyperTensionLandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+
+.. py:class:: HyperTensionPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+   .. py:method:: button_press(num)
+
+
+   .. py:method:: update_score()
+
+
+   .. py:method:: toggle(btn, *args)
+
+
+   .. py:method:: on_pre_leave()
+
+
+
+.. py:class:: HyperTensionScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+
+.. py:class:: TraumaticBrainInjuryLandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+
+.. py:class:: TraumaticBrainInjuryPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: on_pre_enter()
+
+
+   .. py:method:: button_press(num)
+
+
+
+.. py:class:: TraumaticBrainInjuryScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+
+.. py:class:: CognitiveDeclineLandingPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+
+.. py:class:: CognitiveDeclinePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageTemplate`
+
+   .. py:method:: on_numpad_press(*args)
+
+
+   .. py:method:: arrow_right()
+
+
+
+.. py:class:: CognitiveDeclinePage2(**kwargs)
+
+   Bases: :py:obj:`page_templates.SubPageBase`
+
+   .. py:method:: validate(*args)
+
+
+   .. py:method:: on_pre_leave()
+
+
+   .. py:method:: on_pre_enter()
+
+
+
+.. py:class:: CognitiveDeclineScorePage(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScorePageTemplate`
+
+   .. py:method:: arrow_right()
+
+
+
+.. py:class:: AboutPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.Screen`
+
+   .. py:method:: chevron_left()
+
+
+
+.. py:class:: EducationalResourcesPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.Screen`
+
+   .. py:method:: chevron_left()
+
+
+   .. py:method:: motion(etype, me)
+
+
+   .. py:method:: touch_move(etype, me)
+
+
+
+.. py:class:: CognitiveRehabPage(**kwargs)
+
+   Bases: :py:obj:`page_templates.Screen`
+
+   .. py:method:: chevron_left()
+
+
+
+.. py:class:: WindowManager(**kwargs)
+
+   Bases: :py:obj:`page_templates.ScreenManager`
+
+   .. py:method:: _keyboard_closed()
+
+
+   .. py:method:: _on_keyboard_up(keyboard, keycode, *largs)
+
+
+   .. py:method:: on_pre_enter()
+
+
+
+.. py:class:: BlueSkyApp(**kwargs)
+
+   Bases: :py:obj:`page_templates.App`
+
+   .. py:method:: build()
+
+
+   .. py:method:: toggle_theme()
+
+
+

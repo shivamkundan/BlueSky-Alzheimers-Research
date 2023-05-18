@@ -1,0 +1,83 @@
+:py:mod:`page_templates`
+========================
+
+.. py:module:: page_templates
+
+.. autoapi-nested-parse::
+
+   Some templates
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   page_templates.SubPageBase
+   page_templates.SubPageTemplate
+   page_templates.ScorePageTemplate
+
+
+
+
+.. py:class:: SubPageBase(**kwargs)
+
+   Bases: :py:obj:`kivy_imports.Screen`
+
+   .. py:method:: chevron_left(next_pg='RiskAssesmentPage')
+
+
+   .. py:method:: arrow_left()
+
+
+   .. py:method:: arrow_right()
+
+
+
+.. py:class:: SubPageTemplate(**kwargs)
+
+   Bases: :py:obj:`SubPageBase`
+
+   .. py:method:: init_subpage()
+
+
+   .. py:method:: reset()
+
+
+   .. py:method:: button_press(num)
+
+
+   .. py:method:: arrow_right()
+
+
+   .. py:method:: arrow_left()
+
+
+   .. py:method:: on_pre_enter()
+
+
+   .. py:method:: update_score()
+
+
+   .. py:method:: on_pre_leave()
+
+
+
+.. py:class:: ScorePageTemplate(**kwargs)
+
+   Bases: :py:obj:`SubPageBase`
+
+   .. py:method:: update_score(dt)
+
+
+   .. py:method:: on_enter()
+
+
+   .. py:method:: reset_quiz()
+
+
+

@@ -1,4 +1,6 @@
 #!/usr/local/bin/python3
+
+'''The main module'''
 import os
 # os.environ["KIVY_NO_CONSOLELOG"] = "1"
 
@@ -53,6 +55,7 @@ class LoadingPage(Screen):
 	# 		print(item)
 
 class LandingPage(Screen):
+	'''First page seen by the user'''
 	def __init__(self,**kwargs):
 		super(LandingPage,self).__init__(**kwargs)
 		self.prev_page="LandingPage"

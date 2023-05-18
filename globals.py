@@ -1,4 +1,11 @@
+# import the kivy stuff
 from kivy_imports import *
+
+# import my stuff
+from globals import *
+from object_defs import *
+from page_templates import *
+# from kivy_imports import *
 
 KEY_ESC=27
 

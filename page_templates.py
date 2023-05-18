@@ -1,3 +1,13 @@
+'''Some templates'''
+
+# import the kivy stuff
+from kivy_imports import *
+
+# import my stuff
+from globals import *
+from object_defs import *
+from page_templates import *
+
 from kivy_imports import Screen#, Clock
 from globals import release_keyboard_global
 
