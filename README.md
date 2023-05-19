@@ -10,7 +10,7 @@
 
 ### Demo
 <p align="center">
-  <img src="pics/bluesky_demo.png" 
+  <img src="pics/bluesky_demo.gif" 
   alt="demo" 
   width="100%" 
   height="100%"/>
