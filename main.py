@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/local/opt/python@3.9/libexec/bin/python
 
 '''The main module'''
 import os
@@ -63,7 +63,6 @@ class LandingPage(Screen):
 	# def chevron_left(self,*args):
 	# 	self.parent.transition.direction="right"
 	# 	self.parent.current='RiskAssesmentPage'
-
 
 class LoginPage(Screen):
 	def __init__(self,**kwargs):

@@ -9,7 +9,12 @@ from object_defs import *
 from page_templates import *
 
 from kivy_imports import Screen#, Clock
-from globals import release_keyboard_global
+# from globals import release_keyboard_global
+
+def release_keyboard_global(curr):
+	curr._keyboard = Window.request_keyboard(curr.parent._keyboard_closed, curr)
+	curr._keyboard.bind(on_key_up=curr.parent._on_keyboard_up)
+	Window.release_all_keyboards()
 
 class SubPageBase(Screen):
 	def __init__(self,**kwargs):
