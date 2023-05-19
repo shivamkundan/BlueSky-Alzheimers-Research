@@ -12,6 +12,6 @@
 <p align="center">
   <img src="pics/bluesky_demo.gif" 
   alt="demo" 
-  width="100%" 
-  height="100%"/>
+  width="60%" 
+  height="60%"/>
 </p>
