@@ -1,4 +1,0 @@
-var searchData=
-[
-  ['update_5fscore_276',['update_score',['../classmain_1_1_risk_assesment_page.html#a8133289b987fabdc5854b0c1a158545e',1,'main.RiskAssesmentPage.update_score()'],['../classmain_1_1_sociodemographic_page___age.html#ab17e4e12843d72838e37b6d31576f11a',1,'main.SociodemographicPage_Age.update_score()'],['../classmain_1_1_location_page.html#a17a8e680f745150f5cb0d410c193e378',1,'main.LocationPage.update_score()'],['../classmain_1_1_air_pollution_page.html#a96180185ba52af920545813b97b11356',1,'main.AirPollutionPage.update_score()'],['../classmain_1_1_hyper_tension_page.html#ada52c2434237056f1db4373988495f05',1,'main.HyperTensionPage.update_score()'],['../classpage__templates_1_1_sub_page_template.html#aea9f79546ff7e90427f0b0956dd29c08',1,'page_templates.SubPageTemplate.update_score()'],['../classpage__templates_1_1_score_page_template.html#a40c70549479159740b3783bcc3e45da0',1,'page_templates.ScorePageTemplate.update_score()']]]
-];
