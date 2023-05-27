@@ -14,7 +14,6 @@
 <AirPollutionLandingPage>:
 	BoxLayout:
 		orientation: 'vertical'
-
 		MyActionBar:
 			title:air_toolbar_title
 
@@ -34,16 +33,11 @@
 				text: 'Answer the following questions about pollution mask usage'
 				halign: 'center'
 				size_hint_x:0.8
-				# size_hint_x:0.5
 				pos_hint:{'center_x':0.5}
 				padding: dp(0), dp(30)
 
 		MyButton3:
 			text:"Begin"
-			# background_color: BTN_COLOR
-			# font_style:'Button'
-			# size_hint:0.7,0.25
-			# pos_hint:{'center_x':0.5}
 			on_release:	root.arrow_right()
 
 		NavButtons:
@@ -70,7 +64,6 @@
 				halign:'center'
 				pos_hint:{'center_x':0.5}
 
-			# BoxLayout:
 			Label:
 				size_hint_x:0.8
 				id:air_pollution_q_label
@@ -80,7 +73,6 @@
 				text: air_Q0
 				halign:'center'
 				pos_hint:{'center_x':0.5,'center_y':0.3}
-				# pos_hint:{}
 
 		BoxLayout:
 			orientation:'vertical'
@@ -97,6 +89,7 @@
 					root.button_press(6)
 			Widget:
 				size_hint_y:0.05
+
 			MyButton2:
 				text:'Somewhat agree'
 				on_release: root.button_press(5)
@@ -125,14 +118,13 @@
 				text:'Strongly Disagree'
 				on_release: root.button_press(1)
 
-		NavButtons:
+		NavButtons
 
 # -------------
 <AirPollutionScorePage>:
 	score_label:score_label
 	BoxLayout:
 		orientation: 'vertical'
-
 		MyActionBar:
 			title:air_toolbar_title
 
@@ -163,8 +155,7 @@
 			MyButton2:
 				text:'Next'
 				on_release:root.arrow_right()
-
 			Widget:
 				size_hint_y:0.2
 
-		NavButtons:
+		NavButtons
