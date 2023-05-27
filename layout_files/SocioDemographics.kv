@@ -24,6 +24,7 @@
 
 			Label:
 				size_hint_x:0.8
+				size_hint_y:0.5
 				id:label1
 				text_size: root.width*self.size_hint_x, None
 				# size: self.texture_size
@@ -33,7 +34,8 @@
 				pos_hint:{'center_x':0.5}
 
 			Label:
-				size_hint_x:5
+				size_hint_x:0.5
+				size_hint_y:0.5
 				id:age_text_field
 				text_size: root.width*self.size_hint_x, None
 				# size: self.texture_size
@@ -45,15 +47,15 @@
 
 
 
-		GridLayout:
-			cols:3
-			# rows:4
+			GridLayout:
+				cols:3
+				# rows:4
 
-			on_parent:
-				for i in range(1,9+1): txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
-				self.add_widget(button.Button(text = "DEL",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
-				self.add_widget(button.Button(text = "0",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
-				self.add_widget(button.Button(text = "ENTER",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
+				on_parent:
+					for i in range(1,9+1): txt = "{0}".format(i); self.add_widget(button.Button(text = txt,on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
+					self.add_widget(button.Button(text = "DEL",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
+					self.add_widget(button.Button(text = "0",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
+					self.add_widget(button.Button(text = "ENTER",on_release=root.on_numpad_press, background_color= BTN_COLOR, font_style='Button'))
 		NavButtons
 
 
