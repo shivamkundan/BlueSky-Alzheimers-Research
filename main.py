@@ -93,22 +93,37 @@ class RiskAssesmentPage(Screen):
 	def __init__(self,**kwargs):
 		super(RiskAssesmentPage,self).__init__(**kwargs)
 		self.prev_page="LandingPage"
-
-	def update_score(self):
-		pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
+		self.pgs=["LocationPage","AirPollutionPage","DietAndFoodPage","PhysicalActivityPage",\
 			"AlcoholUsagePage","DepressionPage","HyperTensionPage","TraumaticBrainInjuryPage",\
 			"CognitiveDeclinePage2","SociodemographicPage_Sex"]
-
-		titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression","Hypertension",
+		self.titles=["Location","Air Pollution","Diet & Food","Physical Activity","Alcohol Usage","Depression","Hypertension",
 				"Traumatic Brain Injury","Cognitive Decline","Demographics"]
 
+	def update_score(self):
 		# for second line text
-		for page,text in zip(pgs,titles):
+		for page,text in zip(self.pgs,self.titles):
 			if self.parent.ids[page].pct==100:
 				C="#00FF00"
 			else:
 				C="#fcba03"
 			self.ids[page+"_label"].text=f"[size=16sp]{text}\n[size=11sp][color={C}]{self.parent.ids[page].pct}% done[/color][/size]"
+
+	def reset(self,*args):
+		print ("reset")
+		for page in self.pgs:
+			self.parent.ids[page].pct=0
+			self.parent.ids[page].done=False
+			try:
+				self.parent.score_vars_dict[page]=0
+				for k,v in self.parent.ids[page].questions_dict.items():
+					v['response']=0
+					v['completed']=False
+			except AttributeError as e:
+				print (e)
+				pass
+		self.ids['score_label'].text=f"[b]{0}[/b]"
+		self.update_score()
+
 
 	def on_enter(self):
 		temp=0
