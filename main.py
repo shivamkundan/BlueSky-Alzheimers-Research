@@ -123,39 +123,6 @@ class RiskAssesmentPage(Screen):
 		chevron_left_global(self,next_pg='LandingPage')
 
 # --------------------------------------------------------------------- #
-
-# class SociodemographicPage(SubPageTemplate):
-# 	def __init__(self,**kwargs):
-# 		super(SociodemographicPage,self).__init__(**kwargs)
-# 		self.page_name='SociodemographicPage'
-# 		self.prev_page="RiskAssesmentPage"
-# 		self.next_page="SociodemographicPage_Age"
-# 		self.total_score=0
-# 		self.pct=0
-
-# 		self.num_questions=1 # hard-coded for speedy initialization
-
-# 		self.questions_dict={
-# 			0: {'q':'?',			'response':0,'completed':False}}
-
-# 		self.curr_question_num=0
-# 		self.curr_question=self.questions_dict[0]['q']
-
-
-# 	# def on_numpad_press(self,*args):
-# 	# 	print(args)
-
-# 	# 	if self.ids['age_text_field'].text=='< MM / DD / YYYY >':
-# 	# 		self.ids['age_text_field'].text=''
-
-# 	# 	if args[0].text=='del':
-# 	# 		if len(self.ids['age_text_field'].text)>0:
-# 	# 			self.ids['age_text_field'].text=self.ids['age_text_field'].text[0:len(self.ids['age_text_field'].text)-1]
-# 	# 			if len(self.ids['age_text_field'].text)==0:
-# 	# 				self.ids['age_text_field'].text='< MM / DD / YYYY >'
-# 	# 	else:
-# 	# 		self.ids['age_text_field'].text+=args[0].text
-
 class SociodemographicPage_Age(SubPageTemplate):
 	def __init__(self,**kwargs):
 		super(SociodemographicPage_Age,self).__init__(**kwargs)

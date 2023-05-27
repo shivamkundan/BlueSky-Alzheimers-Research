@@ -13,7 +13,6 @@
 				size_hint_y:0.5
 				id:label1
 				text_size: root.width*self.size_hint_x, None
-				# size: self.texture_size
 				color: TXT_COLOR
 				text:"What is your age?"
 				halign:'center'
@@ -24,12 +23,10 @@
 				size_hint_y:0.5
 				id:age_text_field
 				text_size: root.width*self.size_hint_x, None
-				# size: self.texture_size
 				color: TXT_COLOR
 				text:"< Age >"
 				halign:'center'
 				pos_hint:{'center_x':0.5}
-
 
 			GridLayout:
 				cols:3
@@ -46,11 +43,8 @@
 		MyActionBar:
 			title:"Demographics"
 
-
 		BoxLayout:
-
 			orientation:'vertical'
-			# size_hint_y:0.4
 			pos_hint:{'center_x':0.5}
 
 			Label:
@@ -84,18 +78,14 @@
 		MyActionBar:
 			title:"Demographics"
 
-
 		BoxLayout:
-
 			orientation:'vertical'
-			# size_hint_y:0.3
 			pos_hint:{'center_x':0.5}
 
 			Label:
 				size_hint_x:0.8
 				id:label1
 				text_size: root.width*self.size_hint_x, None
-				# size: self.texture_size
 				color: TXT_COLOR
 				text:"Have you ever served in the United States Armed Forces?"
 				halign:'center'
@@ -117,23 +107,18 @@
 		MyActionBar:
 			title:"Demographics"
 
-
 		BoxLayout:
-
 			orientation:'vertical'
-			# size_hint_y:0.4
 			pos_hint:{'center_x':0.5}
 
 			Label:
 				size_hint_x:0.8
 				id:label1
 				text_size: root.width*self.size_hint_x, None
-				# size: self.texture_size
 				color: TXT_COLOR
 				text:"Which branch of the military did/do you serve in?"
 				halign:'center'
 				pos_hint:{'center_x':0.5}
-
 
 			MyButton2:
 				size_hint_y:0.5
