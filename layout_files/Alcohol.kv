@@ -12,7 +12,7 @@
 		orientation: 'vertical'
 
 		MyActionBar:
-            title:alcohol_toolbar_title
+			title:alcohol_toolbar_title
 
 		WrapLabel:
 			text: alcohol_landing_blurb
@@ -49,170 +49,156 @@
 	BoxLayout:
 		orientation: 'vertical'
 		MyActionBar:
-            title:alcohol_toolbar_title
+			title:alcohol_toolbar_title
 
 		BoxLayout:
 
-		    orientation:'vertical'
-		    size_hint_y:0.6
-		    pos_hint:{'center_x':0.5}
+			orientation:'vertical'
+			size_hint_y:0.6
+			pos_hint:{'center_x':0.5}
 
-		    Label:
-		        size_hint_x:0.8
-		        # size_hint_y:0.6
-		        id:q_label
-		        text_size: root.width*self.size_hint_x, None
-		        color: TXT_COLOR
-		        size: self.texture_size
-		        text:""
-		        halign:'center'
-		        pos_hint:{'center_x':0.5,'center_y':0.3}
+			Label:
+				size_hint_x:0.8
+				# size_hint_y:0.6
+				id:q_label
+				text_size: root.width*self.size_hint_x, None
+				color: TXT_COLOR
+				size: self.texture_size
+				text:""
+				halign:'center'
+				pos_hint:{'center_x':0.5,'center_y':0.3}
 
 		BoxLayout:
-		    orientation:'vertical'
-		    Button:
-		        # id:button7
-		        # icon:'numeric-7'
-		        text:'Never'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        theme_text_color: "Custom"
-		        pos_hint:{'center_x':0.5}
-
-		        on_release:
-		            root.button_press(7)
-		    Label:
-		        text:''
-		        size_hint_y:0.05
-		    Button:
-		        id:button6
-		        # icon:'numeric-6'
-		        text:'Less than monthly'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        # size_hint_y:0.8
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(6)
-		        custom_color: 0, 1, 0, 1
-		    Label:
-		        text:''
-		        size_hint_y:0.05
-		    Button:
-		        id:button5
-		        # icon:'numeric-5'
-		        text:'Monthly'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        # size_hint_y:0.8
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(5)
-		    Label:
-		        text:''
-		        size_hint_y:0.05
-		    Button:
-		        id:button4
-		        # icon:'numeric-4'
-		        text:'Weekly'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(4)
-		    Label:
-		        text:''
-		        size_hint_y:0.05
-		    Button:
-		        id:button3
-		        # icon:'numeric-3'
-		        text:'2 - 3 times a week'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(3)
-		    Label:
-		        text:''
-		        size_hint_y:0.05
-		    Button:
-		        id:button2
-		        # icon:'numeric-2'
-		        text:'4 - 6 times a week'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(2)
-		    Label:
-		        text:''
-		        size_hint_y:0.05
-		    Button:
-		        id:button1
-		        # icon:'numeric-1'
-		        text:'Daily'
-		        halign:'left'
-		        size_hint_x:0.8
-		        font_style:'Button'
-		        pos_hint:{'center_x':0.5}
-		        on_release: root.button_press(1)
+			orientation:'vertical'
+			MyButton2:
+				text:'Never'
+				on_release:
+					root.button_press(7)
+			Label:
+				text:''
+				size_hint_y:0.05
+			MyButton2:
+				id:button6
+				# icon:'numeric-6'
+				text:'Less than monthly'
+				# halign:'left'
+				# size_hint_x:0.8
+				# font_style:'Button'
+				# # size_hint_y:0.8
+				# pos_hint:{'center_x':0.5}
+				on_release: root.button_press(6)
+				# custom_color: 0, 1, 0, 1
+			Label:
+				text:''
+				size_hint_y:0.05
+			MyButton2:
+				id:button5
+				# icon:'numeric-5'
+				text:'Monthly'
+				# halign:'left'
+				# size_hint_x:0.8
+				# font_style:'Button'
+				# # size_hint_y:0.8
+				# pos_hint:{'center_x':0.5}
+				on_release: root.button_press(5)
+			Label:
+				text:''
+				size_hint_y:0.05
+			MyButton2:
+				id:button4
+				# icon:'numeric-4'
+				text:'Weekly'
+				# halign:'left'
+				# size_hint_x:0.8
+				# font_style:'Button'
+				# pos_hint:{'center_x':0.5}
+				on_release: root.button_press(4)
+			Label:
+				text:''
+				size_hint_y:0.05
+			MyButton2:
+				id:button3
+				# icon:'numeric-3'
+				text:'2 - 3 times a week'
+				# halign:'left'
+				# size_hint_x:0.8
+				# font_style:'Button'
+				# pos_hint:{'center_x':0.5}
+				on_release: root.button_press(3)
+			Label:
+				text:''
+				size_hint_y:0.05
+			MyButton2:
+				id:button2
+				# icon:'numeric-2'
+				text:'4 - 6 times a week'
+				# halign:'left'
+				# size_hint_x:0.8
+				# font_style:'Button'
+				# pos_hint:{'center_x':0.5}
+				on_release: root.button_press(2)
+			Label:
+				text:''
+				size_hint_y:0.05
+			MyButton2:
+				id:button1
+				# icon:'numeric-1'
+				text:'Daily'
+				# halign:'left'
+				# size_hint_x:0.8
+				# font_style:'Button'
+				# pos_hint:{'center_x':0.5}
+				on_release: root.button_press(1)
 
 		NavButtons
 
 	FloatLayout:
-	    orientation: 'vertical'
-	    Label:
-	        pos:(50,950)
-	        text: ''
-	        # md_bg_color:0,0,1,0.05
-	        size_hint_y:0.15
-	        size_hint_x:0.9
-	        text_color:1,1,1,1
+		orientation: 'vertical'
+		Label:
+			pos:(50,950)
+			text: ''
+			# md_bg_color:0,0,1,0.05
+			size_hint_y:0.15
+			size_hint_x:0.9
+			text_color:1,1,1,1
 
 <AlcoholScorePage>:
-    score_label:score_label
-    BoxLayout:
-        orientation: 'vertical'
-        MyActionBar:
-            title:alcohol_toolbar_title
+	score_label:score_label
+	BoxLayout:
+		orientation: 'vertical'
 
-        Label:
-            text: 'Your score is:'
-            color: TXT_COLOR
-            halign: 'center'
+		MyActionBar:
+			title:alcohol_toolbar_title
 
-        Label:
-            id:score_label
-            color: TXT_COLOR
-            text: ''
-            halign: 'center'
+		BoxLayout:
+			orientation:'vertical'
+			Label:
+				text: 'Your score is:'
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'16sp'
 
-        Button:
-            id:restart_button
-            text:'Try Again'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.reset_quiz()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Back'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.chevron_left()
-        Widget:
-            size_hint_y:0.05
-        Button:
-            id:next_section
-            text:'Next'
-            font_style:'Button'
-            size_hint_x:0.7
-            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
-            on_release:root.arrow_right()
+			Label:
+				id:score_label
+				text: ''
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'34sp'
 
+			MyButton2:
+				text:'Try Again'
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Back'
+				on_release:root.chevron_left()
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Next'
+				on_release:root.arrow_right()
 
-        NavButtons
+			Widget:
+				size_hint_y:0.2
+
+		NavButtons:
