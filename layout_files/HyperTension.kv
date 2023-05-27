@@ -1,117 +1,125 @@
 #:set hypertension_toolbar_title 'Hypertension'
 
 <HyperTensionLandingPage>:
-    BoxLayout:
-        orientation: 'vertical'
+	BoxLayout:
+		orientation: 'vertical'
 
-        MyActionBar:
-            title:hypertension_toolbar_title
+		MyActionBar:
+			title:hypertension_toolbar_title
 
-        Widget:
-            size_hint_y:0.1
+		Widget:
+			size_hint_y:0.1
 
-        WrapLabel:
-            text: 'High blood pressure, especially in midlife, is associated with at least an 18% increase in the risk for Alzheimer\'s'
-            font_size:'14sp'
-            halign: 'left'
-            size_hint_x:0.8
-            color: TXT_COLOR
-            pos_hint:{'center_x':0.5}
+		WrapLabel:
+			text: 'High blood pressure, especially in midlife, is associated with at least an 18% increase in the risk for Alzheimer\'s'
+			font_size:'14sp'
+			halign: 'left'
+			size_hint_x:0.8
+			color: TXT_COLOR
+			pos_hint:{'center_x':0.5}
 
-        Widget:
-            size_hint_y:0.2
+		Widget:
+			size_hint_y:0.2
 
-        WrapLabel:
-            # font_size:'2xw0sp'
-            text: 'Answer the following questions about hypertension'
-            # text_color:DARK_BLUE
-            theme_text_color:"Hint"
-            halign: 'center'
-            size_hint_x:0.8
-            color: TXT_COLOR
-            # size_hint_x:0.5
-            pos_hint:{'center_x':0.5}
+		WrapLabel:
+			# font_size:'2xw0sp'
+			text: 'Answer the following questions about hypertension'
+			# text_color:DARK_BLUE
+			theme_text_color:"Hint"
+			halign: 'center'
+			size_hint_x:0.8
+			color: TXT_COLOR
+			# size_hint_x:0.5
+			pos_hint:{'center_x':0.5}
 
-        Widget:
-            size_hint_y:0.2
+		Widget:
+			size_hint_y:0.2
 
-        MyButton3:
-            text:"Begin"
-            on_release: root.arrow_right()
+		MyButton3:
+			text:"Begin"
+			on_release: root.arrow_right()
 
 
-        NavButtons
+		NavButtons
+
 
 <HyperTensionPage>:
-    BoxLayout:
-        orientation: 'vertical'
+	BoxLayout:
+		orientation: 'vertical'
+		MyActionBar:
+			title:hypertension_toolbar_title
 
-        MyActionBar:
-            title:hypertension_toolbar_title
-        BoxLayout:
-            size_hint_y:0.6
-            orientation:'vertical'
-            pos_hint:{'center_x':0.5}
 
-            Label:
-                size_hint_x:0.8
-                id:label1
-                text_size: root.width*self.size_hint_x, None
-                size: self.texture_size
-                color: TXT_COLOR
-                text:"Have you ever been told by a doctor or other health professional that you had hypertension, also called high blood pressure?"
-                halign:'center'
-                pos_hint:{'center_x':0.5}
+		BoxLayout:
 
-        MyButton2:
-            id:Yes
-            text:"Yes"
-            on_release: root.toggle(self)
+			orientation:'vertical'
+			# size_hint_y:0.4
+			pos_hint:{'center_x':0.5}
 
-        MyButton2:
-            id:No
-            text:"No"
-            on_release: root.toggle(self)
+			Label:
+				size_hint_x:0.8
+				# size_hint_y:0.3
+				id:label1
+				text_size: root.width*self.size_hint_x, None
+				# size: self.texture_size
+				color: TXT_COLOR
+				text:"Have you ever been told by a doctor or other health professional that you had hypertension, also called high blood pressure?"
+				halign:'center'
+				pos_hint:{'center_x':0.5}
 
-        NavButtons:
+			Widget:
+				size_hint_y:0.2
+
+			MyButton2:
+				id:Yes
+				text:"Yes"
+				size_hint_y:0.5
+				on_release: root.toggle(self)
+			MyButton2:
+				id:No
+				text:"No"
+				size_hint_y:0.5
+				on_release: root.toggle(self)
+
+		NavButtons
 
 <HyperTensionScorePage>:
-    score_label:score_label
-    BoxLayout:
-        orientation: 'vertical'
+	score_label:score_label
+	BoxLayout:
+		orientation: 'vertical'
 
-        MyActionBar:
-            title:hypertension_toolbar_title
+		MyActionBar:
+			title:hypertension_toolbar_title
 
-        BoxLayout:
-            orientation:'vertical'
-            Label:
-                text: 'Your score is:'
-                color: TXT_COLOR
-                halign: 'center'
-                font_size:'16sp'
+		BoxLayout:
+			orientation:'vertical'
+			Label:
+				text: 'Your score is:'
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'16sp'
 
-            Label:
-                id:score_label
-                text: ''
-                color: TXT_COLOR
-                halign: 'center'
-                font_size:'34sp'
+			Label:
+				id:score_label
+				text: ''
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'34sp'
 
-            MyButton2:
-                text:'Try Again'
-            Widget:
-                size_hint_y:0.05
-            MyButton2:
-                text:'Back'
-                on_release:root.chevron_left()
-            Widget:
-                size_hint_y:0.05
-            MyButton2:
-                text:'Next'
-                on_release:root.arrow_right()
+			MyButton2:
+				text:'Try Again'
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Back'
+				on_release:root.chevron_left()
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Next'
+				on_release:root.arrow_right()
 
-            Widget:
-                size_hint_y:0.2
+			Widget:
+				size_hint_y:0.2
 
-        NavButtons:
+		NavButtons:
