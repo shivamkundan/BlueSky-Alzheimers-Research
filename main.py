@@ -692,6 +692,7 @@ class HyperTensionPage(SubPageBase):
 		self.total_score=0
 		self.pct_txt="0% Complete"
 		self.pct=0
+		self.done=False
 
 		self.btn_names=["Yes","No"]
 		self.btn_scores={"Yes":0,"No":1}
