@@ -3,7 +3,6 @@
 <HyperTensionLandingPage>:
 	BoxLayout:
 		orientation: 'vertical'
-
 		MyActionBar:
 			title:hypertension_toolbar_title
 
@@ -17,59 +16,41 @@
 			size_hint_x:0.8
 			color: TXT_COLOR
 			pos_hint:{'center_x':0.5}
-
 		Widget:
 			size_hint_y:0.2
-
 		WrapLabel:
-			# font_size:'2xw0sp'
 			text: 'Answer the following questions about hypertension'
-			# text_color:DARK_BLUE
 			theme_text_color:"Hint"
 			halign: 'center'
 			size_hint_x:0.8
 			color: TXT_COLOR
-			# size_hint_x:0.5
 			pos_hint:{'center_x':0.5}
-
 		Widget:
 			size_hint_y:0.2
-
 		MyButton3:
 			text:"Begin"
 			on_release: root.arrow_right()
 
-
 		NavButtons
-
 
 <HyperTensionPage>:
 	BoxLayout:
 		orientation: 'vertical'
 		MyActionBar:
 			title:hypertension_toolbar_title
-
-
 		BoxLayout:
-
 			orientation:'vertical'
-			# size_hint_y:0.4
 			pos_hint:{'center_x':0.5}
-
 			Label:
 				size_hint_x:0.8
-				# size_hint_y:0.3
 				id:label1
 				text_size: root.width*self.size_hint_x, None
-				# size: self.texture_size
 				color: TXT_COLOR
 				text:"Have you ever been told by a doctor or other health professional that you had hypertension, also called high blood pressure?"
 				halign:'center'
 				pos_hint:{'center_x':0.5}
-
 			Widget:
 				size_hint_y:0.2
-
 			MyButton2:
 				id:Yes
 				text:"Yes"
@@ -87,7 +68,6 @@
 	score_label:score_label
 	BoxLayout:
 		orientation: 'vertical'
-
 		MyActionBar:
 			title:hypertension_toolbar_title
 
@@ -98,14 +78,12 @@
 				color: TXT_COLOR
 				halign: 'center'
 				font_size:'16sp'
-
 			Label:
 				id:score_label
 				text: ''
 				color: TXT_COLOR
 				halign: 'center'
 				font_size:'34sp'
-
 			MyButton2:
 				text:'Try Again'
 			Widget:
@@ -118,8 +96,7 @@
 			MyButton2:
 				text:'Next'
 				on_release:root.arrow_right()
-
 			Widget:
 				size_hint_y:0.2
 
-		NavButtons:
+		NavButtons
