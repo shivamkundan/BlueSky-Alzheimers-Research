@@ -81,12 +81,17 @@
 				halign:'center'
 				pos_hint:{'center_x':0.5}
 
-		MyButton2:
-			text:"Male"
-			on_release:root.button_press(self)
-		MyButton2:
-			text:"Female"
-			on_release:root.button_press(self)
+			Widget:
+				size_hint_y:0.2
+
+			MyButton2:
+				text:"Male"
+				size_hint_y:0.5
+				on_release:root.button_press(self)
+			MyButton2:
+				text:"Female"
+				size_hint_y:0.5
+				on_release:root.button_press(self)
 
 		NavButtons
 
@@ -101,7 +106,7 @@
 		BoxLayout:
 
 			orientation:'vertical'
-			size_hint_y:0.4
+			# size_hint_y:0.3
 			pos_hint:{'center_x':0.5}
 
 			Label:
@@ -114,12 +119,14 @@
 				halign:'center'
 				pos_hint:{'center_x':0.5}
 
-		MyButton2:
-			text:"Yes"
-			on_release:root.button_press(self)
-		MyButton2:
-			text:"No"
-			on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"Yes"
+				on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"No"
+				on_release:root.button_press(self)
 		NavButtons
 
 <SociodemographicPage_Military_2>:
@@ -132,7 +139,7 @@
 		BoxLayout:
 
 			orientation:'vertical'
-			size_hint_y:0.4
+			# size_hint_y:0.4
 			pos_hint:{'center_x':0.5}
 
 			Label:
@@ -146,27 +153,34 @@
 				pos_hint:{'center_x':0.5}
 
 
-		MyButton2:
-			text:"Air Force"
-			on_release:root.button_press(self)
-		MyButton2:
-			text:"Army"
-			on_release:root.button_press(self)
-		MyButton2:
-			text:"Marines"
-			on_release:root.button_press(self)
-		MyButton2:
-			text:"Navy"
-			on_release:root.button_press(self)
-		MyButton2:
-			text:"Coast Guard"
-			on_release:root.button_press(self)
-		MyButton2:
-			text:"Space Force"
-			on_release:root.button_press(self)
-		MyButton2:
-			text:"N/A"
-			on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"Air Force"
+				on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"Army"
+				on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"Marines"
+				on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"Navy"
+				on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"Coast Guard"
+				on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"Space Force"
+				on_release:root.button_press(self)
+			MyButton2:
+				size_hint_y:0.5
+				text:"N/A"
+				on_release:root.button_press(self)
 
 		NavButtons
 
