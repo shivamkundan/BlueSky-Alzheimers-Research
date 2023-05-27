@@ -8,131 +8,106 @@
 #:set trauma_landing_blurb 'Research shows that even mild TBI can increase one’s risk for the onset of Alzheimer\'s.'
 #:set trauma_landing_subtitle 'Answer the following questions about traumatic brain injury'
 
-
 <TraumaticBrainInjuryLandingPage>:
+	BoxLayout:
+		orientation: 'vertical'
+		MyActionBar:
+			title:trauma_toolbar_title
+		Widget:
+			size_hint_y:0.1
+		WrapLabel:
+			text: trauma_landing_blurb
+			padding: dp(0), dp(30)
+			halign:'center'
+		Widget:
+			size_hint_y:0.2
+		WrapLabel:
+			text: trauma_landing_subtitle
+			color: TXT_COLOR
+			theme_text_color:"Hint"
+			halign: 'center'
+			size_hint_x:0.8
+			pos_hint:{'center_x':0.5}
+		Widget:
+			size_hint_y:0.2
+		MyButton3:
+			text:"Begin"
+			on_release:
+				root.arrow_right()
 
-    BoxLayout:
-        orientation: 'vertical'
-
-        MyActionBar:
-            title:trauma_toolbar_title
-
-        Widget:
-            size_hint_y:0.1
-
-        WrapLabel:
-            text: trauma_landing_blurb
-            padding: dp(0), dp(30)
-            halign:'center'
-
-        Widget:
-            size_hint_y:0.2
-
-        WrapLabel:
-            # font_size:'2xw0sp'
-            text: trauma_landing_subtitle
-            color: TXT_COLOR
-            theme_text_color:"Hint"
-            halign: 'center'
-            size_hint_x:0.8
-            # size_hint_x:0.5
-            pos_hint:{'center_x':0.5}
-
-        Widget:
-            size_hint_y:0.2
-
-        MyButton3:
-            text:"Begin"
-            # font_style:'Button'
-            # size_hint_x:0.7
-            # pos_hint:{'center_x':0.5}
-            on_release:
-                # root.parent.ids['TraumaticBrainInjuryPage'].ids['android_tabs'].switch_tab('1')
-                root.arrow_right()
-
-
-        NavButtons
-
+		NavButtons
 
 <TraumaticBrainInjuryPage>:
-    BoxLayout:
-        orientation: 'vertical'
-        MyActionBar:
-            title:trauma_toolbar_title
+	BoxLayout:
+		orientation: 'vertical'
+		MyActionBar:
+			title:trauma_toolbar_title
 
-        BoxLayout:
-            size_hint_y:0.6
-            orientation:'vertical'
-            pos_hint:{'center_x':0.5}
+		BoxLayout:
+			size_hint_y:0.6
+			orientation:'vertical'
+			pos_hint:{'center_x':0.5}
+			Label:
+				size_hint_x:0.8
+				id:q_label
+				text_size: root.width*self.size_hint_x, None
+				size: self.texture_size
+				color: TXT_COLOR
+				text:trauma_Q1
+				halign:'center'
+				pos_hint:{'center_x':0.5}
 
-            Label:
-                size_hint_x:0.8
-                id:q_label
-                text_size: root.width*self.size_hint_x, None
-                size: self.texture_size
-                color: TXT_COLOR
-                text:trauma_Q1
-                halign:'center'
-                pos_hint:{'center_x':0.5}
+		BoxLayout:
+			orientation:'horizontal'
+			size_hint_y:0.25
+			Widget:
+				size_hint_x:0.2
+			MyButton2:
+				text:'Yes'
+				on_release: root.button_press(0)
+			Widget:
+				size_hint_x:0.1
+			MyButton2:
+				text:'No'
+				on_release: root.button_press(1)
+			Widget:
+				size_hint_x:0.2
 
-        BoxLayout:
-            orientation:'horizontal'
-            size_hint_y:0.25
-            Widget:
-                size_hint_x:0.2
-            MyButton2:
-                text:'Yes'
-                on_release: root.button_press(0)
-            Widget:
-                size_hint_x:0.1
-
-            MyButton2:
-                text:'No'
-                on_release: root.button_press(1)
-            Widget:
-                size_hint_x:0.2
-
-        NavButtons
-
-
+		NavButtons
 
 <TraumaticBrainInjuryScorePage>:
-    score_label:score_label
-    BoxLayout:
-        orientation: 'vertical'
+	score_label:score_label
+	BoxLayout:
+		orientation: 'vertical'
+		MyActionBar:
+			title:trauma_toolbar_title
 
-        MyActionBar:
-            title:trauma_toolbar_title
+		BoxLayout:
+			orientation:'vertical'
+			Label:
+				text: 'Your score is:'
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'16sp'
+			Label:
+				id:score_label
+				text: ''
+				color: TXT_COLOR
+				halign: 'center'
+				font_size:'34sp'
+			MyButton2:
+				text:'Try Again'
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Back'
+				on_release:root.chevron_left()
+			Widget:
+				size_hint_y:0.05
+			MyButton2:
+				text:'Next'
+				on_release:root.arrow_right()
+			Widget:
+				size_hint_y:0.2
 
-        BoxLayout:
-            orientation:'vertical'
-            Label:
-                text: 'Your score is:'
-                color: TXT_COLOR
-                halign: 'center'
-                font_size:'16sp'
-
-            Label:
-                id:score_label
-                text: ''
-                color: TXT_COLOR
-                halign: 'center'
-                font_size:'34sp'
-
-            MyButton2:
-                text:'Try Again'
-            Widget:
-                size_hint_y:0.05
-            MyButton2:
-                text:'Back'
-                on_release:root.chevron_left()
-            Widget:
-                size_hint_y:0.05
-            MyButton2:
-                text:'Next'
-                on_release:root.arrow_right()
-
-            Widget:
-                size_hint_y:0.2
-
-        NavButtons:
+		NavButtons
