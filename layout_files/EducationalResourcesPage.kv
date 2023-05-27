@@ -1,5 +1,4 @@
 #:set txt1 "[size=22sp][b]Air Pollution[/b][/size]\nAir pollution is now suspected to play a significant role in the development of Alzheimer’s disease.[sup]2[/sup] You can reduce your exposure to air pollution by wearing a protective face mask when going outdoors.[sup]3[/sup]\n\n"
-
 #:set txt2 "[size=22sp][b]Rural-Urban[/b][/size]\nRisk for Alzheimer’s disease is higher in rural than in urban areas.[sup]4[/sup] This disparity may be due to health care inaccessibility or lifestyle factors.[sup]5,6[/sup] If you live in a rural area, you can reduce your risk for Alzheimer’s by engaging in some of the lifestyle behaviors promoted in this program.[sup]6[/sup]\n\n"
 #:set txt3 "[size=22sp][b]Diet[/b][/size]\nAlzheimer’s risk may decrease with adoption of a Mediterranean diet, which is measured by the DASH-Q, and includes regular consumption of fish, olive oil, nuts, fruits, vegetables, especially leafy greens, and whole grains.[sup]7[/sup]\n\n"
 #:set txt4 "[size=22sp][b]Physical Activity[/b][/size]\nResearch shows that >150 minutes of moderate physical activity (PA) or > 75 minutes of vigorous PA per week may decrease the risk for Alzheimer’s disease.[sup]2[/sup]\n\n"
@@ -9,8 +8,6 @@
 #:set txt8 "[size=22sp][b]Sex[/b][/size]\nFemales are at greater risk for Alzheimer’s than males, potentially because females live longer on average.[sup]3[/sup] However, cognitive decline can be modified by behavior.\n\n"
 #:set txt9 "[size=22sp][b]Hypertension[/b][/size]\nHigh blood pressure, especially in midlife, is associated with at least an 18% increase in the risk for Alzheimer’s.[sup]4[/sup] The recommendations about diet and exercise in this program may decrease blood pressure,[sup]5[/sup] and thus Alzheimer’s risk.\n\n"
 #:set txt10 "[size=22sp][b]Traumatic Brain Injury[/b][/size]\nResearch shows that even mild TBI can increase one’s risk for the onset of Alzheimer’s.[sup]2[/sup] However, individuals with TBI may be able to improve cognitive function with cognitive rehabilitation therapy (CRT),[sup]3[/sup] in general, and the memory training device called “Operation N-Back,” in particular.[sup]4[/sup]\n\n"
-
-# #:set txt11 "[b]Cognitive Decline[/b]\n “Alzheimer’s disease is a progressive neurologic disease that results in the irreversible loss of neurons, particularly in the ... (memory and reasoning areas of the brain). The clinical hallmarks are progressive impairment in memory, judgment, decision making, orientation to physical surroundings, and language.” [sup]5[/sup] However, you may be able reduce your risk for Alzheimer’s by modifying some of the behaviors described in this program.\n\n"
 #:set txt11 "[b]Cognitive Decline[/b]\n “Alzheimer’s disease is a progressive neurologic disease that results in the irreversible loss of neurons, particularly in the  .\n\n"
 
 #:set txt_refs "[size=22sp][b]References[/b][/size]\n[size=10sp]1. Thomas RE, et al. Effect of enhanced feedback ... trial. The Lancet. 2006;367(9527):1990-1996.\n\n2. Snowden TM, et al. Does mild ... analysis. J Alzheimers Dis. 2020;78(2):757-775.\n\n3. Cicerone KD, et al. Evidence-based ... through 2008. Arch Phys Med Rehabil. 2011;92(4):519-530.\n\n4. Tacchino A, et al. A new app for ... sclerosis. JMIR Mhealth Uhealth. 2015;3(3):e85.\n\n5. Nussbaum RL, Ellis CE. Alzheimer’s ... disease. NEJM. 2003;348:1356-1364.[/size]"
@@ -28,23 +25,9 @@
 			title:"Educational Resources"
 			to_page:"LandingPage"
 
-		# # Widget
-		# Label:
-		# 	text:"some text here"
-		# 	color: TXT_COLOR
-		# 	# canvas:
-		# 	# 	Rectangle:
-		# 	# 		id:rect
-		# 	# 		source: 'pics/logo_minimal.png'
-		# 	# 		# pos: (20,self.pos[1]+20)
-		# 	# 		pos:(self.parent.size[0]//2-xx//2,self.parent.size[1]//2)
-		# 	# 		# pos:(self.parent.size[0]//2-size_x//2,self.parent.size[1]//2+size_y//2)
-		# 	# 		size: (xx,yy)
-
 		ScrollView:
 			id:SV
 			scroll_type: ['bars','content']
-
 			on_motion: root.motion(None,self)
 			on_touch_move: root.touch_move(None,self)
 			# scroll_wheel_distance: 20
@@ -52,15 +35,8 @@
 			do_scroll_x: False
 			do_scroll_y: True
 			bar_inactive_color: .55, .55, .55, 1
-			# bar_color: .663, .663, .663, 1
 			bar_inactive_color: ALT_TXT_COLOR[0], ALT_TXT_COLOR[1], ALT_TXT_COLOR[2], 0.5
 			bar_color: ALT_TXT_COLOR
-			# canvas.before:
-			# 	Color:
-			# 		rgba:(0, 1, 0, 0.25)
-			# 	Rectangle:
-			# 		size: self.size
-			# 		pos: self.pos
 
 			WrapLabel:
 				size_hint_x:1
@@ -68,9 +44,3 @@
 				color: TXT_COLOR
 				padding: dp(30), dp(30)
 				markup: True
-				# canvas.before:
-				# 	Color:
-				# 		rgba:(1, 1, 0, 0.25)
-				# 	Rectangle:
-				# 		size: self.size
-				# 		pos: self.pos
