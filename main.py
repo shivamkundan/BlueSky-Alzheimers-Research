@@ -89,7 +89,6 @@ class LoginPage(Screen):
 		self.dialog.dismiss()
 
 # --------------------------------------------------------------------- #
-
 class RiskAssesmentPage(Screen):
 	def __init__(self,**kwargs):
 		super(RiskAssesmentPage,self).__init__(**kwargs)
@@ -249,7 +248,6 @@ class SociodemographicPage_Military_2(SubPageTemplate):
 		self.arrow_right()
 
 # --------------------------------------------------------------------- #
-
 class LocationPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(LocationPage,self).__init__(**kwargs)
@@ -405,7 +403,6 @@ class AirPollutionScorePage(ScorePageTemplate):
 		self.next_page="DietLandingPage"
 
 # --------------------------------------------------------------------- #
-
 class DietLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(DietLandingPage,self).__init__(**kwargs)
@@ -482,7 +479,6 @@ class DietScorePage(ScorePageTemplate):
 		self.next_page="PhysicalActivityLandingPage"
 
 # --------------------------------------------------------------------- #
-
 class PhysicalActivityLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(PhysicalActivityLandingPage,self).__init__(**kwargs)
@@ -535,7 +531,6 @@ class PhysicalActivityScorePage(ScorePageTemplate):
 		self.next_page="AlcoholLandingPage"
 
 # --------------------------------------------------------------------- #
-
 class AlcoholLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(AlcoholLandingPage,self).__init__(**kwargs)
@@ -590,7 +585,6 @@ class AlcoholScorePage(ScorePageTemplate):
 		self.next_page="DepressionLandingPage"
 
 # --------------------------------------------------------------------- #
-
 class DepressionLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(DepressionLandingPage,self).__init__(**kwargs)
@@ -715,7 +709,6 @@ class HyperTensionScorePage(ScorePageTemplate):
 		self.next_page="TraumaticBrainInjuryLandingPage"
 
 # --------------------------------------------------------------------- #
-
 class TraumaticBrainInjuryLandingPage(SubPageBase):
 	def __init__(self,**kwargs):
 		super(TraumaticBrainInjuryLandingPage,self).__init__(**kwargs)
@@ -792,15 +785,8 @@ class CognitiveDeclinePage(SubPageTemplate):
 			self.ids['year'].text+=args[0].text
 
 	def arrow_right(self):
-		print ("arrow_right")
-		# if self.curr_tab_num==self.num_tabs-1:
 		self.parent.transition.direction="left"
 		self.parent.current=self.next_page
-	# 	# else:
-	# 	# 	self.curr_tab_num+=1
-	# 	# 	self.ids['android_tabs'].switch_tab(self.tab_names[self.curr_tab_num])
-	# 	# self.validate_text()
-	# 	# print (self.ids['year'].text)
 
 class CognitiveDeclinePage2(SubPageBase):
 	def __init__(self,**kwargs):
@@ -816,7 +802,6 @@ class CognitiveDeclinePage2(SubPageBase):
 						"T2":{"ans":"table","done":False},
 						"T3":{"ans":"penny","done":False},
 		}
-
 
 		self.pct=0
 
@@ -834,16 +819,12 @@ class CognitiveDeclinePage2(SubPageBase):
 				self.ids[T_name].background_color=GREEN
 				self.ids[T_name].focus=False
 
-
 		self.pct=int(round(100*(self.total_score/3),0))
 		print (f"score: {self.total_score}")
 		print (f"pct: {self.pct}")
 
-
 	def on_pre_leave(self):
 		self.parent.score_vars_dict[self.page_name]=self.total_score
-
-
 
 	def on_pre_enter(self):
 		for T in ["T1","T2","T3"]:
@@ -863,7 +844,6 @@ class CognitiveDeclineScorePage(ScorePageTemplate):
 		self.parent.current=self.next_page
 
 # --------------------------------------------------------------------- #
-
 class AboutPage(Screen):
 	def __init__(self,**kwargs):
 		super(AboutPage,self).__init__(**kwargs)
@@ -878,8 +858,6 @@ class EducationalResourcesPage(Screen):
 		super(EducationalResourcesPage,self).__init__(**kwargs)
 		self.prev_page="LandingPage"
 
-	# scroll_to(widget, padding=10, animate=True)
-
 	def chevron_left(self):
 		self.parent.transition.direction = 'right'
 		self.parent.current=self.prev_page
@@ -887,15 +865,9 @@ class EducationalResourcesPage(Screen):
 		(self.ids['SV'].vbar)
 
 	def motion(self,etype, me):
-		# print("on_motion")
-		# print(etype, me)
 		pass
 
-
 	def touch_move(self,etype, me):
-		# print("on_touch_move")
-		# print(etype, round(me.vbar[0],6))
-		# print ()
 		pass
 
 class CognitiveRehabPage(Screen):
@@ -923,19 +895,13 @@ class WindowManager(ScreenManager):
 		}
 		self._keyboard=None
 		Window.bind(on_keyboard=self._on_keyboard_up)
-		# self.on_pre_enter()
 
 	def _keyboard_closed(self):
 		if self._keyboard!=None:
 			self._keyboard.unbind(on_key_up=self._on_keyboard_up)
 		self._keyboard = None
 
-	def _on_keyboard_up(self, keyboard, keycode,*largs):#, text, modifiers):
-		# print (f"keycode:{keycode}")
-		# print (f"current:{self.current}")
-		# print (f"largs: {largs}")
-		# if keycode=='close':
-		# 	Window.release_all_keyboards()
+	def _on_keyboard_up(self, keyboard, keycode,*largs):
 		if keycode == KEY_Q:
 			if self.current!="CognitiveDeclinePage2":
 				exit()
@@ -949,38 +915,28 @@ class WindowManager(ScreenManager):
 			else:
 				self.current="RiskAssesmentPage" # all other pages return to risk assesment
 
-
 	def on_pre_enter(self):
 		self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
-
 		self._keyboard.bind(on_key_up=self._on_keyboard_up)
-		# Window.release_all_keyboards()
 
 class BlueSkyApp(App):
 	def __init__(self,**kwargs):
 		super(BlueSkyApp,self).__init__(**kwargs)
 		self.curr_state='close'
-
 		self.BG_COLOR="WHITE"
 		Window.clearcolor=WHITE
-
-	# --------------------------------------------------------------------- #
 
 	def build(self):
 		self.WindowManager=Builder.load_file(KV_FILE)
 		self.title='Blue Sky'
 		return self.WindowManager
 
-
 	def toggle_theme(self):
-
-		# bg color and logo path
 		if (self.BG_COLOR=="BLACK"):
 			self.BG_COLOR="WHITE"
 			Window.clearcolor=WHITE
 			I='pics/logo_minimal.png'
 			C=BLACK
-
 		else:
 			self.BG_COLOR="BLACK"
 			Window.clearcolor=BLACK
@@ -989,26 +945,19 @@ class BlueSkyApp(App):
 
 		self.WindowManager.get_screen("LandingPage").ids["my_im"].source=I
 		self.WindowManager.get_screen("LandingPage").ids["landing_page_bottom_label"].color=C
-
 		self.WindowManager.get_screen("RiskAssesmentPage").ids["score_label"].color=C
 		t=type(Label(text=""))
-
-
 		t1=self.WindowManager.get_screen("AirPollutionLandingPage").ids["label1"].__class__
 
 		# toggle label text colors in all screen
 		for s in self.WindowManager.screen_names:
 			curr=self.WindowManager.get_screen(s)
-			# print(curr)
 			for w in [widget for widget in curr.walk(loopback=True)]:
 				if (type(w)==t) or (type(w)==t1):
-					# print (t1)
 					w.color=C
-
 
 		# reload image
 		App.get_running_app().root.ids["LandingPage"].ids["my_im"].reload()
-
 
 if __name__=='__main__':
 	# Config.set('kivy', 'keyboard_mode', 'systemandmulti')
